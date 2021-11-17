@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ClothexUser" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/infinite_night</item>
         <item name="colorPrimaryVariant">@color/island_aqua</item>
@@ -33,5 +33,12 @@
 
     <style name="FontBold">
         <item name="fontFamily">@font/ibm_plex_sans_bold</item>
+    </style>
+
+    <style name="FontMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:letterSpacing">0.2</item>
+        <item name="fontFamily">@font/ibm_plex_sans_medium</item>
     </style>
 </resources>

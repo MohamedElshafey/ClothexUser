@@ -6,4 +6,6 @@
     <string name="title_categories">Categories</string>
     <string name="title_wish_list">Wishlist</string>
     <string name="title_profile">Profile</string>
+    <string name="welcome_to">Welcome To</string>
+    <string name="discover_your_style">Discover your style</string>
 </resources>
