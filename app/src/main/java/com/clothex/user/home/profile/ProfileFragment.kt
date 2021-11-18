@@ -1,4 +1,4 @@
-package com.clothex.user.ui.categories
+package com.clothex.user.home.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.clothex.user.databinding.FragmentCategoriesBinding
+import com.clothex.user.databinding.FragmentProfileBinding
 
-class CategoriesFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var categoriesViewModel: CategoriesViewModel
-    private var _binding: FragmentCategoriesBinding? = null
+    private lateinit var profileViewModel: ProfileViewModel
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,13 +21,13 @@ class CategoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
-
-        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
+        profileViewModel =
+            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        categoriesViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textDashboard
+        profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

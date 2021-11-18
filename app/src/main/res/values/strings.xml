@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clothex User</string>
+    <string name="app_name">ClotheX User</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -8,4 +8,8 @@
     <string name="title_profile">Profile</string>
     <string name="welcome_to">Welcome To</string>
     <string name="discover_your_style">Discover your style</string>
+    <string name="next">Next</string>
+    <string name="lets_start">Let\'s start</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="find_what_you_prefer">Find what you prefer?</string>
 </resources>

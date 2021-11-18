@@ -1,4 +1,4 @@
-package com.clothex.user.ui.wishlist
+package com.clothex.user.home.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,15 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.clothex.user.databinding.FragmentWishlistBinding
+import com.clothex.user.databinding.FragmentCategoriesBinding
 
-class WishListFragment : Fragment() {
+class CategoriesFragment : Fragment() {
 
-    private lateinit var wishListViewModel: WishListViewModel
-    private var _binding: FragmentWishlistBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private lateinit var categoriesViewModel: CategoriesViewModel
+    private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,14 +21,13 @@ class WishListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        wishListViewModel =
-            ViewModelProvider(this).get(WishListViewModel::class.java)
+        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
 
-        _binding = FragmentWishlistBinding.inflate(inflater, container, false)
+        _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        wishListViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textNotifications
+        categoriesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

@@ -41,4 +41,12 @@
         <item name="android:letterSpacing">0.2</item>
         <item name="fontFamily">@font/ibm_plex_sans_medium</item>
     </style>
+
+    <style name="ImageView.Corner" parent="">
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">50dp</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>

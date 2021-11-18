@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.clothex.user.ui.home.HomeFragment"
+        android:name="com.clothex.user.home.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_wish_list"
-        android:name="com.clothex.user.ui.wishlist.WishListFragment"
+        android:name="com.clothex.user.home.wishlist.WishListFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_wishlist" />
 
     <fragment
         android:id="@+id/navigation_categories"
-        android:name="com.clothex.user.ui.categories.CategoriesFragment"
+        android:name="com.clothex.user.home.categories.CategoriesFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_categories" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.clothex.user.ui.profile.ProfileFragment"
+        android:name="com.clothex.user.home.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
