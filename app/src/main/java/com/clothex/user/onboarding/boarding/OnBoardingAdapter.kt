@@ -7,12 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemOnboardingBinding
-import com.clothex.user.onboarding.boarding.PagesAdapter.ViewHolder
+import com.clothex.user.onboarding.boarding.OnBoardingAdapter.ViewHolder
 
 /**
  * Created by Mohamed Elshafey on 18/11/2021.
  */
-class PagesAdapter(
+class OnBoardingAdapter(
     private val list: List<OnBoardingModel>,
     private val clickCallback: (Int) -> Unit
 ) : RecyclerView.Adapter<ViewHolder>() {

@@ -19,5 +19,16 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.clothex.user.onboarding.boarding.OnBoardingFragment"
         android:label="OnBoardingFragment"
-        tools:layout="@layout/fragment_onboarding" />
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onBoardingFragment_to_userPreferencesFragment"
+            app:destination="@id/userPreferencesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userPreferencesFragment"
+        android:name="com.clothex.user.onboarding.preference.UserPreferencesFragment"
+        android:label="UserPreferencesFragment"
+        tools:layout="@layout/fragment_user_preference" />
+
 </navigation>

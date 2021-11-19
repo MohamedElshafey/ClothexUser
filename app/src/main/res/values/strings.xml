@@ -12,4 +12,14 @@
     <string name="lets_start">Let\'s start</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="find_what_you_prefer">Find what you prefer?</string>
+    <string name="skip">Skip</string>
+    <string name="what_do_you_prefer">What do you prefer?</string>
+    <string name="women">Women</string>
+    <string name="kids">Kids</string>
+    <string name="men">Men</string>
+    <string name="what_outfit_do_you_want_for">What outfit do you want for?</string>
+    <string name="what_type_of_outfit_do_you_prefer">What type of outfit do you prefer?</string>
+    <string name="what_size_do_you_prefer">What size do you prefer?</string>
+    <string name="choose_user_pref_disclaimer">Note : there are many many categories and sizes inside the app you can discover it as well.</string>
+    <string name="get_started">Get started</string>
 </resources>

@@ -35,6 +35,10 @@
         <item name="fontFamily">@font/ibm_plex_sans_bold</item>
     </style>
 
+    <style name="FontLight">
+        <item name="fontFamily">@font/ibm_plex_sans_light</item>
+    </style>
+
     <style name="FontMedium">
         <item name="android:textSize">12sp</item>
         <item name="lineHeight">18sp</item>
@@ -49,4 +53,17 @@
         <item name="cornerSizeBottomRight">50dp</item>
         <item name="cornerFamily">rounded</item>
     </style>
+
+    <style name="Widget.MyApp.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textAppearance">@style/FontSemiBold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
 </resources>
