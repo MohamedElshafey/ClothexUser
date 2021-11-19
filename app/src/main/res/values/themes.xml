@@ -3,7 +3,7 @@
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/infinite_night</item>
-        <item name="colorPrimaryVariant">@color/island_aqua</item>
+        <item name="colorPrimaryVariant">@color/infinite_night</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/nevada_sky</item>
