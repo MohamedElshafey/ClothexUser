@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.data.productList
+import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
+import com.clothex.user.home.shop.ShopAdapter
+
 
 class HomeFragment : Fragment() {
 
@@ -22,13 +26,19 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         binding.productRV.adapter = ProductAdapter(productList)
+        binding.shopsRV.adapter = ShopAdapter(shopList)
+        val layoutManager = object : LinearLayoutManager(requireContext()) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                lp.width = (width * 0.7f).toInt()
+                return true
+            }
+        }
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding.shopsRV.layoutManager = layoutManager
 
         return root
     }

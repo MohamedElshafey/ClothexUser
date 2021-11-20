@@ -70,4 +70,8 @@
         <item name="cornerSize">15dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.Shop" parent="">
+        <item name="cornerSize">5dp</item>
+    </style>
+
 </resources>

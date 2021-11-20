@@ -23,4 +23,7 @@
     <string name="choose_user_pref_disclaimer">Note : there are many many categories and sizes inside the app you can discover it as well.</string>
     <string name="get_started">Get started</string>
     <string name="hot_deal">Hot deal</string>
+    <string name="new_arrivals">New arrivals</string>
+    <string name="see_all">See all</string>
+    <string name="discover_shops">Discover shops</string>
 </resources>
