@@ -14,4 +14,9 @@
     <color name="silver">#BABABA</color>
     <color name="mercury">#E9E9E9</color>
     <color name="button_gray">#f5f5f5</color>
+
+    <color name="tag_new">#05df95</color>
+    <color name="tag_deal">#ff0057</color>
+
+    <color name="discount">#c50000</color>
 </resources>
