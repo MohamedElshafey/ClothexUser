@@ -40,9 +40,6 @@
     </style>
 
     <style name="FontMedium">
-        <item name="android:textSize">12sp</item>
-        <item name="lineHeight">18sp</item>
-        <item name="android:letterSpacing">0.2</item>
         <item name="fontFamily">@font/ibm_plex_sans_medium</item>
     </style>
 

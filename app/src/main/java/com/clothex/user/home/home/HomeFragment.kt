@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        binding.viewModel = homeViewModel
         binding.productRV.adapter = ProductAdapter(productList)
         binding.shopsRV.adapter = ShopAdapter(shopList)
         val layoutManager = object : LinearLayoutManager(requireContext()) {

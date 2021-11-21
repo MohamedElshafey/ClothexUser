@@ -22,9 +22,9 @@ val shopList = listOf(
         addressName = "20,Abbas El Akkad - Nasr City",
         workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
     ), Shop(
-        logoUrl = "https://cdn.freelogovectors.net/wp-content/uploads/2019/11/lc-waikiki-logo.png",
-        name = "LC WAIKIKI",
-        addressName = "20,Abbas El Akkad - Nasr City",
+        logoUrl = "https://www.rinnoo.net/f/res/s07/locations-photos/000/820/0082067-269-rinnoo-d25fe1d753cf44a39cbb353f8bf17581.jpg",
+        name = "ZARA",
+        addressName = "20, Makram Ebeid - Nasr City",
         workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
     ), Shop(
         logoUrl = "https://cdn.freelogovectors.net/wp-content/uploads/2019/11/lc-waikiki-logo.png",
