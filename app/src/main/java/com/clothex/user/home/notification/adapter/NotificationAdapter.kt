@@ -34,7 +34,7 @@ class NotificationAdapter(private val list: List<Notification>) :
             val context = binding.root.context
             val backgroundColor = if (notification.isRead) Color.WHITE else ContextCompat.getColor(
                 context,
-                R.color.notification_background
+                R.color.island_aqua_alpha
             )
             binding.root.setBackgroundColor(backgroundColor)
             binding.viewModel = NotificationItemViewModel(notification)

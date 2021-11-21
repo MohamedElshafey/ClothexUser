@@ -15,6 +15,23 @@ fun Product.mock(): Product {
     )
 }
 
+val savedLocations = listOf(
+    SavedLocation(
+        "New Cairo",
+        "5th settlement - Banks Center Area",
+        true
+    ),
+    SavedLocation(
+        "October",
+        "west somid, October 2",
+        false
+    ), SavedLocation(
+        "Maadi",
+        "9th street",
+        false
+    )
+)
+
 val notificationList = listOf(
     Notification(
         "Welcome to our new App!",

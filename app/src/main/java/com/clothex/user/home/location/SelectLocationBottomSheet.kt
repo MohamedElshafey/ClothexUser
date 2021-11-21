@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.clothex.user.customview.DefaultBottomSheet
+import com.clothex.user.data.savedLocations
 import com.clothex.user.databinding.SelectLocationBottomSheetBinding
+import com.clothex.user.home.location.adapter.SavedLocationAdapter
 
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
@@ -25,10 +27,10 @@ class SelectLocationBottomSheet : DefaultBottomSheet() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.currentLocationTV.text = "30 Abbas El Akkad, Nasr City"
+        binding.savedLocationRV.adapter = SavedLocationAdapter(savedLocations)
     }
 
 }
