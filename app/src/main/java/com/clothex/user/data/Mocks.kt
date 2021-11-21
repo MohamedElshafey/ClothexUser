@@ -15,6 +15,55 @@ fun Product.mock(): Product {
     )
 }
 
+val notificationList = listOf(
+    Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        false
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        false
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        true
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        true
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        false
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        false
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        false
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        true
+    ), Notification(
+        "Welcome to our new App!",
+        "Our app here to help you get your items!",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+        false
+    )
+)
+
 val shopList = listOf(
     Shop(
         logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",

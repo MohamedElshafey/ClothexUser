@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.data.productList
@@ -41,6 +42,9 @@ class HomeFragment : Fragment() {
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.shopsRV.layoutManager = layoutManager
 
+        binding.notificationIV.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationFragment())
+        }
         return root
     }
 
