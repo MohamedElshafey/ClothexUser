@@ -3,6 +3,7 @@ package com.clothex.user.utils
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
+import androidx.constraintlayout.widget.Group
 import androidx.core.view.ViewCompat
 import com.clothex.user.R
 import com.google.android.material.chip.Chip
@@ -23,4 +24,10 @@ fun ChipGroup.addChip(layoutInflater: LayoutInflater, text: String) {
     chip.id = ViewCompat.generateViewId()
     chip.text = text
     addView(chip)
+}
+
+fun Group.setAllOnClickListener(listener: View.OnClickListener?) {
+    referencedIds.forEach { id ->
+        rootView.findViewById<View>(id).setOnClickListener(listener)
+    }
 }

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/showing_shops_around"
+                android:text="@string/select_location_title"
                 android:textAppearance="@style/FontMedium"
                 android:textColor="@color/dove_gray"
                 android:textSize="12sp"
@@ -57,6 +57,13 @@
                 app:layout_constraintEnd_toStartOf="@id/notificationIV"
                 app:layout_constraintStart_toStartOf="@id/locationTitleTV"
                 app:layout_constraintTop_toBottomOf="@id/locationTitleTV" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/locationGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="locationTitleTV,locationIconIV,locationValueTV" />
 
             <ImageView
                 android:id="@+id/notificationIV"
@@ -176,6 +183,7 @@
                 app:spanCount="2"
                 tools:itemCount="2"
                 tools:listitem="@layout/adapter_item_shop" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

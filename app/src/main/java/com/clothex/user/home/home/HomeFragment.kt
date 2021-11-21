@@ -14,6 +14,7 @@ import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
+import com.clothex.user.utils.setAllOnClickListener
 
 
 class HomeFragment : Fragment() {
@@ -44,6 +45,10 @@ class HomeFragment : Fragment() {
 
         binding.notificationIV.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNotificationFragment())
+        }
+
+        binding.locationGroup.setAllOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSelectLocationBottomSheet())
         }
         return root
     }

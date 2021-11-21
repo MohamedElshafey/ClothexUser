@@ -21,6 +21,7 @@ import com.clothex.user.home.categories.CategoriesFragment
 import com.clothex.user.home.home.HomeFragment
 import com.clothex.user.home.profile.ProfileFragment
 import com.clothex.user.home.wishlist.WishListFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -48,6 +49,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private val fragmentLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
+
+
         override fun onFragmentViewCreated(
             fm: FragmentManager,
             f: Fragment,
@@ -55,10 +58,9 @@ class HomeActivity : AppCompatActivity() {
             savedInstanceState: Bundle?
         ) {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState)
-
             val transition: Transition = Slide(Gravity.BOTTOM)
             when (f) {
-                is HomeFragment, is WishListFragment, is CategoriesFragment, is ProfileFragment -> {
+                is HomeFragment, is WishListFragment, is CategoriesFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
                     if (binding.navView.visibility == GONE) {
                         TransitionManager.beginDelayedTransition(
                             binding.root,

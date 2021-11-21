@@ -13,7 +13,7 @@
         android:layout_marginStart="24dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:src="@drawable/ic_location"
+        android:src="@drawable/ic_back_arrow"
         app:layout_constraintBottom_toBottomOf="@id/titleTV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/titleTV" />

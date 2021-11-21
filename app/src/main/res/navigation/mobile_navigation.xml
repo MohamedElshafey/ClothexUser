@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_selectLocationBottomSheet"
+            app:destination="@id/selectLocationBottomSheet" />
     </fragment>
 
     <fragment
@@ -37,4 +40,9 @@
         android:name="com.clothex.user.home.notification.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notifications" />
+    <dialog
+        android:id="@+id/selectLocationBottomSheet"
+        android:name="com.clothex.user.home.location.SelectLocationBottomSheet"
+        android:label="SelectLocationBottomSheet"
+        tools:layout="@layout/select_location_bottom_sheet" />
 </navigation>
