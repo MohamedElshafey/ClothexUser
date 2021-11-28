@@ -4,8 +4,9 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Product(
-    val _id: String,
-    val subProduct: List<SubProduct>?,
-    val title: String
+data class Media(
+    val _id: String?,
+    val source: String,
+    val thumbnail: String,
+    val type: String
 ) : Parcelable

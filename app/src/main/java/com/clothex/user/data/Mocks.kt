@@ -1,36 +1,33 @@
 package com.clothex.user.data
 
+import android.content.Context
+import com.clothex.shop.core.models.Item
+import com.clothex.user.R
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.*
+
+
 /**
- * Created by Mohamed Elshafey on 20/11/2021.
+ * Created by Mohamed Elshafey on 29/11/2021.
  */
 
-fun Product.mock(): Product {
-    return Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://pantaloons.imgix.net/img/app/product/3/345465-1678639.jpg",
-        "Hot deal",
-        "#ff0057",
-        "200",
-        "400",
-    )
-}
 
-val savedLocations = listOf(
-    SavedLocation(
-        "New Cairo",
-        "5th settlement - Banks Center Area",
-        true
-    ),
-    SavedLocation(
-        "October",
-        "west somid, October 2",
-        false
-    ), SavedLocation(
-        "Maadi",
-        "9th street",
-        false
-    )
-)
+fun getItemsList(context: Context): List<Item> {
+    val inputStream: InputStream = context.resources.openRawResource(R.raw.items)
+    val writer: Writer = StringWriter()
+    val buffer = CharArray(1024)
+    inputStream.use {
+        val reader: Reader = BufferedReader(InputStreamReader(inputStream, "UTF-8"))
+        var n: Int
+        while (reader.read(buffer).also { n = it } != -1) {
+            writer.write(buffer, 0, n)
+        }
+    }
+
+    val jsonString: String = writer.toString()
+    return Gson().fromJson(jsonString, object : TypeToken<List<Item?>?>() {}.type)
+}
 
 val notificationList = listOf(
     Notification(
@@ -104,48 +101,19 @@ val shopList = listOf(
         workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
     )
 )
-val productList = listOf(
-    Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://images.squarespace-cdn.com/content/v1/5cb58de3815512123a6f5f59/1608231092406-MP2VLB92T2CIPIM9620M/Tatjana+Trousers+Brown-1.jpg",
-        null,
-        null,
-        "200",
-        null,
-    ), Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://images.squarespace-cdn.com/content/v1/5cb58de3815512123a6f5f59/1608231092406-MP2VLB92T2CIPIM9620M/Tatjana+Trousers+Brown-1.jpg",
-        "Hot deal",
-        "#ff0057",
-        "200",
-        "250",
-    ), Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://images.squarespace-cdn.com/content/v1/5cb58de3815512123a6f5f59/1608231092406-MP2VLB92T2CIPIM9620M/Tatjana+Trousers+Brown-1.jpg",
-        "New",
-        "#05df95",
-        "200",
-        "400",
-    ), Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://pantaloons.imgix.net/img/app/product/3/345465-1678639.jpg",
-        null,
-        null,
-        "200",
-        null,
-    ), Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://images.squarespace-cdn.com/content/v1/5cb58de3815512123a6f5f59/1608231092406-MP2VLB92T2CIPIM9620M/Tatjana+Trousers+Brown-1.jpg",
-        null,
-        null,
-        "200",
-        "400",
-    ), Product(
-        "Solid Button-Front Drop Shoulder Shirt",
-        "https://images.squarespace-cdn.com/content/v1/5cb58de3815512123a6f5f59/1608231092406-MP2VLB92T2CIPIM9620M/Tatjana+Trousers+Brown-1.jpg",
-        null,
-        null,
-        "200",
-        null,
+
+val savedLocations = listOf(
+    SavedLocation(
+        title = "New Cairo",
+        subTitle = "5th settlement, Villa 202, North 90",
+        isSelected = true
+    ), SavedLocation(
+        title = "Nasr city",
+        subTitle = "Markam ebeid",
+        isSelected = false
+    ), SavedLocation(
+        title = "Nasr city",
+        subTitle = "Abbas El Akkad",
+        isSelected = false
     )
 )

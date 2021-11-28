@@ -31,4 +31,5 @@
     <string name="select_current_location_title">Show shops around current location</string>
     <string name="choose_location_on_map_title">Show shops in specific location</string>
     <string name="choose_location_on_map_value">Choose location on the map</string>
+    <string name="show_shops_here">Show shops here</string>
 </resources>

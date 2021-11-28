@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.productList
+import com.clothex.user.data.getItemsList
 import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.viewModel = homeViewModel
-        binding.productRV.adapter = ProductAdapter(productList)
+        binding.productRV.adapter = ProductAdapter(getItemsList(requireContext()).slice(2..7))
         binding.shopsRV.adapter = ShopAdapter(shopList)
         val layoutManager = object : LinearLayoutManager(requireContext()) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {

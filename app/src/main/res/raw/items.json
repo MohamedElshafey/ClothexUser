@@ -1,0 +1,3552 @@
+[
+  {
+    "_id": "6179bcd13797bb2db373694e",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 300,
+    "colors": [
+      {
+        "_id": "6179bcd13797bb2db373694f",
+        "code": "#CD9575",
+        "images": [],
+        "sizes": []
+      },
+      {
+        "_id": "6179bcd13797bb2db3736952",
+        "code": "#FDD9B5",
+        "images": [],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "618a32a39e9fc5037d8e5ebb",
+            "title": "25"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c76acea8541f44fafa3",
+        "title": "Top or upper body",
+        "sub_product": {
+          "_id": "60453c76acea8541f44faf91",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44faf82",
+              "title": "Western Shirt"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44faf91",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44faf82",
+          "title": "Western Shirt"
+        }
+      ]
+    },
+    "sku": "Trouser/32/52132",
+    "images": [],
+    "__v": 0,
+    "sale_end_date": 1637625600000,
+    "sale_price": 150,
+    "sale_start_date": 1636329600000
+  },
+  {
+    "_id": "617848b8d6521a39c391280e",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 100,
+    "colors": [
+      {
+        "_id": "617848b8d6521a39c391280f",
+        "code": "#EFDECD",
+        "images": [
+          {
+            "_id": "618c3c9df3e27e0496197d2b",
+            "source": "http:/localhost:3000/images/2082f11ae3a02c287224a3acdf925a09.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/2082f11ae3a02c287224a3acdf925a09.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "618c3c9df3e27e0496197d2c",
+            "title": "22"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44fafc3",
+        "title": "Basics",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fafc0",
+          "title": "bottom",
+          "tags": []
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fafc0",
+      "title": "bottom",
+      "tags": []
+    },
+    "images": [],
+    "__v": 0,
+    "sale_end_date": null,
+    "sale_price": 90,
+    "sale_start_date": null,
+    "sku": ""
+  },
+  {
+    "_id": "610b0886a3686a035971c0fa",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 1200,
+    "colors": [
+      {
+        "_id": "610b0886a3686a035971c0fb",
+        "code": "#F75394",
+        "images": [
+          {
+            "_id": "618c391df3e27e0496197d00",
+            "source": "http:/localhost:3000/images/cb1834ba32ff453305d0e7877746d3e6.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "618c391df3e27e0496197d01",
+            "source": "http:/localhost:3000/images/bbb9b5c6ab352d43214b6770f41979f8.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/bbb9b5c6ab352d43214b6770f41979f8.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "618c391df3e27e0496197d02",
+            "source": "http:/localhost:3000/images/c89abe67645a80b0b20a24206bee4ff6.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/c89abe67645a80b0b20a24206bee4ff6.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "618c391df3e27e0496197d03",
+            "title": "XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "618c391df3e27e0496197d04",
+            "title": "2XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "618c391df3e27e0496197d05",
+            "title": "3XL"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb0a1",
+      "title": "Men",
+      "products": {
+        "_id": "60453c77acea8541f44fb079",
+        "title": "Top or Upper body",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fb06f",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fb06a",
+              "title": "Long sleeve jersey"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fb06f",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fb06a",
+          "title": "Long sleeve jersey"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0,
+    "sale_end_date": 1637798400000,
+    "sale_price": 900,
+    "sale_start_date": 1636588800000,
+    "sku": ""
+  },
+  {
+    "_id": "610b07f5a3686a035971c0e0",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 250,
+    "colors": [
+      {
+        "_id": "610b07f5a3686a035971c0e1",
+        "code": "#78DBE2",
+        "images": [
+          {
+            "_id": "619407bfa45b2a5b2faeb8c2",
+            "source": "http:/localhost:3000/images/b988efa88ec5781202366f5d5d1f50e3.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/b988efa88ec5781202366f5d5d1f50e3.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "619407bfa45b2a5b2faeb8c3",
+            "source": "http:/localhost:3000/images/2b83c5e3e247e2f5e40430773e7df28e.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/2b83c5e3e247e2f5e40430773e7df28e.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "619407bfa45b2a5b2faeb8c4",
+            "title": "2XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "619407bfa45b2a5b2faeb8c5",
+            "title": "3XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "619407bfa45b2a5b2faeb8c6",
+            "title": "4XL"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb0a1",
+      "title": "Men",
+      "products": {
+        "_id": "60453c77acea8541f44fb079",
+        "title": "Top or Upper body",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fb06f",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fb06a",
+              "title": "Long sleeve jersey"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fb06f",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fb06a",
+          "title": "Long sleeve jersey"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0,
+    "sale_end_date": 1637971200000,
+    "sale_price": 200,
+    "sale_start_date": 1637366400000,
+    "sku": "98929392489"
+  },
+  {
+    "_id": "610b06eda3686a035971c0bb",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 550,
+    "colors": [
+      {
+        "_id": "610b06eda3686a035971c0bc",
+        "code": "#000000",
+        "images": [
+          {
+            "_id": "6198fbc023ad9d05afff1cf3",
+            "source": "http:/localhost:3000/images/5e42d2c2a624dc275a7f7ff5e592823d.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/5e42d2c2a624dc275a7f7ff5e592823d.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6198fbc023ad9d05afff1cf4",
+            "source": "http:/localhost:3000/images/1e57d639d11624ec7ce74fc1e8b94f3d.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/1e57d639d11624ec7ce74fc1e8b94f3d.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6198fbc023ad9d05afff1cf5",
+            "source": "http:/localhost:3000/images/6d328625a4f609439ffe4ce98c2e17a1.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/6d328625a4f609439ffe4ce98c2e17a1.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1cf6",
+            "title": "40"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1cf7",
+            "title": "41"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1cf8",
+            "title": "42"
+          }
+        ]
+      },
+      {
+        "_id": "610b06eda3686a035971c0c3",
+        "code": "#FFFFFF",
+        "images": [
+          {
+            "_id": "6198fbc023ad9d05afff1cfa",
+            "source": "http:/localhost:3000/images/6b498a06f07d951693283c26932d86d8.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/6b498a06f07d951693283c26932d86d8.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6198fbc023ad9d05afff1cfb",
+            "source": "http:/localhost:3000/images/a905f38e8fdd43c1ca039cb3f8a850ae.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/a905f38e8fdd43c1ca039cb3f8a850ae.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6198fbc023ad9d05afff1cfc",
+            "source": "http:/localhost:3000/images/dc3c229c91e1e47da7b5c75c5881feb3.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/dc3c229c91e1e47da7b5c75c5881feb3.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1cfd",
+            "title": "40"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1cfe",
+            "title": "41"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1cff",
+            "title": "42"
+          }
+        ]
+      },
+      {
+        "_id": "610b06eda3686a035971c0ca",
+        "code": "#EE204D",
+        "images": [
+          {
+            "_id": "6198fbc023ad9d05afff1d01",
+            "source": "http:/localhost:3000/images/3400266af15ae82b92bc002d3bb85254.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/3400266af15ae82b92bc002d3bb85254.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6198fbc023ad9d05afff1d02",
+            "source": "http:/localhost:3000/images/826cf1b70a923c756f774c5ae27e7966.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/826cf1b70a923c756f774c5ae27e7966.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6198fbc023ad9d05afff1d03",
+            "source": "http:/localhost:3000/images/f538a06f569b55d0a4cdd54afeabb9f4.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/f538a06f569b55d0a4cdd54afeabb9f4.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1d04",
+            "title": "40"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1d05",
+            "title": "41"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6198fbc023ad9d05afff1d06",
+            "title": "42"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb0a1",
+      "title": "Men",
+      "products": {
+        "_id": "60453c77acea8541f44fb08f",
+        "title": "Shoes",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fb08a",
+          "title": "Casual",
+          "tags": []
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fb08a",
+      "title": "Casual",
+      "tags": []
+    },
+    "images": [],
+    "__v": 0,
+    "sale_end_date": null,
+    "sale_price": null,
+    "sale_start_date": null,
+    "sku": "1231241231"
+  },
+  {
+    "_id": "610b0117a3686a035971c0a0",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 600,
+    "colors": [
+      {
+        "_id": "610b0117a3686a035971c0a1",
+        "code": "#B4674D",
+        "images": [
+          {
+            "_id": "610b0117a3686a035971c0a2",
+            "source": "http:/localhost:3000/images/1dbeccac60b9b56a0876f5260b97bfa4.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/1dbeccac60b9b56a0876f5260b97bfa4.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "610b0117a3686a035971c0a3",
+            "source": "http:/localhost:3000/images/6e200fa1340be104dfa62ddcd1b95e3c.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/6e200fa1340be104dfa62ddcd1b95e3c.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "610b0117a3686a035971c0a4",
+            "source": "http:/localhost:3000/images/db716b2dbb224cea68c80f037cf86081.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/db716b2dbb224cea68c80f037cf86081.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              }
+            ],
+            "_id": "610b0117a3686a035971c0a5",
+            "title": "40"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "610b0117a3686a035971c0a6",
+            "title": "41"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "610b0117a3686a035971c0a7",
+            "title": "42"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb0a1",
+      "title": "Men",
+      "products": {
+        "_id": "60453c77acea8541f44fb08f",
+        "title": "Shoes",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fb08b",
+          "title": "Sports",
+          "tags": []
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fb08b",
+      "title": "Sports",
+      "tags": []
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "6109bf859bee70122e758bbb",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 500,
+    "colors": [
+      {
+        "_id": "6109bf859bee70122e758bbc",
+        "code": "#1A4876",
+        "images": [
+          {
+            "_id": "6109bf859bee70122e758bbd",
+            "source": "http:/localhost:3000/images/d405c7a7145587edefa216c70794d679.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/d405c7a7145587edefa216c70794d679.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6109bf859bee70122e758bbe",
+            "source": "http:/localhost:3000/images/5bb5df5329420a687f3527d2346c5174.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/5bb5df5329420a687f3527d2346c5174.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bf859bee70122e758bbf",
+            "title": "L"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bf859bee70122e758bc0",
+            "title": "XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bf859bee70122e758bc1",
+            "title": "XXL"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44fafbf",
+        "title": "Dress",
+        "sub_product": {
+          "_id": "60453c76acea8541f44fafb1",
+          "title": "Long",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44fafad",
+              "title": "Maxi"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44fafb1",
+      "title": "Long",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44fafad",
+          "title": "Maxi"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "6109bef99bee70122e758b99",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 350,
+    "colors": [
+      {
+        "_id": "6109bef99bee70122e758b9a",
+        "code": "#1F75FE",
+        "images": [
+          {
+            "_id": "6109bef99bee70122e758b9b",
+            "source": "http:/localhost:3000/images/c8fb860fb06046d9d754f960c8d53d98.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/c8fb860fb06046d9d754f960c8d53d98.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6109bef99bee70122e758b9c",
+            "source": "http:/localhost:3000/images/359e6dc64db0709debd991a8d9e39857.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/359e6dc64db0709debd991a8d9e39857.jpg",
+            "type": "photo"
+          },
+          {
+            "_id": "6109bef99bee70122e758b9d",
+            "source": "http:/localhost:3000/images/6fdbe5ae7db8b336a81968e21db373f1.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/6fdbe5ae7db8b336a81968e21db373f1.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bef99bee70122e758b9e",
+            "title": "30"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bef99bee70122e758b9f",
+            "title": "32"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bef99bee70122e758ba0",
+            "title": "34"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bef99bee70122e758ba1",
+            "title": "38"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6109bef99bee70122e758ba2",
+            "title": "36"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb0a1",
+      "title": "Men",
+      "products": {
+        "_id": "60453c77acea8541f44fb083",
+        "title": "Trouser",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fb07f",
+          "title": "Jeans",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fb07d",
+              "title": "Relaxed"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fb07f",
+      "title": "Jeans",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fb07d",
+          "title": "Relaxed"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60e04524c5e2a502f0d2e0c4",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 300,
+    "colors": [
+      {
+        "_id": "60e04524c5e2a502f0d2e0c5",
+        "code": "#EFDECD",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0c6",
+            "title": "30"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0c7",
+            "title": "34"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0c8",
+            "title": "38"
+          }
+        ],
+        "images": []
+      },
+      {
+        "_id": "60e04524c5e2a502f0d2e0c9",
+        "code": "#78DBE2",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0ca",
+            "title": "30"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0cb",
+            "title": "34"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0cc",
+            "title": "38"
+          }
+        ],
+        "images": []
+      },
+      {
+        "_id": "60e04524c5e2a502f0d2e0cd",
+        "code": "#FFA474",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0ce",
+            "title": "30"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60e04524c5e2a502f0d2e0cf",
+            "title": "38"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44fafbf",
+        "title": "Dress",
+        "sub_product": {
+          "_id": "60453c76acea8541f44fafb1",
+          "title": "Long",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44fafa4",
+              "title": "Strapless"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44fafb1",
+      "title": "Long",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44fafa4",
+          "title": "Strapless"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60db86878fef15242620b563",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 425,
+    "colors": [
+      {
+        "_id": "60db86878fef15242620b564",
+        "code": "#F8D568",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60db86878fef15242620b565",
+            "title": "4XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60db86878fef15242620b566",
+            "title": "3XL"
+          }
+        ],
+        "images": []
+      },
+      {
+        "_id": "60db86878fef15242620b567",
+        "code": "#1F75FE",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60db86878fef15242620b568",
+            "title": "4XL"
+          },
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60db86878fef15242620b569",
+            "title": "3XL"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44faff9",
+        "title": "Trouser",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fafd0",
+          "title": "Jeans",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fafc4",
+              "title": "Skinny"
+            },
+            {
+              "_id": "60453c77acea8541f44fafc5",
+              "title": "Boyfriend"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fafd0",
+      "title": "Jeans",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fafc4",
+          "title": "Skinny"
+        },
+        {
+          "_id": "60453c77acea8541f44fafc5",
+          "title": "Boyfriend"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60da03e342e90115ee562991",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 100,
+    "colors": [
+      {
+        "_id": "60da03e342e90115ee562992",
+        "code": "#FDD9B5",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60da03e342e90115ee562993",
+            "title": "25"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44fafbf",
+        "title": "Dress",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fafbe",
+          "title": "Short",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44fafb2",
+              "title": "Strapless"
+            },
+            {
+              "_id": "60453c76acea8541f44fafb4",
+              "title": "Halter"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fafbe",
+      "title": "Short",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44fafb2",
+          "title": "Strapless"
+        },
+        {
+          "_id": "60453c76acea8541f44fafb4",
+          "title": "Halter"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60c267ae18749c2cbb094745",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 200,
+    "colors": [
+      {
+        "_id": "60c267ae18749c2cbb094746",
+        "code": "#FDD9B5",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60c267ae18749c2cbb094747",
+            "title": "25"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c76acea8541f44fafa3",
+        "title": "Top or upper body",
+        "sub_product": {
+          "_id": "60453c76acea8541f44fafa2",
+          "title": "T-shirt",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44faf93",
+              "title": "Western Shirt"
+            },
+            {
+              "_id": "60453c76acea8541f44faf94",
+              "title": "Pin Tuck"
+            },
+            {
+              "_id": "60453c76acea8541f44faf95",
+              "title": "Tuxedo"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44fafa2",
+      "title": "T-shirt",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44faf93",
+          "title": "Western Shirt"
+        },
+        {
+          "_id": "60453c76acea8541f44faf94",
+          "title": "Pin Tuck"
+        },
+        {
+          "_id": "60453c76acea8541f44faf95",
+          "title": "Tuxedo"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60bfe6bc8ec2762341339c16",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 250,
+    "colors": [
+      {
+        "_id": "60bfe6bc8ec2762341339c17",
+        "code": "#FFFF99",
+        "images": [
+          {
+            "_id": "60bfe6bc8ec2762341339c18",
+            "source": "http:/localhost:3000/images/299d2cd925c06b441ec688e864a4b0cd.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/299d2cd925c06b441ec688e864a4b0cd.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60bfe6bc8ec2762341339c19",
+            "title": "29"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c76acea8541f44fafa3",
+        "title": "Top or upper body",
+        "sub_product": {
+          "_id": "60453c76acea8541f44faf91",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44faf82",
+              "title": "Western Shirt"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44faf91",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44faf82",
+          "title": "Western Shirt"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60bfe6838ec2762341339c05",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 500,
+    "colors": [
+      {
+        "_id": "60bfe6838ec2762341339c06",
+        "code": "#FFFF99",
+        "images": [],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60bfe68c8ec2762341339c0f",
+            "title": "29"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44faff9",
+        "title": "Trouser",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fafe4",
+          "title": "Gabardine",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fafd1",
+              "title": "Skinny"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fafe4",
+      "title": "Gabardine",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fafd1",
+          "title": "Skinny"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0,
+    "new_price": 500
+  },
+  {
+    "_id": "60bd3b631de7b1047eeb6288",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 400,
+    "colors": [
+      {
+        "_id": "60bd3b631de7b1047eeb6289",
+        "code": "#EFDECD",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60bd3b631de7b1047eeb628a",
+            "title": "30"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44fafbf",
+        "title": "Dress",
+        "sub_product": {
+          "_id": "60453c76acea8541f44fafb1",
+          "title": "Long",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44fafa4",
+              "title": "Strapless"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44fafb1",
+      "title": "Long",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44fafa4",
+          "title": "Strapless"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60bd37b61de7b1047eeb627f",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 334,
+    "colors": [
+      {
+        "_id": "60bd37b61de7b1047eeb6280",
+        "code": "#6699CC",
+        "images": [],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60bd37b61de7b1047eeb6281",
+            "title": "34"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c76acea8541f44fafa3",
+        "title": "Top or upper body",
+        "sub_product": {
+          "_id": "60453c76acea8541f44faf91",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44faf82",
+              "title": "Western Shirt"
+            },
+            {
+              "_id": "60453c76acea8541f44faf83",
+              "title": "Pin Tuck"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44faf91",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44faf82",
+          "title": "Western Shirt"
+        },
+        {
+          "_id": "60453c76acea8541f44faf83",
+          "title": "Pin Tuck"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "60bbc1d895a347261b993fdd",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 222,
+    "colors": [
+      {
+        "_id": "60bbc1d895a347261b993fde",
+        "code": "#FFF44F",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "60bbc1d895a347261b993fdf",
+            "title": "30"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb0a1",
+      "title": "Men",
+      "products": {
+        "_id": "60453c77acea8541f44fb079",
+        "title": "Top or Upper body",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fb06f",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fb06a",
+              "title": "Long sleeve jersey"
+            },
+            {
+              "_id": "60453c77acea8541f44fb06b",
+              "title": "High neck"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fb06f",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fb06a",
+          "title": "Long sleeve jersey"
+        },
+        {
+          "_id": "60453c77acea8541f44fb06b",
+          "title": "High neck"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "6047fe151a3e1c4bc0b97e27",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 500,
+    "colors": [
+      {
+        "_id": "6047fe151a3e1c4bc0b97e28",
+        "code": "#5DADEC",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6047fe151a3e1c4bc0b97e29",
+            "title": "30"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c77acea8541f44faff9",
+        "title": "Trouser",
+        "sub_product": {
+          "_id": "60453c77acea8541f44fafd0",
+          "title": "Jeans",
+          "tags": [
+            {
+              "_id": "60453c77acea8541f44fafc4",
+              "title": "Skinny"
+            },
+            {
+              "_id": "60453c77acea8541f44fafc5",
+              "title": "Boyfriend"
+            },
+            {
+              "_id": "60453c77acea8541f44fafc6",
+              "title": "Dirty"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c77acea8541f44fafd0",
+      "title": "Jeans",
+      "tags": [
+        {
+          "_id": "60453c77acea8541f44fafc4",
+          "title": "Skinny"
+        },
+        {
+          "_id": "60453c77acea8541f44fafc5",
+          "title": "Boyfriend"
+        },
+        {
+          "_id": "60453c77acea8541f44fafc6",
+          "title": "Dirty"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "6047fd36d9a1ad53d04cf45f",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 500,
+    "colors": [
+      {
+        "_id": "6047fd36d9a1ad53d04cf460",
+        "code": "#B0BF1A",
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6047fd36d9a1ad53d04cf461",
+            "title": "30"
+          }
+        ],
+        "images": []
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c76acea8541f44fafa3",
+        "title": "Top or upper body",
+        "sub_product": {
+          "_id": "60453c76acea8541f44faf91",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44faf87",
+              "title": "Smock"
+            },
+            {
+              "_id": "60453c76acea8541f44faf8a",
+              "title": "Sailor"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44faf91",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44faf87",
+          "title": "Smock"
+        },
+        {
+          "_id": "60453c76acea8541f44faf8a",
+          "title": "Sailor"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  },
+  {
+    "_id": "6047fc37d9a1ad53d04cf401",
+    "available": false,
+    "user_id": "5f98864fc1fd42482097d388",
+    "price": 350,
+    "colors": [
+      {
+        "_id": "6047fc37d9a1ad53d04cf402",
+        "code": "#F0F8FF",
+        "images": [
+          {
+            "_id": "6047fcf3d9a1ad53d04cf444",
+            "source": "http:/localhost:3000/images/1697b74b384e218ea8a29d4ceca78577.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/1697b74b384e218ea8a29d4ceca78577.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": []
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf405",
+        "code": "#1F75FE",
+        "images": [],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6047fcf3d9a1ad53d04cf446",
+            "title": "30"
+          }
+        ]
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf407",
+        "code": "#EFDFBB",
+        "images": [
+          {
+            "_id": "6047fcf3d9a1ad53d04cf448",
+            "source": "http:/localhost:3000/images/575f2ad744c3319b3dcaad3e9a47d458.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/575f2ad744c3319b3dcaad3e9a47d458.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": []
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf40a",
+        "code": "#9ACD32",
+        "images": [],
+        "sizes": []
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf40c",
+        "code": "#0000FF",
+        "images": [],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6047fcf3d9a1ad53d04cf44b",
+            "title": "30"
+          }
+        ]
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf40e",
+        "code": "#660000",
+        "images": [],
+        "sizes": []
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf410",
+        "code": "#FFFFFF",
+        "images": [
+          {
+            "_id": "6047fcf3d9a1ad53d04cf44e",
+            "source": "http:/localhost:3000/images/8bdf8a33aedfcb232c8a1a86408ace0b.jpg",
+            "thumbnail": "http:/localhost:3000/images/thumb/8bdf8a33aedfcb232c8a1a86408ace0b.jpg",
+            "type": "photo"
+          }
+        ],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6047fcf3d9a1ad53d04cf44f",
+            "title": "30"
+          }
+        ]
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf413",
+        "code": "#FEBAAD",
+        "images": [],
+        "sizes": []
+      },
+      {
+        "_id": "6047fc37d9a1ad53d04cf415",
+        "code": "#013220",
+        "images": [],
+        "sizes": [
+          {
+            "available_branches": [
+              {
+                "_id": "5fbc13be2d580a018c6f71b1",
+                "name": "LC WAIKIKI MALL OF EGYPT 2",
+                "address": {
+                  "_id": "6179b2c1b95a2c2c33089c05",
+                  "location": {
+                    "_id": "6179b2c1b95a2c2c33089c06",
+                    "lat": 30.03124206787664,
+                    "long": 31.408008746802807
+                  },
+                  "name": "مول مصر ، الدور الاول B6 2"
+                }
+              },
+              {
+                "_id": "5fbd7496b617b8496c0de81f",
+                "name": "الرحاب",
+                "address": {
+                  "_id": "6047fd6dd9a1ad53d04cf468",
+                  "location": {
+                    "_id": "6047fd6dd9a1ad53d04cf469",
+                    "lat": 30.070889428989393,
+                    "long": 31.51768729090691
+                  },
+                  "name": "rehab"
+                }
+              },
+              {
+                "_id": "5fc530bb1d9b25258c24ea1a",
+                "name": "عباس العقاد",
+                "address": {
+                  "_id": "5fc530bb1d9b25258c24ea1b",
+                  "location": {
+                    "_id": "5fc530bb1d9b25258c24ea1c",
+                    "lat": 30.0664593194781,
+                    "long": 31.336393095552925
+                  },
+                  "name": "ش عباس العقاد بجوار كشري التحرير"
+                }
+              }
+            ],
+            "_id": "6047fcf3d9a1ad53d04cf452",
+            "title": "30"
+          }
+        ]
+      }
+    ],
+    "department": {
+      "_id": "60453c77acea8541f44fb069",
+      "title": "Women",
+      "products": {
+        "_id": "60453c76acea8541f44fafa3",
+        "title": "Top or upper body",
+        "sub_product": {
+          "_id": "60453c76acea8541f44faf91",
+          "title": "Shirt",
+          "tags": [
+            {
+              "_id": "60453c76acea8541f44faf82",
+              "title": "Western Shirt"
+            }
+          ]
+        }
+      }
+    },
+    "sub_product": {
+      "_id": "60453c76acea8541f44faf91",
+      "title": "Shirt",
+      "tags": [
+        {
+          "_id": "60453c76acea8541f44faf82",
+          "title": "Western Shirt"
+        }
+      ]
+    },
+    "images": [],
+    "__v": 0
+  }
+]

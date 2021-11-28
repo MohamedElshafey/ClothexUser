@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.clothex.user.customview.DefaultBottomSheet
 import com.clothex.user.data.savedLocations
 import com.clothex.user.databinding.SelectLocationBottomSheetBinding
@@ -31,6 +32,9 @@ class SelectLocationBottomSheet : DefaultBottomSheet() {
         super.onViewCreated(view, savedInstanceState)
         binding.currentLocationTV.text = "30 Abbas El Akkad, Nasr City"
         binding.savedLocationRV.adapter = SavedLocationAdapter(savedLocations)
+        binding.chooseLocationContainer.setOnClickListener {
+            findNavController().navigate(SelectLocationBottomSheetDirections.actionSelectLocationBottomSheetToMapsFragment())
+        }
     }
 
 }

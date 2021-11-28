@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Product(
+data class Department(
     val _id: String,
-    val subProduct: List<SubProduct>?,
+    var products: List<Product>,
     val title: String
 ) : Parcelable

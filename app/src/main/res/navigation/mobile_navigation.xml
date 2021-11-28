@@ -44,5 +44,14 @@
         android:id="@+id/selectLocationBottomSheet"
         android:name="com.clothex.user.home.location.SelectLocationBottomSheet"
         android:label="SelectLocationBottomSheet"
-        tools:layout="@layout/select_location_bottom_sheet" />
+        tools:layout="@layout/select_location_bottom_sheet" >
+        <action
+            android:id="@+id/action_selectLocationBottomSheet_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.clothex.user.home.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

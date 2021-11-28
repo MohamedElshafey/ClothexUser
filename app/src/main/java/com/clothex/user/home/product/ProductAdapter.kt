@@ -5,7 +5,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.Product
+import com.clothex.shop.core.models.Item
 import com.clothex.user.databinding.AdapterItemProductGridBinding
 import com.clothex.user.home.product.ProductAdapter.ViewHolder
 import com.clothex.user.utils.setShapeColor
@@ -13,7 +13,7 @@ import com.clothex.user.utils.setShapeColor
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ProductAdapter(private val list: List<Product>) : RecyclerView.Adapter<ViewHolder>() {
+class ProductAdapter(private val list: List<Item>) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemProductGridBinding.inflate(
@@ -30,7 +30,7 @@ class ProductAdapter(private val list: List<Product>) : RecyclerView.Adapter<Vie
 
     inner class ViewHolder(val binding: AdapterItemProductGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(product: Product) {
+        fun bind(product: Item) {
             binding.viewModel = ProductItemViewModel(product)
             binding.oldPriceTV.paintFlags =
                 binding.oldPriceTV.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
