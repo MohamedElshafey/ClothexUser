@@ -32,4 +32,8 @@
     <string name="choose_location_on_map_title">Show shops in specific location</string>
     <string name="choose_location_on_map_value">Choose location on the map</string>
     <string name="show_shops_here">Show shops here</string>
+    <string name="choose_color">Choose color</string>
+    <string name="choose_size">Choose size</string>
+    <string name="available_in">Available in</string>
+    <string name="add_to_my_items">Add to my items</string>
 </resources>

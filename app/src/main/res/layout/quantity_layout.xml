@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/button_bg_shape"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/minusIV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:enabled="false"
+        android:padding="2dp"
+        android:src="@drawable/ic_quantity_minus_selector" />
+
+    <TextView
+        android:id="@+id/quantityTV"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="1"
+        android:textAppearance="@style/FontMedium"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/plusIV"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:enabled="true"
+        android:padding="2dp"
+        android:src="@drawable/ic_quantity_plus_selector" />
+
+</LinearLayout>

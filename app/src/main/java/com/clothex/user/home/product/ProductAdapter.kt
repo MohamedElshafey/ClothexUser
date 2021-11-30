@@ -13,7 +13,8 @@ import com.clothex.user.utils.setShapeColor
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ProductAdapter(private val list: List<Item>) : RecyclerView.Adapter<ViewHolder>() {
+class ProductAdapter(private val list: List<Item>, val callback: (Item) -> Unit) :
+    RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemProductGridBinding.inflate(
@@ -38,6 +39,7 @@ class ProductAdapter(private val list: List<Item>) : RecyclerView.Adapter<ViewHo
                 binding.tagTV.setShapeColor(Color.parseColor(product.tagColor))
             } catch (ignore: Exception) {
             }
+            binding.root.setOnClickListener { callback.invoke(product) }
         }
     }
 

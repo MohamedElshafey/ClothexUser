@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_selectLocationBottomSheet"
             app:destination="@id/selectLocationBottomSheet" />
+        <action
+            android:id="@+id/action_navigation_home_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
     <fragment
@@ -44,7 +47,7 @@
         android:id="@+id/selectLocationBottomSheet"
         android:name="com.clothex.user.home.location.SelectLocationBottomSheet"
         android:label="SelectLocationBottomSheet"
-        tools:layout="@layout/select_location_bottom_sheet" >
+        tools:layout="@layout/select_location_bottom_sheet">
         <action
             android:id="@+id/action_selectLocationBottomSheet_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -54,4 +57,13 @@
         android:name="com.clothex.user.home.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.clothex.user.home.product_details.ProductDetailsFragment"
+        android:label="ProductDetailsFragment"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="item"
+            app:argType="com.clothex.shop.core.models.Item" />
+    </fragment>
 </navigation>

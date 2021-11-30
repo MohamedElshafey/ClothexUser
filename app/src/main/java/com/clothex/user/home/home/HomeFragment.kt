@@ -32,13 +32,21 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.viewModel = homeViewModel
-        binding.productRV.adapter = ProductAdapter(getItemsList(requireContext()).slice(2..7))
+        binding.productRV.adapter = ProductAdapter(getItemsList(requireContext()).slice(2..7)) {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(
+                    it
+                )
+            )
+        }
         binding.shopsRV.adapter = ShopAdapter(shopList)
         val layoutManager = object : LinearLayoutManager(requireContext()) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
                 lp.width = (width * 0.7f).toInt()
                 return true
             }
+        }
+        binding.arrivalSeeAllTV.setOnClickListener {
         }
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.shopsRV.layoutManager = layoutManager

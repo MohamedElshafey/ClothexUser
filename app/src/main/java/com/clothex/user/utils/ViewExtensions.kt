@@ -19,11 +19,13 @@ fun View.setShapeColor(color: Int) {
     background = drawable
 }
 
-fun ChipGroup.addChip(layoutInflater: LayoutInflater, text: String) {
-    val chip = layoutInflater.inflate(R.layout.item_chip, this, false) as Chip
-    chip.id = ViewCompat.generateViewId()
-    chip.text = text
-    addView(chip)
+fun ChipGroup.addChip(layoutInflater: LayoutInflater, vararg text: String) {
+    text.forEach {
+        val chip = layoutInflater.inflate(R.layout.item_chip, this, false) as Chip
+        chip.id = ViewCompat.generateViewId()
+        chip.text = it
+        addView(chip)
+    }
 }
 
 fun Group.setAllOnClickListener(listener: View.OnClickListener?) {
