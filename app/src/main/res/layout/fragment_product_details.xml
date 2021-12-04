@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--    https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout-->
-
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools">
@@ -69,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|start"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_back"
+                    android:src="@drawable/ic_back_shadow"
                     app:layout_anchor="@id/appbar"
                     app:layout_collapseMode="pin" />
 
@@ -79,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|end"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_share"
+                    android:src="@drawable/ic_share_shadow"
                     app:layout_collapseMode="pin" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
