@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.user.databinding.FragmentProductDetailsBinding
-import com.clothex.user.home.HomeActivity
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
@@ -26,7 +26,6 @@ class ProductDetailsFragment : Fragment() {
 
     private lateinit var mViewModel: ProductDetailsViewModel
 
-    //    private var _binding: FragmentProductDetailsEnhanceBinding? = null
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
 
@@ -42,12 +41,6 @@ class ProductDetailsFragment : Fragment() {
         )[ProductDetailsViewModel::class.java]
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = mViewModel
-
-        (activity as HomeActivity?)?.apply {
-//            setSupportActionBar(binding.toolbar)
-//            binding.collapsingToolbar.title = "Product"
-//            binding.collapsingToolbar.setContentScrimColor(Color.BLACK)
-        }
         return binding.root
     }
 
@@ -110,6 +103,10 @@ class ProductDetailsFragment : Fragment() {
         }
 
         binding.contentContainer.branchesRV.addDivider()
+
+        binding.backIV.setOnClickListener { findNavController().navigateUp() }
+
+        binding.shareIV.setOnClickListener { }
     }
 
     override fun onDestroyView() {
