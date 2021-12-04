@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.user.databinding.FragmentProductDetailsBinding
+import com.clothex.user.home.HomeActivity
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
@@ -24,6 +25,8 @@ import com.google.android.material.chip.Chip
 class ProductDetailsFragment : Fragment() {
 
     private lateinit var mViewModel: ProductDetailsViewModel
+
+    //    private var _binding: FragmentProductDetailsEnhanceBinding? = null
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
 
@@ -39,6 +42,12 @@ class ProductDetailsFragment : Fragment() {
         )[ProductDetailsViewModel::class.java]
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = mViewModel
+
+        (activity as HomeActivity?)?.apply {
+//            setSupportActionBar(binding.toolbar)
+//            binding.collapsingToolbar.title = "Product"
+//            binding.collapsingToolbar.setContentScrimColor(Color.BLACK)
+        }
         return binding.root
     }
 
@@ -47,14 +56,14 @@ class ProductDetailsFragment : Fragment() {
 
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding.mainImagesRV)
-//        binding.indicator.attachToRecyclerView(binding.mainImagesRV, pagerSnapHelper)
 
         binding.contentContainer.minusIV.isEnabled = false
 
         binding.contentContainer.listPriceTV.paintFlags =
             binding.contentContainer.listPriceTV.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-        binding.collapsingToolbar.setHeightPercentage(50)
+        binding.toolbar.setHeightPercentage(15)
+        binding.appbar.setHeightPercentage(50)
 
         mViewModel.mainImagesLiveData.observe(viewLifecycleOwner, {
             binding.mainImagesRV.adapter = ImageAdapter(it)
@@ -71,7 +80,10 @@ class ProductDetailsFragment : Fragment() {
 
         mViewModel.sizesLiveData.observe(viewLifecycleOwner, { list ->
             binding.contentContainer.sizeChipGroup.removeAllViews()
-            binding.contentContainer.sizeChipGroup.addChip(layoutInflater, *list.map { it.title }.toTypedArray())
+            binding.contentContainer.sizeChipGroup.addChip(
+                layoutInflater,
+                *list.map { it.title }.toTypedArray()
+            )
         })
 
         binding.contentContainer.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->

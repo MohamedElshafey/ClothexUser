@@ -8,9 +8,11 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.transition.Slide
 import androidx.transition.Transition
@@ -80,5 +82,10 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun setupActionBar(toolBar: Toolbar) {
+//        setSupportActionBar(toolBar)
+//        setupActionBarWithNavController(findNavController(R.id.nav_host_fragment_activity_main))
     }
 }
