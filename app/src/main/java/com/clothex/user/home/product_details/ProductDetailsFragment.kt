@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
 import com.clothex.user.utils.addChip
+import com.clothex.user.utils.addDivider
+import com.clothex.user.utils.setHeightPercentage
 import com.google.android.material.chip.Chip
+
 
 /**
  * Created by Mohamed Elshafey on 29/11/2021.
@@ -42,40 +45,59 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.minusIV.isEnabled = false
+        val pagerSnapHelper = PagerSnapHelper()
+        pagerSnapHelper.attachToRecyclerView(binding.mainImagesRV)
+//        binding.indicator.attachToRecyclerView(binding.mainImagesRV, pagerSnapHelper)
 
-        binding.listPriceTV.paintFlags = binding.listPriceTV.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        binding.contentContainer.minusIV.isEnabled = false
 
-        LinearSnapHelper().attachToRecyclerView(binding.mainImagesRV)
+        binding.contentContainer.listPriceTV.paintFlags =
+            binding.contentContainer.listPriceTV.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+        binding.collapsingToolbar.setHeightPercentage(50)
 
         mViewModel.mainImagesLiveData.observe(viewLifecycleOwner, {
             binding.mainImagesRV.adapter = ImageAdapter(it)
+            binding.indicator.attachToRecyclerView(binding.mainImagesRV, pagerSnapHelper)
         })
 
         mViewModel.colorsLiveData.observe(viewLifecycleOwner, {
             val list: List<String> = it.map { it.code ?: "" }
 
-            binding.colorRV.adapter = ColorsAdapter(list) { color ->
+            binding.contentContainer.colorRV.adapter = ColorsAdapter(list) { color ->
                 mViewModel.selectColor(color)
             }
         })
 
         mViewModel.sizesLiveData.observe(viewLifecycleOwner, { list ->
-            binding.sizeChipGroup.removeAllViews()
-            binding.sizeChipGroup.addChip(layoutInflater, *list.map { it.title }.toTypedArray())
+            binding.contentContainer.sizeChipGroup.removeAllViews()
+            binding.contentContainer.sizeChipGroup.addChip(layoutInflater, *list.map { it.title }.toTypedArray())
         })
 
-        binding.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            val chip = binding.sizeChipGroup.findViewById(checkedId) as Chip
+        binding.contentContainer.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            val chip = binding.contentContainer.sizeChipGroup.findViewById(checkedId) as Chip
             val selectedSize =
                 mViewModel.sizesLiveData.value?.first { it.title.equals(chip.text.toString()) }
             selectedSize?.let { mViewModel.selectSize(it) }
         }
 
         mViewModel.branchesLiveData.observe(viewLifecycleOwner, {
-            binding.branchesRV.adapter = BranchAdapter(it)
+            binding.contentContainer.branchesRV.adapter = BranchAdapter(it)
         })
 
+        binding.contentContainer.plusIV.setOnClickListener {
+            mViewModel.quantity += 1
+            binding.contentContainer.plusIV.isEnabled = (mViewModel.quantity < 9)
+            binding.contentContainer.minusIV.isEnabled = (mViewModel.quantity > 1)
+        }
+
+        binding.contentContainer.minusIV.setOnClickListener {
+            mViewModel.quantity -= 1
+            binding.contentContainer.plusIV.isEnabled = (mViewModel.quantity < 9)
+            binding.contentContainer.minusIV.isEnabled = (mViewModel.quantity > 1)
+        }
+
+        binding.contentContainer.branchesRV.addDivider()
     }
 
     override fun onDestroyView() {

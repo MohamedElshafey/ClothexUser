@@ -4,14 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/bottom_sheet_top_drawable.xml" value="0.202991452991453" />
+        <entry key="app/src/main/res/drawable-xhdpi/color_bg_shape.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/button_bg_shape.xml" value="0.29873417721518986" />
         <entry key="app/src/main/res/drawable/chip_background.xml" value="0.310126582278481" />
+        <entry key="app/src/main/res/drawable/color_bg_shape_selected.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/color_bg_shape_unselected.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/color_shape.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/default_pager_dot.xml" value="0.310126582278481" />
         <entry key="app/src/main/res/drawable/ic_categories_selector.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.202991452991453" />
         <entry key="app/src/main/res/drawable/ic_nav_categories_inactive.xml" value="0.3769230769230769" />
+        <entry key="app/src/main/res/drawable/ic_nav_categories_selector.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/ic_nav_home_active.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_nav_home_inactive.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_nav_home_selector.xml" value="0.3769230769230769" />
@@ -20,7 +25,16 @@
         <entry key="app/src/main/res/drawable/ic_nav_wishlist_active.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_nav_wishlist_inactive.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_nav_wishlist_selector.xml" value="0.3769230769230769" />
+        <entry key="app/src/main/res/drawable/ic_quantity_minus.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/ic_quantity_minus_enabled.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/ic_quantity_minus_selector.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/ic_quantity_plus_disabled.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/ic_quantity_plus_enabled.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/ic_quantity_plus_selector.xml" value="0.36153846153846153" />
+        <entry key="app/src/main/res/drawable/indicator_selected_dot.xml" value="0.17735042735042736" />
+        <entry key="app/src/main/res/drawable/indicator_unselected_dot.xml" value="0.17735042735042736" />
         <entry key="app/src/main/res/drawable/loading_gradient.xml" value="0.202991452991453" />
+        <entry key="app/src/main/res/drawable/product_details_backdrop.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/drawable/search_bg_shape.xml" value="0.21452991452991452" />
         <entry key="app/src/main/res/drawable/search_list_bg_shape.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/selected_pager_dot.xml" value="0.29873417721518986" />
@@ -33,6 +47,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3105263157894737" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.2953703703703704" />
         <entry key="app/src/main/res/layout/activity_spalsh.xml" value="0.28565400843881855" />
+        <entry key="app/src/main/res/layout/adapter_image_view.xml" value="0.30085470085470084" />
+        <entry key="app/src/main/res/layout/adapter_item_color.xml" value="0.12468506829053021" />
         <entry key="app/src/main/res/layout/adapter_item_notification.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/adapter_item_onboarding.xml" value="0.2970464135021097" />
         <entry key="app/src/main/res/layout/adapter_item_product_grid.xml" value="0.375" />
@@ -44,11 +60,14 @@
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.256150249125744" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.2953703703703704" />
+        <entry key="app/src/main/res/layout/fragment_product_details.xml" value="0.35994297933000713" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.26691947913888736" />
         <entry key="app/src/main/res/layout/fragment_user_preference.xml" value="0.2953703703703704" />
         <entry key="app/src/main/res/layout/fragment_wishlist.xml" value="0.2953703703703704" />
         <entry key="app/src/main/res/layout/item_chip.xml" value="0.2953703703703704" />
+        <entry key="app/src/main/res/layout/product_details_content.xml" value="0.30854700854700856" />
+        <entry key="app/src/main/res/layout/quantity_layout.xml" value="0.55" />
         <entry key="app/src/main/res/layout/select_location_bottom_sheet.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.310126582278481" />

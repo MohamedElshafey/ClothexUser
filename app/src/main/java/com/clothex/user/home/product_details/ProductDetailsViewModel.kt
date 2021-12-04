@@ -30,14 +30,23 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
 
     val skuVisibility = ObservableField(!item.sku.isNullOrEmpty())
 
+    val quantityText = ObservableField("1")
+
+    var quantity = 1
+        set(value) {
+            field = if (value > 9) 9 else value
+            quantityText.set(value.toString())
+        }
+
     val shopTitle = ObservableField("H & M")
+
+    val shopAddress = ObservableField("New cairo, 5th settlement")
 
     val shopLogoUrl =
         ObservableField("https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg")
 
     init {
         setMainImages()
-//        title.set(item.title())
     }
 
     private fun getSKU(): String {
