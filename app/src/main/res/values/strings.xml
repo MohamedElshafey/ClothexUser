@@ -36,4 +36,7 @@
     <string name="choose_size">Choose size</string>
     <string name="available_in">Available in</string>
     <string name="add_to_my_items">Add to my items</string>
+    <string name="added_to_my_items">Added to My Items</string>
+    <string name="checkout">Checkout</string>
+    <string name="continue_shopping">Continue Shopping</string>
 </resources>

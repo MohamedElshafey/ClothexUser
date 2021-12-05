@@ -61,9 +61,21 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.clothex.user.home.product_details.ProductDetailsFragment"
         android:label="ProductDetailsFragment"
-        tools:layout="@layout/fragment_product_details" >
+        tools:layout="@layout/fragment_product_details">
         <argument
             android:name="item"
             app:argType="com.clothex.shop.core.models.Item" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_addToMyListDialog"
+            app:destination="@id/addToMyListDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/addToMyListDialog"
+        android:name="com.clothex.user.home.checkout.AddToMyListDialog"
+        android:label="AddToMyListDialog"
+        tools:layout="@layout/dialog_added_to_my_items" >
+        <argument
+            android:name="myItem"
+            app:argType="com.clothex.user.data.my_items.MyItem" />
+    </dialog>
 </navigation>

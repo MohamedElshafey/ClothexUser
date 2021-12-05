@@ -8,5 +8,6 @@
     <dimen name="indicator_size">3dp</dimen>
     <item name="onboarding_guideline_percentage" type="fraction">0.58</item>
     <dimen name="divider_margin">16dp</dimen>
+    <dimen name="small_image_corner_size">5dp</dimen>
 
 </resources>

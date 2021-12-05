@@ -67,8 +67,8 @@
         <item name="cornerSize">15dp</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.App.Shop" parent="">
-        <item name="cornerSize">5dp</item>
+    <style name="ShapeAppearanceOverlay.App.Small.Image" parent="">
+        <item name="cornerSize">@dimen/small_image_corner_size</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.Notification" parent="">
@@ -90,6 +90,25 @@
         <item name="cornerSizeTopLeft">16dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="DefaultButtonTheme" parent="">
+        <item name="android:background">@drawable/button_bg_shape</item>
+        <item name="android:backgroundTint">@color/button_gray</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="RemarkableButtonTheme" parent="">
+        <item name="android:background">@drawable/button_bg_shape</item>
+        <item name="android:backgroundTint">@color/infinite_night</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Dialog.NoTitle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimAmount">0.9</item>
     </style>
 
 </resources>

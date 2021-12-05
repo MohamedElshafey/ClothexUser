@@ -144,7 +144,7 @@
                     android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Shop" />
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
 
                 <TextView
                     android:id="@+id/shopTitleTV"
@@ -258,7 +258,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-            android:text="@{viewModel.sellingPrice}"
+            android:text="@{viewModel.sellingPriceString}"
             android:textAppearance="@style/FontBold"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -280,7 +280,7 @@
             tools:text="EGP 400.00" />
 
         <TextView
-            android:id="@+id/bottomButton"
+            android:id="@+id/addToMyItemsButton"
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_marginStart="40dp"

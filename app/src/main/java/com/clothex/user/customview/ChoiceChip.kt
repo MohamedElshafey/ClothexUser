@@ -12,8 +12,9 @@ import com.google.android.material.chip.Chip
  */
 class ChoiceChip @JvmOverloads constructor(
     context: Context,
-    attributeSet: AttributeSet
-) : Chip(context, attributeSet) {
+    attributeSet: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : Chip(context, attributeSet, defStyleAttr) {
 
     init {
         setTextColor(ContextCompat.getColor(context, R.color.chip_text_color))

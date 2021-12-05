@@ -12,7 +12,9 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
 
     val colorsLiveData = MutableLiveData<List<Color>>(item.colors)
 
-    val sellingPrice = "EGP ${item.sale_price ?: item.price}"
+    val sellingPrice = item.sale_price ?: item.price
+
+    val sellingPriceString = "EGP $sellingPrice"
 
     val listPrice = if (item.sale_price != null) "EGP ${item.price}" else null
 
@@ -67,9 +69,11 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
         mainImagesLiveData.value = images
     }
 
+    var selectedColor: Color? = null
+
     fun selectColor(colorCode: String) {
-        val color = item.colors?.first { it.code.equals(colorCode) }
-        val sizes = color?.sizes
+        selectedColor = item.colors?.first { it.code.equals(colorCode) }
+        val sizes = selectedColor?.sizes
         if (sizes != null) {
             sizes.let { sizesLiveData.value = it }
             sizeVisibility.set(true)
@@ -79,16 +83,19 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
         }
         branchesLiveData.value = listOf()
         branchesVisibility.set(false)
-        val images = color?.images
+        val images = selectedColor?.images
         if (images == null) {
             setMainImages()
         } else {
             images.let { mainImagesLiveData.value = it }
         }
-
+        selectedSize = null
     }
 
+    var selectedSize: Size? = null
+
     fun selectSize(size: Size) {
+        selectedSize = size
         val branches = size.available_branches
         if (!branches.isNullOrEmpty()) {
             branches.let { branchesLiveData.value = it }

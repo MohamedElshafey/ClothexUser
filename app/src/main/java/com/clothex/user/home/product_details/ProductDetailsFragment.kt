@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.clothex.user.data.my_items.MyItem
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
@@ -106,7 +108,33 @@ class ProductDetailsFragment : Fragment() {
 
         binding.backIV.setOnClickListener { findNavController().navigateUp() }
 
-        binding.shareIV.setOnClickListener { }
+        binding.contentContainer.addToMyItemsButton.setOnClickListener {
+            val selectedColorCode = mViewModel.selectedColor?.code
+            val image = mViewModel.selectedColor?.images?.first()
+            val selectedSizeName = mViewModel.selectedSize?.title
+            val quantity = mViewModel.quantity
+            val price = mViewModel.sellingPrice
+            if (selectedColorCode != null && selectedSizeName != null) {
+                val myItems = MyItem(
+                    title = mViewModel.title.get()!!,
+                    colorCode = selectedColorCode,
+                    sizeName = selectedSizeName,
+                    quantity = quantity,
+                    image = image,
+                    price = price!!
+                )
+                findNavController().navigate(
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
+                        myItems
+                    )
+                )
+            } else {
+                Toast.makeText(context, "You should select color & size first!", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+        }
+
     }
 
     override fun onDestroyView() {

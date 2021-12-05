@@ -32,7 +32,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Shop" />
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
 
             <TextView
                 android:id="@+id/titleTV"

@@ -20,4 +20,7 @@
     <color name="tag_deal">#ff0057</color>
 
     <color name="discount">#c50000</color>
+
+    <color name="black_transparent_50">#80000000</color>
+    <color name="black_transparent_75">#BF000000</color>
 </resources>
