@@ -39,4 +39,14 @@
     <string name="added_to_my_items">Added to My Items</string>
     <string name="checkout">Checkout</string>
     <string name="continue_shopping">Continue Shopping</string>
+    <string name="my_items">My items</string>
+    <string name="phone_no">Phone number</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="sign_up_msg">I don\'t have account. Sign up!</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in_msg">Already have account. Sign in!</string>
 </resources>

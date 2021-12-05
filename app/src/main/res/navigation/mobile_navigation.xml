@@ -22,7 +22,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_wish_list"
+        android:id="@+id/navigation_my_items"
         android:name="com.clothex.user.home.wishlist.WishListFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_wishlist" />
@@ -73,9 +73,23 @@
         android:id="@+id/addToMyListDialog"
         android:name="com.clothex.user.home.checkout.AddToMyListDialog"
         android:label="AddToMyListDialog"
-        tools:layout="@layout/dialog_added_to_my_items" >
+        tools:layout="@layout/dialog_added_to_my_items">
         <argument
             android:name="myItem"
             app:argType="com.clothex.user.data.my_items.MyItem" />
     </dialog>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.clothex.user.home.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.clothex.user.home.register.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register" />
 </navigation>
