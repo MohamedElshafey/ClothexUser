@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/navigation_my_items"
-        android:name="com.clothex.user.home.wishlist.WishListFragment"
+        android:name="com.clothex.user.home.my_items.MyItemsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_wishlist" />
+        tools:layout="@layout/fragment_my_items" />
 
     <fragment
         android:id="@+id/navigation_categories"
