@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.clothex.user.data.my_items.MyItem
+import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
@@ -115,7 +115,7 @@ class ProductDetailsFragment : Fragment() {
             val quantity = mViewModel.quantity
             val price = mViewModel.sellingPrice
             if (selectedColorCode != null && selectedSizeName != null) {
-                val myItems = MyItem(
+                val minimalProduct = MinimalProduct(
                     title = mViewModel.title.get()!!,
                     colorCode = selectedColorCode,
                     sizeName = selectedSizeName,
@@ -125,7 +125,7 @@ class ProductDetailsFragment : Fragment() {
                 )
                 findNavController().navigate(
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
-                        myItems
+                        minimalProduct
                     )
                 )
             } else {

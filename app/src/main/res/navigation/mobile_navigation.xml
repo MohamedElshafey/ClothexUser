@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/navigation_my_items"
-        android:name="com.clothex.user.home.my_items.MyItemsFragment"
+        android:name="com.clothex.user.home.my_items.ItemsContainerFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_my_items" />
+        tools:layout="@layout/fragment_items_container" />
 
     <fragment
         android:id="@+id/navigation_categories"
@@ -75,8 +75,8 @@
         android:label="AddToMyListDialog"
         tools:layout="@layout/dialog_added_to_my_items">
         <argument
-            android:name="myItem"
-            app:argType="com.clothex.user.data.my_items.MyItem" />
+            android:name="minimalProduct"
+            app:argType="com.clothex.user.data.my_items.MinimalProduct" />
     </dialog>
     <fragment
         android:id="@+id/loginFragment"

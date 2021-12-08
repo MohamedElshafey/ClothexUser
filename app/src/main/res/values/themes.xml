@@ -104,6 +104,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="DisableButtonTheme" parent="">
+        <item name="android:background">@drawable/button_bg_shape</item>
+        <item name="android:backgroundTint">@color/mercury</item>
+        <item name="android:textColor">@color/silver</item>
+    </style>
+
     <style name="Dialog.NoTitle" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:padding">0dp</item>

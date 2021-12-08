@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/5db8adb2b6636b3c030518eaf70c8b80/transformed/appcompat-1.4.0/res/layout/abc_list_menu_item_checkbox.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/drawable-v24/bottom_sheet_top_drawable.xml" value="0.202991452991453" />
         <entry key="app/src/main/res/drawable-xhdpi/color_bg_shape.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/back_select.xml" value="0.30092592592592593" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/drawable/bottom_croner_shape.xml" value="0.340084388185654" />
         <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/button_bg_shape.xml" value="0.29873417721518986" />
+        <entry key="app/src/main/res/drawable/button_remarkable_selector.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/chip_background.xml" value="0.310126582278481" />
         <entry key="app/src/main/res/drawable/color_bg_shape_selected.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/color_bg_shape_unselected.xml" value="0.36153846153846153" />
@@ -20,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.3217948717948718" />
         <entry key="app/src/main/res/drawable/ic_categories_selector.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3769230769230769" />
+        <entry key="app/src/main/res/drawable/ic_leading_arrow.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.202991452991453" />
         <entry key="app/src/main/res/drawable/ic_nav_categories_active.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/ic_nav_categories_inactive.xml" value="0.3769230769230769" />
@@ -46,6 +49,7 @@
         <entry key="app/src/main/res/drawable/product_details_backdrop.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/drawable/product_details_shadow.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/drawable/quantity_bg_shape.xml" value="0.22393162393162394" />
+        <entry key="app/src/main/res/drawable/remarkable_button_selector.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/search_bg_shape.xml" value="0.21452991452991452" />
         <entry key="app/src/main/res/drawable/search_list_bg_shape.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/selected_pager_dot.xml" value="0.29873417721518986" />
@@ -75,12 +79,16 @@
         <entry key="app/src/main/res/layout/adapter_item_notification.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/adapter_item_onboarding.xml" value="0.2970464135021097" />
         <entry key="app/src/main/res/layout/adapter_item_product_grid.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/adapter_item_recycler_view.xml" value="0.2230769230769231" />
         <entry key="app/src/main/res/layout/adapter_item_saved_location.xml" value="0.18974358974358974" />
         <entry key="app/src/main/res/layout/adapter_item_shop.xml" value="0.3482905982905983" />
+        <entry key="app/src/main/res/layout/adapter_minimal_product.xml" value="0.3482905982905983" />
+        <entry key="app/src/main/res/layout/adapter_my_item.xml" value="0.3438818565400844" />
         <entry key="app/src/main/res/layout/bottom_sheet_container.xml" value="0.8214333440225315" />
         <entry key="app/src/main/res/layout/dialog_added_to_my_items.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.2953703703703704" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.41379310344827586" />
+        <entry key="app/src/main/res/layout/fragment_items_container.xml" value="0.30085470085470084" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.256150249125744" />
         <entry key="app/src/main/res/layout/fragment_my_items.xml" value="0.30854700854700856" />

@@ -45,12 +45,12 @@ class AddToMyListDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val myItem = AddToMyListDialogArgs.fromBundle(requireArguments()).myItem
+        val minimalProduct = AddToMyListDialogArgs.fromBundle(requireArguments()).minimalProduct
         binding.colorItem.colorView.apply {
             val backgroundDrawable = background as GradientDrawable
-            backgroundDrawable.setColor(Color.parseColor(myItem.colorCode))
+            backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
             background = backgroundDrawable
         }
-        binding.viewModel = AddToMyListViewModel(myItem)
+        binding.viewModel = MyItemViewModel(minimalProduct)
     }
 }

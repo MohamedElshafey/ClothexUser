@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="13dp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/headerBackgroundView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/mercury"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/itemsRV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logoIV"
+            imageUrl="@{viewModel.logoUrl}"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.name}"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/leadingIV"
+            app:layout_constraintStart_toEndOf="@+id/logoIV"
+            app:layout_constraintTop_toTopOf="@+id/logoIV"
+            tools:text="Solid Button-Front Drop Shoulder Shirt" />
+
+        <ImageView
+            android:id="@+id/locationIconIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_location_small"
+            app:layout_constraintStart_toStartOf="@id/titleTV"
+            app:layout_constraintTop_toBottomOf="@id/titleTV" />
+
+        <TextView
+            android:id="@+id/addressTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.address}"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/dove_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
+            app:layout_constraintEnd_toStartOf="@id/leadingIV"
+            app:layout_constraintStart_toEndOf="@id/locationIconIV"
+            app:layout_constraintTop_toTopOf="@id/locationIconIV"
+            tools:text="20705 Velda Ramp, Lake Alexys, HI" />
+
+        <ImageView
+            android:id="@+id/leadingIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_leading_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/headerBackgroundView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/headerBackgroundView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemsRV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_time_small"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/itemsCount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoIV"
+            tools:itemCount="2"
+            tools:listitem="@layout/adapter_minimal_product" />
+
+        <TextView
+            android:id="@+id/itemsCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/mercury"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/dove_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="+10 items" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
