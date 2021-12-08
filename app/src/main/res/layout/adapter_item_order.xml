@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="13dp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/orderIdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Order : zxsd226581251" />
+
+        <TextView
+            android:id="@+id/placedDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/silver"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/orderIdTV"
+            app:layout_constraintTop_toBottomOf="@id/orderIdTV"
+            tools:text="Placed on 24 Nov 2021    1:30 PM" />
+
+        <TextView
+            android:id="@+id/statusTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/status_bg_shape"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="4dp"
+            android:text="Active"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="#10c935"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/orderIdTV" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/button_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/placedDateTV" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logoIV"
+            imageUrl="@{viewModel.shopLogoUrl}"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
+
+        <TextView
+            android:id="@+id/shopTitleTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.shopTitle}"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logoIV"
+            app:layout_constraintTop_toTopOf="@+id/logoIV"
+            tools:text="Solid Button-Front Drop Shoulder Shirt" />
+
+        <ImageView
+            android:id="@+id/locationIconIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_location_small"
+            app:layout_constraintStart_toStartOf="@id/shopTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/shopTitleTV" />
+
+        <TextView
+            android:id="@+id/shopAddressTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.shopAddress}"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/dove_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/locationIconIV"
+            app:layout_constraintTop_toTopOf="@id/locationIconIV"
+            tools:text="2.1 M far from you" />
+
+        <TextView
+            android:id="@+id/bookedItemsTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:text="Total Booked items"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/cod_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoIV" />
+
+        <TextView
+            android:id="@+id/bookedItemsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/cod_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bookedItemsTitleTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bookedItemsTitleTV"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/totalPriceTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:text="Total price"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/cod_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bookedItemsTitleTV" />
+
+        <TextView
+            android:id="@+id/totalPriceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/cod_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/totalPriceTitleTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/totalPriceTitleTV"
+            tools:text="EGP 379.00" />
+
+        <FrameLayout
+            android:id="@+id/orderValidContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/success_message_shape"
+            android:padding="6dp"
+            app:layout_constraintEnd_toEndOf="@id/totalPriceTV"
+            app:layout_constraintStart_toStartOf="@id/logoIV"
+            app:layout_constraintTop_toBottomOf="@id/totalPriceTitleTV">
+
+            <TextView
+                android:id="@+id/orderValidTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/order_valid_msg"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/directionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/direction_bg_shape"
+            android:gravity="center"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            android:text="@string/get_directions_now"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/island_aqua"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/orderValidContainer"
+            app:layout_constraintStart_toStartOf="@id/orderValidContainer"
+            app:layout_constraintTop_toBottomOf="@id/orderValidContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

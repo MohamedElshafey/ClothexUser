@@ -49,4 +49,8 @@
     <string name="email">Email</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in_msg">Already have account. Sign in!</string>
+    <string name="view_orders_by">View Orders by</string>
+    <string name="filter">Filter</string>
+    <string name="order_valid_msg">Your order is valid for %s Hurry up!</string>
+    <string name="get_directions_now">Get directions now</string>
 </resources>

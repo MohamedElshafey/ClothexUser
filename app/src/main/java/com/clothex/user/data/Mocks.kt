@@ -5,6 +5,8 @@ import com.clothex.shop.core.models.Item
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.data.my_items.MyItem
+import com.clothex.user.data.orders.Order
+import com.clothex.user.data.orders.OrderStatus
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.*
@@ -213,5 +215,46 @@ val myItems = listOf(
             workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
         ),
         minimalProductList.plus(minimalProductList).shuffled()
+    )
+)
+
+val activeOrders = listOf(
+    Order(
+        orderId = "zxSADfsad1231",
+        orderStatus = OrderStatus.ACTIVE,
+        orderTimeStamp = 1639171957,
+        shop = Shop(
+            logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+            name = "LC WAIKIKI",
+            addressName = "20,Abbas El Akkad - Nasr City",
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        ),
+        bookedItems = minimalProductList,
+        endTime = 1639171957
+    ),
+    Order(
+        orderId = "lskfwo12kfm",
+        orderStatus = OrderStatus.PENDING,
+        orderTimeStamp = 1639171957,
+        shop = Shop(
+            logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+            name = "LC WAIKIKI",
+            addressName = "20,Abbas El Akkad - Nasr City",
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        ),
+        bookedItems = minimalProductList.plus(minimalProductList),
+        endTime = 0
+    ), Order(
+        orderId = "30192masfnas",
+        orderStatus = OrderStatus.REJECT,
+        orderTimeStamp = 1639171957,
+        shop = Shop(
+            logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+            name = "LC WAIKIKI",
+            addressName = "20,Abbas El Akkad - Nasr City",
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        ),
+        bookedItems = minimalProductList,
+        endTime = 0
     )
 )

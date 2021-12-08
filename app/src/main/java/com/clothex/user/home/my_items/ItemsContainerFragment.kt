@@ -12,7 +12,7 @@ import com.clothex.user.databinding.FragmentItemsContainerBinding
 
 
 class ItemsContainerFragment : Fragment() {
-    private lateinit var myItemsViewModel: MyItemsViewModel
+    private lateinit var itemsContainerViewModel: ItemsContainerViewModel
     private var _binding: FragmentItemsContainerBinding? = null
     private val binding get() = _binding!!
 
@@ -21,8 +21,8 @@ class ItemsContainerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        myItemsViewModel =
-            ViewModelProvider(this)[MyItemsViewModel::class.java]
+        itemsContainerViewModel =
+            ViewModelProvider(this)[ItemsContainerViewModel::class.java]
         _binding = FragmentItemsContainerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,7 +35,7 @@ class ItemsContainerFragment : Fragment() {
         binding.activeOrdersTab.setOnClickListener {
             binding.viewPager.currentItem = 1
         }
-        binding.viewPager.adapter = MyItemsPager(childFragmentManager, lifecycle)
+        binding.viewPager.adapter = ItemsContainerPager(childFragmentManager, lifecycle)
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
