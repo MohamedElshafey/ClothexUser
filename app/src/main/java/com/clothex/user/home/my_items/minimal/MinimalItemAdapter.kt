@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.databinding.AdapterMinimalProductBinding
-import com.clothex.user.home.checkout.MyItemViewModel
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
@@ -33,7 +32,7 @@ class MinimalItemAdapter(private val list: List<MinimalProduct>) :
                 backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
                 background = backgroundDrawable
             }
-            binding.viewModel = MyItemViewModel(minimalProduct)
+            binding.viewModel = MinimalItemViewModel(minimalProduct)
         }
     }
 

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.clothex.user.home.checkout.MyItemViewModel" />
+            type="com.clothex.user.home.my_items.minimal.MinimalItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -163,14 +163,16 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/continue_shopping"
             android:textAppearance="@style/FontSemiBold"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/checkoutButton"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/successMsgContainer"
             app:layout_constraintStart_toEndOf="@id/checkoutButton"
-            app:layout_constraintTop_toTopOf="@id/checkoutButton" />
+            app:layout_constraintTop_toBottomOf="@+id/successMsgContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

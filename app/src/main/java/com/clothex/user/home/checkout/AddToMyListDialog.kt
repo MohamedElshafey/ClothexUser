@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.DialogAddedToMyItemsBinding
+import com.clothex.user.home.my_items.minimal.MinimalItemViewModel
 
 /**
  * Created by Mohamed Elshafey on 05/12/2021.
@@ -51,6 +53,7 @@ class AddToMyListDialog : DialogFragment() {
             backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
             background = backgroundDrawable
         }
-        binding.viewModel = MyItemViewModel(minimalProduct)
+        binding.viewModel = MinimalItemViewModel(minimalProduct)
+        binding.continueButton.setOnClickListener { findNavController().navigateUp() }
     }
 }

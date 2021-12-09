@@ -19,8 +19,10 @@ import com.clothex.user.R
 import com.clothex.user.databinding.ActivityHomeBinding
 import com.clothex.user.home.categories.CategoriesFragment
 import com.clothex.user.home.home.HomeFragment
-import com.clothex.user.home.profile.ProfileFragment
 import com.clothex.user.home.my_items.ItemsContainerFragment
+import com.clothex.user.home.my_items.items.MyItemsFragment
+import com.clothex.user.home.my_items.orders.ActiveOrdersFragment
+import com.clothex.user.home.profile.ProfileFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeActivity : AppCompatActivity() {
@@ -60,14 +62,15 @@ class HomeActivity : AppCompatActivity() {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState)
             val transition: Transition = Slide(Gravity.BOTTOM)
             when (f) {
-                is HomeFragment, is ItemsContainerFragment, is CategoriesFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
+                is HomeFragment, is ItemsContainerFragment, is MyItemsFragment, is ActiveOrdersFragment,
+                is CategoriesFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
                     if (binding.navView.visibility == GONE) {
                         TransitionManager.beginDelayedTransition(
                             binding.root,
                             transition.excludeTarget(R.id.nav_host_fragment_activity_main, true)
                         )
-                        binding.navView.visibility = VISIBLE
                     }
+                    binding.navView.visibility = VISIBLE
                 }
                 else -> {
                     if (binding.navView.visibility == VISIBLE) {

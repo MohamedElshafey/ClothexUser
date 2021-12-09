@@ -12,7 +12,8 @@ import com.clothex.user.utils.setImageFromUrl
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class MyItemsAdapter(private val list: List<MyItem>) : Adapter<MyItemsAdapter.ViewHolder>() {
+class MyItemsAdapter(private val list: List<MyItem>, val callback: (MyItem) -> Unit) :
+    Adapter<MyItemsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterMyItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,6 +34,7 @@ class MyItemsAdapter(private val list: List<MyItem>) : Adapter<MyItemsAdapter.Vi
             }
             binding.itemsRV.adapter = MinimalItemAdapter(myItem.myItems.take(2))
             binding.itemsCount.text = "+${(myItem.myItems.size - 2)} items"
+            binding.root.setOnClickListener { callback.invoke(myItem) }
         }
     }
 

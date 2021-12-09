@@ -25,7 +25,11 @@
         android:id="@+id/navigation_my_items"
         android:name="com.clothex.user.home.my_items.ItemsContainerFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_items_container" />
+        tools:layout="@layout/fragment_items_container">
+        <action
+            android:id="@+id/action_navigation_my_items_to_bookFragment2"
+            app:destination="@id/bookFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_categories"
@@ -67,7 +71,9 @@
             app:argType="com.clothex.shop.core.models.Item" />
         <action
             android:id="@+id/action_productDetailsFragment_to_addToMyListDialog"
-            app:destination="@id/addToMyListDialog" />
+            app:destination="@id/addToMyListDialog"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </fragment>
     <dialog
         android:id="@+id/addToMyListDialog"
@@ -77,6 +83,9 @@
         <argument
             android:name="minimalProduct"
             app:argType="com.clothex.user.data.my_items.MinimalProduct" />
+        <action
+            android:id="@+id/action_addToMyListDialog_to_bookFragment"
+            app:destination="@id/bookFragment" />
     </dialog>
     <fragment
         android:id="@+id/loginFragment"
@@ -92,4 +101,43 @@
         android:name="com.clothex.user.home.register.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.clothex.user.home.book.BookFragment"
+        android:label="BookFragment"
+        tools:layout="@layout/fragment_book">
+        <argument
+            android:name="myItem"
+            app:argType="com.clothex.user.data.my_items.MyItem" />
+        <action
+            android:id="@+id/action_bookFragment_to_requestBookFragment"
+            app:destination="@id/requestBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myItemsFragment"
+        android:name="com.clothex.user.home.my_items.items.MyItemsFragment"
+        android:label="MyItemsFragment"
+        tools:layout="@layout/fragment_my_items">
+        <action
+            android:id="@+id/action_myItemsFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestBookFragment"
+        android:name="com.clothex.user.home.book.request.RequestBookFragment"
+        android:label="RequestBookFragment"
+        tools:layout="@layout/fragment_book_request" >
+        <action
+            android:id="@+id/action_requestBookFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_requestBookFragment_to_navigation_my_items"
+            app:destination="@id/navigation_my_items"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

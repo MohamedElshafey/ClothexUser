@@ -1,9 +1,9 @@
-package com.clothex.user.home.checkout
+package com.clothex.user.home.my_items.minimal
 
 import androidx.lifecycle.ViewModel
 import com.clothex.user.data.my_items.MinimalProduct
 
-class MyItemViewModel(minimalProduct: MinimalProduct) : ViewModel() {
+class MinimalItemViewModel(minimalProduct: MinimalProduct) : ViewModel() {
 
     val title = minimalProduct.title
 

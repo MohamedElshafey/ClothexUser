@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.clothex.user.R
 import com.clothex.user.data.myItems
 import com.clothex.user.databinding.FragmentMyItemsBinding
 
@@ -27,6 +30,9 @@ class MyItemsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = MyItemsAdapter(myItems)
+        binding.recyclerView.adapter = MyItemsAdapter(myItems) {
+            val bundle = bundleOf("myItem" to it)
+            findNavController().navigate(R.id.bookFragment, bundle)
+        }
     }
 }

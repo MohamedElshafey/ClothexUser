@@ -53,4 +53,13 @@
     <string name="filter">Filter</string>
     <string name="order_valid_msg">Your order is valid for %s Hurry up!</string>
     <string name="get_directions_now">Get directions now</string>
+    <string name="book_items">Book items</string>
+    <string name="total">Total</string>
+    <string name="discount">Discount</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="book_now">Book now</string>
+    <string name="done">Done</string>
+    <string name="track_your_order">Track your order</string>
+    <string name="your_request_submitted_successfully">Your request submitted successfully!</string>
+    <string name="request_success_sub_msg">Your request has been sent to the merchant once it approved we will send you a notification.</string>
 </resources>
