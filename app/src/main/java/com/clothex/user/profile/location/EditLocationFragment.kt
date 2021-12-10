@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.data.savedLocations
 import com.clothex.user.databinding.FragmentEditLocationBinding
+import com.clothex.user.utils.setAllOnClickListener
 
 /**
  * Created by Mohamed Elshafey on 10/12/2021.
@@ -31,6 +32,9 @@ class EditLocationFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.locationsRV.adapter = EditLocationAdapter(ArrayList(savedLocations))
+        binding.addNewLocationGroup.setAllOnClickListener {
+            findNavController().navigate(EditLocationFragmentDirections.actionEditLocationFragmentToMapsFragment())
+        }
     }
 
 }

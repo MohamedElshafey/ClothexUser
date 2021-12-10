@@ -196,7 +196,11 @@
         android:id="@+id/editLocationFragment"
         android:name="com.clothex.user.profile.location.EditLocationFragment"
         android:label="EditLocationFragment"
-        tools:layout="@layout/fragment_edit_location" />
+        tools:layout="@layout/fragment_edit_location" >
+        <action
+            android:id="@+id/action_editLocationFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.clothex.user.profile.edit.EditProfileFragment"
