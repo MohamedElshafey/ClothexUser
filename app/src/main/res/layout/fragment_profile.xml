@@ -1,22 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.my_items.ItemsContainerFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.clothex.user.home.profile.ProfileViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profilePicIV"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/onboarding_image_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
+
+            <ImageView
+                android:id="@+id/cameraIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintBottom_toBottomOf="@id/profilePicIV"
+                app:layout_constraintEnd_toEndOf="@id/profilePicIV" />
+
+            <TextView
+                android:id="@+id/userNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@{viewModel.userName}"
+                android:textAppearance="@style/FontBold"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profilePicIV"
+                tools:text="User name" />
+
+            <TextView
+                android:id="@+id/userAddressTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{viewModel.userAddress}"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/dove_gray"
+                android:textSize="12sp"
+                app:drawableStartCompat="@drawable/ic_location_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userNameTV"
+                tools:text="New cairo, Egypt" />
+
+            <!--    My Preferences-->
+            <ImageView
+                android:id="@+id/prefIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_my_preferences"
+                app:layout_constraintBottom_toBottomOf="@id/prefSubTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/prefTitleTV" />
+
+            <TextView
+                android:id="@+id/prefTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/my_preferences"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/prefIconIV"
+                app:layout_constraintTop_toBottomOf="@id/userAddressTV" />
+
+            <TextView
+                android:id="@+id/prefSubTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_my_pref_sub_title"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/prefIconIV"
+                app:layout_constraintTop_toBottomOf="@id/prefTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/prefGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="prefIconIV,prefSubTitleTV,prefTitleTV" />
+
+            <!--   Saved locations -->
+            <ImageView
+                android:id="@+id/locationIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_location"
+                app:layout_constraintBottom_toBottomOf="@id/locationSubTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/locationTitleTV" />
+
+            <TextView
+                android:id="@+id/locationTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/edit_locations_title"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/locationIconIV"
+                app:layout_constraintTop_toBottomOf="@id/prefSubTitleTV" />
+
+            <TextView
+                android:id="@+id/locationSubTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_location_sub_title"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/locationIconIV"
+                app:layout_constraintTop_toBottomOf="@id/locationTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/locationGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="locationIconIV,locationSubTitleTV,locationTitleTV" />
+
+            <!--   Edit profile -->
+            <ImageView
+                android:id="@+id/editProfileIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_profile"
+                app:layout_constraintBottom_toBottomOf="@id/editProfileSubTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/editProfileTitleTV" />
+
+            <TextView
+                android:id="@+id/editProfileTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/edit_profile_title"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/editProfileIconIV"
+                app:layout_constraintTop_toBottomOf="@id/locationSubTitleTV" />
+
+            <TextView
+                android:id="@+id/editProfileSubTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_profile_sub_title"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/editProfileIconIV"
+                app:layout_constraintTop_toBottomOf="@id/editProfileTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/editProfileGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="editProfileSubTitleTV,editProfileTitleTV,editProfileIconIV" />
+
+
+            <!--   Language -->
+            <ImageView
+                android:id="@+id/languageIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_language"
+                app:layout_constraintBottom_toBottomOf="@id/languageSubTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/languageTitleTV" />
+
+            <TextView
+                android:id="@+id/languageTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/language_title"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/languageIconIV"
+                app:layout_constraintTop_toBottomOf="@id/editProfileSubTitleTV" />
+
+            <TextView
+                android:id="@+id/languageSubTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/language_sub_title"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/languageIconIV"
+                app:layout_constraintTop_toBottomOf="@id/languageTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/languageGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="languageSubTitleTV,languageTitleTV,languageIconIV" />
+
+            <!--   Logout -->
+            <ImageView
+                android:id="@+id/logoutIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"
+                app:layout_constraintBottom_toBottomOf="@id/logoutTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/logoutTitleTV" />
+
+            <TextView
+                android:id="@+id/logoutTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/logout_title"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/logoutIconIV"
+                app:layout_constraintTop_toBottomOf="@id/languageSubTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/logoutGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="logoutTitleTV,logoutIconIV" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

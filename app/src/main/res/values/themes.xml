@@ -71,7 +71,7 @@
         <item name="cornerSize">@dimen/small_image_corner_size</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.App.Notification" parent="">
+    <style name="ShapeAppearanceOverlay.App.Circle" parent="">
         <item name="cornerSize">50%</item>
     </style>
 

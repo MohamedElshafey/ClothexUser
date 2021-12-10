@@ -68,6 +68,15 @@
     <string name="choose_category">Choose category</string>
     <string name="price_range">Price range</string>
     <string name="apply_filter">Apply filter</string>
+    <string name="my_preferences">My preferences</string>
+    <string name="edit_my_pref_sub_title">Here is what you prefer</string>
+    <string name="edit_locations_title">Manage saved location</string>
+    <string name="edit_location_sub_title">You can edit saved places</string>
+    <string name="edit_profile_title">Edit profile</string>
+    <string name="edit_profile_sub_title">Here is all of your info</string>
+    <string name="language_title">Language</string>
+    <string name="language_sub_title">Change app language</string>
+    <string name="logout_title">Logout</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
