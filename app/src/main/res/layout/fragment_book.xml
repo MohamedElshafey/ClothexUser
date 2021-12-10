@@ -122,8 +122,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logoIV"
-        tools:itemCount="2"
-        tools:listitem="@layout/adapter_minimal_product" />
+        tools:listitem="@layout/adapter_edit_minimal_product" />
 
     <View
         android:id="@+id/footerBackground"

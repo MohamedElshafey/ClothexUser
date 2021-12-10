@@ -10,6 +10,7 @@
             type="com.clothex.user.my_items.minimal.MinimalItemViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,5 +100,19 @@
             app:layout_constraintTop_toTopOf="@id/priceTV"
             tools:text="3" />
 
+        <ImageView
+            android:id="@+id/deleteIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/quantityTV"
+            app:layout_constraintStart_toEndOf="@id/quantityTV"
+            app:layout_constraintTop_toTopOf="@id/quantityTV"
+            app:srcCompat="@drawable/ic_delete"
+            tools:layout_editor_absoluteX="184dp"
+            tools:layout_editor_absoluteY="7dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
