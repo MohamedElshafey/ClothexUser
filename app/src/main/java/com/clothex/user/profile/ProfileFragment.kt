@@ -36,6 +36,15 @@ class ProfileFragment : Fragment() {
         binding.locationGroup.setAllOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditLocationFragment())
         }
+        binding.editProfileGroup.setAllOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment())
+        }
+        binding.languageGroup.setAllOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToSelectLanguageBottomSheet())
+        }
+        binding.logoutGroup.setAllOnClickListener() {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToLoginFragment())
+        }
     }
 
     override fun onDestroyView() {

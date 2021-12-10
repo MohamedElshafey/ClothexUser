@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
         val myTypeface = Typeface.create(
             ResourcesCompat.getFont(
                 requireContext(),
-                R.font.ibm_plex_sans_bold
+                R.font.ibm_plex_sans_arabic_bold
             ), Typeface.BOLD
         )
         spannableStringBuilder.setSpan(

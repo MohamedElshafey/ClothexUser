@@ -24,23 +24,23 @@
     </style>
 
     <style name="FontRegular">
-        <item name="fontFamily">@font/ibm_plex_sans_regular</item>
+        <item name="fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>
 
     <style name="FontSemiBold">
-        <item name="fontFamily">@font/ibm_plex_sans_semi_bold</item>
+        <item name="fontFamily">@font/ibm_plex_sans_semi_arabic_bold</item>
     </style>
 
     <style name="FontBold">
-        <item name="fontFamily">@font/ibm_plex_sans_bold</item>
+        <item name="fontFamily">@font/ibm_plex_sans_arabic_bold</item>
     </style>
 
     <style name="FontLight">
-        <item name="fontFamily">@font/ibm_plex_sans_light</item>
+        <item name="fontFamily">@font/ibm_plex_sans_arabic_light</item>
     </style>
 
     <style name="FontMedium">
-        <item name="fontFamily">@font/ibm_plex_sans_medium</item>
+        <item name="fontFamily">@font/ibm_plex_sans_arabic_medium</item>
     </style>
 
     <style name="ImageView.Corner" parent="">

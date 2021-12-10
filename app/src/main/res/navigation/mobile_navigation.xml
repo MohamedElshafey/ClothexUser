@@ -51,6 +51,15 @@
         <action
             android:id="@+id/action_navigation_profile_to_editLocationFragment"
             app:destination="@id/editLocationFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_selectLanguageBottomSheet"
+            app:destination="@id/selectLanguageBottomSheet" />
+        <action
+            android:id="@+id/action_navigation_profile_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
@@ -183,7 +192,17 @@
     <fragment
         android:id="@+id/editLocationFragment"
         android:name="com.clothex.user.profile.location.EditLocationFragment"
-        tools:layout="@layout/fragment_edit_location"
-        android:label="EditLocationFragment" />
+        android:label="EditLocationFragment"
+        tools:layout="@layout/fragment_edit_location" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.clothex.user.profile.edit.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile" />
+    <dialog
+        android:id="@+id/selectLanguageBottomSheet"
+        android:name="com.clothex.user.profile.language.SelectLanguageBottomSheet"
+        android:label="SelectLanguageBottomSheet"
+        tools:layout="@layout/select_language_bottom_sheet" />
 
 </navigation>
