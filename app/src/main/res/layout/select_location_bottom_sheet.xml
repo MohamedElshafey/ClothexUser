@@ -21,7 +21,9 @@
         android:id="@+id/savedLocationRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="3"
+        tools:listitem="@layout/adapter_item_saved_location" />
 
     <LinearLayout
         android:layout_width="match_parent"

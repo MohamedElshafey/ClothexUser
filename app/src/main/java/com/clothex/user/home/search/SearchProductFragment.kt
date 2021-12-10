@@ -53,6 +53,10 @@ class SearchProductFragment : Fragment() {
                 )
             )
         }
+
+        binding.sortContainer.setOnClickListener {
+            findNavController().navigate(SearchProductFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
+        }
     }
 
 }

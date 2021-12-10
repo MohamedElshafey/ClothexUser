@@ -147,9 +147,17 @@
         android:id="@+id/searchProductFragment"
         android:name="com.clothex.user.home.search.SearchProductFragment"
         android:label="SearchProductFragment"
-        tools:layout="@layout/fragment_search_product" >
+        tools:layout="@layout/fragment_search_product">
         <action
             android:id="@+id/action_searchProductFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_searchProductFragment_to_sortProductBottomSheet"
+            app:destination="@id/sortProductBottomSheet" />
     </fragment>
+    <dialog
+        android:id="@+id/sortProductBottomSheet"
+        android:name="com.clothex.user.home.search.SortProductBottomSheet"
+        android:label="SortProductBottomSheet"
+        tools:layout="@layout/sort_product_bottom_sheet" />
 </navigation>
