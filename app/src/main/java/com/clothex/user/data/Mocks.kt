@@ -7,6 +7,7 @@ import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.data.my_items.MyItem
 import com.clothex.user.data.orders.Order
 import com.clothex.user.data.orders.OrderStatus
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.*
@@ -227,7 +228,8 @@ val activeOrders = listOf(
             logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
-            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+            location = LatLng(30.0566673, 31.3359439)
         ),
         bookedItems = minimalProductList,
         endTime = 1639171957
@@ -240,7 +242,8 @@ val activeOrders = listOf(
             logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
-            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+            location = LatLng(30.0566673, 31.3359439)
         ),
         bookedItems = minimalProductList.plus(minimalProductList),
         endTime = 0

@@ -12,6 +12,6 @@ data class Order(
     val orderTimeStamp: Long,
     val shop: Shop,
     val bookedItems: List<MinimalProduct>,
-    val endTime: Long
+    val endTime: Long,
 )
 

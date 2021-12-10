@@ -68,6 +68,7 @@ class BookFragment : Fragment() {
         binding.bookButton.setOnClickListener {
             findNavController().navigate(BookFragmentDirections.actionBookFragmentToRequestBookFragment())
         }
+        binding.backIV.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun calculatePrices(items: List<MinimalProduct>) {
