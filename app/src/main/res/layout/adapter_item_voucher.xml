@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/logoIV"
+        imageUrl="@{viewModel.logoUrl}"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle"
+        app:srcCompat="@drawable/ic_voucher_logo" />
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/FontMedium"
+        android:textColor="@color/cod_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitleTV"
+        app:layout_constraintEnd_toStartOf="@+id/leadingIV"
+        app:layout_constraintStart_toEndOf="@+id/logoIV"
+        app:layout_constraintTop_toTopOf="@+id/logoIV"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Get 50% off on new collection" />
+
+    <TextView
+        android:id="@+id/subtitleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/FontRegular"
+        android:textColor="@color/island_aqua"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/logoIV"
+        app:layout_constraintEnd_toEndOf="@+id/titleTV"
+        app:layout_constraintStart_toStartOf="@+id/titleTV"
+        app:layout_constraintTop_toBottomOf="@+id/titleTV"
+        tools:text="Expired in 20 Nov, 2021" />
+
+    <ImageView
+        android:id="@+id/leadingIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_leading_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,6 +67,14 @@ class HomeFragment : Fragment() {
             menu.setOnClickListener { openSearchFragment() }
         }
 
+        binding.arrivalSeeAllTV.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSearchProductFragment())
+        }
+
+        binding.voucherButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToVoucherFragment())
+        }
+
         return root
     }
 

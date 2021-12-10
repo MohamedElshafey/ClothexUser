@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_navigation_home_to_searchProductFragment"
             app:destination="@id/searchProductFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_voucherFragment"
+            app:destination="@id/voucherFragment" />
     </fragment>
 
     <fragment
@@ -204,5 +207,51 @@
         android:name="com.clothex.user.profile.language.SelectLanguageBottomSheet"
         android:label="SelectLanguageBottomSheet"
         tools:layout="@layout/select_language_bottom_sheet" />
+    <fragment
+        android:id="@+id/voucherFragment"
+        android:name="com.clothex.user.voucher.VoucherFragment"
+        android:label="VoucherFragment"
+        tools:layout="@layout/fragment_voucher">
+        <action
+            android:id="@+id/action_voucherFragment_to_addNewVoucherBottomSheet"
+            app:destination="@id/addNewVoucherBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/addNewVoucherBottomSheet"
+        android:name="com.clothex.user.voucher.add_new.AddNewVoucherBottomSheet"
+        android:label="addNewVoucherBottomSheet"
+        tools:layout="@layout/add_new_voucher_bottom_sheet">
+        <action
+            android:id="@+id/action_addNewVoucherBottomSheet_to_addTextVoucherBottomSheet"
+            app:destination="@id/addTextVoucherBottomSheet" />
+        <action
+            android:id="@+id/action_addNewVoucherBottomSheet_to_scanVoucherFragment"
+            app:destination="@id/scanVoucherFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/addTextVoucherBottomSheet"
+        android:name="com.clothex.user.voucher.add_text.AddTextVoucherFragment"
+        android:label="AddTextVoucherBottomSheet"
+        tools:layout="@layout/fragment_add_text_voucher">
+        <action
+            android:id="@+id/action_addTextVoucherBottomSheet_to_voucherMessageFragment"
+            app:destination="@id/voucherMessageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/voucherMessageFragment"
+        android:name="com.clothex.user.voucher.message.VoucherMessageFragment"
+        android:label="VoucherMessageFragment"
+        tools:layout="@layout/fragment_voucher_message">
+        <action
+            android:id="@+id/action_voucherMessageFragment_to_voucherFragment"
+            app:destination="@id/voucherFragment"
+            app:popUpTo="@id/voucherFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanVoucherFragment"
+        android:name="com.clothex.user.voucher.scan.ScanVoucherFragment"
+        android:label="ScanVoucherFragment"
+        tools:layout="@layout/fragment_scan_voucher" />
 
 </navigation>

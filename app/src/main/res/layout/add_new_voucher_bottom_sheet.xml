@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.clothex.user.customview.BottomSheetContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:text="@string/add_new_voucher"
+        android:textAppearance="@style/FontSemiBold"
+        android:textColor="@color/cod_gray"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/scanQRTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:drawablePadding="8dp"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/scan_qr_code"
+        android:textAppearance="@style/FontMedium"
+        android:textColor="@color/cod_gray"
+        android:textSize="18sp"
+        app:drawableStartCompat="@drawable/ic_scan"
+        app:drawableTint="@color/black" />
+
+    <TextView
+        android:id="@+id/addTextTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:drawablePadding="8dp"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_voucher_as_text"
+        android:textAppearance="@style/FontMedium"
+        android:textColor="@color/cod_gray"
+        android:textSize="18sp"
+        app:drawableStartCompat="@drawable/ic_scan"
+        app:drawableTint="@color/black" />
+
+
+</com.clothex.user.customview.BottomSheetContainer>
