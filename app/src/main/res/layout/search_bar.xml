@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchBarContainer"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@drawable/search_bg_shape">
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/filter_bg_shape"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="items"
+        android:textAppearance="@style/FontRegular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:drawableStartCompat="@drawable/ic_bag" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/silver" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/searchET"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="16dp"
+        android:drawableTint="@color/silver"
+        android:hint="@string/search" />
+
+</LinearLayout>

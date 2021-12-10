@@ -58,7 +58,20 @@ class HomeFragment : Fragment() {
         binding.locationGroup.setAllOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSelectLocationBottomSheet())
         }
+
+        binding.searchBar.apply {
+            searchET.isClickable = false
+            searchET.isFocusable = false
+            searchBarContainer.setOnClickListener { openSearchFragment() }
+            searchET.setOnClickListener { openSearchFragment() }
+            menu.setOnClickListener { openSearchFragment() }
+        }
+
         return root
+    }
+
+    private fun openSearchFragment() {
+        findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSearchProductFragment())
     }
 
     override fun onDestroyView() {

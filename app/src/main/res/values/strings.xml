@@ -62,4 +62,10 @@
     <string name="track_your_order">Track your order</string>
     <string name="your_request_submitted_successfully">Your request submitted successfully!</string>
     <string name="request_success_sub_msg">Your request has been sent to the merchant once it approved we will send you a notification.</string>
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
+    <string-array name="searchSpinner">
+        <item>items</item>
+        <item>shops</item>
+    </string-array>
 </resources>

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_home_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_searchProductFragment"
+            app:destination="@id/searchProductFragment" />
     </fragment>
 
     <fragment
@@ -126,7 +129,7 @@
         android:id="@+id/requestBookFragment"
         android:name="com.clothex.user.home.book.request.RequestBookFragment"
         android:label="RequestBookFragment"
-        tools:layout="@layout/fragment_book_request" >
+        tools:layout="@layout/fragment_book_request">
         <action
             android:id="@+id/action_requestBookFragment_to_navigation_home"
             app:destination="@id/navigation_home"
@@ -139,5 +142,14 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchProductFragment"
+        android:name="com.clothex.user.home.search.SearchProductFragment"
+        android:label="SearchProductFragment"
+        tools:layout="@layout/fragment_search_product" >
+        <action
+            android:id="@+id/action_searchProductFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 </navigation>
