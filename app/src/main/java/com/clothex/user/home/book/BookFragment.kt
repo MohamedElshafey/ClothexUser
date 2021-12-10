@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.databinding.FragmentBookBinding
-import com.clothex.user.home.my_items.minimal.MinimalItemAdapter
+import com.clothex.user.my_items.minimal.MinimalItemAdapter
 import com.clothex.user.utils.setImageFromUrl
 
 /**

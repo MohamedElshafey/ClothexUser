@@ -19,10 +19,10 @@ import com.clothex.user.R
 import com.clothex.user.databinding.ActivityHomeBinding
 import com.clothex.user.home.categories.CategoriesFragment
 import com.clothex.user.home.home.HomeFragment
-import com.clothex.user.home.my_items.ItemsContainerFragment
-import com.clothex.user.home.my_items.items.MyItemsFragment
-import com.clothex.user.home.my_items.orders.ActiveOrdersFragment
-import com.clothex.user.home.profile.ProfileFragment
+import com.clothex.user.my_items.ItemsContainerFragment
+import com.clothex.user.my_items.items.MyItemsFragment
+import com.clothex.user.my_items.orders.ActiveOrdersFragment
+import com.clothex.user.profile.ProfileFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeActivity : AppCompatActivity() {

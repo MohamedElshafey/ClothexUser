@@ -1,4 +1,4 @@
-package com.clothex.user.home.my_items.minimal
+package com.clothex.user.my_items.minimal
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable

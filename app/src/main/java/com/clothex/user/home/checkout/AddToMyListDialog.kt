@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.DialogAddedToMyItemsBinding
-import com.clothex.user.home.my_items.minimal.MinimalItemViewModel
+import com.clothex.user.my_items.minimal.MinimalItemViewModel
 
 /**
  * Created by Mohamed Elshafey on 05/12/2021.

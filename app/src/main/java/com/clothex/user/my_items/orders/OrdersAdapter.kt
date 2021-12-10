@@ -1,4 +1,4 @@
-package com.clothex.user.home.my_items.orders
+package com.clothex.user.my_items.orders
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable

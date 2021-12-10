@@ -1,11 +1,11 @@
-package com.clothex.user.home.my_items
+package com.clothex.user.my_items
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.clothex.user.home.my_items.items.MyItemsFragment
-import com.clothex.user.home.my_items.orders.ActiveOrdersFragment
+import com.clothex.user.my_items.items.MyItemsFragment
+import com.clothex.user.my_items.orders.ActiveOrdersFragment
 
 /**
  * Created by Mohamed Elshafey on 08/12/2021.

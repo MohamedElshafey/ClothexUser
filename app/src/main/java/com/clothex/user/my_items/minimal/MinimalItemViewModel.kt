@@ -1,4 +1,4 @@
-package com.clothex.user.home.my_items.minimal
+package com.clothex.user.my_items.minimal
 
 import androidx.lifecycle.ViewModel
 import com.clothex.user.data.my_items.MinimalProduct

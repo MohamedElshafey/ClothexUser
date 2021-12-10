@@ -1,4 +1,4 @@
-package com.clothex.user.home.profile
+package com.clothex.user.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.clothex.user.databinding.FragmentProfileBinding
+import com.clothex.user.utils.setAllOnClickListener
 
 class ProfileFragment : Fragment() {
 
@@ -24,6 +26,16 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.viewModel = profileViewModel
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.prefGroup.setAllOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditPreferencesFragment())
+        }
+        binding.locationGroup.setAllOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditLocationFragment())
+        }
     }
 
     override fun onDestroyView() {

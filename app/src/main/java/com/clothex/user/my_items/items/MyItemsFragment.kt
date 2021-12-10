@@ -1,4 +1,4 @@
-package com.clothex.user.home.my_items.items
+package com.clothex.user.my_items.items
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.clothex.user.home.my_items.items
+package com.clothex.user.my_items.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.user.data.my_items.MyItem
 import com.clothex.user.databinding.AdapterMyItemBinding
-import com.clothex.user.home.my_items.minimal.MinimalItemAdapter
+import com.clothex.user.my_items.minimal.MinimalItemAdapter
 import com.clothex.user.utils.setImageFromUrl
 
 /**

@@ -1,4 +1,4 @@
-package com.clothex.user.home.profile
+package com.clothex.user.profile
 
 import androidx.lifecycle.ViewModel
 

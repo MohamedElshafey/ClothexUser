@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/navigation_my_items"
-        android:name="com.clothex.user.home.my_items.ItemsContainerFragment"
+        android:name="com.clothex.user.my_items.ItemsContainerFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_items_container">
         <action
@@ -42,9 +42,16 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.clothex.user.home.profile.ProfileFragment"
+        android:name="com.clothex.user.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_editPreferencesFragment"
+            app:destination="@id/editPreferencesFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editLocationFragment"
+            app:destination="@id/editLocationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.clothex.user.home.notification.NotificationFragment"
@@ -118,7 +125,7 @@
     </fragment>
     <fragment
         android:id="@+id/myItemsFragment"
-        android:name="com.clothex.user.home.my_items.items.MyItemsFragment"
+        android:name="com.clothex.user.my_items.items.MyItemsFragment"
         android:label="MyItemsFragment"
         tools:layout="@layout/fragment_my_items">
         <action
@@ -168,4 +175,15 @@
         android:name="com.clothex.user.home.search.filter.FilterProductBottomSheet"
         android:label="FilterProductBottomSheet"
         tools:layout="@layout/filter_product_bottom_sheet" />
+    <fragment
+        android:id="@+id/editPreferencesFragment"
+        android:name="com.clothex.user.profile.preferences.EditPreferencesFragment"
+        android:label="EditPreferencesFragment"
+        tools:layout="@layout/fragment_edit_user_preference" />
+    <fragment
+        android:id="@+id/editLocationFragment"
+        android:name="com.clothex.user.profile.location.EditLocationFragment"
+        tools:layout="@layout/fragment_edit_location"
+        android:label="EditLocationFragment" />
+
 </navigation>

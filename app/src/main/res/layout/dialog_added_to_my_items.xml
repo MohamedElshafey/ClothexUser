@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.clothex.user.home.my_items.minimal.MinimalItemViewModel" />
+            type="com.clothex.user.my_items.minimal.MinimalItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

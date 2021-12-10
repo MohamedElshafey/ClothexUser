@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:drawableStart="@drawable/ic_back_arrow"
+        android:gravity="center"
+        android:text="@string/manage_saved_location"
+        android:textAppearance="@style/FontSemiBold"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/locationsRV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTV"
+        tools:itemCount="3"
+        tools:listitem="@layout/adapter_item_edit_saved_location" />
+
+    <ImageView
+        android:id="@+id/addNewIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/ic_add_new_location"
+        app:layout_constraintBottom_toBottomOf="@id/addLocationSubTitleTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/addLocationTitleTV" />
+
+    <TextView
+        android:id="@+id/addLocationTitleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/add_new_location"
+        android:textAppearance="@style/FontMedium"
+        android:textColor="@color/cod_gray"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/leadingIV"
+        app:layout_constraintStart_toEndOf="@id/addNewIV"
+        app:layout_constraintTop_toBottomOf="@id/locationsRV" />
+
+    <TextView
+        android:id="@+id/addLocationSubTitleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/choose_location_on_map_value"
+        android:textAppearance="@style/FontRegular"
+        android:textColor="@color/dove_gray"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/leadingIV"
+        app:layout_constraintStart_toEndOf="@id/addNewIV"
+        app:layout_constraintTop_toBottomOf="@id/addLocationTitleTV" />
+
+    <ImageView
+        android:id="@+id/leadingIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_leading_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/addLocationSubTitleTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/addLocationTitleTV" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/addNewLocationGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="leadingIV,addLocationSubTitleTV,addLocationTitleTV,addNewIV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

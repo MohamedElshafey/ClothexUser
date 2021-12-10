@@ -77,6 +77,9 @@
     <string name="language_title">Language</string>
     <string name="language_sub_title">Change app language</string>
     <string name="logout_title">Logout</string>
+    <string name="save">Save</string>
+    <string name="manage_saved_location">Manage saved location</string>
+    <string name="add_new_location">Add New Location</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
