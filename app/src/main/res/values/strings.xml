@@ -65,8 +65,15 @@
     <string name="search">Search</string>
     <string name="sort">Sort</string>
     <string name="best_match">Best match</string>
+    <string name="choose_category">Choose category</string>
+    <string name="price_range">Price range</string>
+    <string name="apply_filter">Apply filter</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
     </string-array>
+    <array name="price_range_slider_values">
+        <item>0.0</item>
+        <item>5000.0</item>
+    </array>
 </resources>

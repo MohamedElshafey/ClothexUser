@@ -154,10 +154,18 @@
         <action
             android:id="@+id/action_searchProductFragment_to_sortProductBottomSheet"
             app:destination="@id/sortProductBottomSheet" />
+        <action
+            android:id="@+id/action_searchProductFragment_to_filterProductBottomSheet"
+            app:destination="@id/filterProductBottomSheet" />
     </fragment>
     <dialog
         android:id="@+id/sortProductBottomSheet"
-        android:name="com.clothex.user.home.search.SortProductBottomSheet"
+        android:name="com.clothex.user.home.search.sort.SortProductBottomSheet"
         android:label="SortProductBottomSheet"
         tools:layout="@layout/sort_product_bottom_sheet" />
+    <dialog
+        android:id="@+id/filterProductBottomSheet"
+        android:name="com.clothex.user.home.search.filter.FilterProductBottomSheet"
+        android:label="FilterProductBottomSheet"
+        tools:layout="@layout/filter_product_bottom_sheet" />
 </navigation>

@@ -57,6 +57,10 @@ class SearchProductFragment : Fragment() {
         binding.sortContainer.setOnClickListener {
             findNavController().navigate(SearchProductFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }
+
+        binding.filterContainer.setOnClickListener {
+            findNavController().navigate(SearchProductFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
+        }
     }
 
 }

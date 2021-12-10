@@ -1,4 +1,4 @@
-package com.clothex.user.home.search
+package com.clothex.user.home.search.sort
 
 import android.os.Bundle
 import android.view.LayoutInflater
