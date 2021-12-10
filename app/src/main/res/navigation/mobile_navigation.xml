@@ -93,9 +93,7 @@
             app:argType="com.clothex.shop.core.models.Item" />
         <action
             android:id="@+id/action_productDetailsFragment_to_addToMyListDialog"
-            app:destination="@id/addToMyListDialog"
-            app:popUpTo="@id/navigation_home"
-            app:popUpToInclusive="true" />
+            app:destination="@id/addToMyListDialog" />
     </fragment>
     <dialog
         android:id="@+id/addToMyListDialog"
@@ -106,8 +104,10 @@
             android:name="minimalProduct"
             app:argType="com.clothex.user.data.my_items.MinimalProduct" />
         <action
-            android:id="@+id/action_addToMyListDialog_to_bookFragment"
-            app:destination="@id/bookFragment" />
+            android:id="@+id/action_addToMyListDialog_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </dialog>
     <fragment
         android:id="@+id/loginFragment"
