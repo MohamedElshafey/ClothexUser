@@ -94,6 +94,8 @@
     <string name="enable_camera">Enable Camera</string>
     <string name="enable_camera_msg">You need to enable camera access to scan the QR code to get your offer!</string>
     <string name="go_to_settings">Go to settings</string>
+    <string name="discover_more">Discover more</string>
+    <string name="for_title">For</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

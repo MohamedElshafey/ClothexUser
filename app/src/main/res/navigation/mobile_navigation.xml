@@ -41,7 +41,14 @@
         android:id="@+id/navigation_categories"
         android:name="com.clothex.user.home.categories.CategoriesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_navigation_categories_to_searchProductFragment"
+            app:destination="@id/searchProductFragment" />
+        <action
+            android:id="@+id/action_navigation_categories_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
