@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_home_to_voucherFragment"
             app:destination="@id/voucherFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_shopDetailsFragment"
+            app:destination="@id/shopDetailsFragment" />
     </fragment>
 
     <fragment
@@ -41,7 +44,7 @@
         android:id="@+id/navigation_categories"
         android:name="com.clothex.user.home.categories.CategoriesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_categories" >
+        tools:layout="@layout/fragment_categories">
         <action
             android:id="@+id/action_navigation_categories_to_searchProductFragment"
             app:destination="@id/searchProductFragment" />
@@ -141,6 +144,9 @@
         <action
             android:id="@+id/action_bookFragment_to_requestBookFragment"
             app:destination="@id/requestBookFragment" />
+        <action
+            android:id="@+id/action_bookFragment_to_shopDetailsFragment"
+            app:destination="@id/shopDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/myItemsFragment"
@@ -203,7 +209,7 @@
         android:id="@+id/editLocationFragment"
         android:name="com.clothex.user.profile.location.EditLocationFragment"
         android:label="EditLocationFragment"
-        tools:layout="@layout/fragment_edit_location" >
+        tools:layout="@layout/fragment_edit_location">
         <action
             android:id="@+id/action_editLocationFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -264,5 +270,13 @@
         android:name="com.clothex.user.voucher.scan.ScanVoucherFragment"
         android:label="ScanVoucherFragment"
         tools:layout="@layout/fragment_scan_voucher" />
-
+    <fragment
+        android:id="@+id/shopDetailsFragment"
+        android:name="com.clothex.user.home.shop.details.ShopDetailsFragment"
+        android:label="ShopDetailsFragment"
+        tools:layout="@layout/fragment_shop_details">
+        <argument
+            android:name="shop"
+            app:argType="com.clothex.user.data.Shop" />
+    </fragment>
 </navigation>

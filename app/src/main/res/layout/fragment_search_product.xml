@@ -13,6 +13,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,12 +22,13 @@
         android:id="@+id/filterContainer"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/filter_bg_shape"
         android:orientation="horizontal"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        app:layout_constraintStart_toStartOf="@id/searchBar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchBar">
 
         <ImageView

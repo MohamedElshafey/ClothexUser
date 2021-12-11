@@ -88,6 +88,7 @@
         <entry key="app/src/main/res/layout/adapter_edit_minimal_product.xml" value="0.67" />
         <entry key="app/src/main/res/layout/adapter_image_view.xml" value="0.30085470085470084" />
         <entry key="app/src/main/res/layout/adapter_item_color.xml" value="0.12468506829053021" />
+        <entry key="app/src/main/res/layout/adapter_item_contact.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/layout/adapter_item_edit_saved_location.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/adapter_item_filter.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/adapter_item_notification.xml" value="0.3311965811965812" />
@@ -99,6 +100,7 @@
         <entry key="app/src/main/res/layout/adapter_item_shop.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/layout/adapter_item_sort.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/adapter_item_voucher.xml" value="0.3311965811965812" />
+        <entry key="app/src/main/res/layout/adapter_item_working_hour.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/layout/adapter_minimal_product.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/layout/adapter_my_item.xml" value="0.3438818565400844" />
         <entry key="app/src/main/res/layout/add_text_voucher_bottom_sheet.xml" value="0.3311965811965812" />
@@ -127,6 +129,8 @@
         <entry key="app/src/main/res/layout/fragment_saved_location.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_scan_voucher.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/fragment_search_product.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_shop_details.xml" value="0.35515548281505727" />
+        <entry key="app/src/main/res/layout/fragment_shop_info.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.26691947913888736" />
         <entry key="app/src/main/res/layout/fragment_user_preference.xml" value="0.2953703703703704" />
         <entry key="app/src/main/res/layout/fragment_voucher.xml" value="0.3311965811965812" />

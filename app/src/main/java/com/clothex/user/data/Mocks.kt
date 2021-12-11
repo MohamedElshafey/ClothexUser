@@ -276,3 +276,41 @@ val voucherList = listOf<Voucher>(
     Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
     Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg")
 )
+
+val workingHourList = listOf<WorkingHour>(
+    WorkingHour(
+        _id = "123",
+        enabled = false,
+        from = "11:00",
+        to = "12:00",
+        title = "Saturday"
+    ),
+    WorkingHour(
+        _id = "123",
+        enabled = false,
+        from = "11:00",
+        to = "12:00",
+        title = "Sunday"
+    ),
+    WorkingHour(
+        _id = "123",
+        enabled = false,
+        from = "11:00",
+        to = "12:00",
+        title = "Monday"
+    ),
+    WorkingHour(
+        _id = "123",
+        enabled = false,
+        from = "11:00",
+        to = "12:00",
+        title = "Thursday"
+    ),
+    WorkingHour(
+        _id = "123",
+        enabled = false,
+        from = "10:00",
+        to = "12:00",
+        title = "Wednesday"
+    )
+)

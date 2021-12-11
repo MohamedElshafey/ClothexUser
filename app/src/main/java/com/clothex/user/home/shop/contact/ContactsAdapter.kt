@@ -1,19 +1,18 @@
-package com.clothex.user.home.shop
+package com.clothex.user.home.shop.contact
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.Shop
-import com.clothex.user.databinding.AdapterItemShopBinding
+import com.clothex.user.databinding.AdapterItemContactBinding
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ShopAdapter(private val list: List<Shop>, val callback: (Shop) -> Unit) :
-    RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
+class ContactsAdapter(private val list: List<String>) :
+    RecyclerView.Adapter<ContactsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        AdapterItemShopBinding.inflate(
+        AdapterItemContactBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -25,11 +24,10 @@ class ShopAdapter(private val list: List<Shop>, val callback: (Shop) -> Unit) :
 
     override fun getItemCount(): Int = list.size
 
-    inner class ViewHolder(val binding: AdapterItemShopBinding) :
+    inner class ViewHolder(val binding: AdapterItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(shop: Shop) {
-            binding.viewModel = ShopItemViewModel(shop)
-            binding.root.setOnClickListener { callback.invoke(shop) }
+        fun bind(string: String) {
+
         }
     }
 

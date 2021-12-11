@@ -17,7 +17,7 @@ import com.clothex.user.home.product.ProductAdapter
 /**
  * Created by Mohamed Elshafey on 09/12/2021.
  */
-class SearchProductFragment : Fragment() {
+open class SearchProductFragment : Fragment() {
 
     lateinit var binding: FragmentSearchProductBinding
 

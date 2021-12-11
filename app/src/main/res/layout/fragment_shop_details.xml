@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.clothex.user.home.shop.details.ShopDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:text="@string/shop_details"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:drawableStartCompat="@drawable/ic_back_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logoIV"
+            imageUrl="@{viewModel.imageUrl}"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/onboarding_image_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTV"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Shop" />
+
+        <TextView
+            android:id="@+id/userNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@{viewModel.shopName}"
+            android:textAppearance="@style/FontBold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoIV"
+            tools:text="LC Waikiki" />
+
+        <TextView
+            android:id="@+id/userAddressTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@{viewModel.shopAddress}"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/dove_gray"
+            android:textSize="12sp"
+            app:drawableStartCompat="@drawable/ic_location_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userNameTV"
+            tools:text="New cairo, Egypt" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userAddressTV"
+            app:tabGravity="start"
+            app:tabMode="scrollable"
+            app:tabPaddingEnd="20dp"
+            app:tabPaddingStart="20dp"
+            app:tabSelectedTextColor="@color/cod_gray"
+            app:tabTextAppearance="@style/TabFontMedium"
+            app:tabTextColor="@color/silver" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

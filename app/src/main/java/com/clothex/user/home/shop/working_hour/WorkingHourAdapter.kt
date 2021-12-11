@@ -1,19 +1,19 @@
-package com.clothex.user.home.shop
+package com.clothex.user.home.shop.working_hour
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.Shop
-import com.clothex.user.databinding.AdapterItemShopBinding
+import com.clothex.user.data.WorkingHour
+import com.clothex.user.databinding.AdapterItemWorkingHourBinding
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ShopAdapter(private val list: List<Shop>, val callback: (Shop) -> Unit) :
-    RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
+class WorkingHourAdapter(private val list: List<WorkingHour>) :
+    RecyclerView.Adapter<WorkingHourAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        AdapterItemShopBinding.inflate(
+        AdapterItemWorkingHourBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -25,11 +25,11 @@ class ShopAdapter(private val list: List<Shop>, val callback: (Shop) -> Unit) :
 
     override fun getItemCount(): Int = list.size
 
-    inner class ViewHolder(val binding: AdapterItemShopBinding) :
+    inner class ViewHolder(val binding: AdapterItemWorkingHourBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(shop: Shop) {
-            binding.viewModel = ShopItemViewModel(shop)
-            binding.root.setOnClickListener { callback.invoke(shop) }
+        fun bind(workingHour: WorkingHour) {
+            binding.dayTV.text = workingHour.title
+            binding.hoursTV.text = String.format("%s . %s", workingHour.from, workingHour.to)
         }
     }
 

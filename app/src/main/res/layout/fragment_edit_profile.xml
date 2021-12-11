@@ -19,7 +19,6 @@
             android:layout_height="?actionBarSize"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:drawableStart="@drawable/ic_back_arrow"
             android:gravity="center"
             android:text="@string/edit_profile_title"
             android:textAppearance="@style/FontSemiBold"
@@ -27,7 +26,8 @@
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableStartCompat="@drawable/ic_back_arrow" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profilePicIV"

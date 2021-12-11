@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
+import com.clothex.user.utils.setAllOnClickListener
 import com.clothex.user.utils.setImageFromUrl
 
 
@@ -35,7 +36,7 @@ class BookFragment : Fragment() {
         with(myItem.shop) {
             binding.shopTitleTV.text = name
             binding.addressTV.text = addressName
-            setImageFromUrl(binding.logoIV, logoUrl)
+            setImageFromUrl(binding.shopLogoIV, logoUrl)
         }
 
         val itemsList = ArrayList(myItem.myItems)
@@ -68,6 +69,15 @@ class BookFragment : Fragment() {
         binding.bookButton.setOnClickListener {
             findNavController().navigate(BookFragmentDirections.actionBookFragmentToRequestBookFragment())
         }
+
+        binding.shopGroup.setAllOnClickListener {
+            findNavController().navigate(
+                BookFragmentDirections.actionBookFragmentToShopDetailsFragment(
+                    myItem.shop
+                )
+            )
+        }
+
         binding.backIV.setOnClickListener { findNavController().navigateUp() }
     }
 

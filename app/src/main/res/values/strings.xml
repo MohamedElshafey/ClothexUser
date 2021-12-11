@@ -96,6 +96,14 @@
     <string name="go_to_settings">Go to settings</string>
     <string name="discover_more">Discover more</string>
     <string name="for_title">For</string>
+    <string name="shop_details">Shop details</string>
+    <string name="items">Items</string>
+    <string name="photos">Photos</string>
+    <string name="info">Info</string>
+    <string name="description">Description</string>
+    <string name="address">Address</string>
+    <string name="working_hours">Working hours</string>
+    <string name="contacts">Contacts</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

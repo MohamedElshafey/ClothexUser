@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/titleTV" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/logoIV"
+        android:id="@+id/shopLogoIV"
         imageUrl="@{viewModel.logoUrl}"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -68,8 +68,8 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/leadingIV"
-        app:layout_constraintStart_toEndOf="@+id/logoIV"
-        app:layout_constraintTop_toTopOf="@+id/logoIV"
+        app:layout_constraintStart_toEndOf="@+id/shopLogoIV"
+        app:layout_constraintTop_toTopOf="@+id/shopLogoIV"
         tools:text="Solid Button-Front Drop Shoulder Shirt" />
 
     <ImageView
@@ -109,6 +109,12 @@
         app:layout_constraintEnd_toEndOf="@id/headerBackgroundView"
         app:layout_constraintTop_toTopOf="@id/headerBackgroundView" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/shopGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="shopLogoIV,shopTitleTV,leadingIV,addressTV,headerBackgroundView" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsRV"
         android:layout_width="0dp"
@@ -121,7 +127,7 @@
         app:layout_constraintBottom_toTopOf="@id/footerBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoIV"
+        app:layout_constraintTop_toBottomOf="@id/shopLogoIV"
         tools:listitem="@layout/adapter_edit_minimal_product" />
 
     <View

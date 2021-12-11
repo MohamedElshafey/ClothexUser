@@ -34,12 +34,14 @@ class HomeFragment : Fragment() {
         binding.viewModel = homeViewModel
         binding.productRV.adapter = ProductAdapter(getItemsList(requireContext()).slice(2..7)) {
             findNavController().navigate(
-                HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(
-                    it
-                )
+                HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(it)
             )
         }
-        binding.shopsRV.adapter = ShopAdapter(shopList)
+        binding.shopsRV.adapter = ShopAdapter(shopList) {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it)
+            )
+        }
         val layoutManager = object : LinearLayoutManager(requireContext()) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
                 lp.width = (width * 0.7f).toInt()

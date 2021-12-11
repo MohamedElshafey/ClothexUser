@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.clothex.user.home.shop.details.ShopDetailsViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_home" />
+
+            <TextView
+                android:id="@+id/descriptionTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/description"
+                android:textAppearance="@style/FontMedium"
+                android:textColor="@color/cod_gray"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/descriptionTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/lorem_ipsum"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/descriptionTitleTV"
+                app:layout_constraintStart_toStartOf="@+id/descriptionTitleTV"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTV" />
+
+            <View
+                android:id="@+id/descSeparator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/mercury"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
+
+            <ImageView
+                android:id="@+id/addIconIV"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descSeparator"
+                app:srcCompat="@drawable/ic_location"
+                app:tint="@color/cod_gray" />
+
+            <TextView
+                android:id="@+id/addressTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/address"
+                android:textAppearance="@style/FontMedium"
+                android:textColor="@color/cod_gray"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/addIconIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addIconIV"
+                app:layout_constraintTop_toTopOf="@+id/addIconIV" />
+
+            <TextView
+                android:id="@+id/addressTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:textAppearance="@style/FontMedium"
+                android:textColor="@color/cod_gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addIconIV"
+                app:layout_constraintTop_toBottomOf="@id/addressTitleTV"
+                tools:text="Main branch: 207 Velda Ramp, Lake Alexys, HI" />
+
+
+            <LinearLayout
+                android:id="@+id/branchesContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/search_bg_shape"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addressTV">
+
+                <TextView
+                    android:id="@+id/branchCountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="14sp"
+                    tools:text="+15" />
+
+                <TextView
+                    android:id="@+id/branchSuffixTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="4dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="14sp"
+                    tools:text="more branches" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_leading_arrow" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/branchSeparator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/mercury"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/branchesContainer" />
+
+            <ImageView
+                android:id="@+id/workingHoursIconIV"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/branchSeparator"
+                app:srcCompat="@drawable/ic_working_hours"
+                app:tint="@color/cod_gray" />
+
+            <TextView
+                android:id="@+id/workingHoursTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/working_hours"
+                android:textAppearance="@style/FontMedium"
+                android:textColor="@color/cod_gray"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/workingHoursIconIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/workingHoursIconIV"
+                app:layout_constraintTop_toTopOf="@+id/workingHoursIconIV" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/workingHoursRV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workingHoursTitleTV"
+                tools:itemCount="2"
+                tools:listitem="@layout/adapter_item_working_hour" />
+
+            <View
+                android:id="@+id/workingHoursSeparator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/mercury"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/workingHoursRV" />
+
+
+            <ImageView
+                android:id="@+id/contactsIconIV"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workingHoursSeparator"
+                app:srcCompat="@drawable/ic_contacts"
+                app:tint="@color/cod_gray" />
+
+            <TextView
+                android:id="@+id/contactsTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/contacts"
+                android:textAppearance="@style/FontMedium"
+                android:textColor="@color/cod_gray"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/contactsIconIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/contactsIconIV"
+                app:layout_constraintTop_toTopOf="@+id/contactsIconIV" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contactsRV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/contactsTitleTV"
+                app:layout_constraintStart_toStartOf="@id/contactsIconIV"
+                app:layout_constraintTop_toBottomOf="@id/contactsTitleTV"
+                tools:itemCount="2"
+                tools:listitem="@layout/adapter_item_contact" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
