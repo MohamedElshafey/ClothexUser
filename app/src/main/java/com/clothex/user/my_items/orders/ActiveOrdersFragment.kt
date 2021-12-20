@@ -21,17 +21,7 @@ import java.util.*
 class ActiveOrdersFragment : Fragment() {
 
     lateinit var binding: FragmentActiveOrdersBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentActiveOrdersBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    val onClickOrderCallback: (Order) -> Unit = {
+    private val onClickOrderCallback: (Order) -> Unit = {
         it.shop.location?.let { location ->
             val uri = String.format(
                 Locale.ENGLISH,
@@ -42,8 +32,16 @@ class ActiveOrdersFragment : Fragment() {
             startActivity(intent)
         }
     }
+    private var ordersAdapter = OrdersAdapter(activeOrders, onClickOrderCallback)
 
-    var ordersAdapter = OrdersAdapter(activeOrders, onClickOrderCallback)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentActiveOrdersBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

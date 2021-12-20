@@ -34,6 +34,51 @@ fun getItemsList(context: Context): List<Item> {
     return Gson().fromJson(jsonString, object : TypeToken<List<Item?>?>() {}.type)
 }
 
+val shopPhotoList = listOf(
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://retaildesignblog.net/wp-content/uploads/2014/10/Zara-store-by-Elsa-Urquijo-Architects-Hong-Kong.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+        type = "photo"
+    ),
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://retaildesignblog.net/wp-content/uploads/2014/10/Zara-store-by-Elsa-Urquijo-Architects-Hong-Kong-02-.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/a905f38e8fdd43c1ca039cb3f8a850ae.jpg",
+        type = "photo"
+    ),
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://www.dexigner.com/images/article/22290/Fifth_Avenue_Zara_Concept_Store_01.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+        type = "photo"
+    ),
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://www.dexigner.com/images/article/22290/Fifth_Avenue_Zara_Concept_Store_03_gallery.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+        type = "photo"
+    ),
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://retaildesignblog.net/wp-content/uploads/2014/10/Zara-store-by-Elsa-Urquijo-Architects-Hong-Kong-03-.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+        type = "photo"
+    ),
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://retaildesignblog.net/wp-content/uploads/2014/10/Zara-store-by-Elsa-Urquijo-Architects-Hong-Kong-06-.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+        type = "photo"
+    ),
+    Media(
+        _id = "618c3c9df3e27e0496197d2b",
+        source = "https://retaildesignblog.net/wp-content/uploads/2014/10/Zara-store-by-Elsa-Urquijo-Architects-Hong-Kong-10-.jpg",
+        thumbnail = "http:/localhost:3000/images/thumb/cb1834ba32ff453305d0e7877746d3e6.jpg",
+        type = "photo"
+    )
+)
+
 val notificationList = listOf(
     Notification(
         "Welcome to our new App!",
@@ -88,22 +133,26 @@ val shopList = listOf(
         logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
         name = "H&M",
         addressName = "20,Abbas El Akkad - Nasr City",
-        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+        photos = shopPhotoList
     ), Shop(
         logoUrl = "https://www.rinnoo.net/f/res/s07/locations-photos/000/820/0082067-269-rinnoo-d25fe1d753cf44a39cbb353f8bf17581.jpg",
         name = "ZARA",
         addressName = "20, Makram Ebeid - Nasr City",
-        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+        photos = shopPhotoList
     ), Shop(
         logoUrl = "https://cdn.freelogovectors.net/wp-content/uploads/2019/11/lc-waikiki-logo.png",
         name = "LC WAIKIKI",
         addressName = "20,Abbas El Akkad - Nasr City",
-        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+        photos = shopPhotoList
     ), Shop(
         logoUrl = "https://cdn.freelogovectors.net/wp-content/uploads/2019/11/lc-waikiki-logo.png",
         name = "LC WAIKIKI",
         addressName = "20,Abbas El Akkad - Nasr City",
-        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+        workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+        photos = shopPhotoList
     )
 )
 
@@ -205,7 +254,8 @@ val myItems = listOf(
             logoUrl = "https://cdn.freelogovectors.net/wp-content/uploads/2019/11/lc-waikiki-logo.png",
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
-            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+            photos = shopPhotoList
         ),
         minimalProductList.shuffled()
     ), MyItem(
@@ -213,7 +263,8 @@ val myItems = listOf(
             logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
-            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+            photos = shopPhotoList
         ),
         minimalProductList.plus(minimalProductList).shuffled()
     )
@@ -229,7 +280,8 @@ val activeOrders = listOf(
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
             workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
-            location = LatLng(30.0566673, 31.3359439)
+            location = LatLng(30.0566673, 31.3359439),
+            photos = shopPhotoList
         ),
         bookedItems = minimalProductList,
         endTime = 1639171957
@@ -243,7 +295,8 @@ val activeOrders = listOf(
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
             workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
-            location = LatLng(30.0566673, 31.3359439)
+            location = LatLng(30.0566673, 31.3359439),
+            photos = shopPhotoList
         ),
         bookedItems = minimalProductList.plus(minimalProductList),
         endTime = 0
@@ -255,7 +308,8 @@ val activeOrders = listOf(
             logoUrl = "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
             name = "LC WAIKIKI",
             addressName = "20,Abbas El Akkad - Nasr City",
-            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM"
+            workingHour = "Mon to Sat - 9:00 AM . 11:00 PM",
+            photos = shopPhotoList
         ),
         bookedItems = minimalProductList,
         endTime = 0
@@ -358,3 +412,4 @@ val workingHourList = listOf<WorkingHour>(
         title = "Wednesday"
     )
 )
+

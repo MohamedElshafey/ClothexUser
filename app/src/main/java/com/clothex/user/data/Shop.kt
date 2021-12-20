@@ -13,5 +13,6 @@ data class Shop(
     val name: String,
     val addressName: String,
     val workingHour: String,
-    val location: LatLng? = null
+    val location: LatLng? = null,
+    val photos: List<Media>
 ) : Parcelable

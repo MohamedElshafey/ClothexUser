@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.clothex.user.data.Shop
 import com.clothex.user.home.shop.info.ShopInfoFragment
 import com.clothex.user.home.shop.items.ShopProductsFragment
+import com.clothex.user.home.shop.photos.ShopPhotosFragment
 
 /**
  * Created by Mohamed Elshafey on 08/12/2021.
@@ -24,7 +25,7 @@ class ShopDetailsPager(
         return when (position) {
             0 -> ShopProductsFragment()
             1 -> ShopInfoFragment.newInstance(shop)
-            else -> Fragment()
+            else -> ShopPhotosFragment.newInstance(shop)
         }
     }
 }
