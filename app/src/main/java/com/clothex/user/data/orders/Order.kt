@@ -2,6 +2,7 @@ package com.clothex.user.data.orders
 
 import com.clothex.user.data.Shop
 import com.clothex.user.data.my_items.MinimalProduct
+import com.clothex.user.my_items.orders.OrderStatus
 
 /**
  * Created by Mohamed Elshafey on 09/12/2021.

@@ -6,7 +6,7 @@ import com.clothex.user.R
 import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.data.my_items.MyItem
 import com.clothex.user.data.orders.Order
-import com.clothex.user.data.orders.OrderStatus
+import com.clothex.user.my_items.orders.OrderStatus
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -264,17 +264,61 @@ val activeOrders = listOf(
 
 
 val voucherList = listOf<Voucher>(
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"),
-    Voucher("Get 50% off on new collection", "Expired in 20 Nov, 2021","https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg")
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    ),
+    Voucher(
+        "Get 50% off on new collection",
+        "Expired in 20 Nov, 2021",
+        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg"
+    )
 )
 
 val workingHourList = listOf<WorkingHour>(

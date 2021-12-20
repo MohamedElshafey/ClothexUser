@@ -64,6 +64,9 @@ class LoginFragment : Fragment() {
         binding.signUpTV.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
+        binding.forgetPasswordTV.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
+        }
     }
 
     override fun onDestroyView() {

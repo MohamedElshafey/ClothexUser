@@ -30,7 +30,11 @@ class HomeFragment : Fragment() {
     ): View {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.viewModel = homeViewModel
         binding.productRV.adapter = ProductAdapter(getItemsList(requireContext()).slice(2..7)) {
             findNavController().navigate(
@@ -77,7 +81,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToVoucherFragment())
         }
 
-        return root
     }
 
     private fun openSearchFragment() {

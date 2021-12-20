@@ -140,7 +140,7 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/checkoutButton"
+            android:id="@+id/myItemsButton"
             style="@style/RemarkableButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="54dp"
@@ -149,7 +149,7 @@
             android:gravity="center"
             android:paddingStart="30dp"
             android:paddingEnd="30dp"
-            android:text="@string/checkout"
+            android:text="@string/my_items"
             android:textAppearance="@style/FontSemiBold"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -171,7 +171,7 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/successMsgContainer"
-            app:layout_constraintStart_toEndOf="@id/checkoutButton"
+            app:layout_constraintStart_toEndOf="@id/myItemsButton"
             app:layout_constraintTop_toBottomOf="@+id/successMsgContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

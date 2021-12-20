@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/forget_password"
+        android:text="@string/forget_password_question"
         android:textAppearance="@style/FontRegular"
         android:textColor="#99000000"
         android:textSize="12sp"

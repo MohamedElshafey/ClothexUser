@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Active orders"
+            android:text="Orders"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/black"
             android:textSize="16sp" />

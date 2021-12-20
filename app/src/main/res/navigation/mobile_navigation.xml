@@ -121,6 +121,11 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addToMyListDialog_to_myItemsFragment"
+            app:destination="@id/navigation_my_items"
+            app:popUpTo="@id/navigation_my_items"
+            app:popUpToInclusive="true" />
     </dialog>
     <fragment
         android:id="@+id/loginFragment"
@@ -130,6 +135,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -281,5 +289,25 @@
         <argument
             android:name="shop"
             app:argType="com.clothex.user.data.Shop" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.clothex.user.home.password.forget.ForgetPasswordFragment"
+        android:label="ForgetPasswordFragment"
+        tools:layout="@layout/fragment_forget_password">
+        <action
+            android:id="@+id/action_forgetPasswordFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.clothex.user.home.password.reset.ResetPasswordFragment"
+        android:label="ResetPasswordFragment"
+        tools:layout="@layout/fragment_reset_password">
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -61,6 +61,10 @@ open class SearchProductFragment : Fragment() {
         binding.filterContainer.setOnClickListener {
             findNavController().navigate(SearchProductFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
         }
+
+        binding.titleTV.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
 }

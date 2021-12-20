@@ -54,6 +54,11 @@ class AddToMyListDialog : DialogFragment() {
             background = backgroundDrawable
         }
         binding.viewModel = MinimalItemViewModel(minimalProduct)
+        binding.myItemsButton.setOnClickListener {
+            findNavController().navigate(
+                AddToMyListDialogDirections.actionAddToMyListDialogToMyItemsFragment()
+            )
+        }
         binding.continueButton.setOnClickListener {
             findNavController().navigate(
                 AddToMyListDialogDirections.actionAddToMyListDialogToNavigationHome()

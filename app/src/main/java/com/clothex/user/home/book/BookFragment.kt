@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.clothex.user.R
 import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
@@ -77,8 +78,7 @@ class BookFragment : Fragment() {
                 )
             )
         }
-
-        binding.backIV.setOnClickListener { findNavController().navigateUp() }
+        binding.actionBar.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun calculatePrices(items: List<MinimalProduct>) {

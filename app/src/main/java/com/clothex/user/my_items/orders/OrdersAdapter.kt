@@ -1,6 +1,5 @@
 package com.clothex.user.my_items.orders
 
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.user.R
 import com.clothex.user.data.orders.Order
-import com.clothex.user.data.orders.OrderStatus
 import com.clothex.user.databinding.AdapterItemOrderBinding
 import com.clothex.user.utils.CustomTypefaceSpan
 import com.clothex.user.utils.setImageFromUrl
@@ -24,7 +22,7 @@ import java.util.*
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class OrdersAdapter(private val list: List<Order>, val onClickListener: (Order) -> Unit) :
+class OrdersAdapter(private var list: List<Order>, val onClickListener: (Order) -> Unit) :
     Adapter<OrdersAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -35,6 +33,13 @@ class OrdersAdapter(private val list: List<Order>, val onClickListener: (Order) 
         holder.bind(list[holder.adapterPosition])
 
     override fun getItemCount(): Int = list.size
+
+    fun filter(status: OrderStatus) {
+        list = list.filter {
+            it.orderStatus == status
+        }
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(val binding: AdapterItemOrderBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -48,22 +53,10 @@ class OrdersAdapter(private val list: List<Order>, val onClickListener: (Order) 
             binding.orderIdTV.text = "Order : ${order.orderId}"
             binding.placedDateTV.text = "Placed on 24 Nov 2021 1:30 PM"
             val backgroundDrawable = binding.statusTV.background as GradientDrawable
-            when (order.orderStatus) {
-                OrderStatus.PENDING -> {
-                    binding.statusTV.text = "Pending"
-                    binding.statusTV.setTextColor(Color.parseColor("#974b00"))
-                    backgroundDrawable.setColor(Color.parseColor("#ffedaf"))
-                }
-                OrderStatus.ACTIVE -> {
-                    binding.statusTV.setTextColor(Color.parseColor("#10c935"))
-                    backgroundDrawable.setColor(Color.parseColor("#1A10c935"))
-                    binding.statusTV.text = "Active"
-                }
-                OrderStatus.REJECT -> {
-                    binding.statusTV.setTextColor(Color.parseColor("#EC255A"))
-                    backgroundDrawable.setColor(Color.parseColor("#1AEC255A"))
-                    binding.statusTV.text = "Rejected"
-                }
+            order.orderStatus.let {
+                binding.statusTV.text = context.getString(it.title)
+                binding.statusTV.setTextColor(it.contentColor)
+                backgroundDrawable.setColor(it.backgroundColor)
             }
             binding.statusTV.background = backgroundDrawable
             binding.bookedItemsTV.text = order.bookedItems.size.toString()
