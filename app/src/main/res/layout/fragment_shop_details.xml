@@ -97,6 +97,22 @@
                         app:layout_constraintTop_toBottomOf="@id/userNameTV"
                         tools:text="New cairo, Egypt" />
 
+                    <TextView
+                        android:id="@+id/onlineFlagTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:drawablePadding="8dp"
+                        android:text="@string/available_online"
+                        android:textAppearance="@style/FontSemiBold"
+                        android:textColor="@color/island_aqua"
+                        android:textSize="10sp"
+                        app:drawableStartCompat="@drawable/ic_online"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/userAddressTV"
+                        tools:ignore="SmallSp" />
+
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tabLayout"
                         android:layout_width="wrap_content"
@@ -108,7 +124,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/userAddressTV"
+                        app:layout_constraintTop_toBottomOf="@id/onlineFlagTV"
                         app:tabGravity="start"
                         app:tabMode="scrollable"
                         app:tabPaddingEnd="20dp"

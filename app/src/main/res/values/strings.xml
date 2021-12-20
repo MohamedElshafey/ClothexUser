@@ -116,6 +116,7 @@
     <string name="pending">Pending</string>
     <string name="active">Active</string>
     <string name="rejected">Rejected</string>
+    <string name="available_online">Available online</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
