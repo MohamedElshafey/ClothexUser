@@ -33,6 +33,9 @@ class ProfileFragment : Fragment() {
         binding.prefGroup.setAllOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditPreferencesFragment())
         }
+        binding.voucherGroup.setAllOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToVoucherFragment())
+        }
         binding.locationGroup.setAllOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditLocationFragment())
         }

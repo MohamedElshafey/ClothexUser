@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_voucherFragment"
+            app:destination="@id/voucherFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"

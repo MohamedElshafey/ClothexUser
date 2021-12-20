@@ -118,6 +118,49 @@
                 android:layout_height="wrap_content"
                 app:constraint_referenced_ids="prefIconIV,prefSubTitleTV,prefTitleTV" />
 
+            <!--   Vouchers -->
+            <ImageView
+                android:id="@+id/voucherIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_voucher"
+                app:layout_constraintBottom_toBottomOf="@id/voucherSubTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/voucherTitleTV" />
+
+            <TextView
+                android:id="@+id/voucherTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/edit_vouchers_title"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/voucherIconIV"
+                app:layout_constraintTop_toBottomOf="@id/prefSubTitleTV" />
+
+            <TextView
+                android:id="@+id/voucherSubTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_voucher_subtitle"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/cod_gray"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/voucherIconIV"
+                app:layout_constraintTop_toBottomOf="@id/voucherTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/voucherGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="voucherIconIV,voucherSubTitleTV,voucherTitleTV" />
+
             <!--   Saved locations -->
             <ImageView
                 android:id="@+id/locationIconIV"
@@ -140,7 +183,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/locationIconIV"
-                app:layout_constraintTop_toBottomOf="@id/prefSubTitleTV" />
+                app:layout_constraintTop_toBottomOf="@id/voucherIconIV" />
 
             <TextView
                 android:id="@+id/locationSubTitleTV"
