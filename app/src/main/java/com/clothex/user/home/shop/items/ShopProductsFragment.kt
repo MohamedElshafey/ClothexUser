@@ -7,16 +7,17 @@ import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.data.getItemsList
 import com.clothex.user.home.product.ProductAdapter
-import com.clothex.user.home.search.SearchProductFragment
+import com.clothex.user.home.search.SearchProductBaseFragment
 
 /**
  * Created by Mohamed Elshafey on 09/12/2021.
  */
-class ShopProductsFragment : SearchProductFragment() {
+class ShopProductsFragment : SearchProductBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.actionBar.visibility = View.GONE
         binding.searchBar.searchBarContainer.visibility = View.GONE
 
         binding.productRV.adapter = ProductAdapter(getItemsList(requireContext())) {

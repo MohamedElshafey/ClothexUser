@@ -52,7 +52,7 @@ class ShopDetailsFragment : Fragment() {
                 }
             }
         }.attach()
-        binding.titleTV.setOnClickListener { findNavController().navigateUp() }
+        binding.actionBar.setOnClickListener { findNavController().navigateUp() }
     }
 
 }

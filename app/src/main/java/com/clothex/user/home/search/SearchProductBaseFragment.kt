@@ -17,7 +17,7 @@ import com.clothex.user.home.product.ProductAdapter
 /**
  * Created by Mohamed Elshafey on 09/12/2021.
  */
-open class SearchProductFragment : Fragment() {
+open class SearchProductBaseFragment : Fragment() {
 
     lateinit var binding: FragmentSearchProductBinding
 
@@ -48,21 +48,21 @@ open class SearchProductFragment : Fragment() {
 
         binding.productRV.adapter = ProductAdapter(getItemsList(requireContext())) {
             findNavController().navigate(
-                SearchProductFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
+                SearchProductBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
                     it
                 )
             )
         }
 
         binding.sortContainer.setOnClickListener {
-            findNavController().navigate(SearchProductFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
+            findNavController().navigate(SearchProductBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }
 
         binding.filterContainer.setOnClickListener {
-            findNavController().navigate(SearchProductFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
+            findNavController().navigate(SearchProductBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
         }
 
-        binding.titleTV.setOnClickListener {
+        binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
         }
     }

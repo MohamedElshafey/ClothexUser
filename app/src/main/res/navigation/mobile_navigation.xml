@@ -188,7 +188,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchProductFragment"
-        android:name="com.clothex.user.home.search.SearchProductFragment"
+        android:name="com.clothex.user.home.search.SearchProductBaseFragment"
         android:label="SearchProductFragment"
         tools:layout="@layout/fragment_search_product">
         <action
