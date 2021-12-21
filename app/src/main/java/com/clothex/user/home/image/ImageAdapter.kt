@@ -1,7 +1,9 @@
 package com.clothex.user.home.image
 
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.user.data.Media
@@ -12,16 +14,35 @@ import com.clothex.user.utils.setImageFromUrl
  * Created by Mohamed Elshafey on 10/19/2020.
  */
 
-class ImageAdapter(private val mediaList: List<Media>) : Adapter<ImageAdapter.ViewHolder>() {
+class ImageAdapter(
+    private val mediaList: List<Media>,
+    private val imageSize: ImageSize = ImageSize.FULL_SIZE,
+    private val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_INSIDE
+) : Adapter<ImageAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
-            AdapterImageViewBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = AdapterImageViewBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
+        val layoutParams = binding.root.layoutParams
+        val metrics = parent.context.resources.displayMetrics
+        layoutParams.height = if (imageSize.height > 0) TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            imageSize.height.toFloat(),
+            metrics
+        ).toInt() else imageSize.height
+        layoutParams.width = if (imageSize.width > 0) TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            imageSize.width.toFloat(),
+            metrics
+        ).toInt() else imageSize.width
+        binding.root.layoutParams = layoutParams
+        binding.imageview.scaleType = scaleType
+        return ViewHolder(binding)
+    }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(mediaList[holder.adapterPosition])

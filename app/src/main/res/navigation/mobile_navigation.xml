@@ -21,7 +21,7 @@
             app:destination="@id/productDetailsFragment" />
         <action
             android:id="@+id/action_navigation_home_to_searchProductFragment"
-            app:destination="@id/searchProductFragment" />
+            app:destination="@id/searchBaseFragment" />
         <action
             android:id="@+id/action_navigation_home_to_voucherFragment"
             app:destination="@id/voucherFragment" />
@@ -47,7 +47,7 @@
         tools:layout="@layout/fragment_categories">
         <action
             android:id="@+id/action_navigation_categories_to_searchProductFragment"
-            app:destination="@id/searchProductFragment" />
+            app:destination="@id/searchBaseFragment" />
         <action
             android:id="@+id/action_navigation_categories_to_notificationFragment"
             app:destination="@id/notificationFragment" />
@@ -187,8 +187,8 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/searchProductFragment"
-        android:name="com.clothex.user.home.search.SearchProductBaseFragment"
+        android:id="@+id/searchBaseFragment"
+        android:name="com.clothex.user.home.search.SearchBaseFragment"
         android:label="SearchProductFragment"
         tools:layout="@layout/fragment_search_product">
         <action
@@ -200,6 +200,9 @@
         <action
             android:id="@+id/action_searchProductFragment_to_filterProductBottomSheet"
             app:destination="@id/filterProductBottomSheet" />
+        <action
+            android:id="@+id/action_searchProductFragment_to_shopDetailsFragment"
+            app:destination="@id/shopDetailsFragment" />
     </fragment>
     <dialog
         android:id="@+id/sortProductBottomSheet"

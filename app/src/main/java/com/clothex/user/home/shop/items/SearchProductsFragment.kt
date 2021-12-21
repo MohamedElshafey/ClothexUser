@@ -7,12 +7,12 @@ import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.data.getItemsList
 import com.clothex.user.home.product.ProductAdapter
-import com.clothex.user.home.search.SearchProductBaseFragment
+import com.clothex.user.home.search.SearchBaseFragment
 
 /**
  * Created by Mohamed Elshafey on 09/12/2021.
  */
-class ShopProductsFragment : SearchProductBaseFragment() {
+class SearchProductsFragment : SearchBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,7 +20,7 @@ class ShopProductsFragment : SearchProductBaseFragment() {
         binding.actionBar.visibility = View.GONE
         binding.searchBar.searchBarContainer.visibility = View.GONE
 
-        binding.productRV.adapter = ProductAdapter(getItemsList(requireContext())) {
+        binding.recyclerView.adapter = ProductAdapter(getItemsList(requireContext())) {
             findNavController().navigate(R.id.productDetailsFragment, bundleOf("item" to it))
         }
 

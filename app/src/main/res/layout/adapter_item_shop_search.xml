@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.clothex.user.home.shop.ShopItemViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/logoIV"
+                imageUrl="@{viewModel.logoUrl}"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{viewModel.name}"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/leadingIV"
+                app:layout_constraintStart_toEndOf="@+id/logoIV"
+                app:layout_constraintTop_toTopOf="@+id/logoIV"
+                tools:text="Solid Button-Front Drop Shoulder Shirt" />
+
+            <ImageView
+                android:id="@+id/locationIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_location_small"
+                app:layout_constraintStart_toStartOf="@id/titleTV"
+                app:layout_constraintTop_toBottomOf="@id/titleTV" />
+
+            <TextView
+                android:id="@+id/addressTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{viewModel.address}"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/dove_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
+                app:layout_constraintEnd_toStartOf="@id/leadingIV"
+                app:layout_constraintStart_toEndOf="@id/locationIconIV"
+                app:layout_constraintTop_toTopOf="@id/locationIconIV"
+                tools:text="20705 Velda Ramp, Lake Alexys, HI" />
+
+            <ImageView
+                android:id="@+id/workingHoursIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_time_small"
+                app:layout_constraintStart_toStartOf="@id/logoIV"
+                app:layout_constraintTop_toBottomOf="@id/logoIV" />
+
+            <TextView
+                android:id="@+id/workingHoursTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{viewModel.workingHour}"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/dove_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/workingHoursIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/workingHoursIV"
+                app:layout_constraintTop_toTopOf="@id/workingHoursIV"
+                tools:text="Mon to Sat - 9:00 AM . 11:00 PM" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photosRV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workingHoursIV" />
+
+            <ImageView
+                android:id="@+id/leadingIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_leading_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/addressTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/titleTV" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

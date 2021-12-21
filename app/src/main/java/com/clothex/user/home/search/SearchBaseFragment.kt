@@ -9,15 +9,20 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.clothex.user.R
 import com.clothex.user.data.getItemsList
+import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentSearchProductBinding
 import com.clothex.user.home.product.ProductAdapter
+import com.clothex.user.home.shop.ShopSearchAdapter
 
 /**
  * Created by Mohamed Elshafey on 09/12/2021.
  */
-open class SearchProductBaseFragment : Fragment() {
+open class SearchBaseFragment : Fragment() {
 
     lateinit var binding: FragmentSearchProductBinding
 
@@ -38,6 +43,10 @@ open class SearchProductBaseFragment : Fragment() {
         listPopupWindow.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item, list))
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             val selectedItem = list[position]
+            if (selectedItem == "Items")
+                showProducts()
+            else
+                showShops()
             binding.searchBar.menu.text = selectedItem
             listPopupWindow.dismiss()
         }
@@ -46,24 +55,37 @@ open class SearchProductBaseFragment : Fragment() {
             listPopupWindow.show()
         }
 
-        binding.productRV.adapter = ProductAdapter(getItemsList(requireContext())) {
-            findNavController().navigate(
-                SearchProductBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
-                    it
-                )
-            )
-        }
+        showProducts()
 
         binding.sortContainer.setOnClickListener {
-            findNavController().navigate(SearchProductBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
+            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }
 
         binding.filterContainer.setOnClickListener {
-            findNavController().navigate(SearchProductBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
+            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
         }
 
         binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun showShops() {
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        binding.recyclerView.adapter = ShopSearchAdapter(shopList) {
+            findNavController().navigate(
+                SearchBaseFragmentDirections.actionSearchProductFragmentToShopDetailsFragment(it)
+            )
+        }
+    }
+
+    private fun showProducts() {
+        binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+        binding.recyclerView.adapter = ProductAdapter(getItemsList(requireContext())) {
+            findNavController().navigate(
+                SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(it)
+            )
         }
     }
 
