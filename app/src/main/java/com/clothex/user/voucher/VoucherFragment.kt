@@ -28,7 +28,11 @@ class VoucherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vouchersRV.adapter = VoucherAdapter(voucherList)
+        binding.vouchersRV.adapter = VoucherAdapter(voucherList) {
+            findNavController().navigate(
+                VoucherFragmentDirections.actionVoucherFragmentToVoucherDetailsFragment(it)
+            )
+        }
         binding.vouchersRV.addDivider()
         binding.titleTV.setOnClickListener { findNavController().navigateUp() }
         binding.voucherButton.setOnClickListener {

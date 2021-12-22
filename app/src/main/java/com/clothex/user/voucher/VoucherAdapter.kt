@@ -11,7 +11,11 @@ import com.clothex.user.utils.setImageFromUrl
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class VoucherAdapter(private val list: List<Voucher>) :
+
+class VoucherAdapter(
+    private val list: List<Voucher>,
+    private val onItemSelected: (Voucher) -> Unit
+) :
     Adapter<VoucherAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -30,6 +34,9 @@ class VoucherAdapter(private val list: List<Voucher>) :
                 binding.titleTV.text = title
                 binding.subtitleTV.text = subtitle
                 setImageFromUrl(binding.logoIV, logoUrl)
+            }
+            binding.root.setOnClickListener {
+                onItemSelected.invoke(voucher)
             }
 
         }

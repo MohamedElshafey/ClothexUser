@@ -246,6 +246,9 @@
         <action
             android:id="@+id/action_voucherFragment_to_addNewVoucherBottomSheet"
             app:destination="@id/addNewVoucherBottomSheet" />
+        <action
+            android:id="@+id/action_voucherFragment_to_voucherDetailsFragment"
+            app:destination="@id/voucherDetailsFragment" />
     </fragment>
     <dialog
         android:id="@+id/addNewVoucherBottomSheet"
@@ -312,5 +315,14 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/voucherDetailsFragment"
+        android:name="com.clothex.user.voucher.details.VoucherDetailsFragment"
+        android:label="VoucherDetailsFragment"
+        tools:layout="@layout/fragment_voucher_details" >
+        <argument
+            android:name="voucher"
+            app:argType="com.clothex.user.data.Voucher" />
     </fragment>
 </navigation>

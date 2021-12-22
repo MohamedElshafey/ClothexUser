@@ -17,7 +17,8 @@ import com.clothex.user.utils.setImageFromUrl
 class ImageAdapter(
     private val mediaList: List<Media>,
     private val imageSize: ImageSize = ImageSize.FULL_SIZE,
-    private val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_INSIDE
+    private val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_INSIDE,
+    private val hasPadding: Boolean = false
 ) : Adapter<ImageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +39,17 @@ class ImageAdapter(
             imageSize.width.toFloat(),
             metrics
         ).toInt() else imageSize.width
+        if (hasPadding) {
+            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4f, metrics).toInt().let {
+                binding.imageview.setPadding(it, 0, it, 0)
+            }
+        } else {
+            binding.imageview.setPadding(0, 0, 0, 0)
+        }
+        val shapeAppearanceModel = binding.imageview.shapeAppearanceModel.toBuilder()
+            .setAllCornerSizes(imageSize.cornerRadius)
+            .build()
+        binding.imageview.shapeAppearanceModel = shapeAppearanceModel
         binding.root.layoutParams = layoutParams
         binding.imageview.scaleType = scaleType
         return ViewHolder(binding)

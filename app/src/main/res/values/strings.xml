@@ -117,6 +117,9 @@
     <string name="active">Active</string>
     <string name="rejected">Rejected</string>
     <string name="available_online">Available online</string>
+    <string name="voucher">Voucher</string>
+    <string name="use_voucher">Use voucher</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
