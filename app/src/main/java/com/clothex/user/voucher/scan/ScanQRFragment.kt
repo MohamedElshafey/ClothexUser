@@ -16,6 +16,7 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.window.*
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentScanQrBinding
@@ -79,6 +80,7 @@ class ScanQRFragment : Fragment() {
         binding.viewFinder.post {
             displayId = binding.viewFinder.display.displayId
         }
+        binding.actionBar.setOnClickListener { findNavController().navigateUp() }
     }
 
     override fun onResume() {
