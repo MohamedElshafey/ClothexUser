@@ -32,7 +32,7 @@ class AddNewVoucherBottomSheet : DefaultBottomSheet() {
             findNavController().navigate(AddNewVoucherBottomSheetDirections.actionAddNewVoucherBottomSheetToAddTextVoucherBottomSheet())
         }
         binding.scanQRTV.setOnClickListener {
-            findNavController().navigate(AddNewVoucherBottomSheetDirections.actionAddNewVoucherBottomSheetToScanVoucherFragment())
+            findNavController().navigate(AddNewVoucherBottomSheetDirections.actionAddNewVoucherBottomSheetToScanQRFragment())
         }
     }
 

@@ -259,8 +259,8 @@
             android:id="@+id/action_addNewVoucherBottomSheet_to_addTextVoucherBottomSheet"
             app:destination="@id/addTextVoucherBottomSheet" />
         <action
-            android:id="@+id/action_addNewVoucherBottomSheet_to_scanVoucherFragment"
-            app:destination="@id/scanVoucherFragment" />
+            android:id="@+id/action_addNewVoucherBottomSheet_to_scanQRFragment"
+            app:destination="@id/scanQRFragment" />
     </dialog>
     <fragment
         android:id="@+id/addTextVoucherBottomSheet"
@@ -320,9 +320,14 @@
         android:id="@+id/voucherDetailsFragment"
         android:name="com.clothex.user.voucher.details.VoucherDetailsFragment"
         android:label="VoucherDetailsFragment"
-        tools:layout="@layout/fragment_voucher_details" >
+        tools:layout="@layout/fragment_voucher_details">
         <argument
             android:name="voucher"
             app:argType="com.clothex.user.data.Voucher" />
     </fragment>
+    <fragment
+        android:id="@+id/scanQRFragment"
+        android:name="com.clothex.user.voucher.scan.ScanQRFragment"
+        android:label="ScanQRFragment"
+        tools:layout="@layout/fragment_scan_qr" />
 </navigation>
