@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Clothex User"
 include ':app'
+include ':data'
