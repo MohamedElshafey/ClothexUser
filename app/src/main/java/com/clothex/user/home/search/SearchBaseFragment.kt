@@ -97,10 +97,10 @@ open class SearchBaseFragment : Fragment() {
 
         binding.sortContainer.setOnClickListener {
             setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, bundle ->
-                val sortEnum = bundle[SortProductBottomSheet.SORT_ENUM_KEY] as SortEnum
+//                val sortEnum = bundle[SortProductBottomSheet.SORT_ENUM_KEY] as SortEnum
                 productAdapter.reset()
                 viewModel.reset()
-                viewModel.fetchProductPage(sortEnum)
+                viewModel.fetchProductPage()
             }
             findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }

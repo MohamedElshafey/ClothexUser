@@ -11,6 +11,7 @@ import com.clothex.user.R
 import com.clothex.user.customview.DefaultBottomSheet
 import com.clothex.user.data.SortItem
 import com.clothex.user.databinding.SortProductBottomSheetBinding
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
@@ -23,6 +24,8 @@ class SortProductBottomSheet : DefaultBottomSheet() {
     }
 
     lateinit var binding: SortProductBottomSheetBinding
+    private val viewModel: SortProductViewModel by inject()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,28 +39,37 @@ class SortProductBottomSheet : DefaultBottomSheet() {
         return binding.root
     }
 
-    val list = listOf(
-        SortItem("Best match", R.drawable.ic_best_match, true, SortEnum.BEST_MATCH),
-        SortItem(
-            "From lowest to highest price",
-            R.drawable.ic_ascending,
-            false,
-            SortEnum.PRICE_ASC
-        ),
-        SortItem(
-            "From highest to lowest price",
-            R.drawable.ic_descending,
-            false,
-            SortEnum.PRICE_DESC
-        )
-    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = SortAdapter(list) { sortEnum ->
-            setFragmentResult(REQUEST_KEY, bundleOf(SORT_ENUM_KEY to sortEnum))
-            dismiss()
-        }
+        viewModel.sortMutableLiveData.observe(viewLifecycleOwner, { sortValue ->
+            val list = listOf(
+                SortItem(
+                    "Best match",
+                    R.drawable.ic_best_match,
+                    sortValue == SortEnum.BEST_MATCH.value,
+                    SortEnum.BEST_MATCH
+                ),
+                SortItem(
+                    "From lowest to highest price",
+                    R.drawable.ic_ascending,
+                    sortValue == SortEnum.PRICE_ASC.value,
+                    SortEnum.PRICE_ASC
+                ),
+                SortItem(
+                    "From highest to lowest price",
+                    R.drawable.ic_descending,
+                    sortValue == SortEnum.PRICE_DESC.value,
+                    SortEnum.PRICE_DESC
+                )
+            )
+            binding.recyclerView.adapter = SortAdapter(list) { sortEnum ->
+                viewModel.setSort(sortEnum).invokeOnCompletion {
+                    setFragmentResult(REQUEST_KEY, bundleOf(SORT_ENUM_KEY to sortEnum))
+                    dismiss()
+                }
+            }
+        })
     }
 
 }

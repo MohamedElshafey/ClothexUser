@@ -17,6 +17,7 @@ import com.clothex.user.databinding.AdapterItemSortBinding
  */
 class SortAdapter(private val list: List<SortItem>, val callback: (SortEnum) -> Unit) :
     RecyclerView.Adapter<SortAdapter.ViewHolder>() {
+
     private var selectedItemPosition = list.indexOf(list.first { it.isSelected })
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
