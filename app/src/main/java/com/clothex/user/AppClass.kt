@@ -2,6 +2,9 @@ package com.clothex.user
 
 import android.app.Application
 import com.clothex.user.di.networkModule
+import com.clothex.user.di.remoteDataSourceModule
+import com.clothex.user.di.useCaseModule
+import com.clothex.user.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -23,7 +26,10 @@ class AppClass : Application() {
                 androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@AppClass)
             modules(
-                networkModule
+                networkModule,
+                remoteDataSourceModule,
+                useCaseModule,
+                viewModelsModule
             )
         }
     }

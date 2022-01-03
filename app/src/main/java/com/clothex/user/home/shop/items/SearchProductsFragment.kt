@@ -20,9 +20,9 @@ class SearchProductsFragment : SearchBaseFragment() {
         binding.actionBar.visibility = View.GONE
         binding.searchBar.searchBarContainer.visibility = View.GONE
 
-        binding.recyclerView.adapter = ProductAdapter(getItemsList(requireContext())) {
-            findNavController().navigate(R.id.productDetailsFragment, bundleOf("item" to it))
-        }
+//        binding.recyclerView.adapter = ProductAdapter(getItemsList(requireContext())) {
+//            findNavController().navigate(R.id.productDetailsFragment, bundleOf("item" to it))
+//        }
 
         binding.sortContainer.setOnClickListener {
             findNavController().navigate(R.id.sortProductBottomSheet)

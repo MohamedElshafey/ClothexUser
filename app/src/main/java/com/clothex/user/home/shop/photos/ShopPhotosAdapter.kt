@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.clothex.user.data.Media
+import com.clothex.data.domain.model.product.Media
 import com.clothex.user.databinding.AdapterShopPhotoBinding
 import com.clothex.user.utils.setImageFromUrl
 

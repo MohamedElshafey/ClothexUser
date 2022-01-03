@@ -5,21 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.getItemsList
 import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
 import com.clothex.user.utils.setAllOnClickListener
+import org.koin.android.ext.android.inject
 
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by inject()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -28,7 +27,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,11 +34,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = homeViewModel
-        binding.productRV.adapter = ProductAdapter(getItemsList(requireContext()).slice(2..7)) {
-            findNavController().navigate(
-                HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(it)
-            )
-        }
+        homeViewModel.productLiveData.observe(viewLifecycleOwner, {
+            binding.productRV.adapter = ProductAdapter(it) { prod ->
+                findNavController().navigate(
+                    HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(prod.id)
+                )
+            }
+        })
+
         binding.shopsRV.adapter = ShopAdapter(shopList) {
             findNavController().navigate(
                 HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it)

@@ -101,12 +101,12 @@
         android:name="com.clothex.user.home.product_details.ProductDetailsFragment"
         android:label="ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details">
-        <argument
-            android:name="item"
-            app:argType="com.clothex.shop.core.models.Item" />
         <action
             android:id="@+id/action_productDetailsFragment_to_addToMyListDialog"
             app:destination="@id/addToMyListDialog" />
+        <argument
+            android:name="product_id"
+            app:argType="string" />
     </fragment>
     <dialog
         android:id="@+id/addToMyListDialog"

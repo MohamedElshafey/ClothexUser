@@ -1,31 +1,29 @@
 package com.clothex.user.home.product
 
 import androidx.lifecycle.ViewModel
-import com.clothex.shop.core.models.Item
-import com.clothex.user.data.oldTitle
-import com.clothex.user.data.pictureUrl
+import com.clothex.data.domain.model.home.HomeProduct;
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ProductItemViewModel(private val item: Item) : ViewModel() {
+class ProductItemViewModel(private val product: HomeProduct) : ViewModel() {
 
-    val mainImageUrl = item.pictureUrl()
+    val mainImageUrl = product.mainImage?.source
 
-    val tag = item.tag
+    val title = product.title
 
-    val title = item.oldTitle()
+    val price = "EGP ${product.salePrice ?: product.price}"
 
-    val price = "EGP ${item.sale_price ?: item.price}"
+    val oldPrice = if (product.salePrice != null) "EGP ${product.price}" else null
 
-    val oldPrice = if (item.sale_price != null) "EGP ${item.price}" else null
+    val tag = product.tag
 
     val discountText = calculateDiscount()
 
     private fun calculateDiscount(): String? {
         return try {
-            val listPrice = item.price!!.toFloat()
-            val sellingPrice = item.sale_price!!.toFloat()
+            val listPrice = product.price.toFloat()
+            val sellingPrice = product.salePrice!!.toFloat()
             val priceInt = (listPrice - sellingPrice)
             val percentage: Float = ((listPrice - sellingPrice) / listPrice) * 100f
             "You save: EGP $priceInt (${percentage.toInt()}%)"

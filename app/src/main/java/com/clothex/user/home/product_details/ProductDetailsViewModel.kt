@@ -3,36 +3,62 @@ package com.clothex.user.home.product_details
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.clothex.shop.core.models.Item
-import com.clothex.user.data.*
+import androidx.lifecycle.viewModelScope
+import com.clothex.data.domain.model.product.*
+import com.clothex.data.domain.usecases.home.GetProductDetailsUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class ProductDetailsViewModel(private val item: Item) : ViewModel() {
+class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDetailsUseCase) :
+    ViewModel() {
 
+    val productMutableLiveData = MutableLiveData<Product?>()
+    val sellingPrice = ObservableField<Int>()
+    val colorsLiveData = MutableLiveData<List<Color>>()
     val mainImagesLiveData = MutableLiveData<List<Media>>()
-
-    val colorsLiveData = MutableLiveData<List<Color>>(item.colors)
-
-    val sellingPrice = item.sale_price ?: item.price
-
-    val sellingPriceString = "EGP $sellingPrice"
-
-    val listPrice = if (item.sale_price != null) "EGP ${item.price}" else null
-
+    val sellingPriceString = ObservableField<String>()
+    val listPrice = ObservableField<String>()
     val sizesLiveData = MutableLiveData<List<Size>>()
-
     val branchesLiveData = MutableLiveData<List<Branch>>()
-
     val sizeVisibility = ObservableField(false)
-
     val branchesVisibility = ObservableField(false)
+    val title = ObservableField<String>()
 
-    val title = ObservableField(item.oldTitle())
-
-    val sku = ObservableField("SKU: ${item.sku}")
-
-    val skuVisibility = ObservableField(!item.sku.isNullOrEmpty())
-
+    //    val sku = ObservableField<String>()
+//    val skuVisibility = ObservableField<Boolean>()
     val quantityText = ObservableField("1")
+    val shopTitle = ObservableField<String>()
+    val shopAddress = ObservableField("New cairo, 5th settlement")
+    val shopLogoUrl = ObservableField<String>()
+
+    var product: Product? = null
+
+    fun getProductDetails(id: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                getProductDetailsUseCase.invoke(id).collect {
+                    productMutableLiveData.postValue(it)
+                    product = it
+                    updateProductData(it)
+                }
+            }
+        }
+    }
+
+    private fun updateProductData(product: Product?) {
+        sellingPrice.set(product?.salePrice ?: product?.price)
+        listPrice.set(if (product?.salePrice != null) "EGP ${product.price}" else null)
+        colorsLiveData.postValue(product?.colors!!)
+        sellingPriceString.set("EGP ${sellingPrice.get()}")
+        title.set(product.title)
+//        sku.set("SKU: ${product.sku}")
+//        skuVisibility.set(!product.sku.isNullOrEmpty())
+        mainImagesLiveData.postValue(product.mainImage?.let { listOf(it) })
+        shopTitle.set(product.shop?.name)
+        shopLogoUrl.set(product.shop?.logo?.source)
+    }
 
     var quantity = 1
         set(value) {
@@ -40,39 +66,24 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
             quantityText.set(value.toString())
         }
 
-    val shopTitle = ObservableField("H & M")
-
-    val shopAddress = ObservableField("New cairo, 5th settlement")
-
-    val shopLogoUrl =
-        ObservableField("https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg")
-
-    init {
-        setMainImages()
-    }
-
-    private fun getSKU(): String {
-        return "SKU: ${item.sku}"
-    }
-
-    private fun setMainImages() {
+    private fun setDefaultImages() {
         val images = ArrayList<Media>()
-        if (!item.images.isNullOrEmpty()) {
-            images.addAll(item.images)
+        if (product?.mainImage != null) {
+            images.add(product!!.mainImage!!)
         }
-        item.colors?.forEach {
+        product?.colors?.forEach {
             if (!it.images.isNullOrEmpty()) {
                 images.addAll(it.images!!)
             }
         }
-
         mainImagesLiveData.value = images
     }
 
     var selectedColor: Color? = null
 
     fun selectColor(colorCode: String) {
-        selectedColor = item.colors?.first { it.code.equals(colorCode) }
+        val item = productMutableLiveData.value
+        selectedColor = item?.colors?.first { it.code.equals(colorCode) }
         val sizes = selectedColor?.sizes
         if (sizes != null) {
             sizes.let { sizesLiveData.value = it }
@@ -85,7 +96,7 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
         branchesVisibility.set(false)
         val images = selectedColor?.images
         if (images == null) {
-            setMainImages()
+            setDefaultImages()
         } else {
             images.let { mainImagesLiveData.value = it }
         }
@@ -93,7 +104,6 @@ class ProductDetailsViewModel(private val item: Item) : ViewModel() {
     }
 
     var selectedSize: Size? = null
-
     fun selectSize(size: Size) {
         selectedSize = size
         val branches = size.available_branches

@@ -2,10 +2,11 @@ package com.clothex.user.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.clothex.data.remote.api.HomeApiService
+import com.clothex.data.remote.api.ProductApiService
 import com.clothex.user.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import io.halan.data.remote.api.HomeApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -22,14 +23,15 @@ val networkModule = module {
 
     single { provideGson() }
 
-    single { provideHomeApiService(retrofit = get()) }
-
     single { provideRetrofit(okHttpClient = get(), gson = get(), url = BuildConfig.BASE_URL) }
 
     single { provideChuckerInterceptor(context = androidContext()) }
 
     single { provideOkHttpClient(chuckerInterceptor = get()) }
 
+    single { provideHomeApiService(retrofit = get()) }
+
+    single { provideProductApiService(retrofit = get()) }
 }
 
 
@@ -68,3 +70,6 @@ internal fun provideGson(): Gson {
 
 internal fun provideHomeApiService(retrofit: Retrofit): HomeApiService =
     retrofit.create(HomeApiService::class.java)
+
+internal fun provideProductApiService(retrofit: Retrofit): ProductApiService =
+    retrofit.create(ProductApiService::class.java)

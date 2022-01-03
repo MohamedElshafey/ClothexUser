@@ -23,14 +23,14 @@ android {
     buildTypes {
         debug {
 //            buildConfigField("String", "LOCALHOST_IP", "\"10.0.2.2\"")
-            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.58\"")
+            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
 //            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/api/\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.100.58:3000/api/\"")
+            buildConfigField("String", "BASE_URL", "\"http:/192.168.100.141:3000/api/\"")
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.1.7:3000/api/\"")
         }
         release {
-            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.6\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.100.6:3000/api/\"")
+            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:3000/api/\"")
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

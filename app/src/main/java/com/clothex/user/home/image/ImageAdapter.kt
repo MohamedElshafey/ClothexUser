@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.clothex.user.data.Media
+import com.clothex.data.domain.model.product.Media
 import com.clothex.user.databinding.AdapterImageViewBinding
 import com.clothex.user.utils.setImageFromUrl
 

@@ -82,11 +82,11 @@ open class SearchBaseFragment : Fragment() {
 
     private fun showProducts() {
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
-        binding.recyclerView.adapter = ProductAdapter(getItemsList(requireContext())) {
-            findNavController().navigate(
-                SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(it)
-            )
-        }
+//        binding.recyclerView.adapter = ProductAdapter(getItemsList(requireContext())) {
+//            findNavController().navigate(
+//                SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(it)
+//            )
+//        }
     }
 
 }

@@ -7,8 +7,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.clothex.data.domain.model.product.Branch
 import com.clothex.user.R
-import com.clothex.user.data.Branch
 import com.clothex.user.databinding.AdapterItemSavedLocationBinding
 
 /**

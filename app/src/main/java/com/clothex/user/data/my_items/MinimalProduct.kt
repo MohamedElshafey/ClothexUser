@@ -1,7 +1,7 @@
 package com.clothex.user.data.my_items
 
 import android.os.Parcelable
-import com.clothex.user.data.Media
+import com.clothex.data.domain.model.product.Media
 import kotlinx.android.parcel.Parcelize
 
 /**

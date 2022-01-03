@@ -1,7 +1,8 @@
 package com.clothex.user.data
 
 import android.content.Context
-import com.clothex.shop.core.models.Item
+import com.clothex.data.domain.model.product.Media
+import com.clothex.data.domain.model.product.Product
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.data.my_items.MyItem
@@ -18,7 +19,7 @@ import java.io.*
  */
 
 
-fun getItemsList(context: Context): List<Item> {
+fun getItemsList(context: Context): List<Product> {
     val inputStream: InputStream = context.resources.openRawResource(R.raw.items)
     val writer: Writer = StringWriter()
     val buffer = CharArray(1024)
@@ -31,7 +32,7 @@ fun getItemsList(context: Context): List<Item> {
     }
 
     val jsonString: String = writer.toString()
-    return Gson().fromJson(jsonString, object : TypeToken<List<Item?>?>() {}.type)
+    return Gson().fromJson(jsonString, object : TypeToken<List<Product?>?>() {}.type)
 }
 
 val shopPhotoList = listOf(
