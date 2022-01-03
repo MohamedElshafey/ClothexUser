@@ -10,216 +10,222 @@
             type="com.clothex.user.home.home.HomeViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".home.home.HomeFragment">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/locationIconIV"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/ic_location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:context=".home.home.HomeFragment">
 
-            <TextView
-                android:id="@+id/locationTitleTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/select_location_title"
-                android:textAppearance="@style/FontMedium"
-                android:textColor="@color/dove_gray"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@id/locationValueTV"
-                app:layout_constraintEnd_toStartOf="@id/notificationIV"
-                app:layout_constraintStart_toEndOf="@id/locationIconIV"
-                app:layout_constraintTop_toTopOf="@id/locationIconIV" />
+                <ImageView
+                    android:id="@+id/locationIconIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/locationValueTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:drawableEnd="@drawable/ic_arrow_down"
-                android:drawableTint="@color/island_aqua"
-                android:text="@string/select_location_to_search"
-                android:textAppearance="@style/FontMedium"
-                android:textColor="@color/island_aqua"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/locationIconIV"
-                app:layout_constraintEnd_toStartOf="@id/notificationIV"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/locationTitleTV"
-                app:layout_constraintTop_toBottomOf="@id/locationTitleTV" />
+                <TextView
+                    android:id="@+id/locationTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/select_location_title"
+                    android:textAppearance="@style/FontMedium"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@id/locationValueTV"
+                    app:layout_constraintEnd_toStartOf="@id/notificationIV"
+                    app:layout_constraintStart_toEndOf="@id/locationIconIV"
+                    app:layout_constraintTop_toTopOf="@id/locationIconIV" />
+
+                <TextView
+                    android:id="@+id/locationValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:drawableEnd="@drawable/ic_arrow_down"
+                    android:drawableTint="@color/island_aqua"
+                    android:text="@string/select_location_to_search"
+                    android:textAppearance="@style/FontMedium"
+                    android:textColor="@color/island_aqua"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/locationIconIV"
+                    app:layout_constraintEnd_toStartOf="@id/notificationIV"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/locationTitleTV"
+                    app:layout_constraintTop_toBottomOf="@id/locationTitleTV" />
 
 
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/locationGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:constraint_referenced_ids="locationTitleTV,locationIconIV,locationValueTV" />
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/locationGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="locationTitleTV,locationIconIV,locationValueTV" />
 
-            <ImageView
-                android:id="@+id/notificationIV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_notification"
-                app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/locationIconIV" />
+                <ImageView
+                    android:id="@+id/notificationIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/locationIconIV" />
 
-            <TextView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/ic_notification_background"
-                android:gravity="center"
-                android:text="@{viewModel.notificationCount}"
-                android:textAppearance="@style/FontBold"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@id/notificationIV"
-                app:layout_constraintTop_toTopOf="@id/notificationIV" />
+                <TextView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/ic_notification_background"
+                    android:gravity="center"
+                    android:text="@{viewModel.notificationCount}"
+                    android:textAppearance="@style/FontBold"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@id/notificationIV"
+                    app:layout_constraintTop_toTopOf="@id/notificationIV" />
 
-            <include
-                android:id="@+id/searchBar"
-                layout="@layout/search_bar"
-                android:layout_width="0dp"
-                android:layout_height="?actionBarSize"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/locationValueTV" />
+                <include
+                    android:id="@+id/searchBar"
+                    layout="@layout/search_bar"
+                    android:layout_width="0dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/locationValueTV" />
 
-            <TextView
-                android:id="@+id/voucherButton"
-                style="@style/RemarkableButtonTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="54dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="36dp"
-                android:drawablePadding="8dp"
-                android:gravity="center"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="@string/vouchers"
-                android:textAppearance="@style/FontSemiBold"
-                android:textSize="16sp"
-                app:drawableStartCompat="@drawable/ic_scan"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/searchBar" />
+                <TextView
+                    android:id="@+id/voucherButton"
+                    style="@style/RemarkableButtonTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="54dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="36dp"
+                    android:drawablePadding="8dp"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/vouchers"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_scan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
-            <TextView
-                android:id="@+id/arrivalsTitleTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/new_arrivals"
-                android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/voucherButton" />
+                <TextView
+                    android:id="@+id/arrivalsTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/new_arrivals"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/voucherButton" />
 
-            <TextView
-                android:id="@+id/arrivalSeeAllTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/tag_bg_shape"
-                android:backgroundTint="@color/button_gray"
-                android:paddingStart="14dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="14dp"
-                android:paddingBottom="7dp"
-                android:text="@string/see_all"
-                android:textAppearance="@style/FontSemiBold"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/arrivalsTitleTV"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/arrivalsTitleTV" />
+                <TextView
+                    android:id="@+id/arrivalSeeAllTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/tag_bg_shape"
+                    android:backgroundTint="@color/button_gray"
+                    android:paddingStart="14dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="14dp"
+                    android:paddingBottom="7dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/arrivalsTitleTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/arrivalsTitleTV" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productRV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/arrivalsTitleTV"
-                app:spanCount="2"
-                tools:itemCount="2"
-                tools:listitem="@layout/adapter_item_product_grid" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/arrivalsTitleTV"
+                    app:spanCount="2"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/adapter_item_product_grid" />
 
-            <TextView
-                android:id="@+id/shopsTitleTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/discover_shops"
-                android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productRV" />
+                <TextView
+                    android:id="@+id/shopsTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/discover_shops"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/productRV" />
 
-            <TextView
-                android:id="@+id/shopSeeAllTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/tag_bg_shape"
-                android:backgroundTint="@color/button_gray"
-                android:paddingStart="14dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="14dp"
-                android:paddingBottom="7dp"
-                android:text="@string/see_all"
-                android:textAppearance="@style/FontSemiBold"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/shopsTitleTV"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/shopsTitleTV" />
+                <TextView
+                    android:id="@+id/shopSeeAllTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/tag_bg_shape"
+                    android:backgroundTint="@color/button_gray"
+                    android:paddingStart="14dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="14dp"
+                    android:paddingBottom="7dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/shopsTitleTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/shopsTitleTV" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shopsRV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shopSeeAllTV"
-                app:spanCount="2"
-                tools:itemCount="2"
-                tools:listitem="@layout/adapter_item_shop" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shopsRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shopSeeAllTV"
+                    app:spanCount="2"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/adapter_item_shop" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

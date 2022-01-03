@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = homeViewModel
         homeViewModel.productLiveData.observe(viewLifecycleOwner, {
+            binding.swipeRefresh.isRefreshing = false
             binding.productRV.adapter = ProductAdapter(it) { prod ->
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(prod.id)
@@ -80,6 +81,10 @@ class HomeFragment : Fragment() {
 
         binding.voucherButton.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToVoucherFragment())
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            homeViewModel.fetchHome()
         }
 
     }

@@ -13,8 +13,21 @@ import com.clothex.user.utils.setShapeColor
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ProductAdapter(private val list: List<HomeProduct>, val callback: (HomeProduct) -> Unit) :
-    RecyclerView.Adapter<ViewHolder>() {
+class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
+    var products = mutableListOf<HomeProduct>()
+    var callback: ((HomeProduct) -> Unit)? = null
+
+    constructor(list: List<HomeProduct>? = null, callback: (HomeProduct) -> Unit) : super() {
+        list?.let { products.addAll(it) }
+        this.callback = callback
+    }
+
+//    constructor() : super()
+
+    fun update(list: List<HomeProduct>) {
+        products.addAll(list)
+        notifyItemRangeInserted(this.products.size - list.size, this.products.size)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemProductGridBinding.inflate(
@@ -25,12 +38,13 @@ class ProductAdapter(private val list: List<HomeProduct>, val callback: (HomePro
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[holder.adapterPosition])
+        holder.bind(products[holder.adapterPosition])
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = products.size
 
     inner class ViewHolder(val binding: AdapterItemProductGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(product: HomeProduct) {
             binding.viewModel = ProductItemViewModel(product)
             binding.oldPriceTV.paintFlags =
@@ -39,7 +53,7 @@ class ProductAdapter(private val list: List<HomeProduct>, val callback: (HomePro
                 binding.tagTV.setShapeColor(Color.parseColor(product.tagColor))
             } catch (ignore: Exception) {
             }
-            binding.root.setOnClickListener { callback.invoke(product) }
+            binding.root.setOnClickListener { callback?.invoke(product) }
         }
     }
 

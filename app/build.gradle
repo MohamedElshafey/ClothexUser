@@ -25,12 +25,12 @@ android {
 //            buildConfigField("String", "LOCALHOST_IP", "\"10.0.2.2\"")
             buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
 //            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/api/\"")
-            buildConfigField("String", "BASE_URL", "\"http:/192.168.100.141:3000/api/\"")
+            buildConfigField("String", "BASE_URL", "\"http:/192.168.100.141:3000/api/user/\"")
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.1.7:3000/api/\"")
         }
         release {
             buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:3000/api/\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:3000/api/user/\"")
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -63,6 +63,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'com.google.android.gms:play-services-maps:18.0.1'
     implementation project(path: ':data')
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.product.*
-import com.clothex.data.domain.usecases.home.GetProductDetailsUseCase
+import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -55,7 +55,7 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
         title.set(product.title)
 //        sku.set("SKU: ${product.sku}")
 //        skuVisibility.set(!product.sku.isNullOrEmpty())
-        mainImagesLiveData.postValue(product.mainImage?.let { listOf(it) })
+        setDefaultImages()
         shopTitle.set(product.shop?.name)
         shopLogoUrl.set(product.shop?.logo?.source)
     }
@@ -68,15 +68,12 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
 
     private fun setDefaultImages() {
         val images = ArrayList<Media>()
-        if (product?.mainImage != null) {
-            images.add(product!!.mainImage!!)
-        }
         product?.colors?.forEach {
             if (!it.images.isNullOrEmpty()) {
                 images.addAll(it.images!!)
             }
         }
-        mainImagesLiveData.value = images
+        mainImagesLiveData.postValue(images)
     }
 
     var selectedColor: Color? = null

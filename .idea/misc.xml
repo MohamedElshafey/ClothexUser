@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2171875" />
         <entry key="../../.gradle/caches/transforms-3/5db8adb2b6636b3c030518eaf70c8b80/transformed/appcompat-1.4.0/res/layout/abc_list_menu_item_checkbox.xml" value="0.3482905982905983" />
         <entry key="app/src/main/res/drawable-v24/bottom_sheet_top_drawable.xml" value="0.202991452991453" />
         <entry key="app/src/main/res/drawable-xhdpi/color_bg_shape.xml" value="0.36153846153846153" />
@@ -98,7 +99,7 @@
         <entry key="app/src/main/res/layout/adapter_item_notification.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/adapter_item_onboarding.xml" value="0.2970464135021097" />
         <entry key="app/src/main/res/layout/adapter_item_order.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/adapter_item_product_grid.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/adapter_item_product_grid.xml" value="0.625" />
         <entry key="app/src/main/res/layout/adapter_item_recycler_view.xml" value="0.2230769230769231" />
         <entry key="app/src/main/res/layout/adapter_item_saved_location.xml" value="0.18974358974358974" />
         <entry key="app/src/main/res/layout/adapter_item_shop.xml" value="0.3482905982905983" />

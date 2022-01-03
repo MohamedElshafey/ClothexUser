@@ -27,7 +27,7 @@ class SortProductBottomSheet : DefaultBottomSheet() {
         return binding.root
     }
 
-    val list = listOf<SortItem>(
+    val list = listOf(
         SortItem("Best match", R.drawable.ic_best_match, true),
         SortItem("From lowest to highest price", R.drawable.ic_ascending, false),
         SortItem("From highest to lowest price", R.drawable.ic_descending, false)

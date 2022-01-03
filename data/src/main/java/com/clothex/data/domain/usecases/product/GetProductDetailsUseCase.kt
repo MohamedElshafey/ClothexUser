@@ -1,4 +1,4 @@
-package com.clothex.data.domain.usecases.home
+package com.clothex.data.domain.usecases.product
 
 import com.clothex.data.domain.model.product.Product
 import com.clothex.data.domain.repository.home.IGetProductDetailsRepository
