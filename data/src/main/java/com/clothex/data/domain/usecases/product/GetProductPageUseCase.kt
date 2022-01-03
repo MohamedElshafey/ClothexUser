@@ -15,5 +15,13 @@ typealias GetProductPageBaseUseCase = BaseUseCase<ProductBody, Flow<List<HomePro
 class GetProductPageUseCase(private val repository: IGetProductPageRepository) :
     GetProductPageBaseUseCase {
     override suspend fun invoke(params: ProductBody): Flow<List<HomeProduct>?> =
-        repository.getProducts(params.page, params.sort)
+        repository.getProducts(
+            page = params.page,
+            sort = params.sort,
+            priceStart = params.priceStart,
+            priceEnd = params.priceEnd,
+            size = params.size,
+            color = params.color,
+            search = params.search
+        )
 }

@@ -15,7 +15,12 @@ interface ProductApiService {
     @GET("product/pages")
     suspend fun getProductPage(
         @Query("page") page: Int,
-        @Query("sort") sort: String?
+        @Query("sort") sort: String?,
+        @Query("priceStart") priceStart: Int?,
+        @Query("priceEnd") priceEnd: Int?,
+        @Query("size") size: String?,
+        @Query("color") color: String?,
+        @Query("search") search: String?
     ): List<HomeProduct>
 
 }

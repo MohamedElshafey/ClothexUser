@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 /**
  * @author Mohamed Elshafey on 9/3/2020
  */
-interface ILocalDataStore {
+interface ILocalDataSource {
     suspend fun setToken(token: String?)
 
     suspend fun getToken(): Flow<String?>
@@ -14,6 +14,18 @@ interface ILocalDataStore {
     suspend fun setSortEnum(sortEnum: SortEnum)
 
     suspend fun getSortEnum(): Flow<String?>
+
+    suspend fun setSize(string: String)
+    suspend fun getSize(): Flow<String?>
+
+    suspend fun setColor(string: String)
+    suspend fun getColor(): Flow<String?>
+
+    suspend fun setPriceStart(price: Int?)
+    suspend fun getPriceStart(): Flow<Int?>
+
+    suspend fun setPriceEnd(price: Int?)
+    suspend fun getPriceEnd(): Flow<Int?>
 
     suspend fun clearSessionPref()
 

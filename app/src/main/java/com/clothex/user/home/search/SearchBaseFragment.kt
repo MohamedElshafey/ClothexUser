@@ -7,17 +7,18 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.user.R
 import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentSearchProductBinding
 import com.clothex.user.home.product.ProductAdapter
+import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
 import com.clothex.user.home.shop.ShopSearchAdapter
 import org.koin.android.ext.android.inject
@@ -41,7 +42,7 @@ open class SearchBaseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.reset()
-        viewModel.fetchProductPage()
+        viewModel.fetchProductPage(null)
     }
 
     override fun onCreateView(
@@ -76,6 +77,12 @@ open class SearchBaseFragment : Fragment() {
             listPopupWindow.show()
         }
 
+        binding.searchBar.searchET.doAfterTextChanged {
+            productAdapter.reset()
+            viewModel.reset()
+            viewModel.fetchProductPage(it.toString())
+        }
+
         viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
             loadingMore = false
             productAdapter.update(products)
@@ -89,7 +96,7 @@ open class SearchBaseFragment : Fragment() {
                     val lastVisibleItem = lastPositions[0].coerceAtLeast(lastPositions[1])
                     if (!loadingMore && totalItemCount >= 20 && totalItemCount - 1 <= (lastVisibleItem)) {
                         loadingMore = true
-                        viewModel.fetchProductPage()
+                        viewModel.fetchProductPage(null)
                     }
                 }
             })
@@ -100,12 +107,17 @@ open class SearchBaseFragment : Fragment() {
 //                val sortEnum = bundle[SortProductBottomSheet.SORT_ENUM_KEY] as SortEnum
                 productAdapter.reset()
                 viewModel.reset()
-                viewModel.fetchProductPage()
+                viewModel.fetchProductPage(null)
             }
             findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }
 
         binding.filterContainer.setOnClickListener {
+            setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
+                productAdapter.reset()
+                viewModel.reset()
+                viewModel.fetchProductPage(null)
+            }
             findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
         }
 

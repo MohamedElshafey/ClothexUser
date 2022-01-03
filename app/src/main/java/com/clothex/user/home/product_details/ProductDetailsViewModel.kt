@@ -26,7 +26,7 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
     val branchesVisibility = ObservableField(false)
     val title = ObservableField<String>()
 
-    //    val sku = ObservableField<String>()
+//    val sku = ObservableField<String>()
 //    val skuVisibility = ObservableField<Boolean>()
     val quantityText = ObservableField("1")
     val shopTitle = ObservableField<String>()

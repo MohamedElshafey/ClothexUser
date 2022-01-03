@@ -31,6 +31,7 @@ fun ChipGroup.addChip(layoutInflater: LayoutInflater, vararg text: String) {
     text.forEach {
         val chip = layoutInflater.inflate(R.layout.item_chip, this, false) as Chip
         chip.id = ViewCompat.generateViewId()
+        chip.tag = it
         chip.text = it
         addView(chip)
     }

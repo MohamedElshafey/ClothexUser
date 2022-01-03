@@ -44,6 +44,9 @@
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="16dp"
         android:drawableTint="@color/silver"
-        android:hint="@string/search" />
+        android:hint="@string/search"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1" />
 
 </LinearLayout>

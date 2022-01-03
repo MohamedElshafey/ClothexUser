@@ -1,7 +1,7 @@
 package com.clothex.data.domain.usecases.sort
 
 import com.clothex.data.domain.usecases.BaseUseCase
-import com.clothex.data.local.ILocalDataStore
+import com.clothex.data.local.ILocalDataSource
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
 
 typealias GetSortBaseUseCase = BaseUseCase<Unit, Flow<String?>>
 
-class GetSortUseCase(private val repository: ILocalDataStore) : GetSortBaseUseCase {
+class GetSortUseCase(private val repository: ILocalDataSource) : GetSortBaseUseCase {
     override suspend fun invoke(params: Unit): Flow<String?> = repository.getSortEnum()
 }
