@@ -1,5 +1,6 @@
 package com.clothex.user.home.product
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -41,6 +42,12 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
         holder.bind(products[holder.adapterPosition])
 
     override fun getItemCount(): Int = products.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun reset() {
+        products.clear()
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(val binding: AdapterItemProductGridBinding) :
         RecyclerView.ViewHolder(binding.root) {

@@ -13,6 +13,9 @@ interface ProductApiService {
     suspend fun getProductDetails(@Query("product_id") productId: String): Product
 
     @GET("product/pages")
-    suspend fun getProductPage(@Query("page") page: Int): List<HomeProduct>
+    suspend fun getProductPage(
+        @Query("page") page: Int,
+        @Query("sort") sort: String?
+    ): List<HomeProduct>
 
 }

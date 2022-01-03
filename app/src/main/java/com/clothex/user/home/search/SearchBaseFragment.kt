@@ -8,14 +8,17 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.user.R
 import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentSearchProductBinding
 import com.clothex.user.home.product.ProductAdapter
+import com.clothex.user.home.search.sort.SortProductBottomSheet
 import com.clothex.user.home.shop.ShopSearchAdapter
 import org.koin.android.ext.android.inject
 
@@ -93,6 +96,12 @@ open class SearchBaseFragment : Fragment() {
         })
 
         binding.sortContainer.setOnClickListener {
+            setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, bundle ->
+                val sortEnum = bundle[SortProductBottomSheet.SORT_ENUM_KEY] as SortEnum
+                productAdapter.reset()
+                viewModel.reset()
+                viewModel.fetchProductPage(sortEnum)
+            }
             findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }
 

@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.user.R
 import com.clothex.user.data.SortItem
 import com.clothex.user.databinding.AdapterItemSortBinding
@@ -14,7 +15,7 @@ import com.clothex.user.databinding.AdapterItemSortBinding
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
  */
-class SortAdapter(private val list: List<SortItem>) :
+class SortAdapter(private val list: List<SortItem>, val callback: (SortEnum) -> Unit) :
     RecyclerView.Adapter<SortAdapter.ViewHolder>() {
     private var selectedItemPosition = list.indexOf(list.first { it.isSelected })
 
@@ -27,7 +28,7 @@ class SortAdapter(private val list: List<SortItem>) :
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[holder.layoutPosition]) { layoutPosition ->
+        holder.bind(list[holder.layoutPosition]) { layoutPosition, sortEnum ->
             if (selectedItemPosition != -1) {
                 list[selectedItemPosition].isSelected = false
                 notifyItemChanged(selectedItemPosition)
@@ -35,13 +36,14 @@ class SortAdapter(private val list: List<SortItem>) :
             selectedItemPosition = layoutPosition
             list[selectedItemPosition].isSelected = true
             notifyItemChanged(selectedItemPosition)
+            callback.invoke(sortEnum)
         }
 
     override fun getItemCount(): Int = list.size
 
     inner class ViewHolder(val binding: AdapterItemSortBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(sortItem: SortItem, onClick: (Int) -> Unit) {
+        fun bind(sortItem: SortItem, onClick: (Int, SortEnum) -> Unit) {
             val context = binding.root.context
             if (sortItem.isSelected) {
                 val color = ContextCompat.getColor(
@@ -57,7 +59,7 @@ class SortAdapter(private val list: List<SortItem>) :
             }
             binding.titleTV.text = sortItem.title
             binding.iconIV.setImageResource(sortItem.iconRes)
-            binding.root.setOnClickListener { onClick.invoke(layoutPosition) }
+            binding.root.setOnClickListener { onClick.invoke(layoutPosition, sortItem.sortEnum) }
         }
     }
 

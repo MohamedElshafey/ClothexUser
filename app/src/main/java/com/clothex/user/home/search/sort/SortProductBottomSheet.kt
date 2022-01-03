@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.user.R
 import com.clothex.user.customview.DefaultBottomSheet
 import com.clothex.user.data.SortItem
@@ -13,6 +16,12 @@ import com.clothex.user.databinding.SortProductBottomSheetBinding
  * Created by Mohamed Elshafey on 21/11/2021.
  */
 class SortProductBottomSheet : DefaultBottomSheet() {
+
+    companion object {
+        const val REQUEST_KEY = "SortRequestKey"
+        const val SORT_ENUM_KEY = "SortEnumKey"
+    }
+
     lateinit var binding: SortProductBottomSheetBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,14 +37,27 @@ class SortProductBottomSheet : DefaultBottomSheet() {
     }
 
     val list = listOf(
-        SortItem("Best match", R.drawable.ic_best_match, true),
-        SortItem("From lowest to highest price", R.drawable.ic_ascending, false),
-        SortItem("From highest to lowest price", R.drawable.ic_descending, false)
+        SortItem("Best match", R.drawable.ic_best_match, true, SortEnum.BEST_MATCH),
+        SortItem(
+            "From lowest to highest price",
+            R.drawable.ic_ascending,
+            false,
+            SortEnum.PRICE_ASC
+        ),
+        SortItem(
+            "From highest to lowest price",
+            R.drawable.ic_descending,
+            false,
+            SortEnum.PRICE_DESC
+        )
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = SortAdapter(list)
+        binding.recyclerView.adapter = SortAdapter(list) { sortEnum ->
+            setFragmentResult(REQUEST_KEY, bundleOf(SORT_ENUM_KEY to sortEnum))
+            dismiss()
+        }
     }
 
 }
