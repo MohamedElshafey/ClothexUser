@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MinimalProduct
+import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
 import com.clothex.user.utils.setAllOnClickListener
@@ -74,7 +75,7 @@ class BookFragment : Fragment() {
         binding.shopGroup.setAllOnClickListener {
             findNavController().navigate(
                 BookFragmentDirections.actionBookFragmentToShopDetailsFragment(
-                    myItem.shop
+                    shopList[0]
                 )
             )
         }

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.home.HomeProduct
+import com.clothex.data.domain.model.home.HomeShop
 import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceEndFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceStartFilterUseCase

@@ -31,7 +31,7 @@ class ShopSearchAdapter(private val list: List<Shop>, val callback: (Shop) -> Un
     inner class ViewHolder(val binding: AdapterItemShopSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(shop: Shop) {
-            binding.viewModel = ShopItemViewModel(shop)
+//            binding.viewModel = ShopItemViewModel(shop)
             binding.root.setOnClickListener { callback.invoke(shop) }
             binding.photosRV.adapter =
                 ImageAdapter(

@@ -43,11 +43,14 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.shopsRV.adapter = ShopAdapter(shopList) {
-            findNavController().navigate(
-                HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it)
-            )
-        }
+        homeViewModel.shopLiveData.observe(viewLifecycleOwner, {
+            binding.shopsRV.adapter = ShopAdapter(it) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(shopList[0])
+                )
+            }
+        })
+
         val layoutManager = object : LinearLayoutManager(requireContext()) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
                 lp.width = (width * 0.7f).toInt()
