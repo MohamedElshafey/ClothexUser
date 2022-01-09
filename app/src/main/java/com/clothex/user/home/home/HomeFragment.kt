@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         homeViewModel.shopLiveData.observe(viewLifecycleOwner, {
             binding.shopsRV.adapter = ShopAdapter(it) {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(shopList[0])
+                    HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it.id)
                 )
             }
         })

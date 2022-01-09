@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.home.HomeProduct
-import com.clothex.data.domain.model.home.HomeShop
 import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceEndFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceStartFilterUseCase
@@ -35,6 +34,7 @@ class SearchViewModel(
         productPage = 0
     }
 
+    var shopId: String? = null
     var sort: String? = null
     var size: String? = null
     var color: String? = null
@@ -55,13 +55,14 @@ class SearchViewModel(
                 fetchLocalData()
                 productPageUseCase.invoke(
                     ProductBody(
-                        productPage,
-                        sort,
-                        priceStart,
-                        priceEnd,
-                        size,
-                        color,
-                        search
+                        page = productPage,
+                        sort = sort,
+                        priceStart = priceStart,
+                        priceEnd = priceEnd,
+                        size = size,
+                        shopId = shopId,
+                        color = color,
+                        search = search
                     )
                 ).collect {
                     productPage++

@@ -13,6 +13,7 @@ interface IGetProductPageRepository {
         priceStart: Int?,
         priceEnd: Int?,
         size: String?,
+        shopId: String?,
         color: String?,
         search: String?
     ): Flow<List<HomeProduct>?>

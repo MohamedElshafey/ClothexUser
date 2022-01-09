@@ -8,8 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class Product(
     @SerializedName("_id")
     val id: String,
-//    @SerializedName("main_image")
-//    val mainImage: Media?,
     val price: Int,
     @SerializedName("sale_end_date")
     val saleEndDate: Long,

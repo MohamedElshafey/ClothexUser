@@ -21,6 +21,7 @@ class GetProductPageUseCase(private val repository: IGetProductPageRepository) :
             priceStart = params.priceStart,
             priceEnd = params.priceEnd,
             size = params.size,
+            shopId = params.shopId,
             color = params.color,
             search = params.search
         )

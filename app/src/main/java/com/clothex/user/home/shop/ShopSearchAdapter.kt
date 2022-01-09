@@ -33,13 +33,13 @@ class ShopSearchAdapter(private val list: List<Shop>, val callback: (Shop) -> Un
         fun bind(shop: Shop) {
 //            binding.viewModel = ShopItemViewModel(shop)
             binding.root.setOnClickListener { callback.invoke(shop) }
-            binding.photosRV.adapter =
-                ImageAdapter(
-                    shop.photos,
-                    ImageSize.SMALL_SQUARE,
-                    ImageView.ScaleType.CENTER_CROP,
-                    true
-                )
+//            binding.photosRV.adapter =
+//                ImageAdapter(
+//                    shop.photos,
+//                    ImageSize.SMALL_SQUARE,
+//                    ImageView.ScaleType.CENTER_CROP,
+//                    true
+//                )
         }
     }
 

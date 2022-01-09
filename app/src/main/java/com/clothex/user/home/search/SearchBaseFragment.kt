@@ -29,8 +29,8 @@ import org.koin.android.ext.android.inject
 open class SearchBaseFragment : Fragment() {
 
     lateinit var binding: FragmentSearchProductBinding
-    private val viewModel: SearchViewModel by inject()
-    private val productAdapter = ProductAdapter {
+    val viewModel: SearchViewModel by inject()
+    val productAdapter = ProductAdapter {
         findNavController().navigate(
             SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
                 it.id
@@ -43,6 +43,16 @@ open class SearchBaseFragment : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel.reset()
         viewModel.fetchProductPage(null)
+        setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
+            productAdapter.reset()
+            viewModel.reset()
+            viewModel.fetchProductPage(null)
+        }
+        setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, _ ->
+            productAdapter.reset()
+            viewModel.reset()
+            viewModel.fetchProductPage(null)
+        }
     }
 
     override fun onCreateView(
@@ -89,36 +99,29 @@ open class SearchBaseFragment : Fragment() {
             binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    val layoutManager = recyclerView.layoutManager as StaggeredGridLayoutManager
-                    val totalItemCount = layoutManager.itemCount;
-                    val lastPositions = IntArray(layoutManager.spanCount)
-                    layoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
-                    val lastVisibleItem = lastPositions[0].coerceAtLeast(lastPositions[1])
-                    if (!loadingMore && totalItemCount >= 20 && totalItemCount - 1 <= (lastVisibleItem)) {
-                        loadingMore = true
-                        viewModel.fetchProductPage(null)
+                    val layoutManager = recyclerView.layoutManager
+                    if (layoutManager is StaggeredGridLayoutManager) {
+                        val totalItemCount = layoutManager.itemCount;
+                        val lastPositions = IntArray(layoutManager.spanCount)
+                        layoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
+                        val lastVisibleItem = lastPositions[0].coerceAtLeast(lastPositions[1])
+                        if (!loadingMore && totalItemCount >= 20 && totalItemCount - 1 <= (lastVisibleItem)) {
+                            loadingMore = true
+                            viewModel.fetchProductPage(null)
+                        }
                     }
                 }
             })
         })
 
         binding.sortContainer.setOnClickListener {
-            setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, bundle ->
-//                val sortEnum = bundle[SortProductBottomSheet.SORT_ENUM_KEY] as SortEnum
-                productAdapter.reset()
-                viewModel.reset()
-                viewModel.fetchProductPage(null)
-            }
-            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
+            findNavController().navigate(R.id.sortProductBottomSheet)
+//            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
         }
 
         binding.filterContainer.setOnClickListener {
-            setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
-                productAdapter.reset()
-                viewModel.reset()
-                viewModel.fetchProductPage(null)
-            }
-            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
+//            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
+            findNavController().navigate(R.id.filterProductBottomSheet)
         }
 
         binding.actionBar.setOnClickListener {
@@ -136,7 +139,7 @@ open class SearchBaseFragment : Fragment() {
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerView.adapter = ShopSearchAdapter(shopList) {
             findNavController().navigate(
-                SearchBaseFragmentDirections.actionSearchProductFragmentToShopDetailsFragment(it)
+                SearchBaseFragmentDirections.actionSearchProductFragmentToShopDetailsFragment("")
             )
         }
     }

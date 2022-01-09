@@ -3,7 +3,7 @@ package com.clothex.user.home.shop.working_hour
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.WorkingHour
+import com.clothex.data.domain.model.product.WorkingHour
 import com.clothex.user.databinding.AdapterItemWorkingHourBinding
 
 /**

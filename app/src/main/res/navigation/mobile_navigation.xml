@@ -293,8 +293,8 @@
         android:label="ShopDetailsFragment"
         tools:layout="@layout/fragment_shop_details">
         <argument
-            android:name="shop"
-            app:argType="com.clothex.user.data.Shop" />
+            android:name="shopId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"

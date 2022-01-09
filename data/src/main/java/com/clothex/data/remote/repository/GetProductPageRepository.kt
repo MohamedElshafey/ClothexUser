@@ -11,25 +11,28 @@ import kotlinx.coroutines.flow.flow
  */
 class GetProductPageRepository(private val apiService: ProductApiService) :
     IGetProductPageRepository {
+
     override suspend fun getProducts(
         page: Int,
         sort: String?,
         priceStart: Int?,
         priceEnd: Int?,
         size: String?,
+        shopId: String?,
         color: String?,
         search: String?
     ): Flow<List<HomeProduct>?> =
         flow {
             emit(
                 apiService.getProductPage(
-                    page,
-                    sort,
-                    priceStart,
-                    priceEnd,
-                    size,
-                    color,
-                    search
+                    page = page,
+                    sort = sort,
+                    priceStart = priceStart,
+                    priceEnd = priceEnd,
+                    size = size,
+                    shopId = shopId,
+                    color = color,
+                    search = search
                 )
             )
         }

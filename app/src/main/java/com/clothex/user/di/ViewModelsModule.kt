@@ -5,6 +5,7 @@ import com.clothex.user.home.product_details.ProductDetailsViewModel
 import com.clothex.user.home.search.SearchViewModel
 import com.clothex.user.home.search.filter.FilterProductViewModel
 import com.clothex.user.home.search.sort.SortProductViewModel
+import com.clothex.user.home.shop.details.ShopDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -49,6 +50,10 @@ val viewModelsModule = module {
             setPriceEndFilterUseCase = get(named("set_price_end_filter")),
             getPriceEndFilterUseCase = get(named("get_price_end_filter"))
         )
+    }
+
+    viewModel {
+        ShopDetailsViewModel(get(named("get_shop_details")))
     }
 
 }

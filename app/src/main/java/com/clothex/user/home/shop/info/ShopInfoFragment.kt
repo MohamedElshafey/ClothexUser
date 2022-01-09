@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.clothex.user.data.Shop
-import com.clothex.user.data.workingHourList
+import com.clothex.data.domain.model.shop.Shop
 import com.clothex.user.databinding.FragmentShopInfoBinding
 import com.clothex.user.home.shop.contact.ContactsAdapter
-import com.clothex.user.home.shop.details.ShopDetailsViewModel
 import com.clothex.user.home.shop.working_hour.WorkingHourAdapter
 
 /**
@@ -18,7 +16,6 @@ import com.clothex.user.home.shop.working_hour.WorkingHourAdapter
 class ShopInfoFragment : Fragment() {
 
     lateinit var binding: FragmentShopInfoBinding
-    lateinit var mViewModel: ShopDetailsViewModel
     lateinit var shop: Shop
 
     companion object {
@@ -38,17 +35,19 @@ class ShopInfoFragment : Fragment() {
     ): View {
         binding = FragmentShopInfoBinding.inflate(LayoutInflater.from(context), container, false)
         shop = arguments?.getParcelable("shop")!!
-        mViewModel = ShopDetailsViewModel(shop = shop)
-        binding.viewModel = mViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.branchCountTV.text = "+10"
+        binding.branchCountTV.text = "+${shop.branches.size}"
         binding.branchSuffixTV.text = "more branches"
-        binding.workingHoursRV.adapter = WorkingHourAdapter(workingHourList)
-        binding.contactsRV.adapter = ContactsAdapter(listOf(""))
+        val selectedBranch = shop.branches[0]
+        val workingHours = selectedBranch.workingHours
+        binding.workingHoursRV.adapter = workingHours?.let { WorkingHourAdapter(it) }
+        val contacts = shop.socialMedias
+        binding.contactsRV.adapter = ContactsAdapter(contacts)
+        binding.addressTV.text = "Nearest branch: ${shop.branches[0].address?.name}"
+        binding.aboutTV.text = shop.about
     }
-
 }

@@ -18,6 +18,7 @@ interface ProductApiService {
         @Query("sort") sort: String?,
         @Query("priceStart") priceStart: Int?,
         @Query("priceEnd") priceEnd: Int?,
+        @Query("shopId") shopId: String?,
         @Query("size") size: String?,
         @Query("color") color: String?,
         @Query("search") search: String?

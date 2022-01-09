@@ -4,6 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.clothex.data.remote.api.HomeApiService
 import com.clothex.data.remote.api.ProductApiService
+import com.clothex.data.remote.api.ShopApiService
 import com.clothex.user.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -32,6 +33,8 @@ val networkModule = module {
     single { provideHomeApiService(retrofit = get()) }
 
     single { provideProductApiService(retrofit = get()) }
+
+    single { provideShopApiService(retrofit = get()) }
 }
 
 
@@ -73,3 +76,6 @@ internal fun provideHomeApiService(retrofit: Retrofit): HomeApiService =
 
 internal fun provideProductApiService(retrofit: Retrofit): ProductApiService =
     retrofit.create(ProductApiService::class.java)
+
+internal fun provideShopApiService(retrofit: Retrofit): ShopApiService =
+    retrofit.create(ShopApiService::class.java)

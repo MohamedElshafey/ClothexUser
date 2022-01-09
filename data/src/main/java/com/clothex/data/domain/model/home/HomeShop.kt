@@ -16,5 +16,5 @@ data class HomeShop(
     val name_ar: String,
     val address: Address,
     @SerializedName("working_hours")
-    val workingHours: List<WorkingHour>
+    val workingHours: List<WorkingHour>?
 ) : Parcelable

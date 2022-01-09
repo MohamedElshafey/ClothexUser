@@ -5,12 +5,14 @@ import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductPageUseCase
+import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
 import com.clothex.data.local.LocalDataSourceImpl
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetProductPageRepository
+import com.clothex.data.remote.repository.GetShopDetailsRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -23,6 +25,8 @@ val useCaseModule = module {
     single(named("get_product_page")) { provideGetProductPageUseCase(get()) }
     single(named("get_product_details")) { provideGetProductDetailsUseCase(get()) }
     single(named("clear_session")) { provideClearSessionUseCase(get()) }
+
+    single(named("get_shop_details")) { provideGetShopDetailsUseCase(get()) }
 
     single(named("get_sort")) { provideGetSortUseCase(get()) }
     single(named("set_sort")) { provideSetSortUseCase(get()) }
@@ -96,5 +100,7 @@ fun provideSetPriceEndFilterUseCase(dataSource: LocalDataSourceImpl): SetPriceEn
     return SetPriceEndFilterUseCase(dataSource)
 }
 
-
+fun provideGetShopDetailsUseCase(repository: GetShopDetailsRepository): GetShopDetailsUseCase {
+    return GetShopDetailsUseCase(repository)
+}
 

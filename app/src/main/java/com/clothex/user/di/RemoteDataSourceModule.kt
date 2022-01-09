@@ -3,6 +3,7 @@ package com.clothex.user.di
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetProductPageRepository
+import com.clothex.data.remote.repository.GetShopDetailsRepository
 import org.koin.dsl.module
 
 /**
@@ -13,4 +14,5 @@ val remoteDataSourceModule = module {
     single { GetHomeRepository(apiService = get()) }
     single { GetProductDetailsRepository(apiService = get()) }
     single { GetProductPageRepository(apiService = get()) }
+    single { GetShopDetailsRepository(apiService = get()) }
 }

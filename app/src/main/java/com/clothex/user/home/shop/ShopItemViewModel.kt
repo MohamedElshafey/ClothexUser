@@ -14,20 +14,20 @@ class ShopItemViewModel(private val shop: HomeShop) : ViewModel() {
 
     val name = shop.name
 
-    val address = shop.address.name
+//    val address = shop.address.name
 
-    val workingHour = getWorkingHourTitle()
+//    val workingHour = getWorkingHourTitle()
 
-    private fun getWorkingHourTitle(): String {
-        val sdf = SimpleDateFormat("EEEE")
-        val d = Date()
-        val dayOfTheWeek: String = sdf.format(d)
-        val todayWorkingHours = shop.workingHours.findLast {
-            it.title.equals(dayOfTheWeek, true)
-        }
-        todayWorkingHours?.let {
-            return "${it.title} ${it.from} ${it.to}"
-        }
-        return ""
-    }
+//    private fun getWorkingHourTitle(): String {
+//        val sdf = SimpleDateFormat("EEEE", Locale.ENGLISH)
+//        val d = Date()
+//        val dayOfTheWeek: String = sdf.format(d)
+//        val todayWorkingHours = shop.workingHours?.findLast {
+//            it.title.equals(dayOfTheWeek, true)
+//        }
+//        todayWorkingHours?.let {
+//            return "${it.title} ${it.from} ${it.to}"
+//        }
+//        return ""
+//    }
 }
