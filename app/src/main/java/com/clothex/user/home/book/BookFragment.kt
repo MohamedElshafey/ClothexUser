@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentBookBinding
+import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
 import com.clothex.user.utils.setAllOnClickListener
 import com.clothex.user.utils.setImageFromUrl
@@ -41,6 +43,9 @@ class BookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myItemGroup = BookFragmentArgs.fromBundle(requireArguments()).myItem
+        binding.bookButton.isInvisible = myItemGroup.shop.hasBook.not()
+        binding.contactsRV.isInvisible = myItemGroup.shop.hasBook
+        binding.contactsRV.adapter = ContactsAdapter(myItemGroup.shop.socialMedias)
         with(myItemGroup) {
             binding.shopTitleTV.text = shop.name
             binding.addressTV.text = branch.address?.name

@@ -189,7 +189,7 @@
     <fragment
         android:id="@+id/searchBaseFragment"
         android:name="com.clothex.user.home.search.SearchBaseFragment"
-        android:label="SearchProductFragment"
+        android:label="searchBaseFragment"
         tools:layout="@layout/fragment_search_product">
         <action
             android:id="@+id/action_searchProductFragment_to_productDetailsFragment"
@@ -203,6 +203,9 @@
         <action
             android:id="@+id/action_searchProductFragment_to_shopDetailsFragment"
             app:destination="@id/shopDetailsFragment" />
+        <argument
+            android:name="product"
+            app:argType="boolean" />
     </fragment>
     <dialog
         android:id="@+id/sortProductBottomSheet"

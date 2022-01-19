@@ -131,12 +131,14 @@ class ProductDetailsFragment : Fragment() {
                     )
                 }
             } else {
-                Toast.makeText(context, "You should select color & size first!", Toast.LENGTH_LONG)
-                    .show()
+                val message = when {
+                    selectedColorCode == null -> "You should select color to proceed!"
+                    selectedSizeName == null -> "You should select size to proceed!"
+                    else -> "You should select branch to proceed!"
+                }
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
-
         }
-
     }
 
     override fun onDestroyView() {

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
@@ -57,8 +56,7 @@ class HomeFragment : Fragment() {
                 return true
             }
         }
-        binding.arrivalSeeAllTV.setOnClickListener {
-        }
+
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.shopsRV.layoutManager = layoutManager
 
@@ -79,7 +77,15 @@ class HomeFragment : Fragment() {
         }
 
         binding.arrivalSeeAllTV.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSearchProductFragment())
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToSearchProductFragment(true)
+            )
+        }
+
+        binding.shopSeeAllTV.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToSearchProductFragment(false)
+            )
         }
 
         binding.voucherButton.setOnClickListener {
@@ -93,7 +99,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun openSearchFragment() {
-        findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSearchProductFragment())
+        findNavController().navigate(
+            HomeFragmentDirections.actionNavigationHomeToSearchProductFragment(true)
+        )
     }
 
     override fun onDestroyView() {

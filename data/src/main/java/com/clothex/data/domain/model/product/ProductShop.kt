@@ -10,5 +10,7 @@ data class ProductShop(
     val name: String,
     @SerializedName("name_ar")
     val arabicName: String,
-    val logo: Media
+    val logo: Media,
+    @SerializedName("has_book")
+    val hasBook: Boolean
 ) : Parcelable

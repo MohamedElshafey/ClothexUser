@@ -64,12 +64,18 @@ open class SearchBaseFragment : Fragment() {
         return binding.root
     }
 
+    private var isProduct = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+            isProduct = SearchBaseFragmentArgs.fromBundle(it).product
+        }
         val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
         listPopupWindow.anchorView = binding.searchBar.menu
         val list = listOf("Items", "Shops")
         listPopupWindow.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item, list))
+        listPopupWindow.setSelection(if (isProduct) 0 else 1)
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             val selectedItem = list[position]
             if (selectedItem == "Items") {
@@ -81,7 +87,13 @@ open class SearchBaseFragment : Fragment() {
             listPopupWindow.dismiss()
         }
 
-        showProducts()
+        if (isProduct) {
+            showProducts()
+            binding.searchBar.menu.text = list[0]
+        } else {
+            showShops()
+            binding.searchBar.menu.text = list[1]
+        }
 
         binding.searchBar.menu.setOnClickListener {
             listPopupWindow.show()

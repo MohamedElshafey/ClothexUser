@@ -43,7 +43,9 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun openSearchFragment() {
-        findNavController().navigate(CategoriesFragmentDirections.actionNavigationCategoriesToSearchProductFragment())
+        findNavController().navigate(
+            CategoriesFragmentDirections.actionNavigationCategoriesToSearchProductFragment(true)
+        )
     }
 
 

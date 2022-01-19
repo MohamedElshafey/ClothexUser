@@ -2,8 +2,8 @@ package com.clothex.data.domain.model.my_item
 
 import android.os.Parcelable
 import com.clothex.data.domain.model.home.HomeProduct
-import com.clothex.data.domain.model.home.HomeShop
 import com.clothex.data.domain.model.product.Branch
+import com.clothex.data.domain.model.shop.Shop
 import com.google.gson.annotations.SerializedName
 
 @kotlinx.parcelize.Parcelize
@@ -19,5 +19,5 @@ data class MyItem(
     val quantity: Int,
     @SerializedName("size_name")
     val sizeName: String,
-    val shop: HomeShop
+    val shop: Shop
 ) : Parcelable
