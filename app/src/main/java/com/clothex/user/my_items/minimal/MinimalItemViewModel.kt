@@ -3,18 +3,18 @@ package com.clothex.user.my_items.minimal
 import androidx.lifecycle.ViewModel
 import com.clothex.data.domain.model.my_item.MyItem
 
-class MinimalItemViewModel(minimalProduct: MyItem) : ViewModel() {
+class MinimalItemViewModel(myItem: MyItem) : ViewModel() {
 
-    val title = minimalProduct.product.title
+    val title = myItem.product.title
 
-    val imageUrl = minimalProduct.product.mainImage?.source
+    val imageUrl = myItem.product.mainImage?.source
 
-    val colorCode = minimalProduct.colorCode
+    val colorCode = myItem.colorCode
 
-    val sizeName = minimalProduct.sizeName
+    val sizeName = myItem.sizeName
 
-    val quantity = minimalProduct.quantity.toString()
+    val quantity = myItem.quantity.toString()
 
-    val price = "EGP ${minimalProduct.product.price * minimalProduct.quantity}"
+    val price = "EGP ${myItem.product.price * myItem.quantity}"
 
 }

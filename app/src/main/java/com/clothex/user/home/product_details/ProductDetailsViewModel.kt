@@ -4,8 +4,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.clothex.data.domain.model.SimpleResponse
 import com.clothex.data.domain.model.body.MyItemBody
+import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.data.domain.model.product.*
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
@@ -126,7 +126,7 @@ class ProductDetailsViewModel(
         selectedBranch = branch
     }
 
-    fun addToMyItem(myItemBody: MyItemBody, callback: (SimpleResponse) -> Unit) {
+    fun addToMyItem(myItemBody: MyItemBody, callback: (MyItem) -> Unit) {
         viewModelScope.launch {
             createMyItemsUseCase(myItemBody).collect { response ->
                 response?.let { callback(response) }

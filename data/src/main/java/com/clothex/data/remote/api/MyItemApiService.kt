@@ -10,10 +10,10 @@ import retrofit2.http.*
  */
 interface MyItemApiService {
     @POST("create_my_item")
-    suspend fun createMyItem(@Body myItemBody: MyItemBody): SimpleResponse
+    suspend fun createMyItem(@Body myItemBody: MyItemBody): MyItem?
 
     @DELETE("my_item/{id}")
-    suspend fun deleteMyItem(@Path("id") id: String): SimpleResponse
+    suspend fun deleteMyItem(@Path("id") id: String): SimpleResponse?
 
     @GET("my_items/{customer_id}")
     suspend fun getMyItems(@Path("customer_id") customerId: String): List<MyItem>

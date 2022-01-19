@@ -109,10 +109,8 @@ class ProductDetailsFragment : Fragment() {
 
         binding.contentContainer.addToMyItemsButton.setOnClickListener {
             val selectedColorCode = mViewModel.selectedColor?.code
-//            val image = mViewModel.selectedColor?.images?.first()
             val selectedSizeName = mViewModel.selectedSize?.title
             val quantity = mViewModel.quantity
-//            val price = mViewModel.sellingPrice
             val shopId = mViewModel.product?.shop?.id
             val selectedBranchId = mViewModel.selectedBranch?._id
             if (selectedColorCode != null && selectedSizeName != null && selectedBranchId != null && shopId != null) {
@@ -125,29 +123,13 @@ class ProductDetailsFragment : Fragment() {
                     quantity = quantity,
                     size_name = selectedSizeName
                 )
-                mViewModel.addToMyItem(myItemBody) {
-                    Toast.makeText(requireContext(), "Added ${it.success}", Toast.LENGTH_SHORT)
-                        .show()
-//                    if (it.success)
-//                        findNavController().navigate(
-//                            ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
-//                                myItemBody
-//                            )
-//                        )
+                mViewModel.addToMyItem(myItemBody) { myItem ->
+                    findNavController().navigate(
+                        ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
+                            myItem
+                        )
+                    )
                 }
-//                val minimalProduct = MyItem(
-//                    title = mViewModel.title.get()!!,
-//                    colorCode = selectedColorCode,
-//                    sizeName = selectedSizeName,
-//                    quantity = quantity,
-//                    image = image,
-//                    price = price.get()!!
-//                )
-//                findNavController().navigate(
-//                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
-//                        minimalProduct
-//                    )
-//                )
             } else {
                 Toast.makeText(context, "You should select color & size first!", Toast.LENGTH_LONG)
                     .show()
