@@ -114,8 +114,8 @@
         android:label="AddToMyListDialog"
         tools:layout="@layout/dialog_added_to_my_items">
         <argument
-            android:name="minimalProduct"
-            app:argType="com.clothex.user.data.my_items.MinimalProduct" />
+            android:name="myItem"
+            app:argType="com.clothex.data.domain.model.my_item.MyItem" />
         <action
             android:id="@+id/action_addToMyListDialog_to_navigation_home"
             app:destination="@id/navigation_home"
@@ -149,15 +149,15 @@
         android:name="com.clothex.user.home.book.BookFragment"
         android:label="BookFragment"
         tools:layout="@layout/fragment_book">
-        <argument
-            android:name="myItem"
-            app:argType="com.clothex.user.data.my_items.MyItem" />
         <action
             android:id="@+id/action_bookFragment_to_requestBookFragment"
             app:destination="@id/requestBookFragment" />
         <action
             android:id="@+id/action_bookFragment_to_shopDetailsFragment"
             app:destination="@id/shopDetailsFragment" />
+        <argument
+            android:name="myItem"
+            app:argType="com.clothex.user.data.my_items.MyItemGroup" />
     </fragment>
     <fragment
         android:id="@+id/myItemsFragment"

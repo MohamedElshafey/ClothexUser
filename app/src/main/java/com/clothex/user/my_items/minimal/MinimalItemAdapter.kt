@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.clothex.user.data.my_items.MinimalProduct
+import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.user.databinding.AdapterMinimalProductBinding
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class MinimalItemAdapter(private val list: List<MinimalProduct>) :
+class MinimalItemAdapter(private val list: List<MyItem>) :
     Adapter<MinimalItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -26,7 +26,7 @@ class MinimalItemAdapter(private val list: List<MinimalProduct>) :
 
     inner class ViewHolder(val binding: AdapterMinimalProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(minimalProduct: MinimalProduct) {
+        fun bind(minimalProduct: MyItem) {
             binding.colorItem.colorView.apply {
                 val backgroundDrawable = background as GradientDrawable
                 backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))

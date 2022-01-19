@@ -3,6 +3,9 @@ package com.clothex.user.di
 import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
+import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
+import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
+import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductPageUseCase
 import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
@@ -13,6 +16,9 @@ import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetProductPageRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
+import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
+import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
+import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -42,6 +48,10 @@ val useCaseModule = module {
 
     single(named("get_price_end_filter")) { provideGetPriceEndFilterUseCase(get()) }
     single(named("set_price_end_filter")) { provideSetPriceEndFilterUseCase(get()) }
+
+    single(named("get_my_items")) { provideGetMyItemsUseCase(get()) }
+    single(named("create_my_item")) { provideCreateMyItemUseCase(get()) }
+    single(named("delete_my_item")) { provideDeleteMyItemUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -102,5 +112,17 @@ fun provideSetPriceEndFilterUseCase(dataSource: LocalDataSourceImpl): SetPriceEn
 
 fun provideGetShopDetailsUseCase(repository: GetShopDetailsRepository): GetShopDetailsUseCase {
     return GetShopDetailsUseCase(repository)
+}
+
+fun provideGetMyItemsUseCase(repository: GetMyItemsRepository): GetMyItemsUseCase {
+    return GetMyItemsUseCase(repository)
+}
+
+fun provideCreateMyItemUseCase(repository: CreateMyItemRepository): CreateMyItemsUseCase {
+    return CreateMyItemsUseCase(repository)
+}
+
+fun provideDeleteMyItemUseCase(repository: DeleteMyItemRepository): DeleteMyItemsUseCase {
+    return DeleteMyItemsUseCase(repository)
 }
 

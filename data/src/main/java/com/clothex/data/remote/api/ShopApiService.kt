@@ -9,5 +9,5 @@ import retrofit2.http.Query
  */
 interface ShopApiService {
     @GET("shop-details")
-    suspend fun getShopDetails(@Query("shop_id") shopId: String): Shop
+    suspend fun getShopDetails(@Query("shop_id") shopId: String): Shop?
 }

@@ -7,7 +7,7 @@ import com.clothex.data.domain.model.product.Media
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
+@kotlinx.parcelize.Parcelize
 data class Shop(
     @SerializedName("_id")
     val id: String,

@@ -2,10 +2,11 @@ package com.clothex.data.domain.model.product
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+@kotlinx.parcelize.Parcelize
 data class ProductShop(
+    @SerializedName("_id")
+    val id: String,
     val name: String,
     @SerializedName("name_ar")
     val arabicName: String,

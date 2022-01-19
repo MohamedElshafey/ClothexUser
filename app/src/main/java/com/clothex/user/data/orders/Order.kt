@@ -1,7 +1,7 @@
 package com.clothex.user.data.orders
 
+import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.user.data.Shop
-import com.clothex.user.data.my_items.MinimalProduct
 import com.clothex.user.my_items.orders.OrderStatus
 
 /**
@@ -12,7 +12,7 @@ data class Order(
     val orderStatus: OrderStatus,
     val orderTimeStamp: Long,
     val shop: Shop,
-    val bookedItems: List<MinimalProduct>,
+    val bookedItems: List<MyItem>,
     val endTime: Long,
 )
 

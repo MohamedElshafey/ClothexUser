@@ -5,16 +5,15 @@ import com.clothex.data.domain.model.product.Address
 import com.clothex.data.domain.model.product.Media
 import com.clothex.data.domain.model.product.WorkingHour
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+@kotlinx.parcelize.Parcelize
 data class HomeShop(
     @SerializedName("_id")
     val id: String,
     val logo: Media?,
     val name: String,
     val name_ar: String,
-    val address: Address,
+    val address: Address?,
     @SerializedName("working_hours")
     val workingHours: List<WorkingHour>?
 ) : Parcelable

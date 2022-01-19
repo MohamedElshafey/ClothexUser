@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-@Parcelize
+@kotlinx.parcelize.Parcelize
 data class Shop(
     val logoUrl: String,
     val name: String,

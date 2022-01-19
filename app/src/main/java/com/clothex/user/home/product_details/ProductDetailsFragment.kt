@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.clothex.user.data.my_items.MinimalProduct
+import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
@@ -86,7 +86,9 @@ class ProductDetailsFragment : Fragment() {
         }
 
         mViewModel.branchesLiveData.observe(viewLifecycleOwner, {
-            binding.contentContainer.branchesRV.adapter = BranchAdapter(it)
+            binding.contentContainer.branchesRV.adapter = BranchAdapter(it) { branch ->
+                mViewModel.selectBranch(branch)
+            }
         })
 
         binding.contentContainer.plusIV.setOnClickListener {
@@ -107,24 +109,45 @@ class ProductDetailsFragment : Fragment() {
 
         binding.contentContainer.addToMyItemsButton.setOnClickListener {
             val selectedColorCode = mViewModel.selectedColor?.code
-            val image = mViewModel.selectedColor?.images?.first()
+//            val image = mViewModel.selectedColor?.images?.first()
             val selectedSizeName = mViewModel.selectedSize?.title
             val quantity = mViewModel.quantity
-            val price = mViewModel.sellingPrice
-            if (selectedColorCode != null && selectedSizeName != null) {
-                val minimalProduct = MinimalProduct(
-                    title = mViewModel.title.get()!!,
-                    colorCode = selectedColorCode,
-                    sizeName = selectedSizeName,
+//            val price = mViewModel.sellingPrice
+            val shopId = mViewModel.product?.shop?.id
+            val selectedBranchId = mViewModel.selectedBranch?._id
+            if (selectedColorCode != null && selectedSizeName != null && selectedBranchId != null && shopId != null) {
+                val myItemBody = MyItemBody(
+                    customer_id = "123456789",
+                    branch_id = selectedBranchId,
+                    color_code = selectedColorCode,
+                    product_id = productId,
+                    shop_id = shopId,
                     quantity = quantity,
-                    image = image,
-                    price = price.get()!!
+                    size_name = selectedSizeName
                 )
-                findNavController().navigate(
-                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
-                        minimalProduct
-                    )
-                )
+                mViewModel.addToMyItem(myItemBody) {
+                    Toast.makeText(requireContext(), "Added ${it.success}", Toast.LENGTH_SHORT)
+                        .show()
+//                    if (it.success)
+//                        findNavController().navigate(
+//                            ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
+//                                myItemBody
+//                            )
+//                        )
+                }
+//                val minimalProduct = MyItem(
+//                    title = mViewModel.title.get()!!,
+//                    colorCode = selectedColorCode,
+//                    sizeName = selectedSizeName,
+//                    quantity = quantity,
+//                    image = image,
+//                    price = price.get()!!
+//                )
+//                findNavController().navigate(
+//                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
+//                        minimalProduct
+//                    )
+//                )
             } else {
                 Toast.makeText(context, "You should select color & size first!", Toast.LENGTH_LONG)
                     .show()

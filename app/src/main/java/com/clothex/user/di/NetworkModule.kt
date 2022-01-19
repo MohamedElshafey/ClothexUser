@@ -3,6 +3,7 @@ package com.clothex.user.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.clothex.data.remote.api.HomeApiService
+import com.clothex.data.remote.api.MyItemApiService
 import com.clothex.data.remote.api.ProductApiService
 import com.clothex.data.remote.api.ShopApiService
 import com.clothex.user.BuildConfig
@@ -35,6 +36,8 @@ val networkModule = module {
     single { provideProductApiService(retrofit = get()) }
 
     single { provideShopApiService(retrofit = get()) }
+
+    single { provideMyItemApiService(retrofit = get()) }
 }
 
 
@@ -79,3 +82,6 @@ internal fun provideProductApiService(retrofit: Retrofit): ProductApiService =
 
 internal fun provideShopApiService(retrofit: Retrofit): ShopApiService =
     retrofit.create(ShopApiService::class.java)
+
+internal fun provideMyItemApiService(retrofit: Retrofit): MyItemApiService =
+    retrofit.create(MyItemApiService::class.java)

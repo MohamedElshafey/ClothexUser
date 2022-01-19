@@ -4,14 +4,20 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.clothex.data.domain.model.SimpleResponse
+import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.product.*
+import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDetailsUseCase) :
+class ProductDetailsViewModel(
+    private val getProductDetailsUseCase: GetProductDetailsUseCase,
+    private val createMyItemsUseCase: CreateMyItemsUseCase
+) :
     ViewModel() {
 
     val productMutableLiveData = MutableLiveData<Product?>()
@@ -26,7 +32,7 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
     val branchesVisibility = ObservableField(false)
     val title = ObservableField<String>()
 
-//    val sku = ObservableField<String>()
+    //    val sku = ObservableField<String>()
 //    val skuVisibility = ObservableField<Boolean>()
     val quantityText = ObservableField("1")
     val shopTitle = ObservableField<String>()
@@ -98,6 +104,7 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
             images.let { mainImagesLiveData.value = it }
         }
         selectedSize = null
+        selectedBranch = null
     }
 
     var selectedSize: Size? = null
@@ -111,6 +118,21 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
             branchesLiveData.value = listOf()
             branchesVisibility.set(false)
         }
+        selectedBranch = null
     }
+
+    var selectedBranch: Branch? = null
+    fun selectBranch(branch: Branch?) {
+        selectedBranch = branch
+    }
+
+    fun addToMyItem(myItemBody: MyItemBody, callback: (SimpleResponse) -> Unit) {
+        viewModelScope.launch {
+            createMyItemsUseCase(myItemBody).collect { response ->
+                response?.let { callback(response) }
+            }
+        }
+    }
+
 
 }

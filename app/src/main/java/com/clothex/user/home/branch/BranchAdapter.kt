@@ -14,7 +14,7 @@ import com.clothex.user.databinding.AdapterItemSavedLocationBinding
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
  */
-class BranchAdapter(private val list: List<Branch>) :
+class BranchAdapter(private val list: List<Branch>, private val onClick: (Branch) -> Unit) :
     RecyclerView.Adapter<BranchAdapter.ViewHolder>() {
     private var selectedItemPosition = -1
 
@@ -37,6 +37,7 @@ class BranchAdapter(private val list: List<Branch>) :
 //            list[selectedItemPosition].isSelected = true
 //            notifyItemChanged(selectedItemPosition)
             notifyDataSetChanged()
+            onClick.invoke(list[selectedItemPosition])
         }
 
     override fun getItemCount(): Int = list.size

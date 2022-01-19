@@ -1,11 +1,13 @@
 package com.clothex.user.di
 
+import com.clothex.user.home.book.BookViewModel
 import com.clothex.user.home.home.HomeViewModel
 import com.clothex.user.home.product_details.ProductDetailsViewModel
 import com.clothex.user.home.search.SearchViewModel
 import com.clothex.user.home.search.filter.FilterProductViewModel
 import com.clothex.user.home.search.sort.SortProductViewModel
 import com.clothex.user.home.shop.details.ShopDetailsViewModel
+import com.clothex.user.my_items.items.MyItemsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -21,7 +23,10 @@ val viewModelsModule = module {
     }
 
     viewModel {
-        ProductDetailsViewModel(get(named("get_product_details")))
+        ProductDetailsViewModel(
+            getProductDetailsUseCase = get(named("get_product_details")),
+            createMyItemsUseCase = get(named("create_my_item"))
+        )
     }
 
     viewModel {
@@ -56,4 +61,14 @@ val viewModelsModule = module {
         ShopDetailsViewModel(get(named("get_shop_details")))
     }
 
+
+    viewModel {
+        MyItemsViewModel(
+            getMyItemsUseCase = get(named("get_my_items"))
+        )
+    }
+
+    viewModel {
+        BookViewModel(deleteMyItemsUseCase = get(named("delete_my_item")))
+    }
 }

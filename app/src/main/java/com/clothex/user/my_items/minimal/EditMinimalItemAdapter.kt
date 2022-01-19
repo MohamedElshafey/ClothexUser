@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.clothex.user.data.my_items.MinimalProduct
+import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.user.databinding.AdapterEditMinimalProductBinding
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
 class EditMinimalItemAdapter(
-    private val list: ArrayList<MinimalProduct>,
-    val deleteCallback: (Int, List<MinimalProduct>) -> Unit
+    private val list: ArrayList<MyItem>,
+    val deleteCallback: (MyItem, List<MyItem>) -> Unit
 ) :
     Adapter<EditMinimalItemAdapter.ViewHolder>() {
 
@@ -29,16 +29,16 @@ class EditMinimalItemAdapter(
 
     inner class ViewHolder(val binding: AdapterEditMinimalProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(minimalProduct: MinimalProduct) {
+        fun bind(minimalProduct: MyItem) {
             binding.colorItem.colorView.apply {
                 val backgroundDrawable = background as GradientDrawable
                 backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
                 background = backgroundDrawable
             }
             binding.deleteIV.setOnClickListener {
-                list.removeAt(adapterPosition)
-                notifyItemRemoved(adapterPosition)
-                deleteCallback.invoke(adapterPosition, list)
+                deleteCallback.invoke(list[adapterPosition], list)
+//                list.removeAt(adapterPosition)
+//                notifyItemRemoved(adapterPosition)
             }
             binding.viewModel = MinimalItemViewModel(minimalProduct)
         }

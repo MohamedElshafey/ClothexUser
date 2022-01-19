@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 /**
  * Created by Mohamed Elshafey on 11/12/2021.
  */
-@Parcelize
+@kotlinx.parcelize.Parcelize
 data class Voucher(
     val title: String,
     val subtitle: String,

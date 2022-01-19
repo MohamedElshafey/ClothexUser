@@ -60,7 +60,7 @@ class OrdersAdapter(private var list: List<Order>, val onClickListener: (Order) 
             }
             binding.statusTV.background = backgroundDrawable
             binding.bookedItemsTV.text = order.bookedItems.size.toString()
-            val totalPrice = order.bookedItems.map { it.price * it.quantity }.sum()
+            val totalPrice = order.bookedItems.map { it.product.price * it.quantity }.sum()
             binding.totalPriceTV.text = totalPrice.toString()
             if (order.endTime > 0) {
                 binding.orderValidContainer.visibility = View.VISIBLE
