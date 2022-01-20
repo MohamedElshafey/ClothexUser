@@ -3,6 +3,7 @@ package com.clothex.user.home.shop.items
 import android.os.Bundle
 import android.view.View
 import com.clothex.user.home.search.SearchBaseFragment
+import com.clothex.user.home.search.SearchBaseFragmentArgs
 import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
 
@@ -24,6 +25,7 @@ class SearchProductsFragment : SearchBaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.shopId = requireArguments().getString("shopId")
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
