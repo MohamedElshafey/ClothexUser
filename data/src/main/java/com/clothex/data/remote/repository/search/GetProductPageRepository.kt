@@ -1,7 +1,7 @@
-package com.clothex.data.remote.repository
+package com.clothex.data.remote.repository.search
 
 import com.clothex.data.domain.model.home.HomeProduct
-import com.clothex.data.domain.repository.home.IGetProductPageRepository
+import com.clothex.data.domain.repository.search.IGetProductPageRepository
 import com.clothex.data.remote.api.ProductApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

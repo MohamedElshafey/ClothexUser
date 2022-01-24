@@ -6,7 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @kotlinx.parcelize.Parcelize
 data class Branch(
-    val _id: String?,
+    @SerializedName("_id")
+    val id: String,
     var address: Address?,
 //    var departments: List<Department>?,
     @SerializedName("inside_photos")

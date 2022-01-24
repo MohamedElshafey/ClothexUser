@@ -8,6 +8,7 @@ import com.clothex.user.home.search.filter.FilterProductViewModel
 import com.clothex.user.home.search.sort.SortProductViewModel
 import com.clothex.user.home.shop.details.ShopDetailsViewModel
 import com.clothex.user.my_items.items.MyItemsViewModel
+import com.clothex.user.my_items.orders.ActiveOrdersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -32,6 +33,7 @@ val viewModelsModule = module {
     viewModel {
         SearchViewModel(
             productPageUseCase = get(named("get_product_page")),
+            shopPageUseCase = get(named("get_shop_page")),
             getSortUseCase = get(named("get_sort")),
             getSizeFilterUseCase = get(named("get_size_filter")),
             getColorFilterUseCase = get(named("get_color_filter")),
@@ -69,6 +71,15 @@ val viewModelsModule = module {
     }
 
     viewModel {
-        BookViewModel(deleteMyItemsUseCase = get(named("delete_my_item")))
+        BookViewModel(
+            deleteMyItemsUseCase = get(named("delete_my_item")),
+            createMyOrdersUseCase = get(named("create_my_order"))
+        )
+    }
+
+    viewModel {
+        ActiveOrdersViewModel(
+            getMyOrdersUseCase = get(named("get_my_orders"))
+        )
     }
 }

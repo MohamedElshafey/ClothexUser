@@ -112,7 +112,7 @@ class ProductDetailsFragment : Fragment() {
             val selectedSizeName = mViewModel.selectedSize?.title
             val quantity = mViewModel.quantity
             val shopId = mViewModel.product?.shop?.id
-            val selectedBranchId = mViewModel.selectedBranch?._id
+            val selectedBranchId = mViewModel.selectedBranch?.id
             if (selectedColorCode != null && selectedSizeName != null && selectedBranchId != null && shopId != null) {
                 val myItemBody = MyItemBody(
                     customer_id = "123456789",

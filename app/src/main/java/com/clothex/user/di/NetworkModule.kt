@@ -2,10 +2,7 @@ package com.clothex.user.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.clothex.data.remote.api.HomeApiService
-import com.clothex.data.remote.api.MyItemApiService
-import com.clothex.data.remote.api.ProductApiService
-import com.clothex.data.remote.api.ShopApiService
+import com.clothex.data.remote.api.*
 import com.clothex.user.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -38,6 +35,8 @@ val networkModule = module {
     single { provideShopApiService(retrofit = get()) }
 
     single { provideMyItemApiService(retrofit = get()) }
+
+    single { provideMyOrderApiService(retrofit = get()) }
 }
 
 
@@ -71,6 +70,7 @@ internal fun provideRetrofit(okHttpClient: OkHttpClient, url: String, gson: Gson
 internal fun provideGson(): Gson {
     return GsonBuilder()
         .setLenient()
+        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         .create()
 }
 
@@ -85,3 +85,6 @@ internal fun provideShopApiService(retrofit: Retrofit): ShopApiService =
 
 internal fun provideMyItemApiService(retrofit: Retrofit): MyItemApiService =
     retrofit.create(MyItemApiService::class.java)
+
+internal fun provideMyOrderApiService(retrofit: Retrofit): OrdersApiService =
+    retrofit.create(OrdersApiService::class.java)

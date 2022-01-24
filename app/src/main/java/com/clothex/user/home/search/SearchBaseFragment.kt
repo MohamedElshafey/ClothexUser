@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
+import androidx.core.view.isGone
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -15,12 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.clothex.user.R
-import com.clothex.user.data.shopList
 import com.clothex.user.databinding.FragmentSearchProductBinding
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
-import com.clothex.user.home.shop.ShopSearchAdapter
+import com.clothex.user.home.shop.ShopAdapter
 import org.koin.android.ext.android.inject
 
 /**
@@ -30,28 +30,43 @@ open class SearchBaseFragment : Fragment() {
 
     lateinit var binding: FragmentSearchProductBinding
     val viewModel: SearchViewModel by inject()
-    val productAdapter = ProductAdapter {
+    private val productAdapter = ProductAdapter {
         findNavController().navigate(
             SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
                 it.id
             )
         )
     }
+    private val shopAdapter = ShopAdapter {
+        findNavController().navigate(
+            SearchBaseFragmentDirections.actionSearchProductFragmentToShopDetailsFragment(
+                it.id
+            )
+        )
+    }
+
     private var loadingMore = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            viewModel.isProducts = SearchBaseFragmentArgs.fromBundle(it).product
+        }
         viewModel.reset()
-        viewModel.fetchProductPage(null)
+        productAdapter.reset()
+        shopAdapter.reset()
+        viewModel.fetch(null)
         setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
             productAdapter.reset()
+            shopAdapter.reset()
             viewModel.reset()
-            viewModel.fetchProductPage(null)
+            viewModel.fetch(null)
         }
         setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, _ ->
             productAdapter.reset()
+            shopAdapter.reset()
             viewModel.reset()
-            viewModel.fetchProductPage(null)
+            viewModel.fetch(null)
         }
     }
 
@@ -64,30 +79,27 @@ open class SearchBaseFragment : Fragment() {
         return binding.root
     }
 
-    private var isProduct = true
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
-            isProduct = SearchBaseFragmentArgs.fromBundle(it).product
-        }
         val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
         listPopupWindow.anchorView = binding.searchBar.menu
         val list = listOf("Items", "Shops")
         listPopupWindow.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item, list))
-        listPopupWindow.setSelection(if (isProduct) 0 else 1)
+        listPopupWindow.setSelection(if (viewModel.isProducts) 0 else 1)
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             val selectedItem = list[position]
             if (selectedItem == "Items") {
                 showProducts()
+                viewModel.fetch(null)
             } else {
                 showShops()
+                viewModel.fetch(null)
             }
             binding.searchBar.menu.text = selectedItem
             listPopupWindow.dismiss()
         }
 
-        if (isProduct) {
+        if (viewModel.isProducts) {
             showProducts()
             binding.searchBar.menu.text = list[0]
         } else {
@@ -95,35 +107,42 @@ open class SearchBaseFragment : Fragment() {
             binding.searchBar.menu.text = list[1]
         }
 
+        viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
+            loadingMore = false
+            productAdapter.update(products)
+        })
+
+        viewModel.shopLiveData.observe(viewLifecycleOwner, {
+            loadingMore = false
+            shopAdapter.update(it)
+        })
+
         binding.searchBar.menu.setOnClickListener {
             listPopupWindow.show()
         }
 
         binding.searchBar.searchET.doAfterTextChanged {
             productAdapter.reset()
+            shopAdapter.reset()
             viewModel.reset()
-            viewModel.fetchProductPage(it.toString())
+            viewModel.fetch(it.toString())
         }
 
-        viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
-            loadingMore = false
-            productAdapter.update(products)
-            binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    val layoutManager = recyclerView.layoutManager
-                    if (layoutManager is StaggeredGridLayoutManager) {
-                        val totalItemCount = layoutManager.itemCount;
-                        val lastPositions = IntArray(layoutManager.spanCount)
-                        layoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
-                        val lastVisibleItem = lastPositions[0].coerceAtLeast(lastPositions[1])
-                        if (!loadingMore && totalItemCount >= 20 && totalItemCount - 1 <= (lastVisibleItem)) {
-                            loadingMore = true
-                            viewModel.fetchProductPage(null)
-                        }
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager
+                if (layoutManager is StaggeredGridLayoutManager) {
+                    val totalItemCount = layoutManager.itemCount;
+                    val lastPositions = IntArray(layoutManager.spanCount)
+                    layoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
+                    val lastVisibleItem = lastPositions[0].coerceAtLeast(lastPositions[1])
+                    if (!loadingMore && totalItemCount >= 20 && totalItemCount - 1 <= (lastVisibleItem)) {
+                        loadingMore = true
+                        viewModel.fetch(null)
                     }
                 }
-            })
+            }
         })
 
         binding.sortContainer.setOnClickListener {
@@ -142,18 +161,20 @@ open class SearchBaseFragment : Fragment() {
     }
 
     private fun showProducts() {
+        viewModel.isProducts = true
+        binding.filterContainer.isGone = false
+        binding.sortContainer.isGone = false
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         binding.recyclerView.adapter = productAdapter
     }
 
     private fun showShops() {
+        viewModel.isProducts = false
+        binding.filterContainer.isGone = true
+        binding.sortContainer.isGone = true
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        binding.recyclerView.adapter = ShopSearchAdapter(shopList) {
-            findNavController().navigate(
-                SearchBaseFragmentDirections.actionSearchProductFragmentToShopDetailsFragment("")
-            )
-        }
+        binding.recyclerView.adapter = shopAdapter
     }
 
 }

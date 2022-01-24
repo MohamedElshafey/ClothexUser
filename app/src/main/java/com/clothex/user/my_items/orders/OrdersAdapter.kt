@@ -10,20 +10,26 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.user.R
-import com.clothex.user.data.orders.Order
 import com.clothex.user.databinding.AdapterItemOrderBinding
 import com.clothex.user.utils.CustomTypefaceSpan
+import com.clothex.user.utils.DateUtil.getDifferenceTimeStamp
 import com.clothex.user.utils.setImageFromUrl
+import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.*
 
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class OrdersAdapter(private var list: List<Order>, val onClickListener: (Order) -> Unit) :
+class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
     Adapter<OrdersAdapter.ViewHolder>() {
+
+    var list: List<MyOrder> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -34,71 +40,133 @@ class OrdersAdapter(private var list: List<Order>, val onClickListener: (Order) 
 
     override fun getItemCount(): Int = list.size
 
-    fun filter(status: OrderStatus) {
-        list = list.filter {
-            it.orderStatus == status
-        }
+    fun updateData(list: List<MyOrder>) {
+        this.list = list
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(val binding: AdapterItemOrderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(order: Order) {
+        fun bind(order: MyOrder) {
             val context = binding.root.context
+
             with(order.shop) {
                 binding.shopTitleTV.text = name
-                binding.shopAddressTV.text = addressName
-                setImageFromUrl(binding.logoIV, logoUrl)
+                setImageFromUrl(binding.logoIV, logo?.source)
             }
-            binding.orderIdTV.text = "Order : ${order.orderId}"
-            binding.placedDateTV.text = "Placed on 24 Nov 2021 1:30 PM"
+            with(order.branch) {
+                binding.shopAddressTV.text = address?.name
+            }
+            binding.orderIdTV.text = String.format(context.getString(R.string.order), order.id)
+            binding.placedDateTV.text =
+                String.format(
+                    context.getString(R.string.placed_on),
+                    order.placedOn?.fromUTCToLocal()
+                )
+//                String.format(
+//                    context.getString(R.string.placed_on),
+//                    uTCToLocal(
+//                        "yyyy-MM-dd hh:mm a",
+//                        "yyyy-MM-dd hh:mm a",
+//                        order.placedOn.toString()
+//                    )
+//                )
             val backgroundDrawable = binding.statusTV.background as GradientDrawable
-            order.orderStatus.let {
+            order.state.let {
                 binding.statusTV.text = context.getString(it.title)
                 binding.statusTV.setTextColor(it.contentColor)
                 backgroundDrawable.setColor(it.backgroundColor)
             }
             binding.statusTV.background = backgroundDrawable
-            binding.bookedItemsTV.text = order.bookedItems.size.toString()
-            val totalPrice = order.bookedItems.map { it.product.price * it.quantity }.sum()
+            binding.bookedItemsTV.text = order.myItems.size.toString()
+            val totalPrice = order.myItems.map { it.product.price * it.quantity }.sum()
             binding.totalPriceTV.text = totalPrice.toString()
-            if (order.endTime > 0) {
+            if (order.endTime != null && order.orderTimeStamp != null) {
                 binding.orderValidContainer.visibility = View.VISIBLE
                 binding.directionButton.visibility = View.VISIBLE
                 binding.directionButton.setOnClickListener {
                     onClickListener.invoke(order)
                 }
-                val diffTimeStamp: Long = ((1639006661340 + 3600) - 1639006661340) * 1000L
-                object : CountDownTimer(diffTimeStamp, 1000L) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        val orderValidMsg = context.getString(R.string.order_valid_msg)
-                        val date = Date(millisUntilFinished)
-                        val simpleDateFormat = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH)
-                        val timeText = simpleDateFormat.format(date)
-                        val validText = String.format(orderValidMsg, timeText)
-                        val fontBold =
-                            ResourcesCompat.getFont(context, R.font.ibm_plex_sans_arabic_bold)
-                        val timeStartIndex = validText.indexOf(timeText)
-                        val timeEndIndex = timeStartIndex + timeText.length
-                        val spannableStringBuilder = SpannableStringBuilder(validText)
-                        spannableStringBuilder.setSpan(
-                            CustomTypefaceSpan("", fontBold),
-                            timeStartIndex,
-                            timeEndIndex,
-                            Spanned.SPAN_EXCLUSIVE_INCLUSIVE
-                        )
-                        binding.orderValidTV.text = spannableStringBuilder
-                    }
+                val diffTimeStamp = getDifferenceTimeStamp(order.endTime!!) ?: return
+                if (diffTimeStamp > 0) {
+                    object : CountDownTimer(diffTimeStamp, 1000L) {
+                        override fun onTick(millisUntilFinished: Long) {
+                            val orderValidMsg = context.getString(R.string.order_valid_msg)
 
-                    override fun onFinish() {
+                            val seconds = (millisUntilFinished / 1000).toInt() % 60
+                            val minutes = (millisUntilFinished / (1000 * 60) % 60)
+                            val hours = (millisUntilFinished / (1000 * 60 * 60) % 24)
 
-                    }
-                }.start()
+                            val hoursInString =
+                                String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                            val validText = String.format(orderValidMsg, hoursInString)
+                            val fontBold =
+                                ResourcesCompat.getFont(context, R.font.ibm_plex_sans_arabic_bold)
+                            val timeStartIndex = validText.indexOf(hoursInString)
+                            val timeEndIndex = timeStartIndex + hoursInString.length
+                            val spannableStringBuilder = SpannableStringBuilder(validText)
+                            spannableStringBuilder.setSpan(
+                                CustomTypefaceSpan("", fontBold),
+                                timeStartIndex,
+                                timeEndIndex,
+                                Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+                            )
+                            binding.orderValidTV.text = spannableStringBuilder
+                        }
+
+                        override fun onFinish() {
+                            binding.orderValidTV.setText(R.string.order_run_out_of_time)
+                        }
+                    }.start()
+                } else {
+                    binding.orderValidTV.setText(R.string.order_run_out_of_time)
+                }
             } else {
                 binding.orderValidContainer.visibility = View.GONE
                 binding.directionButton.visibility = View.GONE
             }
         }
+    }
+
+
+    fun Date.toOurFormat(): String {
+        val dfFrom = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+        dfFrom.timeZone = TimeZone.getTimeZone("UTC")
+        val date = dfFrom.parse(this.toString())
+        val df = SimpleDateFormat("yyyy-MM-dd hh:mm a", Locale.ENGLISH)
+        df.timeZone = TimeZone.getDefault()
+        return df.format(date)
+//        val dateFormat = DateFormat.getDateFormat(context);
+//        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm a", Locale.ENGLISH)
+//        simpleDateFormat.timeZone = TimeZone.getDefault();
+//        return simpleDateFormat.format(this)
+//        return DateFormat.format("yyyy-MM-dd hh:mm a", this).toString()
+//        dateFormat.format("yyyy-MM-dd hh:mm:ss a",this)
+
+    }
+
+    fun Date.fromUTCToLocal(): String? {
+        val format = "yyyy-MM-dd hh:mm a"
+        var dateToReturn = this.toString()
+        val sdf = SimpleDateFormat(format, Locale.ENGLISH)
+        sdf.timeZone = TimeZone.getTimeZone("UTC")
+        var gmt: Date
+        val sdfOutPutToSend = SimpleDateFormat(format, Locale.ENGLISH)
+        sdfOutPutToSend.timeZone = TimeZone.getDefault()
+        try {
+            gmt = sdf.parse(this.toString())
+            dateToReturn = sdfOutPutToSend.format(gmt)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return dateToReturn
+    }
+
+    fun convertToLocalDateViaInstant(dateToConvert: Date): LocalDate? {
+        return dateToConvert.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+
     }
 
 }

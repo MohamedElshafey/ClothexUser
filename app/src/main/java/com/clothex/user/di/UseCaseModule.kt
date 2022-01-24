@@ -6,19 +6,25 @@ import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
+import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
+import com.clothex.data.domain.usecases.order.GetMyOrdersUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductPageUseCase
 import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
+import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
 import com.clothex.data.local.LocalDataSourceImpl
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
-import com.clothex.data.remote.repository.GetProductPageRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
 import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
+import com.clothex.data.remote.repository.order.CreateMyOrderRepository
+import com.clothex.data.remote.repository.order.GetMyOrdersRepository
+import com.clothex.data.remote.repository.search.GetProductPageRepository
+import com.clothex.data.remote.repository.search.GetShopPageRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -52,6 +58,11 @@ val useCaseModule = module {
     single(named("get_my_items")) { provideGetMyItemsUseCase(get()) }
     single(named("create_my_item")) { provideCreateMyItemUseCase(get()) }
     single(named("delete_my_item")) { provideDeleteMyItemUseCase(get()) }
+
+    single(named("get_my_orders")) { provideGetMyOrdersUseCase(get()) }
+    single(named("create_my_order")) { provideCreateMyOrderUseCase(get()) }
+
+    single(named("get_shop_page")) { provideGetShopPageUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -124,5 +135,17 @@ fun provideCreateMyItemUseCase(repository: CreateMyItemRepository): CreateMyItem
 
 fun provideDeleteMyItemUseCase(repository: DeleteMyItemRepository): DeleteMyItemsUseCase {
     return DeleteMyItemsUseCase(repository)
+}
+
+fun provideGetMyOrdersUseCase(repository: GetMyOrdersRepository): GetMyOrdersUseCase {
+    return GetMyOrdersUseCase(repository)
+}
+
+fun provideCreateMyOrderUseCase(repository: CreateMyOrderRepository): CreateMyOrdersUseCase {
+    return CreateMyOrdersUseCase(repository)
+}
+
+fun provideGetShopPageUseCase(repository: GetShopPageRepository): GetShopPageUseCase {
+    return GetShopPageUseCase(repository)
 }
 

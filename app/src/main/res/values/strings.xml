@@ -51,7 +51,10 @@
     <string name="sign_in_msg">Already have account. Sign in!</string>
     <string name="view_orders_by">View Orders by</string>
     <string name="filter">Filter</string>
-    <string name="order_valid_msg">Your order is valid for %s Hurry up!</string>
+    <string name="placed_on">Placed on %s</string>
+    <string name="order">Order : %s</string>
+    <string name="order_valid_msg">Your order is valid for %s hours Hurry up!</string>
+    <string name="order_run_out_of_time">Your order may become invalid!</string>
     <string name="get_directions_now">Get directions now</string>
     <string name="book_items">Book items</string>
     <string name="total">Total</string>
@@ -113,9 +116,6 @@
     <string name="new_password">New password</string>
     <string name="confirm_new_password">Confirm new password</string>
     <string name="forget_your_password_desc">Enter the registered email to sent reset your password</string>
-    <string name="pending">Pending</string>
-    <string name="active">Active</string>
-    <string name="rejected">Rejected</string>
     <string name="available_online">Available online</string>
     <string name="voucher">Voucher</string>
     <string name="use_voucher">Use voucher</string>

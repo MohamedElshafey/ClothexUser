@@ -1,4 +1,4 @@
-package com.clothex.data.domain.repository.home
+package com.clothex.data.domain.repository.search
 
 import com.clothex.data.domain.model.home.HomeProduct
 import kotlinx.coroutines.flow.Flow

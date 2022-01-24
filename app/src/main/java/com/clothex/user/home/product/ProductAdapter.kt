@@ -23,8 +23,6 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
         this.callback = callback
     }
 
-//    constructor() : super()
-
     fun update(list: List<HomeProduct>) {
         products.addAll(list)
         notifyItemRangeInserted(this.products.size - list.size, this.products.size)

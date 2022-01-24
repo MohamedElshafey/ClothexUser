@@ -7,23 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.clothex.data.domain.model.order.OrderState
 import com.clothex.user.R
 
 
 /**
  * Created by Mohamed Elshafey on 20/12/2021.
  */
-class OrderStatusFilterAdapter(context: Context, objects: Array<OrderStatus>) :
-    ArrayAdapter<OrderStatus>(context, 0, objects) {
+class OrderStateFilterAdapter(context: Context, objects: Array<OrderState>) :
+    ArrayAdapter<OrderState>(context, 0, objects) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var currentItemView: View? = convertView
 
         if (currentItemView == null) {
             currentItemView =
-                LayoutInflater.from(context).inflate(R.layout.order_status, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.order_state, parent, false)
         }
-        val orderStatus: OrderStatus = getItem(position)!!//OrderStatus.valueOf()
+        val orderStatus: OrderState = getItem(position)!!
 
         currentItemView?.findViewById<TextView>(R.id.statusTV)?.apply {
             text = context.getString(orderStatus.title)
