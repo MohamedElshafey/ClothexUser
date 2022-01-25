@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
  * Created by Mohamed Elshafey on 10/10/2020.
  */
 interface IGetHomeRepository {
-    suspend fun getHome(): Flow<Home?>
+    suspend fun getHome(): Flow<Home>
 }

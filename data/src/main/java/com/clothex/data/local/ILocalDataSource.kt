@@ -11,6 +11,8 @@ interface ILocalDataSource {
 
     suspend fun getToken(): Flow<String?>
 
+    fun getTokenAsString(): String?
+
     suspend fun setSortEnum(sortEnum: SortEnum)
 
     suspend fun getSortEnum(): Flow<String?>
@@ -26,6 +28,12 @@ interface ILocalDataSource {
 
     suspend fun setPriceEnd(price: Int?)
     suspend fun getPriceEnd(): Flow<Int?>
+
+    suspend fun setVisitOnBoarding(isVisited: Boolean)
+    suspend fun getVisitOnBoarding(): Flow<Boolean>
+
+    suspend fun setIsLoginTemporary(isVisited: Boolean)
+    suspend fun getIsLoginTemporary(): Flow<Boolean>
 
     suspend fun clearSessionPref()
 

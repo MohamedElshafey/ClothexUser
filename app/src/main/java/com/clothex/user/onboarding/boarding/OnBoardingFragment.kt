@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentOnboardingBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.android.ext.android.inject
 
 class OnBoardingFragment : Fragment() {
 
-    private lateinit var onBoardingViewModel: OnBoardingViewModel
     private var _binding: FragmentOnboardingBinding? = null
+    private val viewModel: OnBoardingViewModel by inject()
     private val binding get() = _binding!!
     private val onBoardingItemList = listOf(
         OnBoardingModel(
@@ -44,14 +44,13 @@ class OnBoardingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        onBoardingViewModel = ViewModelProvider(this)[OnBoardingViewModel::class.java]
         _binding = FragmentOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.changeVisitOnBoardingState()
         binding.viewPager.adapter = OnBoardingAdapter(onBoardingItemList) { position ->
             if (position == onBoardingItemList.size - 1) {
                 findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToUserPreferencesFragment())

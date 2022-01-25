@@ -16,7 +16,6 @@ import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.dialog.MessageAlertDialog
-import com.clothex.user.home.password.forget.ForgetPasswordFragmentDirections
 import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
 import com.clothex.user.utils.setAllOnClickListener
@@ -93,30 +92,36 @@ class BookFragment : Fragment() {
         calculatePrices(myItemGroup.myItems)
         binding.bookButton.setOnClickListener {
             val myItemsIds = myItemGroup.myItems.map { it.id }
-            mViewModel.createMyOrder(
-                OrderBody(
-                    "123456789",
-                    myItemsIds,
-                    myItemGroup.branch.id,
-                    myItemGroup.shop.id
-                )
-            ) { simpleResponse ->
-                if (simpleResponse?.success == true) {
-                    findNavController().navigate(BookFragmentDirections.actionBookFragmentToRequestBookFragment())
-                } else {
-                    MessageAlertDialog.showAlertDialog(
-                        requireContext(),
-                        "Error!",
-                        "Can't complete your request, please try again!",
-                        "Done",
-                        null,
-                        iconRes = R.drawable.ic_wrong_small,
-                        positiveOnClickListener = {
+            mViewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner, { isLoginTemporary ->
+                if (isLoginTemporary.not()) {
+                    mViewModel.createMyOrder(
+                        OrderBody(
+                            "123456789",
+                            myItemsIds,
+                            myItemGroup.branch.id,
+                            myItemGroup.shop.id
+                        )
+                    ) { simpleResponse ->
+                        if (simpleResponse?.success == true) {
+                            findNavController().navigate(BookFragmentDirections.actionBookFragmentToRequestBookFragment())
+                        } else {
+                            MessageAlertDialog.showAlertDialog(
+                                requireContext(),
+                                "Error!",
+                                "Can't complete your request, please try again!",
+                                "Done",
+                                null,
+                                iconRes = R.drawable.ic_wrong_small,
+                                positiveOnClickListener = {
 
+                                }
+                            )
                         }
-                    )
+                    }
+                } else {
+                    findNavController().navigate(BookFragmentDirections.actionBookFragmentToLoginFragment())
                 }
-            }
+            })
         }
 
         binding.shopGroup.setAllOnClickListener {
@@ -127,6 +132,11 @@ class BookFragment : Fragment() {
             )
         }
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mViewModel.getIsLoginUser()
     }
 
     private fun calculatePrices(items: List<MyItem>) {

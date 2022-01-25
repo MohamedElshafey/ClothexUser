@@ -6,14 +6,22 @@ import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
+import com.clothex.data.domain.usecases.onboarding.GetVisitOnBoardingUseCase
+import com.clothex.data.domain.usecases.onboarding.SetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
 import com.clothex.data.domain.usecases.order.GetMyOrdersUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductPageUseCase
 import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
 import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
+import com.clothex.data.domain.usecases.sign.GetIsLoginTemporaryUseCase
+import com.clothex.data.domain.usecases.sign.LoginUseCase
+import com.clothex.data.domain.usecases.sign.SignUpTemporaryUseCase
+import com.clothex.data.domain.usecases.sign.SignUpUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
+import com.clothex.data.domain.usecases.token.GetTokenUseCase
+import com.clothex.data.domain.usecases.token.SetTokenUseCase
 import com.clothex.data.local.LocalDataSourceImpl
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
@@ -25,6 +33,9 @@ import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.search.GetProductPageRepository
 import com.clothex.data.remote.repository.search.GetShopPageRepository
+import com.clothex.data.remote.repository.sign.LoginRepository
+import com.clothex.data.remote.repository.sign.SignUpRepository
+import com.clothex.data.remote.repository.sign.SignUpTemporaryRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -63,6 +74,18 @@ val useCaseModule = module {
     single(named("create_my_order")) { provideCreateMyOrderUseCase(get()) }
 
     single(named("get_shop_page")) { provideGetShopPageUseCase(get()) }
+
+    single(named("get_token")) { provideGetTokenUseCase(get()) }
+    single(named("set_token")) { provideSetTokenUseCase(get()) }
+
+    single(named("signup_temporary")) { provideSignUpTemporaryUseCase(get()) }
+    single(named("signup")) { provideSignUpUseCase(get()) }
+    single(named("login")) { provideLoginUseCase(get(), get(named("set_token"))) }
+
+    single(named("get_visit_onboarding")) { provideGetVisitOnBoardingUseCase(get()) }
+    single(named("set_visit_onboarding")) { provideSetVisitOnBoardingUseCase(get()) }
+
+    single(named("get_login_temporary")) { provideGetIsLoginTemporaryUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -147,5 +170,40 @@ fun provideCreateMyOrderUseCase(repository: CreateMyOrderRepository): CreateMyOr
 
 fun provideGetShopPageUseCase(repository: GetShopPageRepository): GetShopPageUseCase {
     return GetShopPageUseCase(repository)
+}
+
+fun provideGetTokenUseCase(repository: LocalDataSourceImpl): GetTokenUseCase {
+    return GetTokenUseCase(repository)
+}
+
+fun provideSetTokenUseCase(repository: LocalDataSourceImpl): SetTokenUseCase {
+    return SetTokenUseCase(repository)
+}
+
+fun provideSignUpTemporaryUseCase(repository: SignUpTemporaryRepository): SignUpTemporaryUseCase {
+    return SignUpTemporaryUseCase(repository)
+}
+
+fun provideSignUpUseCase(repository: SignUpRepository): SignUpUseCase {
+    return SignUpUseCase(repository)
+}
+
+fun provideLoginUseCase(
+    repository: LoginRepository,
+    setTokenUseCase: SetTokenUseCase
+): LoginUseCase {
+    return LoginUseCase(repository, setTokenUseCase)
+}
+
+fun provideGetVisitOnBoardingUseCase(repository: LocalDataSourceImpl): GetVisitOnBoardingUseCase {
+    return GetVisitOnBoardingUseCase(repository)
+}
+
+fun provideSetVisitOnBoardingUseCase(repository: LocalDataSourceImpl): SetVisitOnBoardingUseCase {
+    return SetVisitOnBoardingUseCase(repository)
+}
+
+fun provideGetIsLoginTemporaryUseCase(repository: LocalDataSourceImpl): GetIsLoginTemporaryUseCase {
+    return GetIsLoginTemporaryUseCase(repository)
 }
 

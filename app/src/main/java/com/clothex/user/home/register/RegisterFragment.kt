@@ -9,27 +9,28 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.sign.SignupBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentRegisterBinding
+import org.koin.android.ext.android.inject
 
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var registerViewModel: RegisterViewModel
+
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: RegisterViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        registerViewModel =
-            ViewModelProvider(this)[RegisterViewModel::class.java]
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,6 +62,44 @@ class RegisterFragment : Fragment() {
         binding.signInTV.text = spannableStringBuilder
         binding.signInTV.setOnClickListener {
             findNavController().navigateUp()
+        }
+        binding.bottomButton.setOnClickListener {
+            val email = binding.emailTextInputLayout.editText?.text?.toString()
+            val username = binding.nameTextInputLayout.editText?.text?.toString()
+            val phoneNumber = binding.phoneNumberTextInputLayout.editText?.text?.toString()
+            val password = binding.passwordTextInputLayout.editText?.text?.toString()
+            if (email.isNullOrEmpty().not() && username.isNullOrEmpty().not() &&
+                phoneNumber.isNullOrEmpty().not() && password.isNullOrEmpty().not()
+            ) {
+                val signupBody = SignupBody(
+                    email = email!!,
+                    password = password!!,
+                    phone_number = phoneNumber!!,
+                    username = username!!
+                )
+                viewModel.signup(signupBody) {
+                    val simpleResponse = it.getOrNull()
+                    if (simpleResponse != null) {
+                        if (simpleResponse.success) {
+                            Toast.makeText(
+                                requireContext(),
+                                "You signed up successfully, now please Login!",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            findNavController().navigateUp()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                simpleResponse.message,
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Network error!", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
     }
 

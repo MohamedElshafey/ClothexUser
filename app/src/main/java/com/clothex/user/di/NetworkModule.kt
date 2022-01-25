@@ -2,10 +2,13 @@ package com.clothex.user.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.clothex.data.local.LocalDataSourceImpl
 import com.clothex.data.remote.api.*
 import com.clothex.user.BuildConfig
+import com.clothex.user.network.TokenInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -26,7 +29,7 @@ val networkModule = module {
 
     single { provideChuckerInterceptor(context = androidContext()) }
 
-    single { provideOkHttpClient(chuckerInterceptor = get()) }
+    single { provideOkHttpClient(chuckerInterceptor = get(), tokenInterceptor = get()) }
 
     single { provideHomeApiService(retrofit = get()) }
 
@@ -37,22 +40,33 @@ val networkModule = module {
     single { provideMyItemApiService(retrofit = get()) }
 
     single { provideMyOrderApiService(retrofit = get()) }
+
+    single { provideSignApiService(retrofit = get()) }
+
+    single { provideTokenInterceptor(localDataSourceImpl = get()) }
 }
 
 
-internal fun provideOkHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
+internal fun provideOkHttpClient(
+    chuckerInterceptor: ChuckerInterceptor,
+    tokenInterceptor: TokenInterceptor
+): OkHttpClient {
     val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
-
     val builder = OkHttpClient.Builder()
         .connectTimeout(60L, TimeUnit.SECONDS)
         .readTimeout(60L, TimeUnit.SECONDS)
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(tokenInterceptor)
     if (BuildConfig.DEBUG) {
         builder.addInterceptor(chuckerInterceptor)
     }
     return builder.build()
+}
+
+internal fun provideTokenInterceptor(localDataSourceImpl: LocalDataSourceImpl): TokenInterceptor {
+    return TokenInterceptor(localDataSourceImpl)
 }
 
 internal fun provideChuckerInterceptor(context: Context): ChuckerInterceptor {
@@ -88,3 +102,6 @@ internal fun provideMyItemApiService(retrofit: Retrofit): MyItemApiService =
 
 internal fun provideMyOrderApiService(retrofit: Retrofit): OrdersApiService =
     retrofit.create(OrdersApiService::class.java)
+
+internal fun provideSignApiService(retrofit: Retrofit): SigningApiService =
+    retrofit.create(SigningApiService::class.java)

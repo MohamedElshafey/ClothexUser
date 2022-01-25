@@ -17,6 +17,10 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         emit(sharedPreferences.getString(TOKEN_KEY, null))
     }
 
+    override fun getTokenAsString(): String? {
+        return sharedPreferences.getString(TOKEN_KEY, null)
+    }
+
     override suspend fun setSortEnum(sortEnum: SortEnum) = withContext(Dispatchers.IO) {
         sharedPreferences.edit().putString(SORT_ENUM_KEY, sortEnum.value).apply()
     }
@@ -57,6 +61,22 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
     override suspend fun getPriceEnd(): Flow<Int?> = flow {
         val price = sharedPreferences.getInt(PRICE_END_KEY, -1)
         emit(if (price == -1) null else price)
+    }
+
+    override suspend fun setVisitOnBoarding(isVisited: Boolean) = withContext(Dispatchers.IO) {
+        sharedPreferences.edit().putBoolean(VISIT_ON_BOARDING, isVisited).apply()
+    }
+
+    override suspend fun getVisitOnBoarding(): Flow<Boolean> = flow {
+        emit(sharedPreferences.getBoolean(VISIT_ON_BOARDING, false))
+    }
+
+    override suspend fun setIsLoginTemporary(isVisited: Boolean) = withContext(Dispatchers.IO) {
+        sharedPreferences.edit().putBoolean(IS_LOGIN_TEMPORARY, isVisited).apply()
+    }
+
+    override suspend fun getIsLoginTemporary(): Flow<Boolean> = flow {
+        emit(sharedPreferences.getBoolean(IS_LOGIN_TEMPORARY, false))
     }
 
     override suspend fun clearSessionPref() {

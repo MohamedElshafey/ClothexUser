@@ -158,6 +158,9 @@
         <argument
             android:name="myItem"
             app:argType="com.clothex.user.data.my_items.MyItemGroup" />
+        <action
+            android:id="@+id/action_bookFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/myItemsFragment"

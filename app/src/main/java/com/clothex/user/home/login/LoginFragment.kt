@@ -10,27 +10,29 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.sign.Login
+import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentLoginBinding
+import org.koin.android.ext.android.inject
 
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginViewModel: LoginViewModel
+
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val loginViewModel: LoginViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        loginViewModel =
-            ViewModelProvider(this).get(LoginViewModel::class.java)
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -66,6 +68,24 @@ class LoginFragment : Fragment() {
         }
         binding.forgetPasswordTV.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
+        }
+        binding.bottomButton.setOnClickListener {
+            val phoneNumber = binding.phoneNumberTextInputLayout.editText?.text?.toString()
+            val password = binding.passwordTextInputLayout.editText?.text?.toString()
+            if (phoneNumber.isNullOrEmpty() || password.isNullOrEmpty()) return@setOnClickListener
+            val loginBody = LoginBody(phoneNumber = phoneNumber, password = password)
+            loginViewModel.login(loginBody) {
+                val login: Login? = it.getOrNull()
+                if (login != null) {
+                    findNavController().navigateUp()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Can't login, please try again!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 

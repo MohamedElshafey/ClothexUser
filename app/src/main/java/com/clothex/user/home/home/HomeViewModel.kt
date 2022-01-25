@@ -17,6 +17,7 @@ class HomeViewModel(private val homeUseCase: GetHomeUseCase) : ViewModel() {
     val notificationCount = ObservableField("5")
     val productLiveData = MutableLiveData<List<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
+    val failureLiveData = MutableLiveData<String>()
 
     init {
         fetchHome()
@@ -25,9 +26,14 @@ class HomeViewModel(private val homeUseCase: GetHomeUseCase) : ViewModel() {
     fun fetchHome() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                homeUseCase.invoke(Unit).collect {
-                    productLiveData.postValue(it?.products)
-                    shopLiveData.postValue(it?.shops)
+                homeUseCase.invoke(Unit).collect { homeResult ->
+                    homeResult.getOrNull()?.let {
+                        productLiveData.postValue(it.products)
+                        shopLiveData.postValue(it.shops)
+                    }
+                    homeResult.exceptionOrNull()?.let {
+                        failureLiveData.postValue(it.message)
+                    }
                 }
             }
         }
