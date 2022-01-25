@@ -50,7 +50,7 @@ class ActiveOrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel.fetchMyOrders("123456789")
+        mViewModel.fetchMyOrders()
         binding.filterContainer.setOnClickListener {
             showFilterList()
         }

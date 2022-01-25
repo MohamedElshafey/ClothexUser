@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
  * Created by Mohamed Elshafey on 10/10/2020.
  */
 interface IGetMyItemsRepository {
-    suspend fun getMyItems(customerId: String): Flow<List<MyItem>?>
+    suspend fun getMyItems(): Flow<List<MyItem>?>
 }

@@ -115,7 +115,6 @@ class ProductDetailsFragment : Fragment() {
             val selectedBranchId = mViewModel.selectedBranch?.id
             if (selectedColorCode != null && selectedSizeName != null && selectedBranchId != null && shopId != null) {
                 val myItemBody = MyItemBody(
-                    customer_id = "123456789",
                     branch_id = selectedBranchId,
                     color_code = selectedColorCode,
                     product_id = productId,

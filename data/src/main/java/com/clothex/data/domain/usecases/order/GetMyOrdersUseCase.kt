@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * Created by Mohamed Elshafey on 11/17/2020.
  */
 
-typealias GetMyOrdersBaseUseCase = BaseUseCase<String, Flow<List<MyOrder>?>>
+typealias GetMyOrdersBaseUseCase = BaseUseCase<Unit, Flow<List<MyOrder>?>>
 
 class GetMyOrdersUseCase(private val repository: IGetMyOrdersRepository) : GetMyOrdersBaseUseCase {
-    override suspend fun invoke(params: String): Flow<List<MyOrder>?> =
-        repository.getMyOrders(params)
+    override suspend fun invoke(params: Unit): Flow<List<MyOrder>?> =
+        repository.getMyOrders()
 }

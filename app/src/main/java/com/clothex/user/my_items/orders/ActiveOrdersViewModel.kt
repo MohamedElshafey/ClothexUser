@@ -12,9 +12,9 @@ class ActiveOrdersViewModel(private val getMyOrdersUseCase: GetMyOrdersUseCase) 
 
     val myOrdersLiveData = MutableLiveData<List<MyOrder>?>()
 
-    fun fetchMyOrders(customerId: String) {
+    fun fetchMyOrders() {
         viewModelScope.launch {
-            getMyOrdersUseCase(customerId).collect {
+            getMyOrdersUseCase(Unit).collect {
                 myOrdersLiveData.postValue(it)
             }
         }

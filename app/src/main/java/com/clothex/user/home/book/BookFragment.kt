@@ -96,7 +96,6 @@ class BookFragment : Fragment() {
                 if (isLoginTemporary.not()) {
                     mViewModel.createMyOrder(
                         OrderBody(
-                            "123456789",
                             myItemsIds,
                             myItemGroup.branch.id,
                             myItemGroup.shop.id

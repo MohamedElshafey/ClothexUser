@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.flow
  * Created by Mohamed Elshafey on 11/17/2020.
  */
 class GetMyItemsRepository(private val apiService: MyItemApiService) : IGetMyItemsRepository {
-    override suspend fun getMyItems(customerId: String): Flow<List<MyItem>?> =
-        flow { emit(apiService.getMyItems(customerId)) }
+    override suspend fun getMyItems(): Flow<List<MyItem>?> =
+        flow { emit(apiService.getMyItems()) }
 }

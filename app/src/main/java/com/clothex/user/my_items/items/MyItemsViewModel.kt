@@ -13,9 +13,9 @@ class MyItemsViewModel(private val getMyItemsUseCase: GetMyItemsUseCase) : ViewM
     val mutableMyItemsLiveData: MutableLiveData<List<MyItem>?> = MutableLiveData()
 
 
-    fun fetchMyItems(customerId: String) {
+    fun fetchMyItems() {
         viewModelScope.launch {
-            getMyItemsUseCase(customerId).collect {
+            getMyItemsUseCase(Unit).collect {
                 mutableMyItemsLiveData.postValue(it)
             }
         }

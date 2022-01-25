@@ -15,6 +15,6 @@ interface MyItemApiService {
     @DELETE("my_item/{id}")
     suspend fun deleteMyItem(@Path("id") id: String): SimpleResponse?
 
-    @GET("my_items/{customer_id}")
-    suspend fun getMyItems(@Path("customer_id") customerId: String): List<MyItem>
+    @GET("my_items")
+    suspend fun getMyItems(): List<MyItem>
 }

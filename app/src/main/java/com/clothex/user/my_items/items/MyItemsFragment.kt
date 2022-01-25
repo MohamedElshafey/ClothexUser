@@ -33,7 +33,7 @@ class MyItemsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel.fetchMyItems("123456789")
+        mViewModel.fetchMyItems()
         mViewModel.mutableMyItemsLiveData.observe(viewLifecycleOwner, Observer { myItems ->
             val grouped = myItems?.groupBy {
                 it.branch
