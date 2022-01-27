@@ -13,6 +13,7 @@ import com.clothex.data.remote.repository.search.GetShopPageRepository
 import com.clothex.data.remote.repository.sign.LoginRepository
 import com.clothex.data.remote.repository.sign.SignUpRepository
 import com.clothex.data.remote.repository.sign.SignUpTemporaryRepository
+import com.clothex.data.remote.repository.sign.UpdateFCMTokenRepository
 import org.koin.dsl.module
 
 /**
@@ -33,4 +34,5 @@ val remoteDataSourceModule = module {
     single { SignUpTemporaryRepository(apiService = get()) }
     single { SignUpRepository(apiService = get()) }
     single { LoginRepository(apiService = get()) }
+    single { UpdateFCMTokenRepository(apiService = get()) }
 }

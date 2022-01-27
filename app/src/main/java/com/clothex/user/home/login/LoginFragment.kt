@@ -28,6 +28,11 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private val loginViewModel: LoginViewModel by inject()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        loginViewModel.setFirstTimeOpen()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +45,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.forgetPasswordTV.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-
         val signUpMsg = getString(R.string.sign_up_msg)
         val spannableStringBuilder = SpannableStringBuilder(signUpMsg)
         val startIndex = signUpMsg.indexOf(".")
@@ -68,6 +72,9 @@ class LoginFragment : Fragment() {
         }
         binding.forgetPasswordTV.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
+        }
+        binding.skipButton.setOnClickListener {
+            findNavController().navigateUp()
         }
         binding.bottomButton.setOnClickListener {
             val phoneNumber = binding.phoneNumberTextInputLayout.editText?.text?.toString()

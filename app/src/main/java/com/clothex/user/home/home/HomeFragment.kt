@@ -14,14 +14,21 @@ import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
 import com.clothex.user.utils.setAllOnClickListener
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import org.koin.android.ext.android.inject
 
 
 class HomeFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by inject()
+    private val viewModel: HomeViewModel by inject()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,13 +41,28 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewModel = homeViewModel
+        binding.viewModel = viewModel
+        viewModel.checkFirstTimeOpen()
+        viewModel.isFirstTimeOpenLiveData.observe(viewLifecycleOwner, { isFirstTime ->
+            if (isFirstTime) {
+                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToLoginFragment())
+            } else {
+                FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+                    val token = task.result
+                    viewModel.updateFCMToken(token)
+                })
+                viewModel.fetchHome()
+            }
+        })
 
-        homeViewModel.failureLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.failureLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), "Error, $it", Toast.LENGTH_SHORT).show()
         })
 
-        homeViewModel.productLiveData.observe(viewLifecycleOwner, {
+        viewModel.productLiveData.observe(viewLifecycleOwner, {
             binding.swipeRefresh.isRefreshing = false
             binding.productRV.adapter = ProductAdapter(it) { prod ->
                 findNavController().navigate(
@@ -49,7 +71,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        homeViewModel.shopLiveData.observe(viewLifecycleOwner, {
+        viewModel.shopLiveData.observe(viewLifecycleOwner, {
             binding.shopsRV.adapter = ShopAdapter(it) {
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it.id)
@@ -100,7 +122,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            homeViewModel.fetchHome()
+            viewModel.fetchHome()
         }
 
     }

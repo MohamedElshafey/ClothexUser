@@ -79,6 +79,14 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         emit(sharedPreferences.getBoolean(IS_LOGIN_TEMPORARY, false))
     }
 
+    override suspend fun setIsFirstTime(isFirstTime: Boolean) = withContext(Dispatchers.IO) {
+        sharedPreferences.edit().putBoolean(IS_FIRST_TIME, isFirstTime).apply()
+    }
+
+    override suspend fun getIsFirstTime(): Flow<Boolean> = flow {
+        emit(sharedPreferences.getBoolean(IS_FIRST_TIME, true))
+    }
+
     override suspend fun clearSessionPref() {
         sharedPreferences.edit().remove(SORT_ENUM_KEY).apply()
         sharedPreferences.edit().remove(PRICE_START_KEY).apply()

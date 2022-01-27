@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "444086010307",
+    "project_id": "clothex-user",
+    "storage_bucket": "clothex-user.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444086010307:android:81d8bbe2ca3d2a5583fd76",
+        "android_client_info": {
+          "package_name": "com.clothex.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444086010307-828vvgiljhvoe4i6365q0d7hfpfla0sb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clothex.user",
+            "certificate_hash": "e74246878c9d95344e8d51a043c368d17a30b058"
+          }
+        },
+        {
+          "client_id": "444086010307-0fc49mjs5j4dpmc2hl4spo40uco8nafo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9I0PwumyfJ3VtW3VAcOQ3Vm8P5KQD1C8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444086010307-0fc49mjs5j4dpmc2hl4spo40uco8nafo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,9 +4,7 @@ import com.clothex.data.domain.model.SimpleResponse
 import com.clothex.data.domain.model.sign.Login
 import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.data.domain.model.sign.SignupBody
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Created by Mohamed Elshafey on 10/10/2020.
@@ -20,4 +18,7 @@ interface SigningApiService {
 
     @GET("signup-temporary")
     suspend fun signupTemporary(): Login
+
+    @PUT("update-fcm-token")
+    suspend fun updateFCMToken(@Query("fcm_token") fcmToken: String): SimpleResponse
 }

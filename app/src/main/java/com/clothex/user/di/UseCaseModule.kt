@@ -3,6 +3,8 @@ package com.clothex.user.di
 import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
+import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
+import com.clothex.data.domain.usecases.local.SetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
@@ -14,10 +16,7 @@ import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductPageUseCase
 import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
 import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
-import com.clothex.data.domain.usecases.sign.GetIsLoginTemporaryUseCase
-import com.clothex.data.domain.usecases.sign.LoginUseCase
-import com.clothex.data.domain.usecases.sign.SignUpTemporaryUseCase
-import com.clothex.data.domain.usecases.sign.SignUpUseCase
+import com.clothex.data.domain.usecases.sign.*
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
 import com.clothex.data.domain.usecases.token.GetTokenUseCase
@@ -36,6 +35,7 @@ import com.clothex.data.remote.repository.search.GetShopPageRepository
 import com.clothex.data.remote.repository.sign.LoginRepository
 import com.clothex.data.remote.repository.sign.SignUpRepository
 import com.clothex.data.remote.repository.sign.SignUpTemporaryRepository
+import com.clothex.data.remote.repository.sign.UpdateFCMTokenRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -86,6 +86,10 @@ val useCaseModule = module {
     single(named("set_visit_onboarding")) { provideSetVisitOnBoardingUseCase(get()) }
 
     single(named("get_login_temporary")) { provideGetIsLoginTemporaryUseCase(get()) }
+    single(named("update_fcm_token")) { provideUpdateFCMTokenUseCase(get()) }
+
+    single(named("get_is_first_time")) { provideGetIsFirstTimeOpenUseCase(get()) }
+    single(named("set_is_first_time")) { provideSetIsFirstTimeOpenUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -205,5 +209,17 @@ fun provideSetVisitOnBoardingUseCase(repository: LocalDataSourceImpl): SetVisitO
 
 fun provideGetIsLoginTemporaryUseCase(repository: LocalDataSourceImpl): GetIsLoginTemporaryUseCase {
     return GetIsLoginTemporaryUseCase(repository)
+}
+
+fun provideUpdateFCMTokenUseCase(repository: UpdateFCMTokenRepository): UpdateFCMTokenUseCase {
+    return UpdateFCMTokenUseCase(repository)
+}
+
+fun provideGetIsFirstTimeOpenUseCase(repository: LocalDataSourceImpl): GetIsFirstTimeOpenUseCase {
+    return GetIsFirstTimeOpenUseCase(repository)
+}
+
+fun provideSetIsFirstTimeOpenUseCase(repository: LocalDataSourceImpl): SetIsFirstTimeOpenUseCase {
+    return SetIsFirstTimeOpenUseCase(repository)
 }
 

@@ -1,8 +1,11 @@
 package com.clothex.user
 
 import android.app.Application
+import android.util.Log
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.user.di.*
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext

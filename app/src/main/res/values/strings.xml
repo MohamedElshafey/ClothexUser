@@ -122,6 +122,7 @@
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="more_branches">more branches</string>
     <string name="about_us">About us</string>
+    <string name="default_notification_channel_id">clothex_channel_id</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

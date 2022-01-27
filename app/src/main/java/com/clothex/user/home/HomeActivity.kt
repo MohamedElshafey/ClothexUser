@@ -51,8 +51,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private val fragmentLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
-
-
         override fun onFragmentViewCreated(
             fm: FragmentManager,
             f: Fragment,

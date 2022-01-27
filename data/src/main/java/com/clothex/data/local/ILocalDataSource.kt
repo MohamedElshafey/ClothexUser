@@ -35,6 +35,9 @@ interface ILocalDataSource {
     suspend fun setIsLoginTemporary(isVisited: Boolean)
     suspend fun getIsLoginTemporary(): Flow<Boolean>
 
+    suspend fun setIsFirstTime(isFirstTime: Boolean)
+    suspend fun getIsFirstTime(): Flow<Boolean>
+
     suspend fun clearSessionPref()
 
     suspend fun clearUserPref()
