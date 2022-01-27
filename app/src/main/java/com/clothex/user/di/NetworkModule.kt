@@ -2,13 +2,14 @@ package com.clothex.user.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.clothex.data.local.LocalDataSourceImpl
+import com.clothex.data.local.room.dao.SavedLocationDao
+import com.clothex.data.local.shared_pref.LocalDataSourceImpl
 import com.clothex.data.remote.api.*
 import com.clothex.user.BuildConfig
+import com.clothex.user.network.HeaderInterceptor
 import com.clothex.user.network.TokenInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -29,7 +30,13 @@ val networkModule = module {
 
     single { provideChuckerInterceptor(context = androidContext()) }
 
-    single { provideOkHttpClient(chuckerInterceptor = get(), tokenInterceptor = get()) }
+    single {
+        provideOkHttpClient(
+            chuckerInterceptor = get(),
+            tokenInterceptor = get(),
+            headerInterceptor = get()
+        )
+    }
 
     single { provideHomeApiService(retrofit = get()) }
 
@@ -44,12 +51,15 @@ val networkModule = module {
     single { provideSignApiService(retrofit = get()) }
 
     single { provideTokenInterceptor(localDataSourceImpl = get()) }
+
+    single { provideHeaderInterceptor(dao = get()) }
 }
 
 
 internal fun provideOkHttpClient(
     chuckerInterceptor: ChuckerInterceptor,
-    tokenInterceptor: TokenInterceptor
+    tokenInterceptor: TokenInterceptor,
+    headerInterceptor: HeaderInterceptor
 ): OkHttpClient {
     val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -58,6 +68,7 @@ internal fun provideOkHttpClient(
         .connectTimeout(60L, TimeUnit.SECONDS)
         .readTimeout(60L, TimeUnit.SECONDS)
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(headerInterceptor)
         .addInterceptor(tokenInterceptor)
     if (BuildConfig.DEBUG) {
         builder.addInterceptor(chuckerInterceptor)
@@ -67,6 +78,10 @@ internal fun provideOkHttpClient(
 
 internal fun provideTokenInterceptor(localDataSourceImpl: LocalDataSourceImpl): TokenInterceptor {
     return TokenInterceptor(localDataSourceImpl)
+}
+
+internal fun provideHeaderInterceptor(dao: SavedLocationDao): HeaderInterceptor {
+    return HeaderInterceptor(dao)
 }
 
 internal fun provideChuckerInterceptor(context: Context): ChuckerInterceptor {

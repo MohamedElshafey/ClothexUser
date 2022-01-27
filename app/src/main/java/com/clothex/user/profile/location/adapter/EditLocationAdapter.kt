@@ -1,15 +1,18 @@
-package com.clothex.user.profile.location
+package com.clothex.user.profile.location.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.clothex.user.data.SavedLocation
+import com.clothex.data.local.room.entity.SavedLocation
 import com.clothex.user.databinding.AdapterItemEditSavedLocationBinding
 
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
  */
-class EditLocationAdapter(private val list: ArrayList<SavedLocation>) :
+class EditLocationAdapter(
+    private val list: List<SavedLocation>,
+    private val callback: EditLocationCallback
+) :
     RecyclerView.Adapter<EditLocationAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -22,7 +25,7 @@ class EditLocationAdapter(private val list: ArrayList<SavedLocation>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(list[holder.layoutPosition]) { layoutPosition ->
-            list.remove(list[layoutPosition])
+            callback.onItemDeleted(list[layoutPosition])
             notifyItemChanged(layoutPosition)
         }
 

@@ -1,4 +1,4 @@
-package com.clothex.data.local
+package com.clothex.data.local.shared_pref
 
 const val TOKEN_KEY = "TOKEN_KEY"
 const val SORT_ENUM_KEY = "SORT_ENUM_KEY"

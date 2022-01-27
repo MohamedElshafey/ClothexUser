@@ -1,7 +1,7 @@
 package com.clothex.user.di
 
 import android.content.Context.MODE_PRIVATE
-import com.clothex.data.local.LocalDataSourceImpl
+import com.clothex.data.local.shared_pref.LocalDataSourceImpl
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
@@ -10,7 +10,7 @@ import org.koin.dsl.module
  */
 
 
-val localDataSourceModule = module {
+val sharedPrefModule = module {
 
     single {
         androidApplication().applicationContext.getSharedPreferences(

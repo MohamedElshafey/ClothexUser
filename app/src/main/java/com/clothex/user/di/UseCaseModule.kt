@@ -1,5 +1,9 @@
 package com.clothex.user.di
 
+import com.clothex.data.domain.usecases.database.DeleteLocationUseCase
+import com.clothex.data.domain.usecases.database.GetSavedLocationUseCase
+import com.clothex.data.domain.usecases.database.GetSavedLocationsUseCase
+import com.clothex.data.domain.usecases.database.SaveLocationsUseCase
 import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
@@ -21,7 +25,8 @@ import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
 import com.clothex.data.domain.usecases.token.GetTokenUseCase
 import com.clothex.data.domain.usecases.token.SetTokenUseCase
-import com.clothex.data.local.LocalDataSourceImpl
+import com.clothex.data.local.room.dao.SavedLocationDao
+import com.clothex.data.local.shared_pref.LocalDataSourceImpl
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
@@ -90,6 +95,11 @@ val useCaseModule = module {
 
     single(named("get_is_first_time")) { provideGetIsFirstTimeOpenUseCase(get()) }
     single(named("set_is_first_time")) { provideSetIsFirstTimeOpenUseCase(get()) }
+
+    single(named("save_location")) { provideSaveLocationUseCase(get()) }
+    single(named("get_locations")) { provideGetSavedLocationsUseCase(get()) }
+    single(named("get_location")) { provideGetSavedLocationUseCase(get()) }
+    single(named("delete_location")) { provideDeleteLocationUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -223,3 +233,18 @@ fun provideSetIsFirstTimeOpenUseCase(repository: LocalDataSourceImpl): SetIsFirs
     return SetIsFirstTimeOpenUseCase(repository)
 }
 
+fun provideSaveLocationUseCase(repository: SavedLocationDao): SaveLocationsUseCase {
+    return SaveLocationsUseCase(repository)
+}
+
+fun provideGetSavedLocationsUseCase(repository: SavedLocationDao): GetSavedLocationsUseCase {
+    return GetSavedLocationsUseCase(repository)
+}
+
+fun provideGetSavedLocationUseCase(repository: SavedLocationDao): GetSavedLocationUseCase {
+    return GetSavedLocationUseCase(repository)
+}
+
+fun provideDeleteLocationUseCase(repository: SavedLocationDao): DeleteLocationUseCase {
+    return DeleteLocationUseCase(repository)
+}

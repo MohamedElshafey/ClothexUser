@@ -2,7 +2,9 @@ package com.clothex.user.di
 
 import com.clothex.user.home.book.BookViewModel
 import com.clothex.user.home.home.HomeViewModel
+import com.clothex.user.home.location.SelectLocationViewModel
 import com.clothex.user.home.login.LoginViewModel
+import com.clothex.user.home.map.MapsViewModel
 import com.clothex.user.home.product_details.ProductDetailsViewModel
 import com.clothex.user.home.register.RegisterViewModel
 import com.clothex.user.home.search.SearchViewModel
@@ -13,6 +15,7 @@ import com.clothex.user.my_items.items.MyItemsViewModel
 import com.clothex.user.my_items.orders.ActiveOrdersViewModel
 import com.clothex.user.onboarding.boarding.OnBoardingViewModel
 import com.clothex.user.onboarding.splash.SplashViewModel
+import com.clothex.user.profile.location.EditLocationViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -36,7 +39,8 @@ val viewModelsModule = module {
         HomeViewModel(
             homeUseCase = get(named("get_home")),
             updateFCMTokenUseCase = get(named("update_fcm_token")),
-            getIsFirstTimeOpenUseCase = get(named("get_is_first_time"))
+            getIsFirstTimeOpenUseCase = get(named("get_is_first_time")),
+            getSavedLocationUseCase = get(named("get_location"))
         )
     }
 
@@ -113,6 +117,27 @@ val viewModelsModule = module {
         LoginViewModel(
             loginUseCase = get(named("login")),
             setIsFirstTimeOpenUseCase = get(named("set_is_first_time"))
+        )
+    }
+
+    viewModel {
+        SelectLocationViewModel(
+            getSavedLocationsUseCase = get(named("get_locations")),
+            saveLocationsUseCase = get(named("save_location"))
+        )
+    }
+
+    viewModel {
+        MapsViewModel(
+            getSavedLocationsUseCase = get(named("get_locations")),
+            saveLocationsUseCase = get(named("save_location"))
+        )
+    }
+
+    viewModel {
+        EditLocationViewModel(
+            getSavedLocationsUseCase = get(named("get_locations")),
+            deleteLocationUseCase = get(named("delete_location"))
         )
     }
 }

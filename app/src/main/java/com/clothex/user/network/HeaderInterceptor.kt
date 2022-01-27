@@ -1,6 +1,6 @@
 package com.clothex.user.network
 
-import com.clothex.data.local.shared_pref.LocalDataSourceImpl
+import com.clothex.data.local.room.dao.SavedLocationDao
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Response
@@ -10,11 +10,16 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-class TokenInterceptor(private val localDataSourceImpl: LocalDataSourceImpl) : Interceptor {
+class HeaderInterceptor(private val savedLocationDao: SavedLocationDao) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val newReq = chain.request().newBuilder()
-            .addHeader("Authorization", "Bearer ${localDataSourceImpl.getTokenAsString()}")
-            .build()
+        val savedLocation = savedLocationDao.get(true)
+        val newReqBuilder = chain.request().newBuilder()
+        if (savedLocation != null) {
+            newReqBuilder
+                .addHeader("latitude", savedLocation.latitude.toString())
+                .addHeader("longitude", savedLocation.longitude.toString())
+        }
+        val newReq = newReqBuilder.build()
         try {
             return chain.proceed(newReq)
         } catch (e: Exception) {

@@ -1,7 +1,7 @@
 package com.clothex.data.domain.usecases.sort
 
 import com.clothex.data.domain.usecases.BaseUseCase
-import com.clothex.data.local.ILocalDataSource
+import com.clothex.data.local.shared_pref.ILocalDataSource
 import kotlinx.coroutines.flow.Flow
 
 /**

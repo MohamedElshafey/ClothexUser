@@ -152,21 +152,21 @@ val shopList = listOf(
     )
 )
 
-val savedLocations = listOf(
-    SavedLocation(
-        title = "New Cairo",
-        subTitle = "5th settlement, Villa 202, North 90",
-        isSelected = true
-    ), SavedLocation(
-        title = "Nasr city",
-        subTitle = "Markam ebeid",
-        isSelected = false
-    ), SavedLocation(
-        title = "Nasr city",
-        subTitle = "Abbas El Akkad",
-        isSelected = false
-    )
-)
+//val savedLocations = listOf(
+//    SavedLocation(
+//        title = "New Cairo",
+//        subTitle = "5th settlement, Villa 202, North 90",
+//        isSelected = true
+//    ), SavedLocation(
+//        title = "Nasr city",
+//        subTitle = "Markam ebeid",
+//        isSelected = false
+//    ), SavedLocation(
+//        title = "Nasr city",
+//        subTitle = "Abbas El Akkad",
+//        isSelected = false
+//    )
+//)
 
 //val minimalProductList = listOf(
 //    MyItem(

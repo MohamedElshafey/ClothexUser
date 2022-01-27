@@ -1,4 +1,4 @@
-package com.clothex.data.local
+package com.clothex.data.local.shared_pref
 
 import android.content.SharedPreferences
 import com.clothex.data.domain.model.body.SortEnum

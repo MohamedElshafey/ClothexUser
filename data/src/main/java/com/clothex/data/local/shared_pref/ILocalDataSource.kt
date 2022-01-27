@@ -1,4 +1,4 @@
-package com.clothex.data.local
+package com.clothex.data.local.shared_pref
 
 import com.clothex.data.domain.model.body.SortEnum
 import kotlinx.coroutines.flow.Flow

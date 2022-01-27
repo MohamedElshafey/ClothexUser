@@ -98,7 +98,11 @@
         android:id="@+id/mapsFragment"
         android:name="com.clothex.user.home.map.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps">
+        <action
+            android:id="@+id/action_mapsFragment_to_editLocationFragment"
+            app:destination="@id/editLocationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.clothex.user.home.product_details.ProductDetailsFragment"

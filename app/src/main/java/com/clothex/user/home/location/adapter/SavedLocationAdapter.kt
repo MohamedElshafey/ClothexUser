@@ -7,16 +7,23 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.clothex.data.local.room.entity.SavedLocation
 import com.clothex.user.R
-import com.clothex.user.data.SavedLocation
 import com.clothex.user.databinding.AdapterItemSavedLocationBinding
 
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
  */
-class SavedLocationAdapter(private val list: List<SavedLocation>) :
+class SavedLocationAdapter(
+    private val list: List<SavedLocation>,
+    private val onSavedLocationCallback: SavedLocationCallback
+) :
     RecyclerView.Adapter<SavedLocationAdapter.ViewHolder>() {
-    private var selectedItemPosition = list.indexOf(list.first { it.isSelected })
+    private var selectedItemPosition: Int = try {
+        list.indexOf(list.first { it.selected })
+    } catch (e: Exception) {
+        -1
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemSavedLocationBinding.inflate(
@@ -29,11 +36,13 @@ class SavedLocationAdapter(private val list: List<SavedLocation>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(list[holder.layoutPosition]) { layoutPosition ->
             if (selectedItemPosition != -1) {
-                list[selectedItemPosition].isSelected = false
+                list[selectedItemPosition].selected = false
+                onSavedLocationCallback.onItemSelected(list[selectedItemPosition])
                 notifyItemChanged(selectedItemPosition)
             }
             selectedItemPosition = layoutPosition
-            list[selectedItemPosition].isSelected = true
+            list[selectedItemPosition].selected = true
+            onSavedLocationCallback.onItemSelected(list[selectedItemPosition])
             notifyItemChanged(selectedItemPosition)
         }
 
@@ -43,7 +52,7 @@ class SavedLocationAdapter(private val list: List<SavedLocation>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(savedLocation: SavedLocation, onClick: (Int) -> Unit) {
             val context = binding.root.context
-            if (savedLocation.isSelected) {
+            if (savedLocation.selected) {
                 val color = ContextCompat.getColor(
                     context,
                     R.color.island_aqua_alpha

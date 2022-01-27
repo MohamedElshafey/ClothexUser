@@ -10,9 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
+import com.clothex.user.utils.KEY_DISMISS
 import com.clothex.user.utils.setAllOnClickListener
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
@@ -24,11 +26,6 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by inject()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +40,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         viewModel.checkFirstTimeOpen()
+        viewModel.getSelectedLocation()
+        viewModel.savedLocationLiveData.observe(viewLifecycleOwner, {
+            binding.locationValueTV.text =
+                it?.title ?: context?.getString(R.string.select_location_to_search)
+        })
         viewModel.isFirstTimeOpenLiveData.observe(viewLifecycleOwner, { isFirstTime ->
             if (isFirstTime) {
                 findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToLoginFragment())
@@ -94,6 +96,13 @@ class HomeFragment : Fragment() {
         }
 
         binding.locationGroup.setAllOnClickListener {
+            findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(
+                KEY_DISMISS
+            )?.observe(viewLifecycleOwner, {
+                it?.let {
+                    viewModel.getSelectedLocation()
+                }
+            })
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSelectLocationBottomSheet())
         }
 
