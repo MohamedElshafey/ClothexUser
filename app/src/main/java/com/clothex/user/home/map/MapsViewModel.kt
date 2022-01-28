@@ -1,5 +1,7 @@
 package com.clothex.user.home.map
 
+import android.location.Address
+import android.location.Geocoder
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,6 +38,18 @@ class MapsViewModel(
                 callback(saveLocationsUseCase.invoke(savedLocation))
             }
         }
+    }
+
+    val searchResultLiveData = MutableLiveData<List<Address>>()
+
+    fun geocode(key: String, geocoder: Geocoder) {
+        searchResultLiveData.postValue(
+            try {
+                geocoder.getFromLocationName(key, 1, 22.115144, 25.029469, 31.180246, 32.357939)
+            } catch (exception: Exception) {
+                emptyList()
+            }
+        )
     }
 
 }

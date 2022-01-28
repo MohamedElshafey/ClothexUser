@@ -51,7 +51,40 @@ class SelectLocationBottomSheet : DefaultBottomSheet() {
             if (it.isNotEmpty())
                 binding.savedLocationRV.adapter = SavedLocationAdapter(it, savedLocationCallback)
         })
-        binding.currentLocationTV.text = "30 Abbas El Akkad, Nasr City"
+
+        /*val locationManager =
+            activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        if (locationManager != null) {
+            val location = getLastLocation(locationManager)
+            if (location == null) {
+                binding.currentLocationContainer.isGone = true
+            } else {
+                val address =
+                    Geocoder(context).getFromLocation(location.latitude, location.longitude, 1)
+                        .firstOrNull()
+                if (address != null) {
+                    binding.currentLocationContainer.isGone = false
+                    with(address) {
+                        var title = "Undefined"
+                        var subTitle = "Undefined"
+                        try {
+                            title = address.thoroughfare ?: address.subAdminArea
+                            subTitle = address.subAdminArea + " " + address.adminArea
+                        } catch (e: Exception) {
+                        }
+                        binding.currentLocationTV.text = title
+                        binding.currentLocationContainer.setOnClickListener {
+                            val savedLocation =
+                                SavedLocation(title, subTitle, false, latitude, longitude)
+                            viewModel.saveLocation(savedLocation)
+                        }
+                    }
+                } else {
+                    binding.currentLocationContainer.isGone = true
+                }
+            }
+        }*/
+
         binding.chooseLocationContainer.setOnClickListener {
             findNavController().navigate(SelectLocationBottomSheetDirections.actionSelectLocationBottomSheetToMapsFragment())
         }

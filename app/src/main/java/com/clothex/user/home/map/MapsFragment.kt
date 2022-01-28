@@ -3,14 +3,14 @@ package com.clothex.user.home.map
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Criteria
 import android.location.Geocoder
-import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -19,6 +19,7 @@ import com.clothex.data.local.room.entity.SavedLocation
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentMapsBinding
 import com.clothex.user.dialog.MessageAlertDialog.showAlertDialog
+import com.clothex.user.utils.getLastLocation
 import com.clothex.user.utils.hasPermission
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -88,7 +89,6 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
         binding.bottomButton.setOnClickListener {
-
             marker?.position?.let { latLng ->
                 var title = "Undefined"
                 var subTitle = "Undefined"
@@ -115,16 +115,44 @@ class MapsFragment : Fragment() {
                         else
                             showEditLocationAlert()
                     }
-
-
                 }
-
             }
         }
 
         binding.myLocationIV.setOnClickListener {
             zoomToCurrentLocation()
         }
+
+        viewModel.searchResultLiveData.observe(viewLifecycleOwner, {
+            if (it.isNotEmpty()) {
+                val address = it[0]
+                val latLng = LatLng(address.latitude, address.longitude)
+                marker?.remove()
+                marker = googleMap?.addMarker(MarkerOptions().position(latLng))
+                googleMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Can't find place, please retry with other key!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
+
+        binding.backIV.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(key: String?): Boolean {
+                key?.let { viewModel.geocode(key, Geocoder(context)) }
+                return true
+            }
+
+            override fun onQueryTextChange(key: String?): Boolean {
+                return true
+            }
+        })
     }
 
     private fun showEditLocationAlert() {
@@ -143,15 +171,8 @@ class MapsFragment : Fragment() {
 
     private fun zoomToCurrentLocation() {
         val locationManager =
-            activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        val criteria = Criteria()
-
-        val location: Location? = locationManager!!.getLastKnownLocation(
-            locationManager.getBestProvider(
-                criteria,
-                false
-            )!!
-        )
+            activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager? ?: return
+        val location = getLastLocation(locationManager)
         if (location != null) {
             googleMap?.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
@@ -167,11 +188,7 @@ class MapsFragment : Fragment() {
                         location.latitude,
                         location.longitude
                     )
-                ) // Sets the center of the map to location user
-                .zoom(17f) // Sets the zoom
-                .bearing(90f) // Sets the orientation of the camera to east
-                .tilt(40f) // Sets the tilt of the camera to 30 degrees
-                .build() // Creates a CameraPosition from the builder
+                ).zoom(17f).build()
             googleMap?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
         }
     }
