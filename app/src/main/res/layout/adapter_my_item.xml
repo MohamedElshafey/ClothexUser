@@ -82,13 +82,15 @@
 
         <ImageView
             android:id="@+id/leadingIV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_leading_arrow"
+            android:padding="8dp"
+            android:src="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="@id/headerBackgroundView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/headerBackgroundView" />
+            app:layout_constraintTop_toTopOf="@id/headerBackgroundView"
+            app:tint="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/itemsRV"

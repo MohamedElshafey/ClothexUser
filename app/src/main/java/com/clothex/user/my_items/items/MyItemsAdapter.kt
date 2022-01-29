@@ -13,7 +13,7 @@ import com.clothex.user.utils.setImageFromUrl
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class MyItemsAdapter(private val list: List<MyItemGroup>, val callback: (MyItemGroup) -> Unit) :
+class MyItemsAdapter(private val list: List<MyItemGroup>, val callback: MyItemCallback) :
     Adapter<MyItemsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -38,7 +38,8 @@ class MyItemsAdapter(private val list: List<MyItemGroup>, val callback: (MyItemG
             if (myItemsCount > 2)
                 binding.itemsCount.text = String.format("+%s items", myItemsCount - 2)
             binding.itemsCount.isGone = myItemsCount <= 2
-            binding.root.setOnClickListener { callback.invoke(myItemGroup) }
+            binding.root.setOnClickListener { callback.onItemClicked(myItemGroup) }
+            binding.leadingIV.setOnClickListener { callback.deleteMyItemGroup(myItemGroup) }
         }
     }
 

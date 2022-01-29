@@ -10,6 +10,7 @@ import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.local.SetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
+import com.clothex.data.domain.usecases.my_item.DeleteMyItemUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
 import com.clothex.data.domain.usecases.onboarding.GetVisitOnBoardingUseCase
@@ -35,6 +36,7 @@ import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
 import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
+import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
@@ -80,6 +82,7 @@ val useCaseModule = module {
     single(named("get_my_items")) { provideGetMyItemsUseCase(get()) }
     single(named("create_my_item")) { provideCreateMyItemUseCase(get()) }
     single(named("delete_my_item")) { provideDeleteMyItemUseCase(get()) }
+    single(named("delete_my_items")) { provideDeleteMyItemsUseCase(get()) }
 
     single(named("get_my_orders")) { provideGetMyOrdersUseCase(get()) }
     single(named("create_my_order")) { provideCreateMyOrderUseCase(get()) }
@@ -180,7 +183,11 @@ fun provideCreateMyItemUseCase(repository: CreateMyItemRepository): CreateMyItem
     return CreateMyItemsUseCase(repository)
 }
 
-fun provideDeleteMyItemUseCase(repository: DeleteMyItemRepository): DeleteMyItemsUseCase {
+fun provideDeleteMyItemUseCase(repository: DeleteMyItemRepository): DeleteMyItemUseCase {
+    return DeleteMyItemUseCase(repository)
+}
+
+fun provideDeleteMyItemsUseCase(repository: DeleteMyItemsRepository): DeleteMyItemsUseCase {
     return DeleteMyItemsUseCase(repository)
 }
 

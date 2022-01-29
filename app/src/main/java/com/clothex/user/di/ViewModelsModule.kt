@@ -90,13 +90,14 @@ val viewModelsModule = module {
 
     viewModel {
         MyItemsViewModel(
-            getMyItemsUseCase = get(named("get_my_items"))
+            getMyItemsUseCase = get(named("get_my_items")),
+            deleteMyItemsUseCase = get(named("delete_my_items"))
         )
     }
 
     viewModel {
         BookViewModel(
-            deleteMyItemsUseCase = get(named("delete_my_item")),
+            deleteMyItemUseCase = get(named("delete_my_item")),
             createMyOrdersUseCase = get(named("create_my_order")),
             getIsLoginTemporaryUseCase = get(named("get_login_temporary"))
         )

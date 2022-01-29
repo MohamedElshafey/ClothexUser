@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,13 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentMyItemsBinding
+import com.clothex.user.dialog.MessageAlertDialog
 import org.koin.android.ext.android.inject
 
 /**
  * Created by Mohamed Elshafey on 08/12/2021.
  */
 
-class MyItemsFragment : Fragment() {
+class MyItemsFragment : Fragment(), MyItemCallback {
 
     lateinit var binding: FragmentMyItemsBinding
     private val mViewModel: MyItemsViewModel by inject()
@@ -42,11 +44,38 @@ class MyItemsFragment : Fragment() {
             grouped?.forEach {
                 groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
             }
-            binding.recyclerView.adapter = MyItemsAdapter(groupList) {
-                val bundle = bundleOf("myItem" to it)
-                findNavController().navigate(R.id.bookFragment, bundle)
-            }
+            binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
         })
 
+    }
+
+    override fun onItemClicked(myItemGroup: MyItemGroup) {
+        val bundle = bundleOf("myItem" to myItemGroup)
+        findNavController().navigate(R.id.bookFragment, bundle)
+    }
+
+    override fun deleteMyItemGroup(myItemGroup: MyItemGroup) {
+        MessageAlertDialog.showAlertDialog(
+            requireContext(),
+            "Are you sure?",
+            "you want to delete this group of items? if you delete it you will lose you items in it.",
+            "Cancel",
+            "Delete",
+            iconRes = R.drawable.ic_dialog_delete,
+            negativeOnClickListener = {
+                mViewModel.deleteMyItemGroup(myItemGroup) { response ->
+                    var message = "Error happened, please try again!"
+                    if (response != null) {
+                        if (response.success) {
+                            message = "Deleted successfully!"
+                            mViewModel.fetchMyItems()
+                        } else {
+                            response.message?.let { message = it }
+                        }
+                    }
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
     }
 }
