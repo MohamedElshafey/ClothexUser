@@ -14,12 +14,9 @@ import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemOrderBinding
 import com.clothex.user.utils.CustomTypefaceSpan
+import com.clothex.user.utils.DateUtil.fromUTCToLocal
 import com.clothex.user.utils.DateUtil.getDifferenceTimeStamp
 import com.clothex.user.utils.setImageFromUrl
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.ZoneId
 import java.util.*
 
 
@@ -127,46 +124,4 @@ class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
             }
         }
     }
-
-
-    fun Date.toOurFormat(): String {
-        val dfFrom = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
-        dfFrom.timeZone = TimeZone.getTimeZone("UTC")
-        val date = dfFrom.parse(this.toString())
-        val df = SimpleDateFormat("yyyy-MM-dd hh:mm a", Locale.ENGLISH)
-        df.timeZone = TimeZone.getDefault()
-        return df.format(date)
-//        val dateFormat = DateFormat.getDateFormat(context);
-//        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm a", Locale.ENGLISH)
-//        simpleDateFormat.timeZone = TimeZone.getDefault();
-//        return simpleDateFormat.format(this)
-//        return DateFormat.format("yyyy-MM-dd hh:mm a", this).toString()
-//        dateFormat.format("yyyy-MM-dd hh:mm:ss a",this)
-
-    }
-
-    fun Date.fromUTCToLocal(): String? {
-        val format = "yyyy-MM-dd hh:mm a"
-        var dateToReturn = this.toString()
-        val sdf = SimpleDateFormat(format, Locale.ENGLISH)
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        var gmt: Date
-        val sdfOutPutToSend = SimpleDateFormat(format, Locale.ENGLISH)
-        sdfOutPutToSend.timeZone = TimeZone.getDefault()
-        try {
-            gmt = sdf.parse(this.toString())
-            dateToReturn = sdfOutPutToSend.format(gmt)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        return dateToReturn
-    }
-
-    fun convertToLocalDateViaInstant(dateToConvert: Date): LocalDate? {
-        return dateToConvert.toInstant()
-            .atZone(ZoneId.systemDefault())
-            .toLocalDate()
-
-    }
-
 }

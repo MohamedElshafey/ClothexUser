@@ -10,107 +10,145 @@
             type="com.clothex.user.voucher.details.VoucherDetailsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.clothex.user.customview.DefaultActionBar
             android:id="@+id/actionBar"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/voucher" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/coverIV"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_voucher_cover"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/actionBar"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Product" />
-
-
-        <TextView
-            android:id="@+id/titleTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24sp"
-            android:textAppearance="@style/FontSemiBold"
-            android:textColor="@color/cod_gray"
-            android:textSize="24sp"
-            android:text="@{viewModel.title}"
-            app:layout_constraintEnd_toEndOf="@id/coverIV"
-            app:layout_constraintStart_toStartOf="@id/coverIV"
-            app:layout_constraintTop_toBottomOf="@id/coverIV"
-            tools:text="Get 50% off on new collection" />
-
-        <TextView
-            android:id="@+id/expireTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{viewModel.subtitle}"
-            android:textAppearance="@style/FontRegular"
-            android:textColor="@color/island_aqua"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/coverIV"
-            app:layout_constraintStart_toStartOf="@id/coverIV"
-            app:layout_constraintTop_toBottomOf="@id/titleTV"
-            tools:text="Expired in 20 Nov, 2021" />
-
-        <TextView
-            android:id="@+id/termsTitleTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/terms_and_conditions"
-            android:textAppearance="@style/FontSemiBold"
-            android:textColor="@color/cod_gray"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@id/coverIV"
-            app:layout_constraintStart_toStartOf="@id/coverIV"
-            app:layout_constraintTop_toBottomOf="@id/expireTV" />
-
-        <TextView
-            android:id="@+id/termsDescTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/FontRegular"
-            android:textColor="@color/dove_gray"
-            android:textSize="14sp"
-            android:text="@{viewModel.terms}"
-            app:layout_constraintEnd_toEndOf="@id/coverIV"
-            app:layout_constraintStart_toStartOf="@id/coverIV"
-            app:layout_constraintTop_toBottomOf="@id/termsTitleTV"
-            tools:text="@string/lorem_ipsum" />
-
-        <TextView
-            android:id="@+id/useVoucherButton"
-            style="@style/RemarkableButtonTheme"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="32dp"
-            android:gravity="center"
-            android:text="@string/use_voucher"
-            android:textAppearance="@style/FontSemiBold"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/termsDescTV"
-            app:layout_constraintVertical_bias="1.0" />
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/coverIV"
+                    imageUrl="@{viewModel.cover}"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_voucher_cover"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Product" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/titleTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24sp"
+                    android:text="@{viewModel.title}"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/coverIV"
+                    tools:text="Get 50% off on new collection" />
+
+                <TextView
+                    android:id="@+id/expireTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.expiryDate}"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/island_aqua"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/titleTV"
+                    tools:text="Expired in 20 Nov, 2021" />
+
+                <TextView
+                    android:id="@+id/termsTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/terms_and_conditions"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/expireTV" />
+
+                <TextView
+                    android:id="@+id/termsDescTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.description}"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/termsTitleTV"
+                    tools:text="@string/lorem_ipsum" />
+
+                <TextView
+                    android:id="@+id/availableInTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/available_in"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/termsDescTV" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shopsRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/useVoucherButton"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/availableInTV" />
+
+                <TextView
+                    android:id="@+id/useVoucherButton"
+                    style="@style/RemarkableButtonTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center"
+                    android:text="@string/use_voucher"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/termsDescTV"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
 </layout>

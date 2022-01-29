@@ -16,6 +16,9 @@ import com.clothex.user.my_items.orders.ActiveOrdersViewModel
 import com.clothex.user.onboarding.boarding.OnBoardingViewModel
 import com.clothex.user.onboarding.splash.SplashViewModel
 import com.clothex.user.profile.location.EditLocationViewModel
+import com.clothex.user.voucher.VoucherViewModel
+import com.clothex.user.voucher.add_text.CodeVoucherViewModel
+import com.clothex.user.voucher.details.RedeemVoucherViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -139,5 +142,17 @@ val viewModelsModule = module {
             getSavedLocationsUseCase = get(named("get_locations")),
             deleteLocationUseCase = get(named("delete_location"))
         )
+    }
+
+    viewModel {
+        VoucherViewModel(getVouchersUseCase = get(named("get_vouchers")))
+    }
+
+    viewModel {
+        CodeVoucherViewModel(addVoucherUseCase = get(named("add_voucher")))
+    }
+
+    viewModel {
+        RedeemVoucherViewModel(redeemVoucherUseCase = get(named("redeem_voucher")))
     }
 }

@@ -45,6 +45,8 @@ val networkModule = module {
 
     single { provideSignApiService(retrofit = get()) }
 
+    single { provideVoucherApiService(retrofit = get()) }
+
     single { provideTokenInterceptor(localDataSourceImpl = get(), dao = get()) }
 }
 
@@ -110,3 +112,6 @@ internal fun provideMyOrderApiService(retrofit: Retrofit): OrdersApiService =
 
 internal fun provideSignApiService(retrofit: Retrofit): SigningApiService =
     retrofit.create(SigningApiService::class.java)
+
+internal fun provideVoucherApiService(retrofit: Retrofit): VoucherApiService =
+    retrofit.create(VoucherApiService::class.java)

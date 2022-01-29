@@ -337,11 +337,28 @@
         tools:layout="@layout/fragment_voucher_details">
         <argument
             android:name="voucher"
-            app:argType="com.clothex.user.data.Voucher" />
+            app:argType="com.clothex.data.domain.model.voucher.Voucher" />
+        <action
+            android:id="@+id/action_voucherDetailsFragment_to_qrBottomSheet"
+            app:destination="@id/qrBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/scanQRFragment"
         android:name="com.clothex.user.voucher.scan.ScanQRFragment"
         android:label="ScanQRFragment"
-        tools:layout="@layout/fragment_scan_qr" />
+        tools:layout="@layout/fragment_scan_qr">
+        <action
+            android:id="@+id/action_scanQRFragment_to_voucherMessageFragment"
+            app:destination="@id/voucherMessageFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/qrBottomSheet"
+        android:name="com.clothex.user.voucher.scan.qr.QRBottomSheet"
+        android:label="QRBottomSheet"
+        tools:layout="@layout/qr_bottom_sheet" >
+        <argument
+            android:name="bitmap"
+            app:argType="android.graphics.Bitmap" />
+    </dialog>
+
 </navigation>

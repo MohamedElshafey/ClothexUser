@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.*
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -22,6 +23,9 @@ import com.clothex.user.R
 import com.clothex.user.databinding.FragmentScanQrBinding
 import com.clothex.user.dialog.MessageAlertDialog
 import com.clothex.user.utils.hasPermission
+import com.clothex.user.voucher.add_text.CodeVoucherViewModel
+import org.koin.android.ext.android.inject
+import retrofit2.HttpException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -31,7 +35,7 @@ import java.util.concurrent.Executors
  */
 class ScanQRFragment : Fragment() {
 
-    private lateinit var mViewModel: ScanQRViewModel
+    private val viewModel: CodeVoucherViewModel by inject()
     private var _binding: FragmentScanQrBinding? = null
     private val binding get() = _binding!!
     private var cameraProvider: ProcessCameraProvider? = null
@@ -67,7 +71,6 @@ class ScanQRFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mViewModel = ScanQRViewModel()
         _binding = FragmentScanQrBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -145,6 +148,19 @@ class ScanQRFragment : Fragment() {
             .build()
         imageAnalyzer!!.setAnalyzer(cameraExecutor, QRImageAnalyzer {
             binding.txtBarcodeValue.text = it
+            if (viewModel.isSendVoucher.not())
+                viewModel.addVoucher(it)
+        })
+        viewModel.responseLiveData.observe(viewLifecycleOwner, { result ->
+            result.getOrNull()?.let {
+                findNavController().navigate(ScanQRFragmentDirections.actionScanQRFragmentToVoucherMessageFragment())
+                if (it.message.isNullOrEmpty().not())
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+            }
+            result.exceptionOrNull()?.let {
+                Toast.makeText(requireContext(), (it as HttpException).message(), Toast.LENGTH_LONG)
+                    .show()
+            }
         })
         cameraProvider.unbindAll()
         try {

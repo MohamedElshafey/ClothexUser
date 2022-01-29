@@ -315,74 +315,74 @@ val shopList = listOf(
 val lorumIpsom =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 
-val voucherList = listOf<Voucher>(
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    ),
-    Voucher(
-        "Get 50% off on new collection",
-        "Expired in 20 Nov, 2021",
-        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
-        lorumIpsom
-    )
-)
+//val voucherList = listOf<Voucher>(
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    ),
+//    Voucher(
+//        "Get 50% off on new collection",
+//        "Expired in 20 Nov, 2021",
+//        "https://i.pinimg.com/originals/d7/af/32/d7af326b85e62c293dba7bad9f4f1757.jpg",
+//        lorumIpsom
+//    )
+//)
 
 val workingHourList = listOf<WorkingHour>(
     WorkingHour(

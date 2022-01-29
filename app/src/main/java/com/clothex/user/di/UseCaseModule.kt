@@ -25,6 +25,9 @@ import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
 import com.clothex.data.domain.usecases.token.GetTokenUseCase
 import com.clothex.data.domain.usecases.token.SetTokenUseCase
+import com.clothex.data.domain.usecases.voucher.AddVoucherUseCase
+import com.clothex.data.domain.usecases.voucher.GetVouchersUseCase
+import com.clothex.data.domain.usecases.voucher.RedeemVoucherUseCase
 import com.clothex.data.local.room.dao.SavedLocationDao
 import com.clothex.data.local.shared_pref.LocalDataSourceImpl
 import com.clothex.data.remote.repository.GetHomeRepository
@@ -41,6 +44,9 @@ import com.clothex.data.remote.repository.sign.LoginRepository
 import com.clothex.data.remote.repository.sign.SignUpRepository
 import com.clothex.data.remote.repository.sign.SignUpTemporaryRepository
 import com.clothex.data.remote.repository.sign.UpdateFCMTokenRepository
+import com.clothex.data.remote.repository.voucher.AddVoucherRepository
+import com.clothex.data.remote.repository.voucher.GetVouchersRepository
+import com.clothex.data.remote.repository.voucher.RedeemVoucherRepository
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -100,6 +106,10 @@ val useCaseModule = module {
     single(named("get_locations")) { provideGetSavedLocationsUseCase(get()) }
     single(named("get_location")) { provideGetSavedLocationUseCase(get()) }
     single(named("delete_location")) { provideDeleteLocationUseCase(get()) }
+
+    single(named("get_vouchers")) { provideGetVouchersUseCase(get()) }
+    single(named("add_voucher")) { provideAddVoucherUseCase(get()) }
+    single(named("redeem_voucher")) { provideRedeemVoucherUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -247,4 +257,16 @@ fun provideGetSavedLocationUseCase(repository: SavedLocationDao): GetSavedLocati
 
 fun provideDeleteLocationUseCase(repository: SavedLocationDao): DeleteLocationUseCase {
     return DeleteLocationUseCase(repository)
+}
+
+fun provideGetVouchersUseCase(repository: GetVouchersRepository): GetVouchersUseCase {
+    return GetVouchersUseCase(repository)
+}
+
+fun provideAddVoucherUseCase(repository: AddVoucherRepository): AddVoucherUseCase {
+    return AddVoucherUseCase(repository)
+}
+
+fun provideRedeemVoucherUseCase(repository: RedeemVoucherRepository): RedeemVoucherUseCase {
+    return RedeemVoucherUseCase(repository)
 }

@@ -14,6 +14,9 @@ import com.clothex.data.remote.repository.sign.LoginRepository
 import com.clothex.data.remote.repository.sign.SignUpRepository
 import com.clothex.data.remote.repository.sign.SignUpTemporaryRepository
 import com.clothex.data.remote.repository.sign.UpdateFCMTokenRepository
+import com.clothex.data.remote.repository.voucher.AddVoucherRepository
+import com.clothex.data.remote.repository.voucher.GetVouchersRepository
+import com.clothex.data.remote.repository.voucher.RedeemVoucherRepository
 import org.koin.dsl.module
 
 /**
@@ -35,4 +38,7 @@ val remoteDataSourceModule = module {
     single { SignUpRepository(apiService = get()) }
     single { LoginRepository(apiService = get()) }
     single { UpdateFCMTokenRepository(apiService = get()) }
+    single { GetVouchersRepository(apiService = get()) }
+    single { AddVoucherRepository(apiService = get()) }
+    single { RedeemVoucherRepository(apiService = get()) }
 }

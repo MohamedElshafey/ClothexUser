@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.clothex.user.data.voucherList
+import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.user.databinding.FragmentVoucherBinding
 import com.clothex.user.utils.addDivider
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Mohamed Elshafey on 10/12/2021.
  */
-class VoucherFragment : Fragment() {
+class VoucherFragment : Fragment(), (Voucher) -> Unit {
 
     lateinit var binding: FragmentVoucherBinding
+    private val viewModel: VoucherViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,11 +30,10 @@ class VoucherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vouchersRV.adapter = VoucherAdapter(voucherList) {
-            findNavController().navigate(
-                VoucherFragmentDirections.actionVoucherFragmentToVoucherDetailsFragment(it)
-            )
-        }
+        viewModel.fetchVouchers()
+        viewModel.vouchersLiveData.observe(viewLifecycleOwner, { voucherList ->
+            binding.vouchersRV.adapter = VoucherAdapter(voucherList, this)
+        })
         binding.vouchersRV.addDivider()
         binding.titleTV.setOnClickListener { findNavController().navigateUp() }
         binding.voucherButton.setOnClickListener {
@@ -40,5 +41,10 @@ class VoucherFragment : Fragment() {
         }
     }
 
+    override fun invoke(voucher: Voucher) {
+        findNavController().navigate(
+            VoucherFragmentDirections.actionVoucherFragmentToVoucherDetailsFragment(voucher)
+        )
+    }
 
 }
