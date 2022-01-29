@@ -261,6 +261,9 @@
             android:id="@+id/action_voucherFragment_to_addNewVoucherBottomSheet"
             app:destination="@id/addNewVoucherBottomSheet" />
         <action
+            android:id="@+id/action_voucherFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
             android:id="@+id/action_voucherFragment_to_voucherDetailsFragment"
             app:destination="@id/voucherDetailsFragment" />
     </fragment>
@@ -355,7 +358,7 @@
         android:id="@+id/qrBottomSheet"
         android:name="com.clothex.user.voucher.scan.qr.QRBottomSheet"
         android:label="QRBottomSheet"
-        tools:layout="@layout/qr_bottom_sheet" >
+        tools:layout="@layout/qr_bottom_sheet">
         <argument
             android:name="bitmap"
             app:argType="android.graphics.Bitmap" />

@@ -145,11 +145,16 @@ val viewModelsModule = module {
     }
 
     viewModel {
-        VoucherViewModel(getVouchersUseCase = get(named("get_vouchers")))
+        VoucherViewModel(
+            getVouchersUseCase = get(named("get_vouchers")),
+            getIsLoginTemporaryUseCase = get(named("get_login_temporary"))
+        )
     }
 
     viewModel {
-        CodeVoucherViewModel(addVoucherUseCase = get(named("add_voucher")))
+        CodeVoucherViewModel(
+            addVoucherUseCase = get(named("add_voucher"))
+        )
     }
 
     viewModel {

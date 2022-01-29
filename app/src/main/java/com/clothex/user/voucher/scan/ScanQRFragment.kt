@@ -127,6 +127,7 @@ class ScanQRFragment : Fragment() {
     }
 
     private fun bindCameraUseCases() {
+        if (activity == null) return
         val metrics = getScreenMetrics(requireActivity())
         val screenAspectRatio = aspectRatio(metrics.first, metrics.second)
         val rotation = binding.viewFinder.display.rotation

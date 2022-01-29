@@ -11,11 +11,14 @@ import kotlinx.coroutines.launch
 /**
  * Created by Mohamed Elshafey on 21/12/2021.
  */
-class CodeVoucherViewModel(private val addVoucherUseCase: AddVoucherUseCase) : ViewModel() {
+class CodeVoucherViewModel(
+    private val addVoucherUseCase: AddVoucherUseCase
+) : ViewModel() {
 
     val responseLiveData = MutableLiveData<Result<SimpleResponse>>()
 
     var isSendVoucher = false
+
 
     fun addVoucher(code: String) {
         isSendVoucher = true

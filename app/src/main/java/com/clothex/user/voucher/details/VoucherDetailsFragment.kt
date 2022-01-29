@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.clothex.user.databinding.FragmentVoucherDetailsBinding
 import com.clothex.user.voucher.shop_with_branch.VoucherShopAdapter
 import org.koin.android.ext.android.inject
+import retrofit2.HttpException
 
 
 /**
@@ -42,7 +43,8 @@ class VoucherDetailsFragment : Fragment() {
         binding.useVoucherButton.setOnClickListener {
             redeemViewModel.redeem(mViewModel.voucher.id) { result ->
                 result.getOrNull()?.let {
-                    val decodedString: ByteArray = Base64.decode(it.qrCode.split(",")[1], Base64.DEFAULT)
+                    val decodedString: ByteArray =
+                        Base64.decode(it.qrCode.split(",")[1], Base64.DEFAULT)
                     val bitmap =
                         BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                     findNavController().navigate(
@@ -52,7 +54,11 @@ class VoucherDetailsFragment : Fragment() {
                     )
                 }
                 result.exceptionOrNull()?.let {
-                    Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        (it as HttpException).message(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
