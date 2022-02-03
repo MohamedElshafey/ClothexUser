@@ -29,7 +29,7 @@ class RequestBookFragment : Fragment() {
             findNavController().navigate(RequestBookFragmentDirections.actionRequestBookFragmentToNavigationHome())
         }
         binding.trackOrderButton.setOnClickListener {
-            findNavController().navigate(RequestBookFragmentDirections.actionRequestBookFragmentToNavigationMyItems())
+            findNavController().navigate(RequestBookFragmentDirections.actionRequestBookFragmentToNavigationMyItems(true))
         }
     }
 }

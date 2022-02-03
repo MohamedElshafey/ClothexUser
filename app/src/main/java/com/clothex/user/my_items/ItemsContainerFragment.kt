@@ -43,6 +43,11 @@ class ItemsContainerFragment : Fragment() {
                 else activeOrdersSelected()
             }
         })
+        val openOrders = ItemsContainerFragmentArgs.fromBundle(requireArguments()).openOrders
+        binding.viewPager.post {
+            binding.viewPager.currentItem = if (openOrders) 1 else 0
+        }
+        arguments?.clear()
     }
 
     private fun activeOrdersSelected() {

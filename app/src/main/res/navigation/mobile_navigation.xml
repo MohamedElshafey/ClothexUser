@@ -41,6 +41,10 @@
         <action
             android:id="@+id/action_navigation_my_items_to_bookFragment2"
             app:destination="@id/bookFragment" />
+        <argument
+            android:name="openOrders"
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
 
     <fragment
