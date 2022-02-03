@@ -21,6 +21,7 @@ import com.clothex.data.domain.model.sign.SignupBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentRegisterBinding
 import org.koin.android.ext.android.inject
+import retrofit2.HttpException
 import java.util.regex.Pattern
 
 
@@ -161,8 +162,7 @@ class RegisterFragment : Fragment() {
                     username = username!!
                 )
                 viewModel.signup(signupBody) {
-                    val simpleResponse = it.getOrNull()
-                    if (simpleResponse != null) {
+                    it.getOrNull()?.let { simpleResponse ->
                         if (simpleResponse.success) {
                             Toast.makeText(
                                 requireContext(),
@@ -178,8 +178,14 @@ class RegisterFragment : Fragment() {
                             )
                                 .show()
                         }
-                    } else {
-                        Toast.makeText(requireContext(), "Network error!", Toast.LENGTH_LONG).show()
+                    }
+
+                    it.exceptionOrNull()?.let { throwable ->
+                        Toast.makeText(
+                            requireContext(),
+                            (throwable as HttpException).message(),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
