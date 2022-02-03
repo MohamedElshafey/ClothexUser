@@ -131,6 +131,7 @@
     <string name="no_orders_description">Here you can find the booked requests you made</string>
     <string name="error_title">Oops!</string>
     <string name="swipe_error_message">Error happened!, swipe to try again!</string>
+    <string name="redeemed">Redeemed</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

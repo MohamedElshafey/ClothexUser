@@ -1,5 +1,6 @@
 package com.clothex.user.voucher
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -35,11 +36,15 @@ class VoucherAdapter(
                 binding.titleTV.text = title
                 binding.subtitleTV.text = "Expired in ${voucher.expiryDate.toLocalTimeZone()}"
                 setImageFromUrl(binding.logoIV, logo.source)
+                binding.container.setBackgroundColor(
+                    if (voucher.redeemed) Color.parseColor("#30000000")
+                    else Color.WHITE
+                )
             }
             binding.root.setOnClickListener {
-                onItemSelected.invoke(voucher)
+                if (voucher.redeemed.not())
+                    onItemSelected.invoke(voucher)
             }
-
         }
     }
 
