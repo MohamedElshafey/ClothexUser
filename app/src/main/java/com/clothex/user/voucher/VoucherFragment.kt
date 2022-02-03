@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.data.domain.model.voucher.Voucher
@@ -34,7 +36,9 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
         super.onViewCreated(view, savedInstanceState)
         viewModel.checkIfLoginTemporary()
         viewModel.fetchVouchers()
+        binding.progressBar.isVisible = true
         viewModel.vouchersLiveData.observe(viewLifecycleOwner, { voucherList ->
+            binding.progressBar.isGone = true
             binding.vouchersRV.adapter = VoucherAdapter(voucherList, this)
         })
         binding.vouchersRV.addDivider()

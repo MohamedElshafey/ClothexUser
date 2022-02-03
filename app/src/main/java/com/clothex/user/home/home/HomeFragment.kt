@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -45,6 +47,7 @@ class HomeFragment : Fragment() {
             binding.locationValueTV.text =
                 it?.title ?: context?.getString(R.string.select_location_to_search)
         })
+        binding.homeGroup.isGone = true
         viewModel.isFirstTimeOpenLiveData.observe(viewLifecycleOwner, { isFirstTime ->
             if (isFirstTime) {
                 findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToLoginFragment())
@@ -57,6 +60,7 @@ class HomeFragment : Fragment() {
                     viewModel.updateFCMToken(token)
                 })
                 viewModel.fetchHome()
+                binding.progressBar.isVisible = true
             }
         })
 
@@ -64,12 +68,24 @@ class HomeFragment : Fragment() {
             Toast.makeText(requireContext(), "Error, $it", Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.productLiveData.observe(viewLifecycleOwner, {
+        viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
+            binding.progressBar.isGone = true
             binding.swipeRefresh.isRefreshing = false
-            binding.productRV.adapter = ProductAdapter(it) { prod ->
+            binding.productRV.adapter = ProductAdapter(products) { prod ->
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(prod.id)
                 )
+            }
+            if (products.isNullOrEmpty()) {
+                binding.messageContainer.apply {
+                    messageIV.setImageResource(R.drawable.ic_shirt_error)
+                    messageTitleTV.setText(R.string.error_title)
+                    messageSubTitleTV.setText(R.string.swipe_error_message)
+                }
+            }
+            with(products.isNullOrEmpty()) {
+                binding.homeGroup.isGone = this
+                binding.messageContainer.container.isVisible = this
             }
         })
 
@@ -132,6 +148,7 @@ class HomeFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.fetchHome()
+            binding.progressBar.isVisible = true
         }
 
     }

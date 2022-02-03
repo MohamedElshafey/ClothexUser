@@ -1,6 +1,7 @@
 package com.clothex.data.local.shared_pref
 
 import com.clothex.data.domain.model.body.SortEnum
+import com.clothex.data.domain.model.user.User
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -8,8 +9,10 @@ import kotlinx.coroutines.flow.Flow
  */
 interface ILocalDataSource {
     suspend fun setToken(token: String?)
-
     suspend fun getToken(): Flow<String?>
+
+    suspend fun setUser(user: User?)
+    suspend fun getUser(): Flow<User?>
 
     fun getTokenAsString(): String?
 

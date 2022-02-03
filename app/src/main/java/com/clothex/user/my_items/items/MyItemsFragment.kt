@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
@@ -36,7 +37,9 @@ class MyItemsFragment : Fragment(), MyItemCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mViewModel.fetchMyItems()
-        mViewModel.mutableMyItemsLiveData.observe(viewLifecycleOwner, Observer { myItems ->
+        binding.progressBar.isVisible = true
+        mViewModel.mutableMyItemsLiveData.observe(viewLifecycleOwner, { myItems ->
+            binding.progressBar.isGone = true
             val grouped = myItems?.groupBy {
                 it.branch
             }
@@ -45,6 +48,15 @@ class MyItemsFragment : Fragment(), MyItemCallback {
                 groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
             }
             binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
+
+                if (myItems.isNullOrEmpty()) {
+                    binding.messageContainer.apply {
+                        messageIV.setImageResource(R.drawable.ic_no_items_found)
+                        messageTitleTV.setText(R.string.no_my_items_message)
+                        messageSubTitleTV.setText(R.string.no_my_items_description)
+                    }
+                }
+            binding.messageContainer.container.isGone = myItems.isNullOrEmpty().not()
         })
 
     }

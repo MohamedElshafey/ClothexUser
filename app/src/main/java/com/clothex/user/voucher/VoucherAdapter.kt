@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.user.databinding.AdapterItemVoucherBinding
-import com.clothex.user.utils.DateUtil.fromUTCToLocal
+import com.clothex.user.utils.DateUtil.toLocalTimeZone
 import com.clothex.user.utils.setImageFromUrl
 
 /**
@@ -33,7 +33,7 @@ class VoucherAdapter(
         fun bind(voucher: Voucher) {
             voucher.apply {
                 binding.titleTV.text = title
-                binding.subtitleTV.text = "Expired in ${voucher.expiryDate.fromUTCToLocal()}"
+                binding.subtitleTV.text = "Expired in ${voucher.expiryDate.toLocalTimeZone()}"
                 setImageFromUrl(binding.logoIV, logo.source)
             }
             binding.root.setOnClickListener {

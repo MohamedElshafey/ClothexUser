@@ -26,6 +26,8 @@ import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.data.domain.usecases.sort.SetSortUseCase
 import com.clothex.data.domain.usecases.token.GetTokenUseCase
 import com.clothex.data.domain.usecases.token.SetTokenUseCase
+import com.clothex.data.domain.usecases.user.GetUserUseCase
+import com.clothex.data.domain.usecases.user.SetUserUseCase
 import com.clothex.data.domain.usecases.voucher.AddVoucherUseCase
 import com.clothex.data.domain.usecases.voucher.GetVouchersUseCase
 import com.clothex.data.domain.usecases.voucher.RedeemVoucherUseCase
@@ -92,9 +94,18 @@ val useCaseModule = module {
     single(named("get_token")) { provideGetTokenUseCase(get()) }
     single(named("set_token")) { provideSetTokenUseCase(get()) }
 
+    single(named("get_user")) { provideGetUserUseCase(get()) }
+    single(named("set_user")) { provideSetUserUseCase(get()) }
+
     single(named("signup_temporary")) { provideSignUpTemporaryUseCase(get()) }
     single(named("signup")) { provideSignUpUseCase(get()) }
-    single(named("login")) { provideLoginUseCase(get(), get(named("set_token"))) }
+    single(named("login")) {
+        provideLoginUseCase(
+            get(),
+            get(named("set_token")),
+            get(named("set_user"))
+        )
+    }
 
     single(named("get_visit_onboarding")) { provideGetVisitOnBoardingUseCase(get()) }
     single(named("set_visit_onboarding")) { provideSetVisitOnBoardingUseCase(get()) }
@@ -207,6 +218,15 @@ fun provideGetTokenUseCase(repository: LocalDataSourceImpl): GetTokenUseCase {
     return GetTokenUseCase(repository)
 }
 
+fun provideSetUserUseCase(repository: LocalDataSourceImpl): SetUserUseCase {
+    return SetUserUseCase(repository)
+}
+
+
+fun provideGetUserUseCase(repository: LocalDataSourceImpl): GetUserUseCase {
+    return GetUserUseCase(repository)
+}
+
 fun provideSetTokenUseCase(repository: LocalDataSourceImpl): SetTokenUseCase {
     return SetTokenUseCase(repository)
 }
@@ -221,9 +241,10 @@ fun provideSignUpUseCase(repository: SignUpRepository): SignUpUseCase {
 
 fun provideLoginUseCase(
     repository: LoginRepository,
-    setTokenUseCase: SetTokenUseCase
+    setTokenUseCase: SetTokenUseCase,
+    setUserUseCase: SetUserUseCase
 ): LoginUseCase {
-    return LoginUseCase(repository, setTokenUseCase)
+    return LoginUseCase(repository, setTokenUseCase, setUserUseCase)
 }
 
 fun provideGetVisitOnBoardingUseCase(repository: LocalDataSourceImpl): GetVisitOnBoardingUseCase {

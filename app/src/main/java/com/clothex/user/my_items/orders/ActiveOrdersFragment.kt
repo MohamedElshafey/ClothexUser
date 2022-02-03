@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.appcompat.widget.ListPopupWindow
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.data.domain.model.order.OrderState
@@ -50,14 +52,24 @@ class ActiveOrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.isVisible = true
         mViewModel.fetchMyOrders()
         binding.filterContainer.setOnClickListener {
             showFilterList()
         }
         binding.ordersRV.adapter = ordersAdapter
-        mViewModel.myOrdersLiveData.observe(viewLifecycleOwner, {
-            myOrders = it
-            ordersAdapter.updateData(it ?: listOf())
+        mViewModel.myOrdersLiveData.observe(viewLifecycleOwner, { orders ->
+            binding.progressBar.isGone = true
+            myOrders = orders
+            ordersAdapter.updateData(orders ?: listOf())
+            if (orders.isNullOrEmpty()) {
+                binding.messageContainer.apply {
+                    messageIV.setImageResource(R.drawable.ic_no_items_found)
+                    messageTitleTV.setText(R.string.no_orders_message)
+                    messageSubTitleTV.setText(R.string.no_orders_description)
+                }
+            }
+            binding.messageContainer.container.isGone = orders.isNullOrEmpty().not()
         })
     }
 

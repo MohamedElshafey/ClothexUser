@@ -4,7 +4,6 @@ import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.data.domain.model.product.Branch
 import com.clothex.data.domain.model.shop.Shop
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class MyOrder(
     @SerializedName("_id")
@@ -19,5 +18,5 @@ data class MyOrder(
     @SerializedName("end_time")
     val endTime: String?,
     @SerializedName("createdAt")
-    val placedOn: Date?
+    val placedOn: String?
 )

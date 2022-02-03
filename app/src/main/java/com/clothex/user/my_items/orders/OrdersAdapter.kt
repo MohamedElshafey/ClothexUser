@@ -14,10 +14,9 @@ import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemOrderBinding
 import com.clothex.user.utils.CustomTypefaceSpan
-import com.clothex.user.utils.DateUtil.fromUTCToLocal
+import com.clothex.user.utils.DateUtil.toLocalTimeZone
 import com.clothex.user.utils.DateUtil.getDifferenceTimeStamp
 import com.clothex.user.utils.setImageFromUrl
-import java.util.*
 
 
 /**
@@ -58,7 +57,7 @@ class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
             binding.placedDateTV.text =
                 String.format(
                     context.getString(R.string.placed_on),
-                    order.placedOn?.fromUTCToLocal()
+                    order.placedOn?.toLocalTimeZone()
                 )
 //                String.format(
 //                    context.getString(R.string.placed_on),

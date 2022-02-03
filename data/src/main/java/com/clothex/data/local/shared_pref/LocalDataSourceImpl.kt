@@ -2,6 +2,9 @@ package com.clothex.data.local.shared_pref
 
 import android.content.SharedPreferences
 import com.clothex.data.domain.model.body.SortEnum
+import com.clothex.data.domain.model.user.User
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,6 +18,17 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
 
     override suspend fun getToken(): Flow<String?> = flow {
         emit(sharedPreferences.getString(TOKEN_KEY, null))
+    }
+
+    override suspend fun setUser(user: User?) {
+        val userString = Gson().toJson(user)
+        sharedPreferences.edit().putString(LOGIN_KEY, userString).apply()
+    }
+
+    override suspend fun getUser(): Flow<User?> = flow {
+        val userString = sharedPreferences.getString(LOGIN_KEY, null)
+        val user = Gson().fromJson<User>(userString, TypeToken.get(User::class.java).type)
+        emit(user)
     }
 
     override fun getTokenAsString(): String? {

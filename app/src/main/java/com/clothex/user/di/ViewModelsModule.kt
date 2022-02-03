@@ -15,6 +15,8 @@ import com.clothex.user.my_items.items.MyItemsViewModel
 import com.clothex.user.my_items.orders.ActiveOrdersViewModel
 import com.clothex.user.onboarding.boarding.OnBoardingViewModel
 import com.clothex.user.onboarding.splash.SplashViewModel
+import com.clothex.user.profile.ProfileViewModel
+import com.clothex.user.profile.edit.EditProfileViewModel
 import com.clothex.user.profile.location.EditLocationViewModel
 import com.clothex.user.voucher.VoucherViewModel
 import com.clothex.user.voucher.add_text.CodeVoucherViewModel
@@ -160,5 +162,13 @@ val viewModelsModule = module {
 
     viewModel {
         RedeemVoucherViewModel(redeemVoucherUseCase = get(named("redeem_voucher")))
+    }
+
+    viewModel {
+        ProfileViewModel(getUserUseCase = get(named("get_user")))
+    }
+
+    viewModel {
+        EditProfileViewModel(getUserUseCase = get(named("get_user")))
     }
 }

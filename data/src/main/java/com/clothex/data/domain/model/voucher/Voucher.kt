@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.clothex.data.domain.model.product.Media
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import java.util.*
 
 @Parcelize
 data class Voucher(
@@ -15,7 +14,7 @@ data class Voucher(
     val title: String,
     val description: String,
     @SerializedName("expiry_date")
-    val expiryDate: Date,
+    val expiryDate: String,
     val shops: List<VoucherShop>,
     val code: String,
     val redeemed: Boolean = false

@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.databinding.FragmentProfileBinding
 import com.clothex.user.utils.setAllOnClickListener
+import org.koin.android.ext.android.inject
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private val viewModel: ProfileViewModel by inject()
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -21,15 +21,14 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        profileViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        binding.viewModel = profileViewModel
+        binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.fetchUser()
         binding.prefGroup.setAllOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditPreferencesFragment())
         }

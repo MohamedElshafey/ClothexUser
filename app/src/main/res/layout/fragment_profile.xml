@@ -56,7 +56,7 @@
                 tools:text="User name" />
 
             <TextView
-                android:id="@+id/userAddressTV"
+                android:id="@+id/emailTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -65,15 +65,14 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="@{viewModel.userAddress}"
+                android:text="@{viewModel.userEmail}"
                 android:textAppearance="@style/FontRegular"
                 android:textColor="@color/dove_gray"
                 android:textSize="12sp"
-                app:drawableStartCompat="@drawable/ic_location_small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userNameTV"
-                tools:text="New cairo, Egypt" />
+                tools:text="test@test.com" />
 
             <!--    My Preferences-->
             <ImageView
@@ -97,7 +96,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/prefIconIV"
-                app:layout_constraintTop_toBottomOf="@id/userAddressTV" />
+                app:layout_constraintTop_toBottomOf="@id/emailTV" />
 
             <TextView
                 android:id="@+id/prefSubTitleTV"
