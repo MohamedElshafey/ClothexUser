@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.appcompat.widget.ListPopupWindow
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.data.domain.model.order.OrderState
 import com.clothex.user.R
@@ -25,17 +27,24 @@ class ActiveOrdersFragment : Fragment() {
 
     private val mViewModel: ActiveOrdersViewModel by inject()
     lateinit var binding: FragmentActiveOrdersBinding
-    private val onClickOrderCallback: (MyOrder) -> Unit = {
-        it.branch.address?.location?.let { location ->
-            if (location.coordinates.size == 2) {
-                val uri = String.format(
-                    Locale.ENGLISH,
-                    "http://maps.google.com/maps?q=loc:%f,%f",
-                    location.coordinates[1], location.coordinates[0]
-                )
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                startActivity(intent)
+    private val onClickOrderCallback = object : OrderClickCallback {
+        override fun onGetDirectionClicked(order: MyOrder) {
+            order.branch.address?.location?.let { location ->
+                if (location.coordinates.size == 2) {
+                    val uri = String.format(
+                        Locale.ENGLISH,
+                        "http://maps.google.com/maps?q=loc:%f,%f",
+                        location.coordinates[1], location.coordinates[0]
+                    )
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                    startActivity(intent)
+                }
             }
+        }
+
+        override fun onOrderSelected(order: MyOrder) {
+            val bundle = bundleOf("orderId" to order.id)
+            findNavController().navigate(R.id.orderDetailsFragment, bundle)
         }
     }
     private var ordersAdapter = OrdersAdapter(onClickOrderCallback)

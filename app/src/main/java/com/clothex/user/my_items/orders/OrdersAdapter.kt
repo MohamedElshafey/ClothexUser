@@ -22,7 +22,7 @@ import com.clothex.user.utils.setImageFromUrl
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
+class OrdersAdapter(val onClickListener: OrderClickCallback) :
     Adapter<OrdersAdapter.ViewHolder>() {
 
     var list: List<MyOrder> = listOf()
@@ -66,14 +66,14 @@ class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
                 backgroundDrawable.setColor(it.backgroundColor)
             }
             binding.statusTV.background = backgroundDrawable
-            binding.bookedItemsTV.text = order.myItems.size.toString()
+            binding.bookedItemsTV.text = order.bookedItems.size.toString()
             val totalPrice = order.myItems.map { it.product.price * it.quantity }.sum()
             binding.totalPriceTV.text = totalPrice.toString()
             if (order.endTime != null && order.orderTimeStamp != null) {
                 binding.orderValidContainer.visibility = View.VISIBLE
                 binding.directionButton.visibility = View.VISIBLE
                 binding.directionButton.setOnClickListener {
-                    onClickListener.invoke(order)
+                    onClickListener.onGetDirectionClicked(order)
                 }
                 val diffTimeStamp = getDifferenceTimeStamp(order.endTime!!) ?: return
                 if (diffTimeStamp > 0) {
@@ -112,6 +112,9 @@ class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
             } else {
                 binding.orderValidContainer.visibility = View.GONE
                 binding.directionButton.visibility = View.GONE
+            }
+            binding.root.setOnClickListener {
+                onClickListener.onOrderSelected(order)
             }
         }
     }

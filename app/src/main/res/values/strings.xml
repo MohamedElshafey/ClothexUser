@@ -132,6 +132,8 @@
     <string name="error_title">Oops!</string>
     <string name="swipe_error_message">Error happened!, swipe to try again!</string>
     <string name="redeemed">Redeemed</string>
+    <string name="order_details">Order details</string>
+    <string name="total_booked_items">Total booked items</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

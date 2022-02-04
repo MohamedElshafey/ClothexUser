@@ -23,4 +23,7 @@
 
     <color name="black_transparent_50">#80000000</color>
     <color name="black_transparent_75">#BF000000</color>
+
+    <color name="booked_item">#daf7dd</color>
+    <color name="unbooked_item">#f7e4dc</color>
 </resources>

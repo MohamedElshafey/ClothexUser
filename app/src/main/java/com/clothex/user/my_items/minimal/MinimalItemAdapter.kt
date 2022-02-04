@@ -4,15 +4,20 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.my_item.MyItem
+import com.clothex.user.R
 import com.clothex.user.databinding.AdapterMinimalProductBinding
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class MinimalItemAdapter(private val list: List<MyItem>) :
+class MinimalItemAdapter(
+    private val list: List<MyItem>,
+    private val bookedItems: List<String>? = null
+) :
     Adapter<MinimalItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -33,7 +38,15 @@ class MinimalItemAdapter(private val list: List<MyItem>) :
                 background = backgroundDrawable
             }
             binding.viewModel = MinimalItemViewModel(minimalProduct)
+            if (bookedItems != null) {
+                val isBooked = bookedItems.contains(minimalProduct.id)
+                binding.root.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        if (isBooked) R.color.booked_item else R.color.unbooked_item
+                    )
+                )
+            }
         }
     }
-
 }

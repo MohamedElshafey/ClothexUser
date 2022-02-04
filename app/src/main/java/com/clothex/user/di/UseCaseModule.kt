@@ -17,6 +17,7 @@ import com.clothex.data.domain.usecases.onboarding.GetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.onboarding.SetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
 import com.clothex.data.domain.usecases.order.GetMyOrdersUseCase
+import com.clothex.data.domain.usecases.order.GetOrderDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductPageUseCase
 import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
@@ -42,6 +43,7 @@ import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
+import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
 import com.clothex.data.remote.repository.search.GetProductPageRepository
 import com.clothex.data.remote.repository.search.GetShopPageRepository
 import com.clothex.data.remote.repository.sign.LoginRepository
@@ -88,6 +90,7 @@ val useCaseModule = module {
 
     single(named("get_my_orders")) { provideGetMyOrdersUseCase(get()) }
     single(named("create_my_order")) { provideCreateMyOrderUseCase(get()) }
+    single(named("get_order_details")) { provideGetOrderDetailsUseCase(get()) }
 
     single(named("get_shop_page")) { provideGetShopPageUseCase(get()) }
 
@@ -124,6 +127,7 @@ val useCaseModule = module {
     single(named("get_vouchers")) { provideGetVouchersUseCase(get()) }
     single(named("add_voucher")) { provideAddVoucherUseCase(get()) }
     single(named("redeem_voucher")) { provideRedeemVoucherUseCase(get()) }
+
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -208,6 +212,10 @@ fun provideGetMyOrdersUseCase(repository: GetMyOrdersRepository): GetMyOrdersUse
 
 fun provideCreateMyOrderUseCase(repository: CreateMyOrderRepository): CreateMyOrdersUseCase {
     return CreateMyOrdersUseCase(repository)
+}
+
+fun provideGetOrderDetailsUseCase(repository: GetOrderDetailsRepository): GetOrderDetailsUseCase {
+    return GetOrderDetailsUseCase(repository)
 }
 
 fun provideGetShopPageUseCase(repository: GetShopPageRepository): GetShopPageUseCase {

@@ -20,5 +20,7 @@ data class MyOrder(
     @SerializedName("createdAt")
     val placedOn: String?,
     @SerializedName("order_id")
-    val orderId: String
+    val orderId: String,
+    @SerializedName("booked_items")
+    val bookedItems: List<String>
 )

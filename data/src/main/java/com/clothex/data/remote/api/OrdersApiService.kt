@@ -6,6 +6,7 @@ import com.clothex.data.domain.model.order.MyOrder
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 /**
  * Created by Mohamed Elshafey on 10/10/2020.
@@ -16,4 +17,7 @@ interface OrdersApiService {
 
     @POST("make_order")
     suspend fun makeOrder(@Body body: OrderBody): SimpleResponse
+
+    @GET("order_details")
+    suspend fun getOrderDetails(@Query("order_id") orderId: String): MyOrder
 }

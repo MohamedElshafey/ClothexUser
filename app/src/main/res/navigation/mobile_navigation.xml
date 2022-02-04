@@ -181,6 +181,9 @@
         <action
             android:id="@+id/action_myItemsFragment_to_bookFragment"
             app:destination="@id/bookFragment" />
+        <action
+            android:id="@+id/action_myItemsFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/requestBookFragment"
@@ -367,5 +370,14 @@
             android:name="bitmap"
             app:argType="android.graphics.Bitmap" />
     </dialog>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.clothex.user.my_items.orders.details.OrderDetailsFragment"
+        android:label="OrderDetailsFragment"
+        tools:layout="@layout/fragment_order_details" >
+        <argument
+            android:name="orderId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

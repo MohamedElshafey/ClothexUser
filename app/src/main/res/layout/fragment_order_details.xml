@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.clothex.user.my_items.orders.details.OrderDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.clothex.user.customview.DefaultActionBar
+            android:id="@+id/actionBar"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/order_details" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/directionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/orderIdTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/statusTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Order : zxsd226581251" />
+
+                <TextView
+                    android:id="@+id/placedDateTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/silver"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/orderIdTV"
+                    app:layout_constraintStart_toStartOf="@id/orderIdTV"
+                    app:layout_constraintTop_toBottomOf="@id/orderIdTV"
+                    tools:text="Placed on 24 Nov 2021    1:30 PM" />
+
+                <TextView
+                    android:id="@+id/statusTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/status_bg_shape"
+                    android:paddingStart="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="4dp"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="#10c935"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/orderIdTV"
+                    tools:text="Booked" />
+
+                <FrameLayout
+                    android:id="@+id/orderValidContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/success_message_shape"
+                    android:padding="6dp"
+                    app:layout_constraintEnd_toEndOf="@id/statusTV"
+                    app:layout_constraintStart_toStartOf="@id/placedDateTV"
+                    app:layout_constraintTop_toBottomOf="@id/placedDateTV">
+
+                    <TextView
+                        android:id="@+id/orderValidTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/order_valid_msg"
+                        android:textAppearance="@style/FontRegular"
+                        android:textColor="@color/cod_gray"
+                        android:textSize="12sp" />
+
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/headerBackgroundView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/shop_bg_shape"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@id/itemsRV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/orderValidContainer" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/shopLogoIV"
+                    imageUrl="@{viewModel.shopLogo}"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="@id/headerBackgroundView"
+                    app:layout_constraintTop_toTopOf="@id/headerBackgroundView"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
+
+                <TextView
+                    android:id="@+id/shopTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{viewModel.shopName}"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/leadingIV"
+                    app:layout_constraintStart_toEndOf="@+id/shopLogoIV"
+                    app:layout_constraintTop_toTopOf="@+id/shopLogoIV"
+                    tools:text="Solid Button-Front Drop Shoulder Shirt" />
+
+                <ImageView
+                    android:id="@+id/locationIconIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_location_small"
+                    app:layout_constraintStart_toStartOf="@id/shopTitleTV"
+                    app:layout_constraintTop_toBottomOf="@id/shopTitleTV" />
+
+                <TextView
+                    android:id="@+id/addressTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{viewModel.branchAddressName}"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
+                    app:layout_constraintEnd_toStartOf="@id/leadingIV"
+                    app:layout_constraintStart_toEndOf="@id/locationIconIV"
+                    app:layout_constraintTop_toTopOf="@id/locationIconIV"
+                    tools:text="20705 Velda Ramp, Lake Alexys, HI" />
+
+                <ImageView
+                    android:id="@+id/leadingIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_leading_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/headerBackgroundView"
+                    app:layout_constraintEnd_toEndOf="@id/headerBackgroundView"
+                    app:layout_constraintTop_toTopOf="@id/headerBackgroundView" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/shopGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="shopLogoIV,shopTitleTV,leadingIV,addressTV,headerBackgroundView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/itemsRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_time_small"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/footerBackground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shopLogoIV"
+                    tools:listitem="@layout/adapter_edit_minimal_product" />
+
+                <View
+                    android:id="@+id/footerBackground"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/subtotalTitleTV" />
+
+                <TextView
+                    android:id="@+id/subtotalTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/subtotal"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/bookedItemTitleTV"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/subtotalTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:paddingTop="8dp"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/subtotalTitleTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/subtotalTitleTV"
+                    tools:text="EGP 379.00" />
+
+                <TextView
+                    android:id="@+id/bookedItemTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/total_booked_items"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/totalTitleTV"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/bookedItemsTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/bookedItemTitleTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/bookedItemTitleTV"
+                    tools:text="3" />
+
+                <TextView
+                    android:id="@+id/totalTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:paddingBottom="16dp"
+                    android:text="@string/total"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/footerBackground"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/totalTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:paddingBottom="16dp"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/totalTitleTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/totalTitleTV"
+                    tools:text="EGP 379.00" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/directionButton"
+            style="@style/RemarkableButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:text="@string/get_directions_now"
+            android:textAppearance="@style/FontSemiBold"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
