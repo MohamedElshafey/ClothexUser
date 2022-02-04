@@ -18,5 +18,7 @@ data class MyOrder(
     @SerializedName("end_time")
     val endTime: String?,
     @SerializedName("createdAt")
-    val placedOn: String?
+    val placedOn: String?,
+    @SerializedName("order_id")
+    val orderId: String
 )

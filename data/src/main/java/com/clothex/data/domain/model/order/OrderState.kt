@@ -15,12 +15,15 @@ enum class OrderState(
     @SerializedName("pending")
     PENDING(0, R.string.pending, Color.parseColor("#974b00"), Color.parseColor("#ffedaf")),
 
-    @SerializedName("approved")
-    APPROVED(1, R.string.active, Color.parseColor("#10c935"), Color.parseColor("#1A10c935")),
+    @SerializedName("booked")
+    BOOKED(1, R.string.booked, Color.parseColor("#10c935"), Color.parseColor("#1A10c935")),
+
+    @SerializedName("unbooked")
+    UNBOOKED(2, R.string.unbooked, Color.parseColor("#646464"), Color.parseColor("#e9e9e9")),
 
     @SerializedName("rejected")
-    REJECTED(2, R.string.rejected, Color.parseColor("#970000"), Color.parseColor("#ffdfdf")),
+    REJECTED(3, R.string.rejected, Color.parseColor("#970000"), Color.parseColor("#ffdfdf")),
 
     @SerializedName("done")
-    DONE(3, R.string.done, Color.parseColor("#646464"), Color.parseColor("#e9e9e9"))
+    DONE(4, R.string.done, Color.parseColor("#646464"), Color.parseColor("#e9e9e9"))
 }

@@ -53,7 +53,6 @@ class ActiveOrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.progressBar.isVisible = true
-        mViewModel.fetchMyOrders()
         binding.filterContainer.setOnClickListener {
             showFilterList()
         }
@@ -71,6 +70,11 @@ class ActiveOrdersFragment : Fragment() {
             }
             binding.messageContainer.container.isGone = orders.isNullOrEmpty().not()
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mViewModel.fetchMyOrders()
     }
 
     private fun showFilterList() {

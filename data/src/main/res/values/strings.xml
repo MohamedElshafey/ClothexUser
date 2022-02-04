@@ -1,6 +1,7 @@
 <resources>
     <string name="pending">Pending</string>
-    <string name="active">Active</string>
+    <string name="booked">Booked</string>
+    <string name="unbooked">Unbooked</string>
     <string name="rejected">Rejected</string>
     <string name="done">Done</string>
 </resources>

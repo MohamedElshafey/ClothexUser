@@ -14,8 +14,8 @@ import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemOrderBinding
 import com.clothex.user.utils.CustomTypefaceSpan
-import com.clothex.user.utils.DateUtil.toLocalTimeZone
 import com.clothex.user.utils.DateUtil.getDifferenceTimeStamp
+import com.clothex.user.utils.DateUtil.toLocalTimeZone
 import com.clothex.user.utils.setImageFromUrl
 
 
@@ -53,20 +53,12 @@ class OrdersAdapter(val onClickListener: (MyOrder) -> Unit) :
             with(order.branch) {
                 binding.shopAddressTV.text = address?.name
             }
-            binding.orderIdTV.text = String.format(context.getString(R.string.order), order.id)
+            binding.orderIdTV.text = String.format(context.getString(R.string.order), order.orderId)
             binding.placedDateTV.text =
                 String.format(
                     context.getString(R.string.placed_on),
                     order.placedOn?.toLocalTimeZone()
                 )
-//                String.format(
-//                    context.getString(R.string.placed_on),
-//                    uTCToLocal(
-//                        "yyyy-MM-dd hh:mm a",
-//                        "yyyy-MM-dd hh:mm a",
-//                        order.placedOn.toString()
-//                    )
-//                )
             val backgroundDrawable = binding.statusTV.background as GradientDrawable
             order.state.let {
                 binding.statusTV.text = context.getString(it.title)
