@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentOrderDetailsBinding
 import com.clothex.user.my_items.minimal.MinimalItemAdapter
@@ -46,6 +47,7 @@ class OrderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchOrderDetails(orderId)
+        binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         viewModel.orderMutableLiveData.observe(viewLifecycleOwner, { result ->
             val context = context ?: return@observe
             result.getOrNull()?.let { order ->

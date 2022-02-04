@@ -381,6 +381,9 @@
         <argument
             android:name="orderId"
             app:argType="string" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="clothex://app.user/order/{orderId}" />
     </fragment>
 
     <fragment

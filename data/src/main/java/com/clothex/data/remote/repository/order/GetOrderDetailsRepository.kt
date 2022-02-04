@@ -12,6 +12,6 @@ import kotlinx.coroutines.flow.flow
 class GetOrderDetailsRepository(private val apiService: OrdersApiService) :
     IGetOrderDetailsRepository {
     override suspend fun getOrderDetails(orderId: String): Flow<MyOrder> = flow {
-        apiService.getOrderDetails(orderId)
+        emit(apiService.getOrderDetails(orderId))
     }
 }
