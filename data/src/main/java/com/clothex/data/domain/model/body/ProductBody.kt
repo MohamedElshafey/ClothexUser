@@ -8,5 +8,7 @@ data class ProductBody(
     val size: String? = null,
     val shopId: String? = null,
     val color: String? = null,
+    val department: String? = null,
+    val type: String? = null,
     val search: String? = null
 )

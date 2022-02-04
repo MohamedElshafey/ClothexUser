@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
  * Created by Mohamed Elshafey on 10/10/2020.
  */
 interface IGetOrderDetailsRepository {
-    suspend fun getOrderDetails(orderId: String): Flow<Result<MyOrder>>
+    suspend fun getOrderDetails(orderId: String): Flow<MyOrder>
 }

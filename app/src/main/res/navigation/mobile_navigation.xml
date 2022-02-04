@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_navigation_categories_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_navigation_categories_to_selectTypeFragment"
+            app:destination="@id/selectTypeFragment" />
     </fragment>
 
     <fragment
@@ -374,10 +377,29 @@
         android:id="@+id/orderDetailsFragment"
         android:name="com.clothex.user.my_items.orders.details.OrderDetailsFragment"
         android:label="OrderDetailsFragment"
-        tools:layout="@layout/fragment_order_details" >
+        tools:layout="@layout/fragment_order_details">
         <argument
             android:name="orderId"
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectTypeFragment"
+        android:name="com.clothex.user.home.categories.type.SelectTypeFragment"
+        android:label="SelectTypeFragment"
+        tools:layout="@layout/fragment_select_type">
+        <argument
+            android:name="departmentId"
+            app:argType="string" />
+        <argument
+            android:name="departmentEnum"
+            app:argType="com.clothex.user.home.categories.style.DepartmentEnum" />
+        <argument
+            android:name="typeList"
+            app:argType="com.clothex.data.domain.model.department.Type[]" />
+        <action
+            android:id="@+id/action_selectTypeFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
 </navigation>

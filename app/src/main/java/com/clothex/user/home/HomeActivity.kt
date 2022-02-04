@@ -18,6 +18,7 @@ import androidx.transition.TransitionManager
 import com.clothex.user.R
 import com.clothex.user.databinding.ActivityHomeBinding
 import com.clothex.user.home.categories.CategoriesFragment
+import com.clothex.user.home.categories.type.SelectTypeFragment
 import com.clothex.user.home.home.HomeFragment
 import com.clothex.user.my_items.ItemsContainerFragment
 import com.clothex.user.my_items.items.MyItemsFragment
@@ -61,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
             val transition: Transition = Slide(Gravity.BOTTOM)
             when (f) {
                 is HomeFragment, is ItemsContainerFragment, is MyItemsFragment, is ActiveOrdersFragment,
-                is CategoriesFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
+                is CategoriesFragment, is SelectTypeFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
                     if (binding.navView.visibility == GONE) {
                         TransitionManager.beginDelayedTransition(
                             binding.root,

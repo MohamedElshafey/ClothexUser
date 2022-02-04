@@ -79,9 +79,9 @@ class ProductDetailsFragment : Fragment() {
         })
 
         binding.contentContainer.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            val chip = binding.contentContainer.sizeChipGroup.findViewById(checkedId) as Chip
+            val chip = binding.contentContainer.sizeChipGroup.findViewById(checkedId) as Chip?
             val selectedSize =
-                mViewModel.sizesLiveData.value?.first { it.title.equals(chip.text.toString()) }
+                mViewModel.sizesLiveData.value?.first { it.title.equals(chip?.text.toString()) }
             selectedSize?.let { mViewModel.selectSize(it) }
         }
 

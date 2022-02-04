@@ -23,6 +23,8 @@ class GetProductPageUseCase(private val repository: IGetProductPageRepository) :
             size = params.size,
             shopId = params.shopId,
             color = params.color,
+            department = params.department,
+            type = params.type,
             search = params.search
         )
 }

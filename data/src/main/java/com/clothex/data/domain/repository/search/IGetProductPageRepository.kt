@@ -15,6 +15,8 @@ interface IGetProductPageRepository {
         size: String?,
         shopId: String?,
         color: String?,
+        type: String?,
+        department: String?,
         search: String?
     ): Flow<List<HomeProduct>?>
 }

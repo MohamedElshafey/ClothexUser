@@ -4,6 +4,7 @@ import com.clothex.data.domain.usecases.database.DeleteLocationUseCase
 import com.clothex.data.domain.usecases.database.GetSavedLocationUseCase
 import com.clothex.data.domain.usecases.database.GetSavedLocationsUseCase
 import com.clothex.data.domain.usecases.database.SaveLocationsUseCase
+import com.clothex.data.domain.usecases.department.GetDepartmentsUseCase
 import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
@@ -38,6 +39,7 @@ import com.clothex.data.local.shared_pref.LocalDataSourceImpl
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
+import com.clothex.data.remote.repository.department.GetDepartmentRepository
 import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
@@ -130,6 +132,7 @@ val useCaseModule = module {
     single(named("add_voucher")) { provideAddVoucherUseCase(get()) }
     single(named("redeem_voucher")) { provideRedeemVoucherUseCase(get()) }
 
+    single(named("get_departments")) { provideGetDepartmentsUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -311,4 +314,8 @@ fun provideAddVoucherUseCase(repository: AddVoucherRepository): AddVoucherUseCas
 
 fun provideRedeemVoucherUseCase(repository: RedeemVoucherRepository): RedeemVoucherUseCase {
     return RedeemVoucherUseCase(repository)
+}
+
+fun provideGetDepartmentsUseCase(repository: GetDepartmentRepository): GetDepartmentsUseCase {
+    return GetDepartmentsUseCase(repository)
 }

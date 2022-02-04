@@ -14,11 +14,11 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.clothex.data.domain.model.sign.Login
 import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentLoginBinding
 import org.koin.android.ext.android.inject
+import retrofit2.HttpException
 
 
 class LoginFragment : Fragment() {
@@ -82,15 +82,16 @@ class LoginFragment : Fragment() {
             if (phoneNumber.isNullOrEmpty() || password.isNullOrEmpty()) return@setOnClickListener
             val loginBody = LoginBody(phoneNumber = phoneNumber, password = password)
             loginViewModel.login(loginBody) {
-                val login: Login? = it.getOrNull()
-                if (login != null) {
+                it.getOrNull()?.let {
                     findNavController().navigateUp()
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Can't login, please try again!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                }
+                it.exceptionOrNull()?.let { throwable ->
+                    val message = if (throwable is HttpException) {
+                        throwable.message()
+                    } else {
+                        throwable.message
+                    }
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                 }
             }
         }

@@ -3,6 +3,7 @@ package com.clothex.user.di
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
+import com.clothex.data.remote.repository.department.GetDepartmentRepository
 import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
@@ -45,4 +46,5 @@ val remoteDataSourceModule = module {
     single { AddVoucherRepository(apiService = get()) }
     single { RedeemVoucherRepository(apiService = get()) }
     single { GetOrderDetailsRepository(apiService = get()) }
+    single { GetDepartmentRepository(apiService = get()) }
 }

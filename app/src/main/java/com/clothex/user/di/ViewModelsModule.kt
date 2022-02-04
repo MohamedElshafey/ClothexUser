@@ -1,6 +1,8 @@
 package com.clothex.user.di
 
 import com.clothex.user.home.book.BookViewModel
+import com.clothex.user.home.categories.CategoriesViewModel
+import com.clothex.user.home.categories.type.SelectTypeViewModel
 import com.clothex.user.home.home.HomeViewModel
 import com.clothex.user.home.location.SelectLocationViewModel
 import com.clothex.user.home.login.LoginViewModel
@@ -178,5 +180,13 @@ val viewModelsModule = module {
 
     viewModel {
         OrderDetailsViewModel(getOrderDetailsUseCase = get(named("get_order_details")))
+    }
+
+    viewModel {
+        CategoriesViewModel(getDepartmentsUseCase = get(named("get_departments")))
+    }
+
+    viewModel {
+        SelectTypeViewModel(productPageUseCase = get(named("get_product_page")))
     }
 }

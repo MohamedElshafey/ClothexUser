@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
         binding.languageGroup.setAllOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToSelectLanguageBottomSheet())
         }
-        binding.logoutGroup.setAllOnClickListener() {
+        binding.logoutGroup.setAllOnClickListener {
             viewModel.logout()
             requireActivity().finish()
             context?.let { context -> HomeActivity.start(context) }

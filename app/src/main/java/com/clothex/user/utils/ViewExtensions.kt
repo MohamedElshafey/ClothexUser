@@ -7,6 +7,7 @@ import android.graphics.drawable.InsetDrawable
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -27,9 +28,13 @@ fun View.setShapeColor(color: Int) {
     background = drawable
 }
 
-fun ChipGroup.addChip(layoutInflater: LayoutInflater, vararg text: String) {
+fun ChipGroup.addChip(
+    layoutInflater: LayoutInflater,
+    vararg text: String,
+    @LayoutRes layoutRes: Int = R.layout.item_chip
+) {
     text.forEach {
-        val chip = layoutInflater.inflate(R.layout.item_chip, this, false) as Chip
+        val chip = layoutInflater.inflate(layoutRes, this, false) as Chip
         chip.id = ViewCompat.generateViewId()
         chip.tag = it
         chip.text = it

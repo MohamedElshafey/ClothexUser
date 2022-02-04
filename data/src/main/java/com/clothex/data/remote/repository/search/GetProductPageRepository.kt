@@ -20,6 +20,8 @@ class GetProductPageRepository(private val apiService: ProductApiService) :
         size: String?,
         shopId: String?,
         color: String?,
+        type: String?,
+        department: String?,
         search: String?
     ): Flow<List<HomeProduct>?> =
         flow {
@@ -32,6 +34,8 @@ class GetProductPageRepository(private val apiService: ProductApiService) :
                     size = size,
                     shopId = shopId,
                     color = color,
+                    type = type,
+                    department = department,
                     search = search
                 )
             )

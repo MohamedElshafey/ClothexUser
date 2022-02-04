@@ -49,10 +49,8 @@
             android:name=".home.HomeActivity"
             android:clearTaskOnLaunch="true"
             android:exported="true"
-            android:launchMode="singleTask">
-
-        </activity>
-
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <service
             android:name=".notification.MyFirebaseMessagingService"
             android:exported="false">

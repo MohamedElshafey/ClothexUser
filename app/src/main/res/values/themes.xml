@@ -65,6 +65,14 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Widget.MyApp.Chip.CategoryChoice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipBackgroundColor">@color/category_chip_background</item>
+        <item name="android:textAppearance">@style/FontSemiBold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
         <item name="elevationOverlayEnabled">false</item>
     </style>
@@ -127,8 +135,16 @@
         <item name="android:backgroundDimAmount">0.9</item>
     </style>
 
+    <attr name="title" format="string" />
+
     <declare-styleable name="DefaultActionBar">
-        <attr name="title" format="string" />
+        <attr name="title" />
+    </declare-styleable>
+
+    <declare-styleable name="DepartmentCustomView">
+        <attr name="title" />
+        <attr name="icon" format="reference" />
+        <attr name="cardBackground" format="reference" />
     </declare-styleable>
 
 </resources>

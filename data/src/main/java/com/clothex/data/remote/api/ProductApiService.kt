@@ -21,6 +21,8 @@ interface ProductApiService {
         @Query("shopId") shopId: String?,
         @Query("size") size: String?,
         @Query("color") color: String?,
+        @Query("type") type: String?,
+        @Query("department") department: String?,
         @Query("search") search: String?
     ): List<HomeProduct>
 
