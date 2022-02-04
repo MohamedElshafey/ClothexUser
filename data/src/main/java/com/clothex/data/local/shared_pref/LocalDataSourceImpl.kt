@@ -22,11 +22,11 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
 
     override suspend fun setUser(user: User?) {
         val userString = Gson().toJson(user)
-        sharedPreferences.edit().putString(LOGIN_KEY, userString).apply()
+        sharedPreferences.edit().putString(USER_KEY, userString).apply()
     }
 
     override suspend fun getUser(): Flow<User?> = flow {
-        val userString = sharedPreferences.getString(LOGIN_KEY, null)
+        val userString = sharedPreferences.getString(USER_KEY, null)
         val user = Gson().fromJson<User>(userString, TypeToken.get(User::class.java).type)
         emit(user)
     }
@@ -107,6 +107,14 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         sharedPreferences.edit().remove(PRICE_END_KEY).apply()
         sharedPreferences.edit().remove(SIZE_KEY).apply()
         sharedPreferences.edit().remove(COLOR_KEY).apply()
+    }
+
+    override suspend fun logout() {
+        clearSessionPref()
+        sharedPreferences.edit().remove(IS_FIRST_TIME).apply()
+        sharedPreferences.edit().remove(IS_LOGIN_TEMPORARY).apply()
+        sharedPreferences.edit().remove(TOKEN_KEY).apply()
+        sharedPreferences.edit().remove(USER_KEY).apply()
     }
 
     override suspend fun clearUserPref() {

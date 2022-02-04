@@ -8,6 +8,7 @@ import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
+import com.clothex.data.domain.usecases.local.LogoutUseCase
 import com.clothex.data.domain.usecases.local.SetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemUseCase
@@ -65,6 +66,7 @@ val useCaseModule = module {
     single(named("get_product_page")) { provideGetProductPageUseCase(get()) }
     single(named("get_product_details")) { provideGetProductDetailsUseCase(get()) }
     single(named("clear_session")) { provideClearSessionUseCase(get()) }
+    single(named("logout")) { provideLogoutUseCase(get()) }
 
     single(named("get_shop_details")) { provideGetShopDetailsUseCase(get()) }
 
@@ -152,6 +154,10 @@ fun provideSetSortUseCase(dataSource: LocalDataSourceImpl): SetSortUseCase {
 
 fun provideClearSessionUseCase(dataSource: LocalDataSourceImpl): ClearSessionUseCase {
     return ClearSessionUseCase(dataSource)
+}
+
+fun provideLogoutUseCase(dataSource: LocalDataSourceImpl): LogoutUseCase {
+    return LogoutUseCase(dataSource)
 }
 
 fun provideGetSizeFilterUseCase(dataSource: LocalDataSourceImpl): GetSizeFilterUseCase {

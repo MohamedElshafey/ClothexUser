@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.databinding.FragmentProfileBinding
+import com.clothex.user.home.HomeActivity
 import com.clothex.user.utils.setAllOnClickListener
 import org.koin.android.ext.android.inject
 
@@ -45,7 +46,9 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToSelectLanguageBottomSheet())
         }
         binding.logoutGroup.setAllOnClickListener() {
-            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToLoginFragment())
+            viewModel.logout()
+            requireActivity().finish()
+            context?.let { context -> HomeActivity.start(context) }
         }
     }
 

@@ -166,7 +166,10 @@ val viewModelsModule = module {
     }
 
     viewModel {
-        ProfileViewModel(getUserUseCase = get(named("get_user")))
+        ProfileViewModel(
+            getUserUseCase = get(named("get_user")),
+            logoutUseCase = get(named("logout"))
+        )
     }
 
     viewModel {

@@ -43,6 +43,8 @@ interface ILocalDataSource {
 
     suspend fun clearSessionPref()
 
+    suspend fun logout()
+
     suspend fun clearUserPref()
 
     suspend fun clearAll()
