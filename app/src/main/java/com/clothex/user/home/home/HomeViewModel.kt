@@ -25,6 +25,7 @@ class HomeViewModel(
 ) : ViewModel() {
 
     val notificationCount = ObservableField<String>()
+    val notificationVisible = ObservableField(false)
     val productLiveData = MutableLiveData<List<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
     val failureLiveData = MutableLiveData<String>()
@@ -47,7 +48,10 @@ class HomeViewModel(
                     homeResult.getOrNull()?.let {
                         productLiveData.postValue(it.products)
                         shopLiveData.postValue(it.shops)
-                        notificationCount.set(it.notificationCount.toString())
+                        with(it.notificationCount) {
+                            notificationCount.set(this.coerceAtMost(99).toString())
+                            notificationVisible.set(this > 0)
+                        }
                     }
                     homeResult.exceptionOrNull()?.let {
                         failureLiveData.postValue(it.message)

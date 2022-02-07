@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.clothex.user.home.home.HomeViewModel" />
@@ -94,6 +96,7 @@
                     android:textAppearance="@style/FontBold"
                     android:textColor="@color/white"
                     android:textSize="12sp"
+                    android:visibility="@{viewModel.notificationVisible ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="@id/notificationIV"
                     app:layout_constraintTop_toTopOf="@id/notificationIV" />
 

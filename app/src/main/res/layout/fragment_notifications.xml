@@ -42,4 +42,13 @@
         app:layout_constraintTop_toBottomOf="@id/titleTV"
         tools:listitem="@layout/adapter_item_notification" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/notificationRV"
+        app:layout_constraintEnd_toEndOf="@id/notificationRV"
+        app:layout_constraintStart_toStartOf="@id/notificationRV"
+        app:layout_constraintTop_toTopOf="@id/notificationRV" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
