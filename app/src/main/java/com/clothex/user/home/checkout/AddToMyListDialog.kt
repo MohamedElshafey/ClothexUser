@@ -60,9 +60,7 @@ class AddToMyListDialog : DialogFragment() {
             )
         }
         binding.continueButton.setOnClickListener {
-            findNavController().navigate(
-                AddToMyListDialogDirections.actionAddToMyListDialogToNavigationHome()
-            )
+            findNavController().navigateUp()
         }
     }
 }

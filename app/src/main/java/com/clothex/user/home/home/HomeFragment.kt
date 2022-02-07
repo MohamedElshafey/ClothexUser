@@ -9,6 +9,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,29 +49,27 @@ class HomeFragment : Fragment() {
                 it?.title ?: context?.getString(R.string.select_location_to_search)
         })
         binding.homeGroup.isGone = true
-        viewModel.isFirstTimeOpenLiveData.observe(viewLifecycleOwner, { isFirstTime ->
-            if (isFirstTime) {
-                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToLoginFragment())
-            } else {
-                FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        return@OnCompleteListener
-                    }
-                    val token = task.result
-                    viewModel.updateFCMToken(token)
-                })
-                viewModel.fetchHome()
-                binding.progressBar.isVisible = true
-            }
-        })
+        viewModel.isFirstTimeOpenLiveData.distinctUntilChanged()
+            .observe(viewLifecycleOwner, { isFirstTime ->
+                if (isFirstTime) {
+                    findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToLoginFragment())
+                } else {
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                        if (!task.isSuccessful) {
+                            return@OnCompleteListener
+                        }
+                        val token = task.result
+                        viewModel.updateFCMToken(token)
+                    })
+                    viewModel.fetchHome()
+                }
+            })
 
         viewModel.failureLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), "Error, $it", Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
-            binding.progressBar.isGone = true
-            binding.swipeRefresh.isRefreshing = false
+        viewModel.productLiveData.distinctUntilChanged().observe(viewLifecycleOwner, { products ->
             binding.productRV.adapter = ProductAdapter(products) { prod ->
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(prod.id)
@@ -89,7 +88,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel.shopLiveData.observe(viewLifecycleOwner, {
+        viewModel.shopLiveData.distinctUntilChanged().observe(viewLifecycleOwner, {
             binding.shopsRV.adapter = ShopAdapter(it) {
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it.id)
@@ -148,8 +147,12 @@ class HomeFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.fetchHome()
-            binding.progressBar.isVisible = true
         }
+
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = it
+            binding.swipeRefresh.isRefreshing = false
+        })
 
     }
 

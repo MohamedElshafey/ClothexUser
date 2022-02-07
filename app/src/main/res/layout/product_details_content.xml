@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,19 +12,17 @@
             type="com.clothex.user.home.product_details.ProductDetailsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/design_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
 
         <TextView
             android:id="@+id/titleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:clickable="true"
             android:text="@{viewModel.title}"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/black"
@@ -40,6 +40,7 @@
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/dove_gray"
             android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/titleTV"
             app:layout_constraintStart_toStartOf="@id/titleTV"
             app:layout_constraintTop_toBottomOf="@id/titleTV"
@@ -49,13 +50,16 @@
             android:id="@+id/chooseColorTitleTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
             android:text="@string/choose_color"
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/dove_gray"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/titleTV"
-            app:layout_constraintStart_toStartOf="@id/titleTV"
+            android:visibility="@{viewModel.colorVisibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descriptionTV" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -65,12 +69,12 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@id/titleTV"
-            app:layout_constraintStart_toStartOf="@id/titleTV"
+            app:layout_constraintEnd_toEndOf="@id/chooseColorTitleTV"
+            app:layout_constraintStart_toStartOf="@id/chooseColorTitleTV"
             app:layout_constraintTop_toBottomOf="@id/chooseColorTitleTV" />
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/sizenGroup"
+            android:id="@+id/sizeGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.sizeVisibility ? View.VISIBLE : View.GONE}"
@@ -85,8 +89,8 @@
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/dove_gray"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/titleTV"
-            app:layout_constraintStart_toStartOf="@id/titleTV"
+            app:layout_constraintEnd_toEndOf="@id/colorRV"
+            app:layout_constraintStart_toStartOf="@id/colorRV"
             app:layout_constraintTop_toBottomOf="@id/colorRV" />
 
         <com.google.android.material.chip.ChipGroup
@@ -114,8 +118,8 @@
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/dove_gray"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/titleTV"
-            app:layout_constraintStart_toStartOf="@id/titleTV"
+            app:layout_constraintEnd_toEndOf="@id/sizeChipGroup"
+            app:layout_constraintStart_toStartOf="@id/sizeChipGroup"
             app:layout_constraintTop_toBottomOf="@id/sizeChipGroup" />
 
         <androidx.cardview.widget.CardView
@@ -126,8 +130,8 @@
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="@id/titleTV"
-            app:layout_constraintStart_toStartOf="@id/titleTV"
+            app:layout_constraintEnd_toEndOf="@id/availableInTitleTV"
+            app:layout_constraintStart_toStartOf="@id/availableInTitleTV"
             app:layout_constraintTop_toBottomOf="@id/availableInTitleTV">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -279,6 +283,14 @@
             app:layout_constraintTop_toBottomOf="@id/sellingPriceTV"
             tools:text="EGP 400.00" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/lastItemsBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="quantityContainer,listPriceTV"
+            tools:layout_editor_absoluteY="731dp" />
+
         <TextView
             android:id="@+id/addToMyItemsButton"
             style="@style/RemarkableButtonTheme"
@@ -292,11 +304,40 @@
             android:text="@string/add_to_my_items"
             android:textAppearance="@style/FontSemiBold"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/quantityContainer" />
+            app:layout_constraintTop_toBottomOf="@id/lastItemsBarrier" />
 
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.showViewsVisibility ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="addToMyItemsButton,listPriceTV,sellingPriceTV,quantityContainer" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+                <include layout="@layout/item_shimmer" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

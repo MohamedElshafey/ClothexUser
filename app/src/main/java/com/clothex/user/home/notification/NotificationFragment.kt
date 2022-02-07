@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.clothex.data.domain.model.notification.Notification
 import com.clothex.user.databinding.FragmentNotificationsBinding
 import com.clothex.user.home.notification.adapter.NotificationAdapter
 import com.clothex.user.home.notification.adapter.NotificationCallback
+import com.clothex.user.utils.addDivider
 import org.koin.android.ext.android.inject
 
 
@@ -45,8 +44,7 @@ class NotificationFragment : Fragment(), NotificationCallback {
             }
             binding.progressBar.isGone = true
         })
-        val dividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-        binding.notificationRV.addItemDecoration(dividerItemDecoration)
+        binding.notificationRV.addDivider()
         binding.notificationRV.adapter = adapter
         binding.backIcon.setOnClickListener {
             findNavController().popBackStack()

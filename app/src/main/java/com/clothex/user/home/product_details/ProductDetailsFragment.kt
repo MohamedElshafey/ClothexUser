@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -43,11 +44,19 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.contentContainer.shimmerFrame.startShimmer()
+        binding.contentContainer.shimmerFrame.isGone = false
+
         val productId = ProductDetailsFragmentArgs.fromBundle(requireArguments()).productId
         mViewModel.getProductDetails(productId)
 
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding.mainImagesRV)
+
+        mViewModel.productMutableLiveData.observe(viewLifecycleOwner, {
+            binding.contentContainer.shimmerFrame.hideShimmer()
+            binding.contentContainer.shimmerFrame.isGone = true
+        })
 
         binding.contentContainer.minusIV.isEnabled = false
 
@@ -64,7 +73,6 @@ class ProductDetailsFragment : Fragment() {
 
         mViewModel.colorsLiveData.observe(viewLifecycleOwner, {
             val list: List<String> = it.map { it.code ?: "" }
-
             binding.contentContainer.colorRV.adapter = ColorsAdapter(list) { color ->
                 mViewModel.selectColor(color)
             }

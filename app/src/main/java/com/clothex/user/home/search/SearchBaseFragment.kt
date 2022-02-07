@@ -110,7 +110,7 @@ open class SearchBaseFragment : Fragment() {
 
         viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
             loadingMore = false
-            productAdapter.update(products)
+            productAdapter.append(products)
         })
 
         viewModel.shopLiveData.observe(viewLifecycleOwner, {

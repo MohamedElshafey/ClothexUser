@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.clothex.user.BuildConfig
 import com.clothex.user.R
 
@@ -28,6 +28,6 @@ fun setImageFromUrl(imageView: ImageView, url: String?) {
             .load(newUrl)
             .placeholder(R.drawable.loading_gradient)
             .error(R.drawable.onboarding_image_1)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(imageView)
 }

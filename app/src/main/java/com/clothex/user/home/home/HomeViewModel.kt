@@ -41,7 +41,10 @@ class HomeViewModel(
         }
     }
 
+    val loadingLiveData = MutableLiveData<Boolean>()
+
     fun fetchHome() {
+        loadingLiveData.postValue(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 homeUseCase.invoke(Unit).collect { homeResult ->
@@ -56,6 +59,7 @@ class HomeViewModel(
                     homeResult.exceptionOrNull()?.let {
                         failureLiveData.postValue(it.message)
                     }
+                    loadingLiveData.postValue(false)
                 }
             }
         }

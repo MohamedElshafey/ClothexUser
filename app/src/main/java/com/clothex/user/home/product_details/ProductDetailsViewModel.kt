@@ -3,6 +3,7 @@ package com.clothex.user.home.product_details
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.my_item.MyItem
@@ -28,8 +29,10 @@ class ProductDetailsViewModel(
     val listPrice = ObservableField<String>()
     val sizesLiveData = MutableLiveData<List<Size>>()
     val branchesLiveData = MutableLiveData<List<Branch>>()
+    val colorVisibility = ObservableField(false)
     val sizeVisibility = ObservableField(false)
     val branchesVisibility = ObservableField(false)
+    val showViewsVisibility = ObservableField(false)
     val title = ObservableField<String>()
 
     //    val sku = ObservableField<String>()
@@ -48,6 +51,8 @@ class ProductDetailsViewModel(
                     productMutableLiveData.postValue(it)
                     product = it
                     updateProductData(it)
+                    if (it != null)
+                        showViewsVisibility.set(true)
                 }
             }
         }
@@ -56,6 +61,7 @@ class ProductDetailsViewModel(
     private fun updateProductData(product: Product?) {
         sellingPrice.set(product?.salePrice ?: product?.price)
         listPrice.set(if (product?.salePrice != null) "EGP ${product.price}" else null)
+        colorVisibility.set(true)
         colorsLiveData.postValue(product?.colors!!)
         sellingPriceString.set("EGP ${sellingPrice.get()}")
         title.set(product.title)

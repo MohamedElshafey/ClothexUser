@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.data.domain.model.order.OrderState
@@ -66,7 +67,7 @@ class ActiveOrdersFragment : Fragment() {
             showFilterList()
         }
         binding.ordersRV.adapter = ordersAdapter
-        mViewModel.myOrdersLiveData.observe(viewLifecycleOwner, { orders ->
+        mViewModel.myOrdersLiveData.distinctUntilChanged().observe(viewLifecycleOwner, { orders ->
             binding.progressBar.isGone = true
             myOrders = orders
             ordersAdapter.updateData(orders ?: listOf())

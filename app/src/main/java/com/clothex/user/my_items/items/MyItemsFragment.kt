@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
@@ -38,16 +39,17 @@ class MyItemsFragment : Fragment(), MyItemCallback {
         super.onViewCreated(view, savedInstanceState)
         mViewModel.fetchMyItems()
         binding.progressBar.isVisible = true
-        mViewModel.mutableMyItemsLiveData.observe(viewLifecycleOwner, { myItems ->
-            binding.progressBar.isGone = true
-            val grouped = myItems?.groupBy {
-                it.branch
-            }
-            val groupList = mutableListOf<MyItemGroup>()
-            grouped?.forEach {
-                groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
-            }
-            binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
+        mViewModel.mutableMyItemsLiveData.distinctUntilChanged()
+            .observe(viewLifecycleOwner, { myItems ->
+                binding.progressBar.isGone = true
+                val grouped = myItems?.groupBy {
+                    it.branch
+                }
+                val groupList = mutableListOf<MyItemGroup>()
+                grouped?.forEach {
+                    groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
+                }
+                binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
 
                 if (myItems.isNullOrEmpty()) {
                     binding.messageContainer.apply {
@@ -56,8 +58,8 @@ class MyItemsFragment : Fragment(), MyItemCallback {
                         messageSubTitleTV.setText(R.string.no_my_items_description)
                     }
                 }
-            binding.messageContainer.container.isGone = myItems.isNullOrEmpty().not()
-        })
+                binding.messageContainer.container.isGone = myItems.isNullOrEmpty().not()
+            })
 
     }
 
