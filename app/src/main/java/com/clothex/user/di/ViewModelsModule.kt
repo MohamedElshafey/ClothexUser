@@ -7,6 +7,7 @@ import com.clothex.user.home.home.HomeViewModel
 import com.clothex.user.home.location.SelectLocationViewModel
 import com.clothex.user.home.login.LoginViewModel
 import com.clothex.user.home.map.MapsViewModel
+import com.clothex.user.home.notification.NotificationViewModel
 import com.clothex.user.home.product_details.ProductDetailsViewModel
 import com.clothex.user.home.register.RegisterViewModel
 import com.clothex.user.home.search.SearchViewModel
@@ -188,5 +189,12 @@ val viewModelsModule = module {
 
     viewModel {
         SelectTypeViewModel(productPageUseCase = get(named("get_product_page")))
+    }
+
+    viewModel {
+        NotificationViewModel(
+            getNotificationUseCase = get(named("get_notifications")),
+            readNotificationsUseCase = get(named("read_notifications"))
+        )
     }
 }

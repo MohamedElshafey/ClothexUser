@@ -49,6 +49,8 @@ val networkModule = module {
 
     single { provideDepartmentApiService(retrofit = get()) }
 
+    single { provideNotificationApiService(retrofit = get()) }
+
     single { provideTokenInterceptor(localDataSourceImpl = get(), dao = get()) }
 }
 
@@ -120,3 +122,6 @@ internal fun provideVoucherApiService(retrofit: Retrofit): VoucherApiService =
 
 internal fun provideDepartmentApiService(retrofit: Retrofit): DepartmentApiService =
     retrofit.create(DepartmentApiService::class.java)
+
+internal fun provideNotificationApiService(retrofit: Retrofit): NotificationApiService =
+    retrofit.create(NotificationApiService::class.java)

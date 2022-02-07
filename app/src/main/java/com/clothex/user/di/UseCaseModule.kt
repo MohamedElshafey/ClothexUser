@@ -15,6 +15,8 @@ import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
+import com.clothex.data.domain.usecases.notification.GetNotificationsUseCase
+import com.clothex.data.domain.usecases.notification.ReadNotificationsUseCase
 import com.clothex.data.domain.usecases.onboarding.GetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.onboarding.SetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
@@ -44,6 +46,8 @@ import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
+import com.clothex.data.remote.repository.notification.GetNotificationRepository
+import com.clothex.data.remote.repository.notification.ReadNotificationRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
@@ -133,6 +137,9 @@ val useCaseModule = module {
     single(named("redeem_voucher")) { provideRedeemVoucherUseCase(get()) }
 
     single(named("get_departments")) { provideGetDepartmentsUseCase(get()) }
+
+    single(named("get_notifications")) { provideGetNotificationsUseCase(get()) }
+    single(named("read_notifications")) { provideReadNotificationsUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -318,4 +325,12 @@ fun provideRedeemVoucherUseCase(repository: RedeemVoucherRepository): RedeemVouc
 
 fun provideGetDepartmentsUseCase(repository: GetDepartmentRepository): GetDepartmentsUseCase {
     return GetDepartmentsUseCase(repository)
+}
+
+fun provideGetNotificationsUseCase(repository: GetNotificationRepository): GetNotificationsUseCase {
+    return GetNotificationsUseCase(repository)
+}
+
+fun provideReadNotificationsUseCase(repository: ReadNotificationRepository): ReadNotificationsUseCase {
+    return ReadNotificationsUseCase(repository)
 }

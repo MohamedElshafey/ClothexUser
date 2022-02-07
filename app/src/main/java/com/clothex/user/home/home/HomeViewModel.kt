@@ -24,7 +24,7 @@ class HomeViewModel(
     private val getSavedLocationUseCase: GetSavedLocationUseCase
 ) : ViewModel() {
 
-    val notificationCount = ObservableField("5")
+    val notificationCount = ObservableField<String>()
     val productLiveData = MutableLiveData<List<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
     val failureLiveData = MutableLiveData<String>()
@@ -47,6 +47,7 @@ class HomeViewModel(
                     homeResult.getOrNull()?.let {
                         productLiveData.postValue(it.products)
                         shopLiveData.postValue(it.shops)
+                        notificationCount.set(it.notificationCount.toString())
                     }
                     homeResult.exceptionOrNull()?.let {
                         failureLiveData.postValue(it.message)
