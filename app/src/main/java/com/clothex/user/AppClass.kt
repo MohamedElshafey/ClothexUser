@@ -3,6 +3,7 @@ package com.clothex.user
 import android.app.Application
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.user.di.*
+import com.facebook.FacebookSdk
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -25,6 +26,8 @@ class AppClass : Application() {
         applicationScope.launch {
             clearSessionUseCase.invoke(Unit)
         }
+        FacebookSdk.sdkInitialize(applicationContext);
+//        AppEventsLogger.activateApp(this);
     }
 
     private fun setUpKoin() {
