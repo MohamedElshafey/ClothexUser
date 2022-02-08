@@ -81,10 +81,6 @@ class SelectTypeFragment : Fragment() {
             viewModel.searchKey = it?.toString()
         }
 
-        binding.notificationIV.setOnClickListener {
-//            findNavController().navigate(CategoriesFragmentDirections.actionNavigationCategoriesToNotificationFragment())
-        }
-
         binding.productsRV.adapter = productAdapter
 
     }

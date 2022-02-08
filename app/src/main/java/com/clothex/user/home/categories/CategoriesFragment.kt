@@ -42,10 +42,6 @@ class CategoriesFragment : Fragment() {
             menu.setOnClickListener { openSearchFragment() }
         }
 
-        binding.notificationIV.setOnClickListener {
-            findNavController().navigate(CategoriesFragmentDirections.actionNavigationCategoriesToNotificationFragment())
-        }
-
         viewModel.departmentListLiveData.observe(viewLifecycleOwner, { result ->
             result.getOrNull()?.let { list ->
                 val hasMen = list.find { it.title.equals("men", true) } != null
