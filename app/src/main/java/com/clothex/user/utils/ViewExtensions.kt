@@ -31,12 +31,14 @@ fun View.setShapeColor(color: Int) {
 fun ChipGroup.addChip(
     layoutInflater: LayoutInflater,
     vararg text: String,
-    @LayoutRes layoutRes: Int = R.layout.item_chip
+    @LayoutRes layoutRes: Int = R.layout.item_chip,
+    isChecked: Boolean = false
 ) {
     text.forEach {
         val chip = layoutInflater.inflate(layoutRes, this, false) as Chip
         chip.id = ViewCompat.generateViewId()
         chip.tag = it
+        chip.isChecked = isChecked
         chip.text = it
         addView(chip)
     }

@@ -45,9 +45,15 @@ class SelectTypeFragment : Fragment() {
         viewModel.departmentId = departmentId
         binding.progressBar.isVisible = true
         binding.typesChipGroup.addChip(
+            layoutInflater, requireContext().getString(R.string.all),
+            layoutRes = R.layout.item_catergory_chip,
+            isChecked = true
+        )
+        binding.typesChipGroup.addChip(
             layoutInflater, *typesArray.map { it.title }.toTypedArray(),
             layoutRes = R.layout.item_catergory_chip
         )
+
         binding.departmentCard.apply {
             setTitle(context.getString(departmentStyle.title))
             changeBackground(ContextCompat.getColor(context, departmentStyle.backgroundColor))

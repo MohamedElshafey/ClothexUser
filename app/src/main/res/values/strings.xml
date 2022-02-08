@@ -134,6 +134,7 @@
     <string name="redeemed">Redeemed</string>
     <string name="order_details">Order details</string>
     <string name="total_booked_items">Total booked items</string>
+    <string name="all">All</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
