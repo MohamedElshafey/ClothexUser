@@ -53,12 +53,15 @@ class AddToMyListDialog : DialogFragment() {
             backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
             background = backgroundDrawable
         }
-        binding.viewModel = MinimalItemViewModel(minimalProduct)
+        val viewModel = MinimalItemViewModel(minimalProduct)
+        binding.viewModel = viewModel
         binding.myItemsButton.setOnClickListener {
             findNavController().navigate(
                 AddToMyListDialogDirections.actionAddToMyListDialogToMyItemsFragment(false)
             )
         }
+        binding.priceTV.text =
+            String.format(getString(R.string.egp_price_format), viewModel.totalPrice)
         binding.continueButton.setOnClickListener {
             findNavController().navigateUp()
         }

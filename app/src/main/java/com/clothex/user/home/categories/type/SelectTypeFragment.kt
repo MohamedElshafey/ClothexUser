@@ -66,7 +66,7 @@ class SelectTypeFragment : Fragment() {
             if (chip != null) {
                 val selectedTypeName = chip.text.toString()
                 val type = typesArray.find { it.title.equals(selectedTypeName) }
-                binding.noItemsIV.isVisible = false
+                binding.notItemsMessage.isVisible = false
                 binding.progressBar.isVisible = true
                 viewModel.typeId = type?.id
             } else {
@@ -77,12 +77,12 @@ class SelectTypeFragment : Fragment() {
         viewModel.productLiveData.observe(viewLifecycleOwner, {
             binding.progressBar.isVisible = false
             productAdapter.reset()
-            binding.noItemsIV.isVisible = it.isEmpty()
+            binding.notItemsMessage.isVisible = it.isEmpty()
             productAdapter.append(it)
         })
 
         binding.searchBar.doAfterTextChanged {
-            binding.noItemsIV.isVisible = false
+            binding.notItemsMessage.isVisible = false
             binding.progressBar.isVisible = true
             viewModel.searchKey = it?.toString()
         }

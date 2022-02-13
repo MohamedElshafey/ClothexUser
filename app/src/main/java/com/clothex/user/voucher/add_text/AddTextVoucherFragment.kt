@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentAddTextVoucherBinding
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
@@ -28,6 +29,10 @@ class AddTextVoucherFragment : Fragment() {
             container,
             false
         )
+        val voucherId = arguments?.getString("voucherId")
+        if (voucherId.isNullOrEmpty().not()) {
+            binding.codeInputLayout.editText?.setText(voucherId)
+        }
         return binding.root
     }
 
@@ -39,13 +44,15 @@ class AddTextVoucherFragment : Fragment() {
         binding.voucherButton.setOnClickListener {
             val code = binding.codeInputLayout.editText?.text?.toString()
             if (code.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "Please fill the code first!", Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), getString(R.string.fill_voucher_code_message), Toast.LENGTH_LONG)
                     .show()
             } else {
                 if (viewModel.isSendVoucher.not())
                     viewModel.addVoucher(code = code)
             }
         }
+
+
         viewModel.responseLiveData.observe(viewLifecycleOwner, {
             it.getOrNull()?.let {
                 findNavController().navigate(AddTextVoucherFragmentDirections.actionAddTextVoucherBottomSheetToVoucherMessageFragment())

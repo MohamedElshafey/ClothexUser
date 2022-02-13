@@ -4,10 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <com.clothex.user.customview.Message
         android:id="@+id/messageContainer"
-        layout="@layout/message"
-        android:visibility="gone" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:icon="@drawable/ic_no_items_found"
+        app:description="@string/no_my_items_description"
+        app:title="@string/no_my_items_message" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

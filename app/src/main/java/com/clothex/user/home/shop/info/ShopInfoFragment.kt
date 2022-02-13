@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.clothex.data.domain.model.shop.Shop
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentShopInfoBinding
 import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.home.shop.working_hour.WorkingHourAdapter
@@ -41,13 +42,14 @@ class ShopInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.branchCountTV.text = "+${shop.branches.size}"
-        binding.branchSuffixTV.text = "more branches"
+        binding.branchSuffixTV.text = getString(R.string.more_branches)
         val selectedBranch = shop.branches[0]
         val workingHours = selectedBranch.workingHours
         binding.workingHoursRV.adapter = workingHours?.let { WorkingHourAdapter(it) }
         val contacts = shop.socialMedias
         binding.contactsRV.adapter = ContactsAdapter(contacts)
-        binding.addressTV.text = "Nearest branch: ${shop.branches[0].address?.name}"
+        binding.addressTV.text =
+            context?.getString(R.string.nearest_branch) + ": ${shop.branches[0].address?.name}"
         binding.aboutTV.text = shop.about
     }
 }

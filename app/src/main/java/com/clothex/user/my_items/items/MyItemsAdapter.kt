@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.AdapterMyItemBinding
 import com.clothex.user.my_items.minimal.MinimalItemAdapter
@@ -36,7 +37,10 @@ class MyItemsAdapter(private val list: List<MyItemGroup>, val callback: MyItemCa
             binding.itemsRV.adapter = MinimalItemAdapter(myItemGroup.myItems.take(2))
             val myItemsCount = myItemGroup.myItems.size
             if (myItemsCount > 2)
-                binding.itemsCount.text = String.format("+%s items", myItemsCount - 2)
+                binding.itemsCount.text = String.format(
+                    binding.root.context.getString(R.string.plus_items),
+                    myItemsCount - 2
+                )
             binding.itemsCount.isGone = myItemsCount <= 2
             binding.root.setOnClickListener { callback.onItemClicked(myItemGroup) }
             binding.leadingIV.setOnClickListener { callback.deleteMyItemGroup(myItemGroup) }

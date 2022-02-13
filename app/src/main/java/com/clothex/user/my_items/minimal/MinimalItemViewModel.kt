@@ -15,6 +15,6 @@ class MinimalItemViewModel(myItem: MyItem) : ViewModel() {
 
     val quantity = myItem.quantity.toString()
 
-    val price = "EGP ${myItem.product.price * myItem.quantity}"
+    val totalPrice = myItem.product.price.toFloat() * myItem.quantity.toFloat()
 
 }

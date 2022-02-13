@@ -66,7 +66,8 @@ class HomeFragment : Fragment() {
             })
 
         viewModel.failureLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), "Error, $it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.error) + " $it", Toast.LENGTH_SHORT)
+                .show()
         })
 
         viewModel.productLiveData.distinctUntilChanged().observe(viewLifecycleOwner, { products ->

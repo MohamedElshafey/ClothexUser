@@ -37,7 +37,13 @@ class MinimalItemAdapter(
                 backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
                 background = backgroundDrawable
             }
-            binding.viewModel = MinimalItemViewModel(minimalProduct)
+            val viewModel = MinimalItemViewModel(minimalProduct)
+            binding.viewModel = viewModel
+            binding.priceTV.text =
+                String.format(
+                    binding.root.context.getString(R.string.egp_price_format),
+                    viewModel.totalPrice
+                )
             if (bookedItems != null) {
                 val isBooked = bookedItems.contains(minimalProduct.id)
                 binding.root.setBackgroundColor(

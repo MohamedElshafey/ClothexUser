@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.data.domain.model.SocialMedia
+import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemContactBinding
 import com.clothex.user.utils.setImageFromUrl
 
@@ -36,9 +37,9 @@ class ContactsAdapter(private val list: List<SocialMedia>) :
             setImageFromUrl(binding.iconIV, socialMedia.social.icon)
             binding.iconIV.setOnClickListener {
                 val appendUrl = socialMedia.social.appendUrl
-                val value = if(appendUrl.isNullOrEmpty()) socialMedia.value
+                val value = if (appendUrl.isNullOrEmpty()) socialMedia.value
                 else socialMedia.social.appendUrl + socialMedia.value
-                    val implicitIntent = Intent(
+                val implicitIntent = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(value)
                 )
@@ -47,7 +48,10 @@ class ContactsAdapter(private val list: List<SocialMedia>) :
                 } catch (e: ActivityNotFoundException) {
                     Toast.makeText(
                         it.context,
-                        "${socialMedia.social.title} App not found!",
+                        String.format(
+                            it.context.getString(R.string.cant_open_app_message),
+                            socialMedia.social.title
+                        ),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

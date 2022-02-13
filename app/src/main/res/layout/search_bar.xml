@@ -19,7 +19,7 @@
         android:paddingTop="8dp"
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
-        android:text="items"
+        android:text="@string/items"
         android:textAppearance="@style/FontRegular"
         android:textColor="@color/black"
         android:textSize="12sp"

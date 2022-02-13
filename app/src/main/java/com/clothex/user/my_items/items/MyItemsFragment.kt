@@ -50,15 +50,7 @@ class MyItemsFragment : Fragment(), MyItemCallback {
                     groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
                 }
                 binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
-
-                if (myItems.isNullOrEmpty()) {
-                    binding.messageContainer.apply {
-                        messageIV.setImageResource(R.drawable.ic_no_items_found)
-                        messageTitleTV.setText(R.string.no_my_items_message)
-                        messageSubTitleTV.setText(R.string.no_my_items_description)
-                    }
-                }
-                binding.messageContainer.container.isGone = myItems.isNullOrEmpty().not()
+                binding.messageContainer.isVisible = myItems.isNullOrEmpty()
             })
 
     }
@@ -71,17 +63,17 @@ class MyItemsFragment : Fragment(), MyItemCallback {
     override fun deleteMyItemGroup(myItemGroup: MyItemGroup) {
         MessageAlertDialog.showAlertDialog(
             requireContext(),
-            "Are you sure?",
-            "you want to delete this group of items? if you delete it you will lose you items in it.",
-            "Cancel",
-            "Delete",
+            getString(R.string.are_you_sure),
+            getString(R.string.delete_my_item_group_message),
+            getString(R.string.cancel),
+            getString(R.string.delete),
             iconRes = R.drawable.ic_dialog_delete,
             negativeOnClickListener = {
                 mViewModel.deleteMyItemGroup(myItemGroup) { response ->
-                    var message = "Error happened, please try again!"
+                    var message = getString(R.string.error_happened_try_again)
                     if (response != null) {
                         if (response.success) {
-                            message = "Deleted successfully!"
+                            message = getString(R.string.deleted_successfully)
                             mViewModel.fetchMyItems()
                         } else {
                             response.message?.let { message = it }

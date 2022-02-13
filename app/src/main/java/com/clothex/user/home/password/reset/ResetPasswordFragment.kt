@@ -35,9 +35,9 @@ class ResetPasswordFragment : Fragment() {
         binding.resetPassButton.setOnClickListener {
             MessageAlertDialog.showAlertDialog(
                 requireContext(),
-                "Your password reset successfully!",
+                getString(R.string.password_resetted_succssfully_message),
                 iconRes = R.drawable.ic_success,
-                positiveButtonText = "Login",
+                positiveButtonText = getString(R.string.login),
                 positiveOnClickListener = {
                     findNavController().navigate(ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment())
                 }

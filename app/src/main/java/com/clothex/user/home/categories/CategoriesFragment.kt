@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.clothex.data.domain.model.department.Department
 import com.clothex.user.databinding.FragmentCategoriesBinding
 import com.clothex.user.home.categories.style.DepartmentEnum
+import com.clothex.user.utils.kidsDepartment
+import com.clothex.user.utils.menDepartment
+import com.clothex.user.utils.womenDepartment
 import org.koin.android.ext.android.inject
 
 class CategoriesFragment : Fragment() {
@@ -44,9 +47,9 @@ class CategoriesFragment : Fragment() {
 
         viewModel.departmentListLiveData.observe(viewLifecycleOwner, { result ->
             result.getOrNull()?.let { list ->
-                val hasMen = list.find { it.title.equals("men", true) } != null
-                val hasWomen = list.find { it.title.equals("women", true) } != null
-                val hasKids = list.find { it.title.equals("kids", true) } != null
+                val hasMen = list.find { it.title.equals(menDepartment, true) } != null
+                val hasWomen = list.find { it.title.equals(womenDepartment, true) } != null
+                val hasKids = list.find { it.title.equals(kidsDepartment, true) } != null
                 binding.menCard.isVisible = hasMen
                 binding.womenCard.isVisible = hasWomen
                 binding.kidsCard.isVisible = hasKids

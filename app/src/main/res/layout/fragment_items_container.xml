@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:background="@drawable/tab_bg_shape"
             android:gravity="center"
-            android:text="My items"
+            android:text="@string/my_items"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Orders"
+            android:text="@string/orders"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/black"
             android:textSize="16sp" />

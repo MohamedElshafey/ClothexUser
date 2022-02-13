@@ -83,13 +83,15 @@ open class SearchBaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
         listPopupWindow.anchorView = binding.searchBar.menu
-        val list = listOf("Items", "Shops")
+        val items = context?.getString(R.string.items)
+        val shops = context?.getString(R.string.shops)
+        val list = listOf(items, shops)
         listPopupWindow.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item, list))
         listPopupWindow.setSelection(if (viewModel.isProducts) 0 else 1)
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             val selectedItem = list[position]
             binding.searchBar.searchET.text = null
-            if (selectedItem == "Items") {
+            if (selectedItem == items) {
                 showProducts()
                 viewModel.fetch(null)
             } else {

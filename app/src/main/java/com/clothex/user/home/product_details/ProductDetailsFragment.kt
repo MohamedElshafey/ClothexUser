@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.data.domain.model.body.MyItemBody
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
@@ -139,9 +140,9 @@ class ProductDetailsFragment : Fragment() {
                 }
             } else {
                 val message = when {
-                    selectedColorCode == null -> "You should select color to proceed!"
-                    selectedSizeName == null -> "You should select size to proceed!"
-                    else -> "You should select branch to proceed!"
+                    selectedColorCode == null -> getString(R.string.select_color_first)
+                    selectedSizeName == null -> getString(R.string.select_size_first)
+                    else -> getString(R.string.select_branch_first)
                 }
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }

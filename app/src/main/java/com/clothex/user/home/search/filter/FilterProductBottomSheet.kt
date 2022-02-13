@@ -1,12 +1,12 @@
 package com.clothex.user.home.search.filter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import com.clothex.user.R
 import com.clothex.user.customview.DefaultBottomSheet
 import com.clothex.user.databinding.FilterProductBottomSheetBinding
 import com.clothex.user.home.color.ColorsAdapter
@@ -63,7 +63,6 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
                     price.toFloat(),
                     binding.priceRangeSlider.values[1]
                 )
-                Log.d("TESTY", " start: $price")
             }
         })
         viewModel.priceEndMutableLiveData.observe(viewLifecycleOwner, { price ->
@@ -72,7 +71,6 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
                     binding.priceRangeSlider.values[0],
                     price.toFloat()
                 )
-                Log.d("TESTY", " end: $price")
             }
         })
 
@@ -106,8 +104,8 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
         with(binding.priceRangeSlider.values) {
             viewModel.selectedPriceStart = get(0).toInt()
             viewModel.selectedPriceEnd = get(1).toInt()
-            binding.rangeFromTV.text = String.format("EGP %s", get(0))
-            binding.rangeToTV.text = String.format("EGP %s", get(1))
+            binding.rangeFromTV.text = String.format(getString(R.string.egp_price_format), get(0))
+            binding.rangeToTV.text = String.format(getString(R.string.egp_price_format), get(1))
         }
     }
 

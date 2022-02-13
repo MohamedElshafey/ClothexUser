@@ -141,16 +141,16 @@
                     app:layout_constraintStart_toStartOf="@id/productsRV"
                     app:layout_constraintTop_toTopOf="@id/productsRV" />
 
-                <ImageView
-                    android:id="@+id/noItemsIV"
+                <com.clothex.user.customview.Message
+                    android:id="@+id/notItemsMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_no_items_found"
+                    android:icon="@drawable/ic_no_items_found"
                     android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:description="@string/no_items_found_msg"
                     app:layout_constraintEnd_toEndOf="@id/productsRV"
                     app:layout_constraintStart_toStartOf="@id/productsRV"
-                    app:layout_constraintTop_toTopOf="@id/productsRV" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

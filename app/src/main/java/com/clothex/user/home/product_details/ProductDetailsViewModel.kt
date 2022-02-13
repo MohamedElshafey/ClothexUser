@@ -3,7 +3,6 @@ package com.clothex.user.home.product_details
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.my_item.MyItem
@@ -39,7 +38,7 @@ class ProductDetailsViewModel(
 //    val skuVisibility = ObservableField<Boolean>()
     val quantityText = ObservableField("1")
     val shopTitle = ObservableField<String>()
-    val shopAddress = ObservableField("New cairo, 5th settlement")
+    val shopAddress = ObservableField("")
     val shopLogoUrl = ObservableField<String>()
 
     var product: Product? = null
@@ -59,6 +58,7 @@ class ProductDetailsViewModel(
     }
 
     private fun updateProductData(product: Product?) {
+        //TODO : HCS make setting these data from the fragment to use context freely
         sellingPrice.set(product?.salePrice ?: product?.price)
         listPrice.set(if (product?.salePrice != null) "EGP ${product.price}" else null)
         colorVisibility.set(true)

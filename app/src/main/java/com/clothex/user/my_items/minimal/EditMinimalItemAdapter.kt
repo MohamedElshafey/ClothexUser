@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.my_item.MyItem
+import com.clothex.user.R
 import com.clothex.user.databinding.AdapterEditMinimalProductBinding
 
 /**
@@ -40,7 +41,13 @@ class EditMinimalItemAdapter(
 //                list.removeAt(adapterPosition)
 //                notifyItemRemoved(adapterPosition)
             }
-            binding.viewModel = MinimalItemViewModel(minimalProduct)
+            val viewModel = MinimalItemViewModel(minimalProduct)
+            binding.viewModel = viewModel
+            binding.priceTV.text =
+                String.format(
+                    binding.root.context.getString(R.string.egp_price_format),
+                    viewModel.totalPrice
+                )
         }
     }
 

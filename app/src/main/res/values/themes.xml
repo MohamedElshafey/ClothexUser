@@ -147,4 +147,10 @@
         <attr name="cardBackground" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="BaseMessage">
+        <attr name="title" />
+        <attr name="description" format="string" />
+        <attr name="android:icon" />
+    </declare-styleable>
+
 </resources>

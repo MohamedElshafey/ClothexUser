@@ -297,6 +297,9 @@
         <action
             android:id="@+id/action_addTextVoucherBottomSheet_to_voucherMessageFragment"
             app:destination="@id/voucherMessageFragment" />
+        <deepLink
+            android:id="@+id/addVoucherDeeplink"
+            app:uri="clothex://app.user/voucher/{voucherId}" />
     </fragment>
     <fragment
         android:id="@+id/voucherMessageFragment"
@@ -307,7 +310,7 @@
             android:id="@+id/action_voucherMessageFragment_to_voucherFragment"
             app:destination="@id/voucherFragment"
             app:popUpTo="@id/voucherFragment"
-            app:popUpToInclusive="true" />
+             />
     </fragment>
     <fragment
         android:id="@+id/scanVoucherFragment"

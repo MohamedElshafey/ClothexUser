@@ -71,14 +71,7 @@ class ActiveOrdersFragment : Fragment() {
             binding.progressBar.isGone = true
             myOrders = orders
             ordersAdapter.updateData(orders ?: listOf())
-            if (orders.isNullOrEmpty()) {
-                binding.messageContainer.apply {
-                    messageIV.setImageResource(R.drawable.ic_no_items_found)
-                    messageTitleTV.setText(R.string.no_orders_message)
-                    messageSubTitleTV.setText(R.string.no_orders_description)
-                }
-            }
-            binding.messageContainer.container.isGone = orders.isNullOrEmpty().not()
+            binding.messageContainer.isVisible = orders.isNullOrEmpty()
         })
     }
 
