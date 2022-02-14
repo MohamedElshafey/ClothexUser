@@ -49,10 +49,10 @@ class MyItemsFragment : Fragment(), MyItemCallback {
                 grouped?.forEach {
                     groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
                 }
-                binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
+                binding.recyclerView.adapter =
+                    MyItemsAdapter(groupList, this, mViewModel.isArabic())
                 binding.messageContainer.isVisible = myItems.isNullOrEmpty()
             })
-
     }
 
     override fun onItemClicked(myItemGroup: MyItemGroup) {
