@@ -42,7 +42,7 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
             binding.vouchersRV.adapter = VoucherAdapter(voucherList, this)
         })
         binding.vouchersRV.addDivider()
-        binding.titleTV.setOnClickListener { findNavController().navigateUp() }
+        binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         binding.voucherButton.setOnClickListener {
             viewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner, { isLoginTemporary ->
                 if (isLoginTemporary.not()) {

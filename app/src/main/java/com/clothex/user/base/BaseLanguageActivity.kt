@@ -3,12 +3,11 @@ package com.clothex.user.base
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import org.koin.android.ext.android.inject
 import java.util.*
 
 abstract class BaseLanguageActivity : AppCompatActivity() {
 
-    val viewModel: BaseLanguageViewModel by inject()
+    private val viewModel = LanguageViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val lang = viewModel.getLanguage()

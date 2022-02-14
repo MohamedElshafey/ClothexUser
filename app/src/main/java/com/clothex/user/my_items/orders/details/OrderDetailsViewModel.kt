@@ -2,15 +2,15 @@ package com.clothex.user.my_items.orders.details
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.data.domain.usecases.order.GetOrderDetailsUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class OrderDetailsViewModel(private val getOrderDetailsUseCase: GetOrderDetailsUseCase) :
-    ViewModel() {
+    BaseLanguageViewModel() {
 
     val shopLogo = ObservableField<String>()
     val shopName = ObservableField<String>()
@@ -24,7 +24,7 @@ class OrderDetailsViewModel(private val getOrderDetailsUseCase: GetOrderDetailsU
                     with(order) {
                         with(shop) {
                             shopLogo.set(logo?.source)
-                            shopName.set(name)
+                            shopName.set(getName(isArabic()))
                         }
                         branchAddressName.set(branch.address?.name)
                     }

@@ -48,7 +48,7 @@ class ActiveOrdersFragment : Fragment() {
             findNavController().navigate(R.id.orderDetailsFragment, bundle)
         }
     }
-    private var ordersAdapter = OrdersAdapter(onClickOrderCallback)
+    private var ordersAdapter = OrdersAdapter(onClickOrderCallback, mViewModel.isArabic())
     private var myOrders: List<MyOrder>? = null
 
     override fun onCreateView(
@@ -81,7 +81,8 @@ class ActiveOrdersFragment : Fragment() {
     }
 
     private fun showFilterList() {
-        val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
+        val listPopupWindow =
+            ListPopupWindow(requireContext(), null, android.R.attr.listPopupWindowStyle)
         listPopupWindow.anchorView = binding.filterContainer
         val list = OrderState.values()
         listPopupWindow.setAdapter(OrderStateFilterAdapter(requireContext(), list))

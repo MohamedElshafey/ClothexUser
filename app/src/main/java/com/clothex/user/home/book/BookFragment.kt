@@ -50,7 +50,7 @@ class BookFragment : Fragment() {
         binding.contactsRV.isInvisible = myItemGroup.shop.hasBook
         binding.contactsRV.adapter = ContactsAdapter(myItemGroup.shop.socialMedias)
         with(myItemGroup) {
-            binding.shopTitleTV.text = shop.name
+            binding.shopTitleTV.text = shop.getName(mViewModel.isArabic())
             binding.addressTV.text = branch.address?.name
             setImageFromUrl(binding.shopLogoIV, shop.logo?.source)
         }

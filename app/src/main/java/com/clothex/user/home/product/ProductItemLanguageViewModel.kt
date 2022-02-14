@@ -1,13 +1,13 @@
 package com.clothex.user.home.product
 
-import androidx.lifecycle.ViewModel
-import com.clothex.data.domain.model.home.HomeProduct;
+import com.clothex.data.domain.model.home.HomeProduct
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlin.math.roundToInt
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class ProductItemViewModel(private val product: HomeProduct) : ViewModel() {
+class ProductItemLanguageViewModel(private val product: HomeProduct) : BaseLanguageViewModel() {
 
 
     var savedAmount = calculateSavedAmount()
@@ -16,7 +16,7 @@ class ProductItemViewModel(private val product: HomeProduct) : ViewModel() {
 
     val mainImageUrl = product.mainImage?.source
 
-    val title = product.title
+    val title = product.getTitle(isArabic())
 
     val totalPrice = product.salePrice ?: product.price
 

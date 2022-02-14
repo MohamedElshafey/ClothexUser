@@ -1,6 +1,5 @@
 package com.clothex.user.di
 
-import com.clothex.user.base.BaseLanguageViewModel
 import com.clothex.user.home.book.BookViewModel
 import com.clothex.user.home.categories.CategoriesViewModel
 import com.clothex.user.home.categories.type.SelectTypeViewModel
@@ -198,10 +197,6 @@ val viewModelsModule = module {
             getNotificationUseCase = get(named("get_notifications")),
             readNotificationsUseCase = get(named("read_notifications"))
         )
-    }
-
-    viewModel {
-        BaseLanguageViewModel(localDataSToreImpl = get())
     }
 
     viewModel {

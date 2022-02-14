@@ -18,10 +18,7 @@ import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
-import com.clothex.user.utils.addChip
-import com.clothex.user.utils.addDivider
-import com.clothex.user.utils.setHeightPercentage
-import com.clothex.user.utils.setImageFromUrl
+import com.clothex.user.utils.*
 import com.google.android.material.chip.Chip
 import org.koin.android.ext.android.inject
 
@@ -46,6 +43,7 @@ class ProductDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.backIV.setRotationByLocale()
 
         binding.contentContainer.shimmerFrame.startShimmer()
         binding.contentContainer.shimmerFrame.isGone = false
@@ -155,15 +153,13 @@ class ProductDetailsFragment : Fragment() {
     private fun updateProductData(product: Product?) {
         val sellingPrice = product?.salePrice ?: product?.price
         binding.contentContainer.apply {
-
             listPriceTV.text = if (product?.salePrice != null)
                 String.format(getString(R.string.egp), product.price) else null
             chooseColorTitleTV.isVisible = true
             sellingPriceTV.text =
                 String.format(requireContext().getString(R.string.egp), sellingPrice)
-            titleTV.text = product?.title
+            titleTV.text = product?.getTitle(mViewModel.isArabic())
             shopTitleTV.text = product?.shop?.name
-
             setImageFromUrl(logoIV, product?.shop?.logo?.source)
         }
     }

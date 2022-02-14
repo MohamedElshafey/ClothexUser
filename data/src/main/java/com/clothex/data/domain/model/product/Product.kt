@@ -2,7 +2,6 @@ package com.clothex.data.domain.model.product
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 @kotlinx.parcelize.Parcelize
 data class Product(
@@ -15,7 +14,9 @@ data class Product(
     val salePrice: Int?,
     @SerializedName("sale_start_date")
     val saleStartDate: Long,
-    val title: String,
+    private val title: String,
+    @SerializedName("title_ar")
+    private val titleAr: String?,
     val tag: String?,
     val tagColor: String?,
     val available: Boolean?,
@@ -23,4 +24,10 @@ data class Product(
     val department: ItemDepartment?,
     val sku: String?,
     val shop: ProductShop?
-) : Parcelable
+) : Parcelable {
+
+    fun getTitle(isArabic: Boolean): String {
+        return if (isArabic) titleAr ?: title
+        else title
+    }
+}

@@ -14,7 +14,11 @@ import com.clothex.user.utils.setImageFromUrl
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class MyItemsAdapter(private val list: List<MyItemGroup>, val callback: MyItemCallback) :
+class MyItemsAdapter(
+    private val list: List<MyItemGroup>,
+    val callback: MyItemCallback,
+    val isArabic: Boolean
+) :
     Adapter<MyItemsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -30,7 +34,7 @@ class MyItemsAdapter(private val list: List<MyItemGroup>, val callback: MyItemCa
         RecyclerView.ViewHolder(binding.root) {
         fun bind(myItemGroup: MyItemGroup) {
             with(myItemGroup) {
-                binding.titleTV.text = shop.name
+                binding.titleTV.text = shop.getName(isArabic)
                 binding.addressTV.text = branch.address?.name
                 setImageFromUrl(binding.logoIV, shop.logo?.source)
             }

@@ -46,7 +46,7 @@ class NotificationFragment : Fragment(), NotificationCallback {
         })
         binding.notificationRV.addDivider()
         binding.notificationRV.adapter = adapter
-        binding.backIcon.setOnClickListener {
+        binding.actionBar.setOnClickListener {
             findNavController().popBackStack()
         }
     }

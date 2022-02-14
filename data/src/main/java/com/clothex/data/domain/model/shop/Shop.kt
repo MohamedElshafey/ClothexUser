@@ -12,11 +12,17 @@ data class Shop(
     val id: String,
     val logo: Media?,
     val name: String,
-    val name_ar: String,
+    @SerializedName("name_ar")
+    val nameAr: String?,
     val about: String,
     @SerializedName("social_medias")
     val socialMedias: List<SocialMedia>,
     val branches: List<Branch>,
     @SerializedName("has_book")
     val hasBook: Boolean
-) : Parcelable
+) : Parcelable {
+    fun getName(isArabic: Boolean): String {
+        return if (isArabic) nameAr ?: name
+        else name
+    }
+}

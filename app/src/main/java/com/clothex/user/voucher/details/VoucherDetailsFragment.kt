@@ -39,7 +39,8 @@ class VoucherDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
-        binding.shopsRecyclerView.adapter = VoucherShopAdapter(mViewModel.voucher.shops)
+        binding.shopsRecyclerView.adapter =
+            VoucherShopAdapter(mViewModel.voucher.shops, mViewModel.isArabic())
         binding.useVoucherButton.setOnClickListener {
             redeemViewModel.redeem(mViewModel.voucher.id) { result ->
                 result.getOrNull()?.let {

@@ -7,6 +7,7 @@ import android.graphics.drawable.InsetDrawable
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.ViewCompat
@@ -67,4 +68,9 @@ fun View.setHeightPercentage(percentage: Int) {
     val newParam = layoutParams
     newParam.height = (screenHeight * (percentage / 100f)).roundToInt()
     layoutParams = newParam
+}
+
+fun ImageView.setRotationByLocale() {
+    val isArabic = context.getCurrentLocale()?.language.equals("ar")
+    rotation = if (isArabic) 180f else 0f
 }

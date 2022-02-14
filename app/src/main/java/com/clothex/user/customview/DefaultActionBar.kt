@@ -4,10 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.withStyledAttributes
 import com.clothex.user.R
+import com.clothex.user.utils.setRotationByLocale
 
 
 /**
@@ -23,7 +25,7 @@ class DefaultActionBar @JvmOverloads constructor(
         inflate(context, R.layout.default_action_bar, this)
         orientation = HORIZONTAL
         gravity = Gravity.CENTER
-
+        findViewById<ImageView>(R.id.backIV).setRotationByLocale()
         val metrics = context.resources.displayMetrics
         TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, metrics).let {
             setPadding(

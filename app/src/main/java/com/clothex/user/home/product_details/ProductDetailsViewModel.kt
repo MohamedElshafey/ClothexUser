@@ -2,13 +2,13 @@ package com.clothex.user.home.product_details
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.data.domain.model.product.*
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -17,8 +17,7 @@ import kotlinx.coroutines.withContext
 class ProductDetailsViewModel(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
     private val createMyItemsUseCase: CreateMyItemsUseCase
-) :
-    ViewModel() {
+) : BaseLanguageViewModel() {
 
     val productMutableLiveData = MutableLiveData<Product?>()
 

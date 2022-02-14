@@ -1,11 +1,11 @@
 package com.clothex.user.my_items.minimal
 
-import androidx.lifecycle.ViewModel
 import com.clothex.data.domain.model.my_item.MyItem
+import com.clothex.user.base.BaseLanguageViewModel
 
-class MinimalItemViewModel(myItem: MyItem) : ViewModel() {
+class MinimalItemViewModel(myItem: MyItem) : BaseLanguageViewModel() {
 
-    val title = myItem.product.title
+    val title = myItem.product.getTitle(isArabic())
 
     val imageUrl = myItem.product.mainImage?.source
 

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.clothex.user.home.product.ProductItemViewModel" />
+            type="com.clothex.user.home.product.ProductItemLanguageViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView

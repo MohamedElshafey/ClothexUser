@@ -53,7 +53,7 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: HomeProduct) {
-            val viewModel = ProductItemViewModel(product)
+            val viewModel = ProductItemLanguageViewModel(product)
             val context = binding.root.context
             binding.viewModel = viewModel
             with(context.getString(R.string.egp_price_format_float)) {
@@ -71,7 +71,7 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
                     val savedAmountTitle = context.getString(R.string.saved_amount_format)
                     val discountTitle = savedAmountTitle +
                             ": ${String.format(this, viewModel.savedAmount)}" +
-                            " (${viewModel.savedPercentage}%) "
+                            String.format(" (%d", viewModel.savedPercentage) + "%)"
                     binding.discountTV.text = discountTitle
                 }
             }
