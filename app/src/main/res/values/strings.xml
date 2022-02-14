@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">ClotheX User</string>
+    <string name="app_name" translatable="false">ClotheX User</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_categories">Categories</string>
     <string name="title_wish_list">Wishlist</string>
@@ -10,7 +9,7 @@
     <string name="discover_your_style">Discover your style</string>
     <string name="next">Next</string>
     <string name="lets_start">Let\'s start</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="lorem_ipsum" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="find_what_you_prefer">Find what you prefer?</string>
     <string name="skip">Skip</string>
     <string name="what_do_you_prefer">What do you prefer?</string>
@@ -48,7 +47,7 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sign_in_msg">Already have account. Sign in!</string>
+    <string name="sign_in_msg">Already have an account. Sign in!</string>
     <string name="view_orders_by">View Orders by</string>
     <string name="filter">Filter</string>
     <string name="placed_on">Placed on %s</string>
@@ -73,7 +72,6 @@
     <string name="apply_filter">Apply filter</string>
     <string name="my_preferences">My preferences</string>
     <string name="edit_my_pref_sub_title">Here is what you prefer</string>
-    <string name="edit_locations_title">Manage saved location</string>
     <string name="edit_location_sub_title">You can edit saved places</string>
     <string name="edit_profile_title">Edit profile</string>
     <string name="edit_profile_sub_title">Here is all of your info</string>
@@ -121,7 +119,7 @@
     <string name="use_voucher">Use voucher</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="about_us">About us</string>
-    <string name="default_notification_channel_id">clothex_channel_id</string>
+    <string name="default_notification_channel_id" translatable="false">clothex_channel_id</string>
     <string name="scan_qr_code_subtitle">Show the QR code to the shop cashier to scan to get the voucher.</string>
     <string name="login_first">Please login first to continue!</string>
     <string name="no_my_items_message">No items found!</string>
@@ -137,36 +135,37 @@
     <string name="no_items_found_msg">No items found</string>
     <string name="total_price">Total price</string>
     <string name="orders">Orders</string>
-    <string name="number_1">1</string>
-    <string name="fill_voucher_code_message">Please fill the code first!</string>
+    <string name="number_1" translatable="false">1</string>
+    <string name="fill_voucher_code_message">Please fill in the code first!</string>
     <string name="error">Error!</string>
     <string name="error_happened_message_title">Can\'t complete your request, please try again!</string>
-    <string name="egp_price_format">EGP %.02f</string>
+    <string name="egp_price_format_float">EGP %.02f</string>
+    <string name="egp">EGP %s</string>
     <string name="cant_open_app_message">%s App not found!</string>
     <string name="reset_password_mail_sent">We have sent a mail to reset your password on</string>
-    <string name="no_result_for_places">Can\'t find place, please retry with other key!</string>
+    <string name="no_result_for_places">Can\'t find the place, please retry with another key!</string>
     <string name="error_saving_location_title">Error saving location!</string>
-    <string name="location_count_restriction_message">You can\'t add more than 4 locations, delete one of them before adding new one.</string>
+    <string name="location_count_restriction_message">You can\'t add more than 4 locations, delete one of them before adding a new one.</string>
     <string name="edit_locations">Edit locations</string>
     <string name="plus_items">+%s items</string>
     <string name="are_you_sure">Are you sure?</string>
-    <string name="delete_my_item_group_message">you want to delete this group of items? if you delete it you will lose your items in it.</string>
+    <string name="delete_my_item_group_message">Do you want to delete this group of items? if you delete it you will lose your items in it.</string>
     <string name="delete">Delete</string>
     <string name="error_happened_try_again">Error happened, please try again!</string>
     <string name="deleted_successfully">Deleted successfully!</string>
-    <string name="select_color_first">You should select color to proceed!</string>
-    <string name="select_size_first">You should select size to proceed!</string>
+    <string name="select_color_first">You should select a color to proceed!</string>
+    <string name="select_size_first">You should select a size to proceed!</string>
     <string name="select_branch_first">You should select branch to proceed!</string>
-    <string name="saved_amount_format">You save: %s %s U+0025</string>
+    <string name="saved_amount_format">You save</string>
     <string name="invalid_email">Email not matching!</string>
     <string name="invalid_phone_number">Phone number is not valid</string>
     <string name="invalide_password">must contains 8 characters, at least one letter and one number</string>
     <string name="invalid_username">Username is not valid!</string>
-    <string name="signed_up_successfully">You signed up successfully, now please Login!</string>
-    <string name="password_resetted_succssfully_message">Your password reset successfully!</string>
+    <string name="signed_up_successfully">You signed up successfully, now please log in!</string>
+    <string name="password_resetted_succssfully_message">Your password was reset successfully!</string>
     <string name="shops">Shops</string>
     <string name="more_branches">more branches</string>
-    <string name="nearest_branch">Nearest branche</string>
+    <string name="nearest_branch">Nearest branch</string>
     <string name="asc_price">From lowest to highest price</string>
     <string name="desc_price">From highest to lowest price</string>
     <string-array name="searchSpinner">

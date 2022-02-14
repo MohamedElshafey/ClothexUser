@@ -1,6 +1,7 @@
 package com.clothex.data.local.shared_pref
 
 import android.content.SharedPreferences
+import com.clothex.data.domain.model.Language
 import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.data.domain.model.user.User
 import com.google.gson.Gson
@@ -18,6 +19,15 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
 
     override suspend fun getToken(): Flow<String?> = flow {
         emit(sharedPreferences.getString(TOKEN_KEY, null))
+    }
+
+    override suspend fun setLanguage(language: Language) {
+        sharedPreferences.edit().putString(LANGUAGE, language.value).apply()
+    }
+
+    override fun getLanguage(): String {
+        val english = Language.ENGLISH.value
+        return sharedPreferences.getString(LANGUAGE, english) ?: english
     }
 
     override suspend fun setUser(user: User?) {

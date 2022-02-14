@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
@@ -16,6 +15,7 @@ import androidx.transition.Slide
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import com.clothex.user.R
+import com.clothex.user.base.BaseLanguageActivity
 import com.clothex.user.databinding.ActivityHomeBinding
 import com.clothex.user.home.categories.CategoriesFragment
 import com.clothex.user.home.categories.type.SelectTypeFragment
@@ -26,7 +26,7 @@ import com.clothex.user.my_items.orders.ActiveOrdersFragment
 import com.clothex.user.profile.ProfileFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseLanguageActivity() {
 
     companion object {
         fun start(context: Context) =

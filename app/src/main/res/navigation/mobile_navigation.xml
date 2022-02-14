@@ -36,7 +36,6 @@
     <fragment
         android:id="@+id/navigation_my_items"
         android:name="com.clothex.user.my_items.ItemsContainerFragment"
-        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_items_container">
         <action
             android:id="@+id/action_navigation_my_items_to_bookFragment2"
@@ -309,8 +308,7 @@
         <action
             android:id="@+id/action_voucherMessageFragment_to_voucherFragment"
             app:destination="@id/voucherFragment"
-            app:popUpTo="@id/voucherFragment"
-             />
+            app:popUpTo="@id/voucherFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanVoucherFragment"

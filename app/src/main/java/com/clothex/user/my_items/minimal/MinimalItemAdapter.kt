@@ -41,7 +41,7 @@ class MinimalItemAdapter(
             binding.viewModel = viewModel
             binding.priceTV.text =
                 String.format(
-                    binding.root.context.getString(R.string.egp_price_format),
+                    binding.root.context.getString(R.string.egp_price_format_float),
                     viewModel.totalPrice
                 )
             if (bookedItems != null) {

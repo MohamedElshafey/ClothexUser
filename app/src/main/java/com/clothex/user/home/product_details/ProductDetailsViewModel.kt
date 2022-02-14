@@ -21,26 +21,18 @@ class ProductDetailsViewModel(
     ViewModel() {
 
     val productMutableLiveData = MutableLiveData<Product?>()
-    val sellingPrice = ObservableField<Int>()
+
     val colorsLiveData = MutableLiveData<List<Color>>()
     val mainImagesLiveData = MutableLiveData<List<Media>>()
     val sellingPriceString = ObservableField<String>()
-    val listPrice = ObservableField<String>()
     val sizesLiveData = MutableLiveData<List<Size>>()
     val branchesLiveData = MutableLiveData<List<Branch>>()
     val colorVisibility = ObservableField(false)
     val sizeVisibility = ObservableField(false)
     val branchesVisibility = ObservableField(false)
     val showViewsVisibility = ObservableField(false)
-    val title = ObservableField<String>()
-
-    //    val sku = ObservableField<String>()
-//    val skuVisibility = ObservableField<Boolean>()
     val quantityText = ObservableField("1")
-    val shopTitle = ObservableField<String>()
-    val shopAddress = ObservableField("")
     val shopLogoUrl = ObservableField<String>()
-
     var product: Product? = null
 
     fun getProductDetails(id: String) {
@@ -49,27 +41,13 @@ class ProductDetailsViewModel(
                 getProductDetailsUseCase.invoke(id).collect {
                     productMutableLiveData.postValue(it)
                     product = it
-                    updateProductData(it)
+                    colorsLiveData.postValue(product?.colors!!)
+                    setDefaultImages()
                     if (it != null)
                         showViewsVisibility.set(true)
                 }
             }
         }
-    }
-
-    private fun updateProductData(product: Product?) {
-        //TODO : HCS make setting these data from the fragment to use context freely
-        sellingPrice.set(product?.salePrice ?: product?.price)
-        listPrice.set(if (product?.salePrice != null) "EGP ${product.price}" else null)
-        colorVisibility.set(true)
-        colorsLiveData.postValue(product?.colors!!)
-        sellingPriceString.set("EGP ${sellingPrice.get()}")
-        title.set(product.title)
-//        sku.set("SKU: ${product.sku}")
-//        skuVisibility.set(!product.sku.isNullOrEmpty())
-        setDefaultImages()
-        shopTitle.set(product.shop?.name)
-        shopLogoUrl.set(product.shop?.logo?.source)
     }
 
     var quantity = 1

@@ -7,6 +7,8 @@ import com.clothex.data.domain.usecases.database.SaveLocationsUseCase
 import com.clothex.data.domain.usecases.department.GetDepartmentsUseCase
 import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
+import com.clothex.data.domain.usecases.language.GetLanguageUseCase
+import com.clothex.data.domain.usecases.language.SetLanguageUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.local.LogoutUseCase
@@ -107,6 +109,9 @@ val useCaseModule = module {
 
     single(named("get_user")) { provideGetUserUseCase(get()) }
     single(named("set_user")) { provideSetUserUseCase(get()) }
+
+    single(named("get_language")) { provideGetLanguageUseCase(get()) }
+    single(named("set_language")) { provideSetLanguageUseCase(get()) }
 
     single(named("signup_temporary")) { provideSignUpTemporaryUseCase(get()) }
     single(named("signup")) { provideSignUpUseCase(get()) }
@@ -246,9 +251,16 @@ fun provideSetUserUseCase(repository: LocalDataSourceImpl): SetUserUseCase {
     return SetUserUseCase(repository)
 }
 
-
 fun provideGetUserUseCase(repository: LocalDataSourceImpl): GetUserUseCase {
     return GetUserUseCase(repository)
+}
+
+fun provideSetLanguageUseCase(repository: LocalDataSourceImpl): SetLanguageUseCase {
+    return SetLanguageUseCase(repository)
+}
+
+fun provideGetLanguageUseCase(repository: LocalDataSourceImpl): GetLanguageUseCase {
+    return GetLanguageUseCase(repository)
 }
 
 fun provideSetTokenUseCase(repository: LocalDataSourceImpl): SetTokenUseCase {

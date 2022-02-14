@@ -1,10 +1,10 @@
 package com.clothex.user.onboarding
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.clothex.user.base.BaseLanguageActivity
 import com.clothex.user.databinding.ActivityOnboardingBinding
 
-class OnBoardingActivity : AppCompatActivity() {
+class OnBoardingActivity : BaseLanguageActivity() {
 
     private lateinit var binding: ActivityOnboardingBinding
 

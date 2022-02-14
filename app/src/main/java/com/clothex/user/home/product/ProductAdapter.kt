@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.data.domain.model.home.HomeProduct
 import com.clothex.user.R
@@ -53,20 +54,28 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
 
         fun bind(product: HomeProduct) {
             val viewModel = ProductItemViewModel(product)
+            val context = binding.root.context
             binding.viewModel = viewModel
-            with(binding.root.context.getString(R.string.egp_price_format)) {
+            with(context.getString(R.string.egp_price_format_float)) {
                 binding.priceTV.text = String.format(this, viewModel.totalPrice.toFloat())
                 if (viewModel.oldPrice != null)
                     binding.oldPriceTV.text = String.format(this, viewModel.oldPrice.toFloat())
                 else
                     binding.oldPriceTV.text = null
             }
-            binding.discountTV.text =
-                String.format(
-                    binding.root.context.getString(R.string.saved_amount_format),
-                    viewModel.savedAmount.toString(),
-                    viewModel.savedPercentage.toString()
-                )
+
+            with(context.getString(R.string.egp)) {
+                val hasDiscount = viewModel.savedAmount != null || viewModel.savedPercentage != null
+                binding.discountTV.isVisible = hasDiscount
+                if (hasDiscount) {
+                    val savedAmountTitle = context.getString(R.string.saved_amount_format)
+                    val discountTitle = savedAmountTitle +
+                            ": ${String.format(this, viewModel.savedAmount)}" +
+                            " (${viewModel.savedPercentage}%) "
+                    binding.discountTV.text = discountTitle
+                }
+            }
+
             binding.oldPriceTV.paintFlags =
                 binding.oldPriceTV.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             try {

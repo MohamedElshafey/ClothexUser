@@ -66,7 +66,7 @@
                     android:id="@+id/backIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|start"
+                    android:layout_gravity="top|left"
                     android:layout_margin="16dp"
                     android:src="@drawable/ic_back_shadow"
                     app:layout_anchor="@id/appbar"
@@ -76,7 +76,7 @@
                     android:id="@+id/shareIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top|end"
+                    android:layout_gravity="top|right"
                     android:layout_margin="16dp"
                     android:src="@drawable/ic_share_shadow"
                     app:layout_collapseMode="pin" />

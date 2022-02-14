@@ -9,9 +9,10 @@ import kotlin.math.roundToInt
  */
 class ProductItemViewModel(private val product: HomeProduct) : ViewModel() {
 
-    init {
-        calculateDiscount()
-    }
+
+    var savedAmount = calculateSavedAmount()
+
+    var savedPercentage = calculateSavedPercentage()
 
     val mainImageUrl = product.mainImage?.source
 
@@ -23,17 +24,18 @@ class ProductItemViewModel(private val product: HomeProduct) : ViewModel() {
 
     val tag = product.tag
 
-    var savedPercentage = 0
+    private fun calculateSavedAmount(): Int? = try {
+        val listPrice = product.price.toFloat()
+        val sellingPrice = product.salePrice!!.toFloat()
+        (listPrice - sellingPrice).roundToInt()
+    } catch (e: Exception) {
+        null
+    }
 
-    var savedAmount = 0
-
-    private fun calculateDiscount() {
-        try {
-            val listPrice = product.price.toFloat()
-            val sellingPrice = product.salePrice!!.toFloat()
-            savedAmount = ((listPrice - sellingPrice).roundToInt())
-            savedPercentage = (((listPrice - sellingPrice) / listPrice) * 100f).roundToInt()
-        } catch (e: Exception) {
-        }
+    private fun calculateSavedPercentage(): Int? = try {
+        val listPrice = product.price.toFloat()
+        savedAmount?.div(listPrice)?.times(100f)?.roundToInt()
+    } catch (e: Exception) {
+        null
     }
 }

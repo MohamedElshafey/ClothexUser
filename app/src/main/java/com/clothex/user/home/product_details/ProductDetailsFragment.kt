@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.data.domain.model.body.MyItemBody
+import com.clothex.data.domain.model.product.Product
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
@@ -19,6 +21,7 @@ import com.clothex.user.home.image.ImageAdapter
 import com.clothex.user.utils.addChip
 import com.clothex.user.utils.addDivider
 import com.clothex.user.utils.setHeightPercentage
+import com.clothex.user.utils.setImageFromUrl
 import com.google.android.material.chip.Chip
 import org.koin.android.ext.android.inject
 
@@ -29,15 +32,14 @@ import org.koin.android.ext.android.inject
 class ProductDetailsFragment : Fragment() {
 
     private val mViewModel: ProductDetailsViewModel by inject()
-    private var _binding: FragmentProductDetailsBinding? = null
-    private val binding get() = _binding!!
+    lateinit var binding: FragmentProductDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+        binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = mViewModel
         return binding.root
     }
@@ -57,6 +59,7 @@ class ProductDetailsFragment : Fragment() {
         mViewModel.productMutableLiveData.observe(viewLifecycleOwner, {
             binding.contentContainer.shimmerFrame.hideShimmer()
             binding.contentContainer.shimmerFrame.isGone = true
+            updateProductData(it)
         })
 
         binding.contentContainer.minusIV.isEnabled = false
@@ -149,9 +152,20 @@ class ProductDetailsFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun updateProductData(product: Product?) {
+        val sellingPrice = product?.salePrice ?: product?.price
+        binding.contentContainer.apply {
+
+            listPriceTV.text = if (product?.salePrice != null)
+                String.format(getString(R.string.egp), product.price) else null
+            chooseColorTitleTV.isVisible = true
+            sellingPriceTV.text =
+                String.format(requireContext().getString(R.string.egp), sellingPrice)
+            titleTV.text = product?.title
+            shopTitleTV.text = product?.shop?.name
+
+            setImageFromUrl(logoIV, product?.shop?.logo?.source)
+        }
     }
 
 }

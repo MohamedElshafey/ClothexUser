@@ -1,5 +1,6 @@
 package com.clothex.user.di
 
+import com.clothex.user.base.BaseLanguageViewModel
 import com.clothex.user.home.book.BookViewModel
 import com.clothex.user.home.categories.CategoriesViewModel
 import com.clothex.user.home.categories.type.SelectTypeViewModel
@@ -21,6 +22,7 @@ import com.clothex.user.onboarding.boarding.OnBoardingViewModel
 import com.clothex.user.onboarding.splash.SplashViewModel
 import com.clothex.user.profile.ProfileViewModel
 import com.clothex.user.profile.edit.EditProfileViewModel
+import com.clothex.user.profile.language.SelectLanguageViewModel
 import com.clothex.user.profile.location.EditLocationViewModel
 import com.clothex.user.voucher.VoucherViewModel
 import com.clothex.user.voucher.add_text.CodeVoucherViewModel
@@ -195,6 +197,17 @@ val viewModelsModule = module {
         NotificationViewModel(
             getNotificationUseCase = get(named("get_notifications")),
             readNotificationsUseCase = get(named("read_notifications"))
+        )
+    }
+
+    viewModel {
+        BaseLanguageViewModel(localDataSToreImpl = get())
+    }
+
+    viewModel {
+        SelectLanguageViewModel(
+            getLanguageUseCase = get(named("get_language")),
+            setLanguageUseCase = get(named("set_language"))
         )
     }
 }

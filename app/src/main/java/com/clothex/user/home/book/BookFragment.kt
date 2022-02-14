@@ -135,7 +135,7 @@ class BookFragment : Fragment() {
 
     private fun calculatePrices(items: List<MyItem>) {
         val totalPrice = items.map { it.product.price * it.quantity }.sum()
-        getString(R.string.egp_price_format).let {
+        getString(R.string.egp_price_format_float).let {
             binding.subtotalTV.text = String.format(it, totalPrice.toFloat())
             binding.discountTV.text = String.format(it, 0f)
             binding.totalTV.text = String.format(it, totalPrice.toFloat())

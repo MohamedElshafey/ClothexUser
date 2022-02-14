@@ -23,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="@{viewModel.title}"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/black"
             android:textSize="21sp"
@@ -158,7 +157,6 @@
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{viewModel.shopTitle}"
                     android:textAppearance="@style/FontRegular"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -173,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/ic_location_small"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/shopTitleTV"
                     app:layout_constraintTop_toBottomOf="@id/shopTitleTV" />
 
@@ -184,10 +183,10 @@
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{viewModel.shopAddress}"
                     android:textAppearance="@style/FontRegular"
                     android:textColor="@color/dove_gray"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/locationIconIV"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/locationIconIV"
@@ -275,7 +274,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.listPrice}"
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/silver"
             android:textSize="12sp"
@@ -317,7 +315,8 @@
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerFrame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
