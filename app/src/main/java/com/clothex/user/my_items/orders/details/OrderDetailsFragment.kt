@@ -57,7 +57,7 @@ class OrderDetailsFragment : Fragment() {
                 binding.placedDateTV.text =
                     String.format(
                         context.getString(R.string.placed_on),
-                        order.placedOn?.toLocalTimeZone()
+                        order.placedOn?.toLocalTimeZone(context)
                     )
                 val backgroundDrawable = binding.statusTV.background as GradientDrawable
                 order.state.let {
@@ -73,7 +73,8 @@ class OrderDetailsFragment : Fragment() {
                 if (order.endTime != null && order.orderTimeStamp != null) {
                     binding.orderValidContainer.visibility = View.VISIBLE
                     binding.directionButton.visibility = View.VISIBLE
-                    val diffTimeStamp = DateUtil.getDifferenceTimeStamp(order.endTime!!) ?: 0
+                    val diffTimeStamp =
+                        DateUtil.getDifferenceTimeStamp(context, order.endTime!!) ?: 0
                     if (diffTimeStamp > 0) {
                         object : CountDownTimer(diffTimeStamp, 1000L) {
                             override fun onTick(millisUntilFinished: Long) {

@@ -22,7 +22,7 @@ fun setText(textView: TextView, text: String?) {
 @BindingAdapter("imageUrl")
 fun setImageFromUrl(imageView: ImageView, url: String?) {
     imageView.setImageDrawable(null)
-    val newUrl = url?.replace("localhost", BuildConfig.LOCALHOST_IP)
+    val newUrl = url?.replace("localhost:3000", BuildConfig.LOCALHOST_IP)
     if (newUrl != null)
         Glide.with(imageView.context)
             .load(newUrl)

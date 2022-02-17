@@ -57,7 +57,7 @@ class OrdersAdapter(val onClickListener: OrderClickCallback, private val isArabi
             binding.placedDateTV.text =
                 String.format(
                     context.getString(R.string.placed_on),
-                    order.placedOn?.toLocalTimeZone()
+                    order.placedOn?.toLocalTimeZone(context)
                 )
             val backgroundDrawable = binding.statusTV.background as GradientDrawable
             order.state.let {
@@ -75,7 +75,7 @@ class OrdersAdapter(val onClickListener: OrderClickCallback, private val isArabi
                 binding.directionButton.setOnClickListener {
                     onClickListener.onGetDirectionClicked(order)
                 }
-                val diffTimeStamp = getDifferenceTimeStamp(order.endTime!!) ?: return
+                val diffTimeStamp = getDifferenceTimeStamp(context, order.endTime!!) ?: return
                 if (diffTimeStamp > 0) {
                     object : CountDownTimer(diffTimeStamp, 1000L) {
                         override fun onTick(millisUntilFinished: Long) {

@@ -50,7 +50,7 @@ class SelectTypeFragment : Fragment() {
             isChecked = true
         )
         binding.typesChipGroup.addChip(
-            layoutInflater, *typesArray.map { it.title }.toTypedArray(),
+            layoutInflater, *typesArray.map { it.getTitle(viewModel.isArabic()) }.toTypedArray(),
             layoutRes = R.layout.item_catergory_chip
         )
 
@@ -65,7 +65,8 @@ class SelectTypeFragment : Fragment() {
             val chip = binding.typesChipGroup.findViewById(checkedId) as Chip?
             if (chip != null) {
                 val selectedTypeName = chip.text.toString()
-                val type = typesArray.find { it.title.equals(selectedTypeName) }
+                val type =
+                    typesArray.find { it.getTitle(viewModel.isArabic()).equals(selectedTypeName) }
                 binding.notItemsMessage.isVisible = false
                 binding.progressBar.isVisible = true
                 viewModel.typeId = type?.id

@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.voucher.Voucher
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentVoucherDetailsBinding
+import com.clothex.user.utils.DateUtil.toLocalTimeZone
 import com.clothex.user.voucher.shop_with_branch.VoucherShopAdapter
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
@@ -23,14 +26,14 @@ class VoucherDetailsFragment : Fragment() {
     val redeemViewModel: RedeemVoucherViewModel by inject()
     private var _binding: FragmentVoucherDetailsBinding? = null
     private val binding get() = _binding!!
-
+    lateinit var voucher: Voucher
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mViewModel =
-            VoucherDetailsViewModel(VoucherDetailsFragmentArgs.fromBundle(requireArguments()).voucher)
+        voucher = VoucherDetailsFragmentArgs.fromBundle(requireArguments()).voucher
+        mViewModel = VoucherDetailsViewModel(voucher)
         _binding = FragmentVoucherDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = mViewModel
         return binding.root
@@ -38,6 +41,11 @@ class VoucherDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val expireString = String.format(
+            requireContext().getString(R.string.expired_in),
+            voucher.expiryDate.toLocalTimeZone(requireContext() )
+        )
+        binding.expireTV.text = expireString
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         binding.shopsRecyclerView.adapter =
             VoucherShopAdapter(mViewModel.voucher.shops, mViewModel.isArabic())

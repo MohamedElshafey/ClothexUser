@@ -1,18 +1,18 @@
 package com.clothex.user.voucher
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.data.domain.usecases.sign.GetIsLoginTemporaryUseCase
 import com.clothex.data.domain.usecases.voucher.GetVouchersUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class VoucherViewModel(
     private val getVouchersUseCase: GetVouchersUseCase,
     private val getIsLoginTemporaryUseCase: GetIsLoginTemporaryUseCase
-) : ViewModel() {
+) : BaseLanguageViewModel() {
 
     val vouchersLiveData = MutableLiveData<List<Voucher>>()
     val isLoginTemporaryLiveData = MutableLiveData<Boolean>()

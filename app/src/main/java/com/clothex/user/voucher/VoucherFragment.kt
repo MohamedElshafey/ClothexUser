@@ -39,7 +39,7 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
         binding.progressBar.isVisible = true
         viewModel.vouchersLiveData.observe(viewLifecycleOwner, { voucherList ->
             binding.progressBar.isGone = true
-            binding.vouchersRV.adapter = VoucherAdapter(voucherList, this)
+            binding.vouchersRV.adapter = VoucherAdapter(voucherList, this, viewModel.isArabic())
         })
         binding.vouchersRV.addDivider()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }

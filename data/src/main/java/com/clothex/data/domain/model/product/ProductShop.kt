@@ -7,10 +7,15 @@ import com.google.gson.annotations.SerializedName
 data class ProductShop(
     @SerializedName("_id")
     val id: String,
-    val name: String,
+    private val name: String,
     @SerializedName("name_ar")
-    val arabicName: String,
+    private val nameAr: String?,
     val logo: Media,
     @SerializedName("has_book")
     val hasBook: Boolean
-) : Parcelable
+) : Parcelable {
+    fun getName(isArabic: Boolean): String {
+        return if (isArabic) nameAr ?: name
+        else name
+    }
+}

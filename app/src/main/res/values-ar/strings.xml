@@ -163,4 +163,5 @@
     <string name="nearest_branch">أقرب فرع</string>
     <string name="asc_price">من السعر الأدنى إلى الأعلى</string>
     <string name="desc_price">من الأعلى إلى الأقل سعر</string>
+    <string name="expired_in">تنتهي في %s</string>
 </resources>

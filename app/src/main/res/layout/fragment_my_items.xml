@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:icon="@drawable/ic_no_items_found"
+        android:visibility="gone"
         app:description="@string/no_my_items_description"
         app:title="@string/no_my_items_message" />
 

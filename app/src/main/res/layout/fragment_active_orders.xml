@@ -53,6 +53,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:icon="@drawable/ic_no_items_found"
+        android:visibility="gone"
         app:description="@string/no_orders_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -31,11 +32,14 @@ open class SearchBaseFragment : Fragment() {
     lateinit var binding: FragmentSearchProductBinding
     val viewModel: SearchViewModel by inject()
     private val productAdapter = ProductAdapter {
-        findNavController().navigate(
-            SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
-                it.id
-            )
-        )
+        findNavController().navigate(R.id.productDetailsFragment, bundleOf(
+          "product_id" to it.id
+        ))
+//        findNavController().navigate(
+//            SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
+//                it.id
+//            )
+//        )
     }
     private val shopAdapter = ShopAdapter {
         findNavController().navigate(

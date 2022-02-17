@@ -168,6 +168,7 @@
     <string name="nearest_branch">Nearest branch</string>
     <string name="asc_price">From lowest to highest price</string>
     <string name="desc_price">From highest to lowest price</string>
+    <string name="expired_in">Expired in %s</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

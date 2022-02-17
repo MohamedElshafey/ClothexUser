@@ -11,9 +11,9 @@ data class Shop(
     @SerializedName("_id")
     val id: String,
     val logo: Media?,
-    val name: String,
+    private val name: String,
     @SerializedName("name_ar")
-    val nameAr: String?,
+    private val nameAr: String?,
     val about: String,
     @SerializedName("social_medias")
     val socialMedias: List<SocialMedia>,

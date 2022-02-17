@@ -159,7 +159,7 @@ class ProductDetailsFragment : Fragment() {
             sellingPriceTV.text =
                 String.format(requireContext().getString(R.string.egp), sellingPrice)
             titleTV.text = product?.getTitle(mViewModel.isArabic())
-            shopTitleTV.text = product?.shop?.name
+            shopTitleTV.text = product?.shop?.getName(mViewModel.isArabic())
             setImageFromUrl(logoIV, product?.shop?.logo?.source)
         }
     }

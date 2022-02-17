@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.voucher.Voucher
+import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemVoucherBinding
 import com.clothex.user.utils.DateUtil.toLocalTimeZone
 import com.clothex.user.utils.setImageFromUrl
+import com.clothex.user.utils.setRotationByLocale
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
@@ -16,7 +18,8 @@ import com.clothex.user.utils.setImageFromUrl
 
 class VoucherAdapter(
     private val list: List<Voucher>,
-    private val onItemSelected: (Voucher) -> Unit
+    private val onItemSelected: (Voucher) -> Unit,
+    private val isArabic: Boolean
 ) :
     Adapter<VoucherAdapter.ViewHolder>() {
 
@@ -32,9 +35,15 @@ class VoucherAdapter(
     inner class ViewHolder(val binding: AdapterItemVoucherBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(voucher: Voucher) {
+            binding.leadingIV.setRotationByLocale()
             voucher.apply {
-                binding.titleTV.text = title
-                binding.subtitleTV.text = "Expired in ${voucher.expiryDate.toLocalTimeZone()}"
+                binding.titleTV.text = getTitle(isArabic)
+                val context = binding.root.context
+                val subTitle = String.format(
+                    context.getString(R.string.expired_in),
+                    voucher.expiryDate.toLocalTimeZone(context)
+                )
+                binding.subtitleTV.text = subTitle
                 setImageFromUrl(binding.logoIV, logo.source)
                 binding.container.setBackgroundColor(
                     if (voucher.redeemed) Color.parseColor("#30000000")

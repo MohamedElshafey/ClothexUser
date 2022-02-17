@@ -9,5 +9,12 @@ data class Type(
     @SerializedName("_id")
     val id: String,
     val sub_type: List<SubType>,
-    val title: String
-) : Parcelable
+    private val title: String,
+    @SerializedName("title_ar")
+    private val titleAr: String?
+) : Parcelable {
+    fun getTitle(isArabic: Boolean): String {
+        return if (isArabic) titleAr ?: title
+        else title
+    }
+}
