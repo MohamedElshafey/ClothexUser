@@ -14,18 +14,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:paddingStart="16dp"
         android:paddingTop="10dp"
+        android:paddingEnd="16dp"
         android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/bookedIconIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_product_booked"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/logoIV"
             imageUrl="@{viewModel.imageUrl}"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bookedIconIV"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Small.Image" />
 
@@ -51,7 +63,6 @@
             layout="@layout/adapter_item_color"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/titleTV" />
 

@@ -7,14 +7,12 @@ import java.util.*
 object DateUtil {
 
     fun getDifferenceTimeStamp(context: Context, end: String): Long? {
-        val endDateLocalTimeZone = end.toLocalTimeZone(context)
-        val dateFormat = SimpleDateFormat(outputDateFormat, Locale.ENGLISH)
-        return try {
-            val endDate = dateFormat.parse(endDateLocalTimeZone)
-            endDate!!.time - Date().time
-        } catch (e: Exception) {
-            null
-        }
+        val inputSdf = SimpleDateFormat(inputDateFormat, Locale.ENGLISH)
+        inputSdf.timeZone = TimeZone.getTimeZone("UTC")
+        val endDate = inputSdf.parse(end)
+        val df = SimpleDateFormat(inputDateFormat, Locale.ENGLISH)
+        df.timeZone = TimeZone.getDefault()
+        return endDate?.time?.minus(Date().time)
     }
 
     fun String.toLocalTimeZone(context: Context): String {

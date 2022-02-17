@@ -19,6 +19,7 @@ import com.clothex.user.my_items.minimal.MinimalItemAdapter
 import com.clothex.user.utils.CustomTypefaceSpan
 import com.clothex.user.utils.DateUtil
 import com.clothex.user.utils.DateUtil.toLocalTimeZone
+import com.clothex.user.utils.setRotationByLocale
 import org.koin.android.ext.android.inject
 import java.util.*
 
@@ -47,6 +48,7 @@ class OrderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchOrderDetails(orderId)
+        binding.leadingIV.setRotationByLocale()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         viewModel.orderMutableLiveData.observe(viewLifecycleOwner, { result ->
             val context = context ?: return@observe

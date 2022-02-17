@@ -10,6 +10,7 @@ import com.clothex.user.R
 import com.clothex.user.databinding.FragmentShopInfoBinding
 import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.home.shop.working_hour.WorkingHourAdapter
+import com.clothex.user.utils.setRotationByLocale
 
 /**
  * Created by Mohamed Elshafey on 11/12/2021.
@@ -41,6 +42,7 @@ class ShopInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.branchLeadingIconIV.setRotationByLocale()
         binding.branchCountTV.text = "+${shop.branches.size}"
         binding.branchSuffixTV.text = getString(R.string.more_branches)
         val selectedBranch = shop.branches[0]
