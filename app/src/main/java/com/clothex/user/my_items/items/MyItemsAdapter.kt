@@ -35,7 +35,7 @@ class MyItemsAdapter(
         fun bind(myItemGroup: MyItemGroup) {
             with(myItemGroup) {
                 binding.titleTV.text = shop.getName(isArabic)
-                binding.addressTV.text = branch.address?.name
+                binding.addressTV.text = branch.address?.getName(isArabic)
                 setImageFromUrl(binding.logoIV, shop.logo?.source)
             }
             binding.itemsRV.adapter = MinimalItemAdapter(myItemGroup.myItems.take(2))

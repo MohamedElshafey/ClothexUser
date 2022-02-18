@@ -14,7 +14,11 @@ import com.clothex.user.databinding.AdapterItemSavedLocationBinding
 /**
  * Created by Mohamed Elshafey on 21/11/2021.
  */
-class BranchAdapter(private val list: List<Branch>, private val onClick: (Branch) -> Unit) :
+class BranchAdapter(
+    private val list: List<Branch>,
+    private val isArabic: Boolean,
+    private val onClick: (Branch) -> Unit
+) :
     RecyclerView.Adapter<BranchAdapter.ViewHolder>() {
     private var selectedItemPosition = -1
 
@@ -65,7 +69,7 @@ class BranchAdapter(private val list: List<Branch>, private val onClick: (Branch
                 binding.selectedIV.visibility = GONE
             }
             binding.titleTV.text = branch.name
-            binding.subTitleTV.text = branch.address?.name
+            binding.subTitleTV.text = branch.address?.getName(isArabic)
             binding.root.setOnClickListener { onClick.invoke(layoutPosition) }
         }
     }

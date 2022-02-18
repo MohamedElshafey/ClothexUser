@@ -95,11 +95,12 @@ class ProductDetailsFragment : Fragment() {
             selectedSize?.let { mViewModel.selectSize(it) }
         }
 
-        mViewModel.branchesLiveData.observe(viewLifecycleOwner, {
-            binding.contentContainer.branchesRV.adapter = BranchAdapter(it) { branch ->
-                mViewModel.selectBranch(branch)
-            }
-        })
+        mViewModel.branchesLiveData.observe(viewLifecycleOwner) {
+            binding.contentContainer.branchesRV.adapter =
+                BranchAdapter(it, mViewModel.isArabic()) { branch ->
+                    mViewModel.selectBranch(branch)
+                }
+        }
 
         binding.contentContainer.plusIV.setOnClickListener {
             mViewModel.quantity += 1

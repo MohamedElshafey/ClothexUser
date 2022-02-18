@@ -53,7 +53,7 @@ class BookFragment : Fragment() {
         binding.contactsRV.adapter = ContactsAdapter(myItemGroup.shop.socialMedias)
         with(myItemGroup) {
             binding.shopTitleTV.text = shop.getName(mViewModel.isArabic())
-            binding.addressTV.text = branch.address?.name
+            binding.addressTV.text = branch.address?.getName(mViewModel.isArabic())
             setImageFromUrl(binding.shopLogoIV, shop.logo?.source)
         }
 

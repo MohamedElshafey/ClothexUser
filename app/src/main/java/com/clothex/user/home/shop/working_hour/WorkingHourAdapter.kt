@@ -9,7 +9,7 @@ import com.clothex.user.databinding.AdapterItemWorkingHourBinding
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class WorkingHourAdapter(private val list: List<WorkingHour>) :
+class WorkingHourAdapter(private val list: List<WorkingHour>, private val isArabic: Boolean) :
     RecyclerView.Adapter<WorkingHourAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
@@ -28,7 +28,7 @@ class WorkingHourAdapter(private val list: List<WorkingHour>) :
     inner class ViewHolder(val binding: AdapterItemWorkingHourBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(workingHour: WorkingHour) {
-            binding.dayTV.text = workingHour.title
+            binding.dayTV.text = workingHour.getTitle(isArabic)
             binding.hoursTV.text = String.format("%s . %s", workingHour.from, workingHour.to)
         }
     }

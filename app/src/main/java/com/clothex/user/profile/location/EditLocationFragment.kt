@@ -11,6 +11,7 @@ import com.clothex.user.databinding.FragmentEditLocationBinding
 import com.clothex.user.profile.location.adapter.EditLocationAdapter
 import com.clothex.user.profile.location.adapter.EditLocationCallback
 import com.clothex.user.utils.setAllOnClickListener
+import com.clothex.user.utils.setRotationByLocale
 import org.koin.android.ext.android.inject
 
 /**
@@ -38,6 +39,7 @@ class EditLocationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.leadingIV.setRotationByLocale()
         viewModel.fetchLocations()
         binding.actionBar.setOnClickListener {
             findNavController().navigateUp()

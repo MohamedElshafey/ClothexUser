@@ -26,7 +26,7 @@ class OrderDetailsViewModel(private val getOrderDetailsUseCase: GetOrderDetailsU
                             shopLogo.set(logo?.source)
                             shopName.set(getName(isArabic()))
                         }
-                        branchAddressName.set(branch.address?.name)
+                        branchAddressName.set(branch.address?.getName(isArabic()))
                     }
                 }
             }

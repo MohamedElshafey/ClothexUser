@@ -51,7 +51,7 @@ class OrdersAdapter(val onClickListener: OrderClickCallback, private val isArabi
                 setImageFromUrl(binding.logoIV, logo?.source)
             }
             with(order.branch) {
-                binding.shopAddressTV.text = address?.name
+                binding.shopAddressTV.text = address?.getName(isArabic)
             }
             binding.orderIdTV.text = String.format(context.getString(R.string.order), order.orderId)
             binding.placedDateTV.text =

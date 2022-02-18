@@ -19,6 +19,7 @@ class ShopInfoFragment : Fragment() {
 
     lateinit var binding: FragmentShopInfoBinding
     lateinit var shop: Shop
+    private val viewModel = ShopInfoViewModel()
 
     companion object {
         fun newInstance(shop: Shop): ShopInfoFragment {
@@ -47,11 +48,16 @@ class ShopInfoFragment : Fragment() {
         binding.branchSuffixTV.text = getString(R.string.more_branches)
         val selectedBranch = shop.branches[0]
         val workingHours = selectedBranch.workingHours
-        binding.workingHoursRV.adapter = workingHours?.let { WorkingHourAdapter(it) }
+        binding.workingHoursRV.adapter =
+            workingHours?.let { WorkingHourAdapter(it, viewModel.isArabic()) }
         val contacts = shop.socialMedias
         binding.contactsRV.adapter = ContactsAdapter(contacts)
         binding.addressTV.text =
-            context?.getString(R.string.nearest_branch) + ": ${shop.branches[0].address?.name}"
+            context?.getString(R.string.nearest_branch) + ": ${
+                shop.branches[0].address?.getName(
+                    viewModel.isArabic()
+                )
+            }"
         binding.aboutTV.text = shop.about
     }
 }

@@ -28,7 +28,7 @@ class VoucherShopAdapter(private val list: List<VoucherShop>, private val isArab
         fun bind(item: VoucherShop) {
             with(item) {
                 binding.shopTitleTV.text = shop.getName(isArabic)
-                binding.addressTV.text = branch.address?.name
+                binding.addressTV.text = branch.address?.getName(isArabic)
                 setImageFromUrl(binding.shopLogoIV, shop.logo?.source)
             }
         }
