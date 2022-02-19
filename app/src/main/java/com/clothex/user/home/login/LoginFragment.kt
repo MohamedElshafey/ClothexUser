@@ -22,6 +22,11 @@ import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentLoginBinding
 import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.GraphRequest
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -33,7 +38,7 @@ import retrofit2.HttpException
 class LoginFragment : Fragment() {
 
 
-    private val TAG: String = "LoginFragmetn"
+    private val TAG: String = "LoginFragment"
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val loginViewModel: LoginViewModel by inject()
@@ -78,6 +83,44 @@ class LoginFragment : Fragment() {
         binding.googleSignInButton.setOnClickListener {
             oneTapClient.signOut()
             handleGoogleLogin()
+        }
+
+        LoginManager.getInstance()
+            .registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onCancel() {
+                    Log.d(TAG, "onCancel: ")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d(TAG, "onError: $error")
+                }
+
+                override fun onSuccess(result: LoginResult) {
+                    val request = GraphRequest.newMeRequest(result.accessToken) { obj, response ->
+                        val name = obj?.getString("name")
+                        val email = obj?.getString("email")
+                        val token = result.accessToken
+                        if (email?.isNotEmpty() == true && token.token.isNotEmpty())
+                            loginViewModel.login(
+                                LoginBody(
+                                    email = email,
+                                    facebookToken = token.token
+                                )
+                            ) {
+                                handleLoginResponse(it)
+                            }
+                    }
+                    val parameters = Bundle()
+                    parameters.putString("fields", "id,name,email,gender, birthday")
+                    request.parameters = parameters
+                    request.executeAsync()
+                    Log.d(TAG, "onSuccess: $result")
+                }
+            })
+
+        binding.facebookSignInButton.setOnClickListener {
+            LoginManager.getInstance()
+                .logInWithReadPermissions(this, listOf("public_profile"));
         }
 
         handleGoogleLogin()
@@ -159,12 +202,13 @@ class LoginFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1001) {
             try {
                 val credential = oneTapClient.getSignInCredentialFromIntent(data)
                 val idToken = credential.googleIdToken
                 val email = credential.id
-                loginViewModel.login(LoginBody(email = email, token = idToken)) {
+                loginViewModel.login(LoginBody(email = email, googleToken = idToken)) {
                     handleLoginResponse(it)
                 }
             } catch (e: ApiException) {

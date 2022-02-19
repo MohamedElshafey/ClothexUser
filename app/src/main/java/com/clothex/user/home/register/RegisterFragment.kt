@@ -10,6 +10,7 @@ import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.util.Patterns.EMAIL_ADDRESS
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,11 @@ import com.clothex.data.domain.model.sign.SignupBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentRegisterBinding
 import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.GraphRequest
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -35,7 +41,7 @@ import java.util.regex.Pattern
 
 class RegisterFragment : Fragment() {
 
-
+    private val TAG = RegisterFragment::class.simpleName
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private val viewModel: RegisterViewModel by inject()
@@ -201,6 +207,44 @@ class RegisterFragment : Fragment() {
             oneTapClient.signOut()
             handleGoogleLogin()
         }
+
+        LoginManager.getInstance()
+            .registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onCancel() {
+                    Log.d(TAG, "onCancel: ")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d(TAG, "onError: ")
+                }
+
+                override fun onSuccess(result: LoginResult) {
+                    Log.d(TAG, "onSuccess: ")
+                    val request = GraphRequest.newMeRequest(result.accessToken) { obj, response ->
+                        val name = obj?.getString("name")
+                        val email = obj?.getString("email")
+                        val accessToken = result.accessToken
+                        if (email?.isNotEmpty() == true && accessToken.token.isNotEmpty())
+                            viewModel.signup(
+                                SignupBody(
+                                    email = email,
+                                    username = name ?: "",
+                                    facebookToken = accessToken.token
+                                )
+                            ) {
+                                handleSignupResponse(it)
+                            }
+                    }
+                    val parameters = Bundle()
+                    parameters.putString("fields", "id,name,email,gender, birthday")
+                    request.parameters = parameters
+                    request.executeAsync()
+                }
+            })
+
+        binding.facebookSignUpButton.setOnClickListener {
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("public_profile"));
+        }
     }
 
     private fun handleSignupResponse(result: Result<SimpleResponse>) {
@@ -245,6 +289,7 @@ class RegisterFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1001) {
             try {
@@ -253,7 +298,7 @@ class RegisterFragment : Fragment() {
                 val email = credential.id
                 val signupBody = SignupBody(
                     email = email,
-                    token = idToken,
+                    googleToken = idToken,
                     username = credential.displayName ?: ""
                 )
                 viewModel.signup(signupBody) {

@@ -5,5 +5,6 @@ data class SignupBody(
     val password: String? = null,
     val phone_number: String? = null,
     val username: String,
-    val token: String? = null
+    val googleToken: String? = null,
+    val facebookToken: String? = null
 )

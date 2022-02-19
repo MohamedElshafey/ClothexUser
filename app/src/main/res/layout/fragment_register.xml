@@ -195,7 +195,7 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:theme="@style/RemarkableButtonTheme"
-            android:visibility="gone"
+            android:visibility="visible"
             app:drawableStartCompat="@drawable/com_facebook_button_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
