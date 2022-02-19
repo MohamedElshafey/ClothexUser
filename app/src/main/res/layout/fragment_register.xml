@@ -141,7 +141,7 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="32dp"
             android:gravity="center"
@@ -152,6 +152,55 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <TextView
+            android:id="@+id/googleSignUpButton"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/signup_using_google"
+            android:textAppearance="@style/FontSemiBold"
+            android:textSize="16sp"
+            android:theme="@style/DefaultButtonTheme"
+            app:drawableStartCompat="@drawable/googleg_standard_color_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottomButton"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <TextView
+            android:id="@+id/facebookSignUpButton"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/com_facebook_button_background_color"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/signup_using_facebook"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:theme="@style/RemarkableButtonTheme"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/com_facebook_button_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/googleSignUpButton"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -167,9 +216,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bottomButton"
+            app:layout_constraintTop_toBottomOf="@id/facebookSignUpButton"
             app:layout_goneMarginTop="24dp" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

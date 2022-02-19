@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.sign.Login
 import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentLoginBinding
@@ -27,12 +28,6 @@ import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.common.api.ApiException
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
-import com.google.android.gms.auth.api.credentials.IdentityProviders
-
-import com.google.android.gms.auth.api.credentials.CredentialRequest
-
-
-
 
 
 class LoginFragment : Fragment() {
@@ -51,7 +46,6 @@ class LoginFragment : Fragment() {
         loginViewModel.setFirstTimeOpen()
         callbackManager = CallbackManager.Factory.create();
         oneTapClient = Identity.getSignInClient(requireActivity())
-
         signInRequest = BeginSignInRequest.builder()
             .setPasswordRequestOptions(
                 BeginSignInRequest.PasswordRequestOptions.builder()
@@ -61,15 +55,12 @@ class LoginFragment : Fragment() {
             .setGoogleIdTokenRequestOptions(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
-                    // Your server's client ID, not your Android client ID.
                     .setServerClientId(getString(R.string.your_web_client_id))
-                    // Only show accounts previously used to sign in.
                     .setFilterByAuthorizedAccounts(false)
                     .build()
             )
-            // Automatically sign in when exactly one credential is retrieved.
-//            .setAutoSelectEnabled(true)
             .build()
+        loginViewModel.getTokenIfNeeded()
     }
 
     override fun onCreateView(
@@ -83,6 +74,11 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.googleSignInButton.setOnClickListener {
+            oneTapClient.signOut()
+            handleGoogleLogin()
+        }
 
         handleGoogleLogin()
 
@@ -119,31 +115,31 @@ class LoginFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.bottomButton.setOnClickListener {
-            val phoneNumber = binding.phoneNumberTextInputLayout.editText?.text?.toString()
+            val email = binding.emailTextInputLayout.editText?.text?.toString()
             val password = binding.passwordTextInputLayout.editText?.text?.toString()
-            if (phoneNumber.isNullOrEmpty() || password.isNullOrEmpty()) return@setOnClickListener
-            val loginBody = LoginBody(phoneNumber = phoneNumber, password = password)
+            if (email.isNullOrEmpty() || password.isNullOrEmpty()) return@setOnClickListener
+            val loginBody = LoginBody(email = email, password = password)
             loginViewModel.login(loginBody) {
-                it.getOrNull()?.let {
-                    findNavController().navigateUp()
-                }
-                it.exceptionOrNull()?.let { throwable ->
-                    val message = if (throwable is HttpException) {
-                        throwable.message()
-                    } else {
-                        throwable.message
-                    }
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-                }
+                handleLoginResponse(it)
             }
         }
     }
 
+    private fun handleLoginResponse(result: Result<Login>) {
+        result.getOrNull()?.let {
+            findNavController().navigateUp()
+        }
+        result.exceptionOrNull()?.let { throwable ->
+            val message = if (throwable is HttpException) {
+                throwable.message()
+            } else {
+                throwable.message
+            }
+            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+        }
+    }
+
     private fun handleGoogleLogin() {
-        val request = CredentialRequest.Builder()
-            .setAccountTypes(IdentityProviders.GOOGLE)
-            .setSupportsPasswordLogin(true)
-            .build()
         oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(requireActivity()) { result ->
             try {
                 startIntentSenderForResult(
@@ -163,28 +159,13 @@ class LoginFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == 1001) {
             try {
                 val credential = oneTapClient.getSignInCredentialFromIntent(data)
                 val idToken = credential.googleIdToken
-                val username = credential.id
-                val password = credential.password
-                when {
-                    idToken != null -> {
-                        // Got an ID token from Google. Use it to authenticate
-                        // with your backend.
-                        Log.d(TAG, "Got ID token.")
-                    }
-                    password != null -> {
-                        // Got a saved username and password. Use them to authenticate
-                        // with your backend.
-                        Log.d(TAG, "Got password.")
-                    }
-                    else -> {
-                        // Shouldn't happen.
-                        Log.d(TAG, "No ID token or password!")
-                    }
+                val email = credential.id
+                loginViewModel.login(LoginBody(email = email, token = idToken)) {
+                    handleLoginResponse(it)
                 }
             } catch (e: ApiException) {
 

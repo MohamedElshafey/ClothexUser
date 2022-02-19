@@ -1,5 +1,7 @@
 package com.clothex.user.home.register
 
+import android.content.Intent
+import android.content.IntentSender
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -17,9 +19,15 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.SimpleResponse
 import com.clothex.data.domain.model.sign.SignupBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentRegisterBinding
+import com.facebook.CallbackManager
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.common.api.ApiException
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
 import java.util.regex.Pattern
@@ -84,6 +92,31 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private lateinit var oneTapClient: SignInClient
+    private lateinit var signInRequest: BeginSignInRequest
+    lateinit var callbackManager: CallbackManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        callbackManager = CallbackManager.Factory.create();
+        oneTapClient = Identity.getSignInClient(requireActivity())
+        signInRequest = BeginSignInRequest.builder()
+            .setPasswordRequestOptions(
+                BeginSignInRequest.PasswordRequestOptions.builder()
+                    .setSupported(true)
+                    .build()
+            )
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    .setServerClientId(getString(R.string.your_web_client_id))
+                    .setFilterByAuthorizedAccounts(false)
+                    .build()
+            )
+            .build()
+        viewModel.getTokenIfNeeded()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -95,7 +128,6 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val signInMsg = getString(R.string.sign_in_msg)
         val spannableStringBuilder = SpannableStringBuilder(signInMsg)
         val startIndex = signInMsg.indexOf(".")
@@ -161,32 +193,73 @@ class RegisterFragment : Fragment() {
                     username = username!!
                 )
                 viewModel.signup(signupBody) {
-                    it.getOrNull()?.let { simpleResponse ->
-                        if (simpleResponse.success) {
-                            Toast.makeText(
-                                requireContext(),
-                                getString(R.string.signed_up_successfully),
-                                Toast.LENGTH_LONG
-                            ).show()
-                            findNavController().navigateUp()
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                simpleResponse.message,
-                                Toast.LENGTH_LONG
-                            )
-                                .show()
-                        }
-                    }
-
-                    it.exceptionOrNull()?.let { throwable ->
-                        Toast.makeText(
-                            requireContext(),
-                            (throwable as HttpException).message(),
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    handleSignupResponse(it)
                 }
+            }
+        }
+        binding.googleSignUpButton.setOnClickListener {
+            oneTapClient.signOut()
+            handleGoogleLogin()
+        }
+    }
+
+    private fun handleSignupResponse(result: Result<SimpleResponse>) {
+        result.getOrNull()?.let { simpleResponse ->
+            if (simpleResponse.success) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.signed_up_successfully),
+                    Toast.LENGTH_LONG
+                ).show()
+                findNavController().navigateUp()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    simpleResponse.message,
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+            }
+        }
+        result.exceptionOrNull()?.let { throwable ->
+            Toast.makeText(
+                requireContext(),
+                (throwable as HttpException).message(),
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun handleGoogleLogin() {
+        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(requireActivity()) { result ->
+            try {
+                startIntentSenderForResult(
+                    result.pendingIntent.intentSender, 1001,
+                    null, 0, 0, 0, null
+                )
+            } catch (e: IntentSender.SendIntentException) {
+            }
+        }.addOnFailureListener(requireActivity()) { e ->
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1001) {
+            try {
+                val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                val idToken = credential.googleIdToken
+                val email = credential.id
+                val signupBody = SignupBody(
+                    email = email,
+                    token = idToken,
+                    username = credential.displayName ?: ""
+                )
+                viewModel.signup(signupBody) {
+                    handleSignupResponse(it)
+                }
+            } catch (e: ApiException) {
             }
         }
     }

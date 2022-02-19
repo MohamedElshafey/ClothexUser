@@ -121,13 +121,21 @@ val viewModelsModule = module {
     }
 
     viewModel {
-        RegisterViewModel(signUpUseCase = get(named("signup")))
+        RegisterViewModel(
+            signUpUseCase = get(named("signup")),
+            getTokenUseCase = get(named("get_token")),
+            setTokenUseCase = get(named("set_token")),
+            signUpTemporaryUseCase = get(named("signup_temporary"))
+        )
     }
 
     viewModel {
         LoginViewModel(
             loginUseCase = get(named("login")),
-            setIsFirstTimeOpenUseCase = get(named("set_is_first_time"))
+            setIsFirstTimeOpenUseCase = get(named("set_is_first_time")),
+            getTokenUseCase = get(named("get_token")),
+            setTokenUseCase = get(named("set_token")),
+            signUpTemporaryUseCase = get(named("signup_temporary"))
         )
     }
 

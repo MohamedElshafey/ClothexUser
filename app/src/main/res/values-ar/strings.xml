@@ -164,4 +164,8 @@
     <string name="asc_price">من السعر الأدنى إلى الأعلى</string>
     <string name="desc_price">من الأعلى إلى الأقل سعر</string>
     <string name="expired_in">تنتهي في %s</string>
+    <string name="login_using_google">تسجيل الدخول مع Google</string>
+    <string name="login_using_facebook">تسجيل الدخول مع Facebook</string>
+    <string name="signup_using_google">Google تسجيل حساب</string>
+    <string name="signup_using_facebook">Facebook تسجيل حساب</string>
 </resources>

@@ -169,10 +169,14 @@
     <string name="asc_price">From lowest to highest price</string>
     <string name="desc_price">From highest to lowest price</string>
     <string name="expired_in">Expired in %s</string>
-    <string name="your_web_client_id" >444086010307-okovao43rirn600d50s1o7b2ll88r6ip.apps.googleusercontent.com</string>
-    <string name="facebook_app_id">1389728718153128</string>
-    <string name="fb_login_protocol_scheme">clothex</string>
-    <string name="facebook_client_token">749c2ff5099984cd0cc9b44d2c25e34c</string>
+    <string name="your_web_client_id" translatable="false">444086010307-okovao43rirn600d50s1o7b2ll88r6ip.apps.googleusercontent.com</string>
+    <string name="facebook_app_id" translatable="false">1389728718153128</string>
+    <string name="fb_login_protocol_scheme" translatable="false">clothex</string>
+    <string name="facebook_client_token" translatable="false">749c2ff5099984cd0cc9b44d2c25e34c</string>
+    <string name="login_using_google">Continue with Google</string>
+    <string name="login_using_facebook">Continue with Facebook</string>
+    <string name="signup_using_google">Sign up with Google</string>
+    <string name="signup_using_facebook">Sign up with Facebook</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

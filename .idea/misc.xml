@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.2171875" />
         <entry key="../../.gradle/caches/transforms-3/5db8adb2b6636b3c030518eaf70c8b80/transformed/appcompat-1.4.0/res/layout/abc_list_menu_item_checkbox.xml" value="0.3482905982905983" />
+        <entry key="../../.gradle/caches/transforms-3/6f2f0cda062b4befcb1691e226d89f82/transformed/jetified-facebook-common-12.1.0/res/drawable/com_facebook_button_icon.xml" value="0.153" />
         <entry key="app/src/main/res/drawable-hdpi/bg_grey_4_15_round_corners.xml" value="0.3871794871794872" />
         <entry key="app/src/main/res/drawable-hdpi/bg_stats_rounded_corner.xml" value="0.3871794871794872" />
         <entry key="app/src/main/res/drawable-v24/bottom_sheet_top_drawable.xml" value="0.202991452991453" />
@@ -34,6 +35,7 @@
         <entry key="app/src/main/res/drawable/ic_categories_selector.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3769230769230769" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.20277777777777778" />
+        <entry key="app/src/main/res/drawable/ic_facebook_icon.xml" value="0.205" />
         <entry key="app/src/main/res/drawable/ic_leading_arrow.xml" value="0.36153846153846153" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.202991452991453" />
         <entry key="app/src/main/res/drawable/ic_mail_sent.xml" value="0.33247863247863246" />
@@ -168,7 +170,6 @@
         <entry key="app/src/main/res/layout/item_shop_with_branch.xml" value="0.3890625" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.30854700854700856" />
         <entry key="app/src/main/res/layout/message.xml" value="0.28530259365994237" />
-        <entry key="app/src/main/res/layout/order_state.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/order_state.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/order_status.xml" value="0.75" />
         <entry key="app/src/main/res/layout/product_details_content.xml" value="0.33" />
