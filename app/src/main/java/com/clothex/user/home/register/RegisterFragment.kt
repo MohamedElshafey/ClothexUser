@@ -38,7 +38,7 @@ class RegisterFragment : Fragment() {
         if (EMAIL_ADDRESS.matcher(binding.emailTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.emailTextInputLayout.error = "Email not matching!"
+            binding.emailTextInputLayout.error = getString(R.string.invalid_email)
             binding.emailTextInputLayout.isErrorEnabled = true
         } else {
             binding.emailTextInputLayout.isErrorEnabled = false
@@ -51,7 +51,7 @@ class RegisterFragment : Fragment() {
                 .matcher(binding.phoneNumberTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.phoneNumberTextInputLayout.error = "Phone number is not valid"
+            binding.phoneNumberTextInputLayout.error = getString(R.string.invalid_phone_number)
             binding.phoneNumberTextInputLayout.isErrorEnabled = true
         } else {
             binding.phoneNumberTextInputLayout.isErrorEnabled = false
@@ -64,8 +64,7 @@ class RegisterFragment : Fragment() {
                 .matcher(binding.passwordTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.passwordTextInputLayout.error =
-                "must contains 8 characters, at least one letter and one number"
+            binding.passwordTextInputLayout.error = getString(R.string.invalide_password)
             binding.passwordTextInputLayout.isErrorEnabled = true
         } else {
             binding.passwordTextInputLayout.isErrorEnabled = false
@@ -78,7 +77,7 @@ class RegisterFragment : Fragment() {
                 .matcher(binding.nameTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.nameTextInputLayout.error = "Username is not valid!"
+            binding.nameTextInputLayout.error = getString(R.string.invalid_username)
             binding.nameTextInputLayout.isErrorEnabled = true
         } else {
             binding.nameTextInputLayout.isErrorEnabled = false
@@ -166,7 +165,7 @@ class RegisterFragment : Fragment() {
                         if (simpleResponse.success) {
                             Toast.makeText(
                                 requireContext(),
-                                "You signed up successfully, now please Login!",
+                                getString(R.string.signed_up_successfully),
                                 Toast.LENGTH_LONG
                             ).show()
                             findNavController().navigateUp()

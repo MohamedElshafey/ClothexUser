@@ -38,7 +38,7 @@
             android:id="@+id/subTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tagammoa 5 - Banks Center"
+            tools:text="Tagammoa 5 - Banks Center"
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/dove_gray"
             android:textSize="12sp" />

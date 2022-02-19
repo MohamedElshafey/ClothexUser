@@ -7,7 +7,7 @@ import com.clothex.data.domain.model.voucher.VoucherShop
 import com.clothex.user.databinding.AdapterVoucherShopBinding
 import com.clothex.user.utils.setImageFromUrl
 
-class VoucherShopAdapter(private val list: List<VoucherShop>) :
+class VoucherShopAdapter(private val list: List<VoucherShop>, private val isArabic: Boolean) :
     RecyclerView.Adapter<VoucherShopAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -27,8 +27,8 @@ class VoucherShopAdapter(private val list: List<VoucherShop>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: VoucherShop) {
             with(item) {
-                binding.shopTitleTV.text = shop.name
-                binding.addressTV.text = branch.address?.name
+                binding.shopTitleTV.text = shop.getName(isArabic)
+                binding.addressTV.text = branch.address?.getName(isArabic)
                 setImageFromUrl(binding.shopLogoIV, shop.logo?.source)
             }
         }

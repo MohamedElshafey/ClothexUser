@@ -10,6 +10,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/mohamedelshafey/StudioProjects/clothex-user-keystore')
+            storePassword 'hIeg&2!NG'
+            keyPassword 'hIeg&2!NG'
+            keyAlias 'user-alias'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -17,27 +25,30 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
         debug {
 //            buildConfigField("String", "LOCALHOST_IP", "\"10.0.2.2\"")
 //            buildConfigField("String", "LOCALHOST_IP", "\"192.168.43.8\"")
-            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
+//            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
+            buildConfigField("String", "LOCALHOST_IP", "\"clothex.online\"")
 //            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/api/user/\"")
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.43.8:3000/api/user/\"")
-            buildConfigField("String", "BASE_URL", "\"http:/192.168.100.141:3000/api/user/\"")
+//            buildConfigField("String", "BASE_URL", "\"http:/192.168.100.141:3000/api/user/\"")
+            buildConfigField("String", "BASE_URL", "\"http:/clothex.online/api/user/\"")
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.1.7:3000/api/\"")
         }
         release {
-            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:3000/api/user/\"")
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "LOCALHOST_IP", "\"clothex.online\"")
+            buildConfigField("String", "BASE_URL", "\"http:/clothex.online/api/user/\"")
+//            minifyEnabled false
+//            shrinkResources false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -117,6 +128,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    //Shimmering
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     //Google auth
     implementation 'com.google.android.gms:play-services-auth:20.1.0'

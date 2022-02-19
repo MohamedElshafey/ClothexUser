@@ -7,6 +7,8 @@ import com.clothex.data.domain.usecases.database.SaveLocationsUseCase
 import com.clothex.data.domain.usecases.department.GetDepartmentsUseCase
 import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
+import com.clothex.data.domain.usecases.language.GetLanguageUseCase
+import com.clothex.data.domain.usecases.language.SetLanguageUseCase
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.local.LogoutUseCase
@@ -15,6 +17,8 @@ import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
+import com.clothex.data.domain.usecases.notification.GetNotificationsUseCase
+import com.clothex.data.domain.usecases.notification.ReadNotificationsUseCase
 import com.clothex.data.domain.usecases.onboarding.GetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.onboarding.SetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
@@ -44,6 +48,8 @@ import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
+import com.clothex.data.remote.repository.notification.GetNotificationRepository
+import com.clothex.data.remote.repository.notification.ReadNotificationRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
@@ -104,6 +110,9 @@ val useCaseModule = module {
     single(named("get_user")) { provideGetUserUseCase(get()) }
     single(named("set_user")) { provideSetUserUseCase(get()) }
 
+    single(named("get_language")) { provideGetLanguageUseCase(get()) }
+    single(named("set_language")) { provideSetLanguageUseCase(get()) }
+
     single(named("signup_temporary")) { provideSignUpTemporaryUseCase(get()) }
     single(named("signup")) { provideSignUpUseCase(get()) }
     single(named("login")) {
@@ -133,6 +142,9 @@ val useCaseModule = module {
     single(named("redeem_voucher")) { provideRedeemVoucherUseCase(get()) }
 
     single(named("get_departments")) { provideGetDepartmentsUseCase(get()) }
+
+    single(named("get_notifications")) { provideGetNotificationsUseCase(get()) }
+    single(named("read_notifications")) { provideReadNotificationsUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -239,9 +251,16 @@ fun provideSetUserUseCase(repository: LocalDataSourceImpl): SetUserUseCase {
     return SetUserUseCase(repository)
 }
 
-
 fun provideGetUserUseCase(repository: LocalDataSourceImpl): GetUserUseCase {
     return GetUserUseCase(repository)
+}
+
+fun provideSetLanguageUseCase(repository: LocalDataSourceImpl): SetLanguageUseCase {
+    return SetLanguageUseCase(repository)
+}
+
+fun provideGetLanguageUseCase(repository: LocalDataSourceImpl): GetLanguageUseCase {
+    return GetLanguageUseCase(repository)
 }
 
 fun provideSetTokenUseCase(repository: LocalDataSourceImpl): SetTokenUseCase {
@@ -318,4 +337,12 @@ fun provideRedeemVoucherUseCase(repository: RedeemVoucherRepository): RedeemVouc
 
 fun provideGetDepartmentsUseCase(repository: GetDepartmentRepository): GetDepartmentsUseCase {
     return GetDepartmentsUseCase(repository)
+}
+
+fun provideGetNotificationsUseCase(repository: GetNotificationRepository): GetNotificationsUseCase {
+    return GetNotificationsUseCase(repository)
+}
+
+fun provideReadNotificationsUseCase(repository: ReadNotificationRepository): ReadNotificationsUseCase {
+    return ReadNotificationsUseCase(repository)
 }

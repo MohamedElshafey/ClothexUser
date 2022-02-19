@@ -133,7 +133,7 @@ class MapsFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Can't find place, please retry with other key!",
+                    getString(R.string.no_result_for_places),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -158,9 +158,9 @@ class MapsFragment : Fragment() {
     private fun showEditLocationAlert() {
         showAlertDialog(
             requireContext(),
-            title = "Error saving location!",
-            description = "You can't add more than 4 locations, delete one of them before adding new one.",
-            positiveButtonText = "Edit locations",
+            title = getString(R.string.error_saving_location_title),
+            description = getString(R.string.location_count_restriction_message),
+            positiveButtonText = getString(R.string.edit_locations),
             negativeButtonText = context?.getString(R.string.cancel),
             positiveOnClickListener = {
                 findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToEditLocationFragment())

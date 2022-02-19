@@ -8,6 +8,8 @@ import com.clothex.data.remote.repository.my_item.CreateMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemRepository
 import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
+import com.clothex.data.remote.repository.notification.GetNotificationRepository
+import com.clothex.data.remote.repository.notification.ReadNotificationRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
@@ -47,4 +49,6 @@ val remoteDataSourceModule = module {
     single { RedeemVoucherRepository(apiService = get()) }
     single { GetOrderDetailsRepository(apiService = get()) }
     single { GetDepartmentRepository(apiService = get()) }
+    single { GetNotificationRepository(apiService = get()) }
+    single { ReadNotificationRepository(apiService = get()) }
 }

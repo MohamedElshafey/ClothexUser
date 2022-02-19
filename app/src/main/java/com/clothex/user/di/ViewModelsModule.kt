@@ -7,6 +7,7 @@ import com.clothex.user.home.home.HomeViewModel
 import com.clothex.user.home.location.SelectLocationViewModel
 import com.clothex.user.home.login.LoginViewModel
 import com.clothex.user.home.map.MapsViewModel
+import com.clothex.user.home.notification.NotificationViewModel
 import com.clothex.user.home.product_details.ProductDetailsViewModel
 import com.clothex.user.home.register.RegisterViewModel
 import com.clothex.user.home.search.SearchViewModel
@@ -20,6 +21,7 @@ import com.clothex.user.onboarding.boarding.OnBoardingViewModel
 import com.clothex.user.onboarding.splash.SplashViewModel
 import com.clothex.user.profile.ProfileViewModel
 import com.clothex.user.profile.edit.EditProfileViewModel
+import com.clothex.user.profile.language.SelectLanguageViewModel
 import com.clothex.user.profile.location.EditLocationViewModel
 import com.clothex.user.voucher.VoucherViewModel
 import com.clothex.user.voucher.add_text.CodeVoucherViewModel
@@ -188,5 +190,19 @@ val viewModelsModule = module {
 
     viewModel {
         SelectTypeViewModel(productPageUseCase = get(named("get_product_page")))
+    }
+
+    viewModel {
+        NotificationViewModel(
+            getNotificationUseCase = get(named("get_notifications")),
+            readNotificationsUseCase = get(named("read_notifications"))
+        )
+    }
+
+    viewModel {
+        SelectLanguageViewModel(
+            getLanguageUseCase = get(named("get_language")),
+            setLanguageUseCase = get(named("set_language"))
+        )
     }
 }

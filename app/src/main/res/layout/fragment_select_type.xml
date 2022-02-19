@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,131 +10,151 @@
             type="com.clothex.user.home.categories.CategoriesViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".home.categories.CategoriesFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/logoIV"
-            android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:scaleType="fitStart"
-            android:src="@drawable/ic_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/notificationIV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_notification"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/logoIV"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/logoIV" />
-
-        <TextView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/ic_notification_background"
-            android:gravity="center"
-            android:text="@{viewModel.notificationCount}"
-            android:textAppearance="@style/FontBold"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/notificationIV"
-            app:layout_constraintTop_toTopOf="@id/notificationIV" />
-
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/searchBar"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_margin="24dp"
-            android:background="@drawable/search_bg_shape"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="16dp"
-            android:drawableTint="@color/silver"
-            android:hint="@string/search"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logoIV" />
-
-        <com.clothex.user.customview.DepartmentCard
-            android:id="@+id/departmentCard"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchBar" />
+            android:background="@color/white"
+            android:fitsSystemWindows="true">
 
-        <HorizontalScrollView
-            android:id="@+id/typesScrollView"
-            android:layout_width="0dp"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:minHeight="?actionBarSize"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin">
+
+                    <ImageView
+                        android:id="@+id/logoIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="32dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/ic_logo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/searchBar"
+                        android:layout_width="0dp"
+                        android:layout_height="?actionBarSize"
+                        android:layout_margin="24dp"
+                        android:background="@drawable/search_bg_shape"
+                        android:drawableStart="@drawable/ic_search"
+                        android:drawablePadding="16dp"
+                        android:drawableTint="@color/silver"
+                        android:hint="@string/search"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/logoIV" />
+
+                    <com.clothex.user.customview.DepartmentCard
+                        android:id="@+id/departmentCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/searchBar" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/typesScrollView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/departmentCard">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/typesChipGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:chipSpacing="8dp"
+                            app:singleSelection="true" />
+
+                    </HorizontalScrollView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/departmentCard">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/typesChipGroup"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:chipSpacing="8dp"
-                app:singleSelection="true" />
+                tools:context=".home.categories.CategoriesFragment">
 
-        </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productsRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="2" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productsRV"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/typesScrollView"
-            app:spanCount="2" />
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/productsRV"
+                    app:layout_constraintEnd_toEndOf="@id/productsRV"
+                    app:layout_constraintStart_toStartOf="@id/productsRV"
+                    app:layout_constraintTop_toTopOf="@id/productsRV" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/productsRV"
-            app:layout_constraintEnd_toEndOf="@id/productsRV"
-            app:layout_constraintStart_toStartOf="@id/productsRV"
-            app:layout_constraintTop_toTopOf="@id/productsRV" />
+                <com.clothex.user.customview.Message
+                    android:id="@+id/notItemsMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_no_items_found"
+                    android:visibility="gone"
+                    app:description="@string/no_items_found_msg"
+                    app:layout_constraintEnd_toEndOf="@id/productsRV"
+                    app:layout_constraintStart_toStartOf="@id/productsRV"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/noItemsIV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_no_items_found"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/productsRV"
-            app:layout_constraintStart_toStartOf="@id/productsRV"
-            app:layout_constraintTop_toTopOf="@id/productsRV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.core.widget.NestedScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

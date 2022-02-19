@@ -34,9 +34,9 @@ class ForgetPasswordFragment : Fragment() {
         binding.resetPassButton.setOnClickListener {
             MessageAlertDialog.showAlertDialog(
                 requireContext(),
-                "We have sent a mail to reset your password on",
+                getString(R.string.reset_password_mail_sent),
                 binding.emailTextInputLayout.editText?.text.toString(),
-                "Done",
+                getString(R.string.done),
                 null,
                 iconRes = R.drawable.ic_mail_sent,
                 positiveOnClickListener = {

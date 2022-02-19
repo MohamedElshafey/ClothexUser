@@ -6,30 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/backIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:src="@drawable/ic_back_arrow"
-        app:layout_constraintBottom_toBottomOf="@id/titleTV"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/titleTV" />
-
-    <TextView
-        android:id="@+id/titleTV"
-        android:layout_width="wrap_content"
+    <com.clothex.user.customview.DefaultActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="0dp"
         android:layout_height="?actionBarSize"
-        android:gravity="center_vertical"
-        android:text="@string/title_notifications"
-        android:textAppearance="@style/FontSemiBold"
-        android:textColor="@color/black"
-        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_notifications" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notificationRV"
@@ -39,7 +23,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTV"
+        app:layout_constraintTop_toBottomOf="@id/actionBar"
         tools:listitem="@layout/adapter_item_notification" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/notificationRV"
+        app:layout_constraintEnd_toEndOf="@id/notificationRV"
+        app:layout_constraintStart_toStartOf="@id/notificationRV"
+        app:layout_constraintTop_toTopOf="@id/notificationRV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.my_item.MyItem
@@ -37,16 +38,27 @@ class MinimalItemAdapter(
                 backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))
                 background = backgroundDrawable
             }
-            binding.viewModel = MinimalItemViewModel(minimalProduct)
+            val viewModel = MinimalItemViewModel(minimalProduct)
+            binding.viewModel = viewModel
+            binding.priceTV.text =
+                String.format(
+                    binding.root.context.getString(R.string.egp_price_format_float),
+                    viewModel.totalPrice
+                )
             if (bookedItems != null) {
                 val isBooked = bookedItems.contains(minimalProduct.id)
+                binding.bookedIconIV.setImageResource(
+                    if (isBooked) R.drawable.ic_product_booked
+                    else R.drawable.ic_product_unbooked
+                )
                 binding.root.setBackgroundColor(
                     ContextCompat.getColor(
                         binding.root.context,
-                        if (isBooked) R.color.booked_item else R.color.unbooked_item
+                        if (isBooked) R.color.white else R.color.mercury
                     )
                 )
             }
+            binding.bookedIconIV.isVisible = bookedItems != null
         }
     }
 }

@@ -20,6 +20,7 @@ import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
 import com.clothex.user.utils.setAllOnClickListener
 import com.clothex.user.utils.setImageFromUrl
+import com.clothex.user.utils.setRotationByLocale
 import org.koin.android.ext.android.inject
 
 
@@ -46,20 +47,19 @@ class BookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myItemGroup = BookFragmentArgs.fromBundle(requireArguments()).myItem
+        binding.leadingIV.setRotationByLocale()
         binding.bookButton.isInvisible = myItemGroup.shop.hasBook.not()
         binding.contactsRV.isInvisible = myItemGroup.shop.hasBook
         binding.contactsRV.adapter = ContactsAdapter(myItemGroup.shop.socialMedias)
         with(myItemGroup) {
-            binding.shopTitleTV.text = shop.name
-            binding.addressTV.text = branch.address?.name
+            binding.shopTitleTV.text = shop.getName(mViewModel.isArabic())
+            binding.addressTV.text = branch.address?.getName(mViewModel.isArabic())
             setImageFromUrl(binding.shopLogoIV, shop.logo?.source)
         }
 
         val itemsList = ArrayList(myItemGroup.myItems)
         adapter = EditMinimalItemAdapter(itemsList) { deletedItem, list ->
             mViewModel.deleteMyItem(deletedItem.id) {
-                Toast.makeText(requireContext(), "Deleted ${it.success}", Toast.LENGTH_SHORT)
-                    .show()
                 itemsList.remove(deletedItem)
                 adapter.notifyItemRemoved(list.indexOf(deletedItem))
                 calculatePrices(itemsList)
@@ -103,19 +103,16 @@ class BookFragment : Fragment() {
                     ) { simpleResponse ->
                         if (simpleResponse?.success == true) {
                             findNavController().navigate(BookFragmentDirections.actionBookFragmentToRequestBookFragment())
-                        } else {
-                            MessageAlertDialog.showAlertDialog(
-                                requireContext(),
-                                "Error!",
-                                "Can't complete your request, please try again!",
-                                "Done",
-                                null,
-                                iconRes = R.drawable.ic_wrong_small,
-                                positiveOnClickListener = {
+                        } else MessageAlertDialog.showAlertDialog(
+                            requireContext(),
+                            getString(R.string.error),
+                            getString(R.string.error_happened_message_title),
+                            getString(R.string.done),
+                            iconRes = R.drawable.ic_wrong_small,
+                            positiveOnClickListener = {
 
-                                }
-                            )
-                        }
+                            }
+                        )
                     }
                 } else {
                     findNavController().navigate(BookFragmentDirections.actionBookFragmentToLoginFragment())
@@ -140,10 +137,11 @@ class BookFragment : Fragment() {
 
     private fun calculatePrices(items: List<MyItem>) {
         val totalPrice = items.map { it.product.price * it.quantity }.sum()
-        binding.subtotalTV.text = String.format("EGP %.02f", totalPrice.toFloat())
-        binding.discountTV.text = String.format("EGP %.02f", 0f)
-        binding.totalTV.text = String.format("EGP %.02f", totalPrice.toFloat())
-
+        getString(R.string.egp_price_format_float).let {
+            binding.subtotalTV.text = String.format(it, totalPrice.toFloat())
+            binding.discountTV.text = String.format(it, 0f)
+            binding.totalTV.text = String.format(it, totalPrice.toFloat())
+        }
     }
 
 }

@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.data.domain.model.body.MyItemBody
+import com.clothex.data.domain.model.product.Product
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
-import com.clothex.user.utils.addChip
-import com.clothex.user.utils.addDivider
-import com.clothex.user.utils.setHeightPercentage
+import com.clothex.user.utils.*
 import com.google.android.material.chip.Chip
 import org.koin.android.ext.android.inject
 
@@ -27,27 +29,36 @@ import org.koin.android.ext.android.inject
 class ProductDetailsFragment : Fragment() {
 
     private val mViewModel: ProductDetailsViewModel by inject()
-    private var _binding: FragmentProductDetailsBinding? = null
-    private val binding get() = _binding!!
+    lateinit var binding: FragmentProductDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+        binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = mViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.backIV.setRotationByLocale()
+
+        binding.contentContainer.shimmerFrame.startShimmer()
+        binding.contentContainer.shimmerFrame.isGone = false
 
         val productId = ProductDetailsFragmentArgs.fromBundle(requireArguments()).productId
         mViewModel.getProductDetails(productId)
 
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding.mainImagesRV)
+
+        mViewModel.productMutableLiveData.observe(viewLifecycleOwner, {
+            binding.contentContainer.shimmerFrame.hideShimmer()
+            binding.contentContainer.shimmerFrame.isGone = true
+            updateProductData(it)
+        })
 
         binding.contentContainer.minusIV.isEnabled = false
 
@@ -64,7 +75,6 @@ class ProductDetailsFragment : Fragment() {
 
         mViewModel.colorsLiveData.observe(viewLifecycleOwner, {
             val list: List<String> = it.map { it.code ?: "" }
-
             binding.contentContainer.colorRV.adapter = ColorsAdapter(list) { color ->
                 mViewModel.selectColor(color)
             }
@@ -85,11 +95,12 @@ class ProductDetailsFragment : Fragment() {
             selectedSize?.let { mViewModel.selectSize(it) }
         }
 
-        mViewModel.branchesLiveData.observe(viewLifecycleOwner, {
-            binding.contentContainer.branchesRV.adapter = BranchAdapter(it) { branch ->
-                mViewModel.selectBranch(branch)
-            }
-        })
+        mViewModel.branchesLiveData.observe(viewLifecycleOwner) {
+            binding.contentContainer.branchesRV.adapter =
+                BranchAdapter(it, mViewModel.isArabic()) { branch ->
+                    mViewModel.selectBranch(branch)
+                }
+        }
 
         binding.contentContainer.plusIV.setOnClickListener {
             mViewModel.quantity += 1
@@ -131,18 +142,27 @@ class ProductDetailsFragment : Fragment() {
                 }
             } else {
                 val message = when {
-                    selectedColorCode == null -> "You should select color to proceed!"
-                    selectedSizeName == null -> "You should select size to proceed!"
-                    else -> "You should select branch to proceed!"
+                    selectedColorCode == null -> getString(R.string.select_color_first)
+                    selectedSizeName == null -> getString(R.string.select_size_first)
+                    else -> getString(R.string.select_branch_first)
                 }
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun updateProductData(product: Product?) {
+        val sellingPrice = product?.salePrice ?: product?.price
+        binding.contentContainer.apply {
+            listPriceTV.text = if (product?.salePrice != null)
+                String.format(getString(R.string.egp), product.price) else null
+            chooseColorTitleTV.isVisible = true
+            sellingPriceTV.text =
+                String.format(requireContext().getString(R.string.egp), sellingPrice)
+            titleTV.text = product?.getTitle(mViewModel.isArabic())
+            shopTitleTV.text = product?.shop?.getName(mViewModel.isArabic())
+            setImageFromUrl(logoIV, product?.shop?.logo?.source)
+        }
     }
 
 }

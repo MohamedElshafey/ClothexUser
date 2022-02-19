@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:layoutDirection">ltr</item>
+<!--        <item name="android:layoutDirection">ltr</item>-->
     </style>
 
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
@@ -145,6 +145,12 @@
         <attr name="title" />
         <attr name="icon" format="reference" />
         <attr name="cardBackground" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BaseMessage">
+        <attr name="title" />
+        <attr name="description" format="string" />
+        <attr name="android:icon" />
     </declare-styleable>
 
 </resources>

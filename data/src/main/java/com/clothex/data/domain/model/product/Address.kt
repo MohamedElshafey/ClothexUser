@@ -1,11 +1,18 @@
 package com.clothex.data.domain.model.product
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.gson.annotations.SerializedName
 
 @kotlinx.parcelize.Parcelize
 data class Address(
     val _id: String?,
-    var location: Location?,
-    var name: String
-) : Parcelable
+    val location: Location?,
+    private val name: String,
+    @SerializedName("name_ar")
+    private val nameAr: String?
+) : Parcelable {
+    fun getName(isArabic: Boolean): String {
+        return if (isArabic) nameAr ?: name
+        else name
+    }
+}

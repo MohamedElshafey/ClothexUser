@@ -1,5 +1,6 @@
 package com.clothex.data.local.shared_pref
 
+const val LANGUAGE = "LANGUAGE_KEY"
 const val TOKEN_KEY = "TOKEN_KEY"
 const val USER_KEY = "USER_KEY"
 const val SORT_ENUM_KEY = "SORT_ENUM_KEY"

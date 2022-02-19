@@ -29,7 +29,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchUser()
-        binding.titleTV.setOnClickListener {
+        binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
         }
     }

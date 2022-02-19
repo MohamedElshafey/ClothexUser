@@ -1,13 +1,20 @@
 package com.clothex.data.domain.model.product
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.google.gson.annotations.SerializedName
 
 @kotlinx.parcelize.Parcelize
 data class WorkingHour(
     val _id: String,
     val enabled: Boolean,
     val from: String,
-    val title: String,
+    private val title: String,
+    @SerializedName("title_ar")
+    private val titleAr: String?,
     val to: String
-) : Parcelable
+) : Parcelable {
+    fun getTitle(isArabic: Boolean): String {
+        return if (isArabic) titleAr ?: title
+        else title
+    }
+}

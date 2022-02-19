@@ -24,7 +24,8 @@ class HomeViewModel(
     private val getSavedLocationUseCase: GetSavedLocationUseCase
 ) : ViewModel() {
 
-    val notificationCount = ObservableField("5")
+    val notificationCount = ObservableField<String>()
+    val notificationVisible = ObservableField(false)
     val productLiveData = MutableLiveData<List<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
     val failureLiveData = MutableLiveData<String>()
@@ -40,17 +41,25 @@ class HomeViewModel(
         }
     }
 
+    val loadingLiveData = MutableLiveData<Boolean>()
+
     fun fetchHome() {
+        loadingLiveData.postValue(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 homeUseCase.invoke(Unit).collect { homeResult ->
                     homeResult.getOrNull()?.let {
                         productLiveData.postValue(it.products)
                         shopLiveData.postValue(it.shops)
+                        with(it.notificationCount) {
+                            notificationCount.set(this.coerceAtMost(99).toString())
+                            notificationVisible.set(this > 0)
+                        }
                     }
                     homeResult.exceptionOrNull()?.let {
                         failureLiveData.postValue(it.message)
                     }
+                    loadingLiveData.postValue(false)
                 }
             }
         }

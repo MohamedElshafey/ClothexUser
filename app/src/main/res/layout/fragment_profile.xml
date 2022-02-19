@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:text="@string/edit_locations_title"
+                android:text="@string/manage_saved_location"
                 android:textAppearance="@style/FontSemiBold"
                 android:textColor="@color/cod_gray"
                 android:textSize="18sp"

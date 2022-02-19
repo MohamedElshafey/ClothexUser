@@ -2,13 +2,13 @@ package com.clothex.user.home.product_details
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.data.domain.model.product.*
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -17,28 +17,21 @@ import kotlinx.coroutines.withContext
 class ProductDetailsViewModel(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
     private val createMyItemsUseCase: CreateMyItemsUseCase
-) :
-    ViewModel() {
+) : BaseLanguageViewModel() {
 
     val productMutableLiveData = MutableLiveData<Product?>()
-    val sellingPrice = ObservableField<Int>()
+
     val colorsLiveData = MutableLiveData<List<Color>>()
     val mainImagesLiveData = MutableLiveData<List<Media>>()
     val sellingPriceString = ObservableField<String>()
-    val listPrice = ObservableField<String>()
     val sizesLiveData = MutableLiveData<List<Size>>()
     val branchesLiveData = MutableLiveData<List<Branch>>()
+    val colorVisibility = ObservableField(false)
     val sizeVisibility = ObservableField(false)
     val branchesVisibility = ObservableField(false)
-    val title = ObservableField<String>()
-
-    //    val sku = ObservableField<String>()
-//    val skuVisibility = ObservableField<Boolean>()
+    val showViewsVisibility = ObservableField(false)
     val quantityText = ObservableField("1")
-    val shopTitle = ObservableField<String>()
-    val shopAddress = ObservableField("New cairo, 5th settlement")
     val shopLogoUrl = ObservableField<String>()
-
     var product: Product? = null
 
     fun getProductDetails(id: String) {
@@ -47,23 +40,13 @@ class ProductDetailsViewModel(
                 getProductDetailsUseCase.invoke(id).collect {
                     productMutableLiveData.postValue(it)
                     product = it
-                    updateProductData(it)
+                    colorsLiveData.postValue(product?.colors!!)
+                    setDefaultImages()
+                    if (it != null)
+                        showViewsVisibility.set(true)
                 }
             }
         }
-    }
-
-    private fun updateProductData(product: Product?) {
-        sellingPrice.set(product?.salePrice ?: product?.price)
-        listPrice.set(if (product?.salePrice != null) "EGP ${product.price}" else null)
-        colorsLiveData.postValue(product?.colors!!)
-        sellingPriceString.set("EGP ${sellingPrice.get()}")
-        title.set(product.title)
-//        sku.set("SKU: ${product.sku}")
-//        skuVisibility.set(!product.sku.isNullOrEmpty())
-        setDefaultImages()
-        shopTitle.set(product.shop?.name)
-        shopLogoUrl.set(product.shop?.logo?.source)
     }
 
     var quantity = 1

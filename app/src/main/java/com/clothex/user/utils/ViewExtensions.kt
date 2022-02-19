@@ -7,6 +7,7 @@ import android.graphics.drawable.InsetDrawable
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.ViewCompat
@@ -31,12 +32,14 @@ fun View.setShapeColor(color: Int) {
 fun ChipGroup.addChip(
     layoutInflater: LayoutInflater,
     vararg text: String,
-    @LayoutRes layoutRes: Int = R.layout.item_chip
+    @LayoutRes layoutRes: Int = R.layout.item_chip,
+    isChecked: Boolean = false
 ) {
     text.forEach {
         val chip = layoutInflater.inflate(layoutRes, this, false) as Chip
         chip.id = ViewCompat.generateViewId()
         chip.tag = it
+        chip.isChecked = isChecked
         chip.text = it
         addView(chip)
     }
@@ -65,4 +68,9 @@ fun View.setHeightPercentage(percentage: Int) {
     val newParam = layoutParams
     newParam.height = (screenHeight * (percentage / 100f)).roundToInt()
     layoutParams = newParam
+}
+
+fun ImageView.setRotationByLocale() {
+    val isArabic = context.getCurrentLocale()?.language.equals("ar")
+    rotation = if (isArabic) 180f else 0f
 }

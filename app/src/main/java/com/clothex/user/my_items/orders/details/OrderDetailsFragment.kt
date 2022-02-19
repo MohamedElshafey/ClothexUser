@@ -19,6 +19,7 @@ import com.clothex.user.my_items.minimal.MinimalItemAdapter
 import com.clothex.user.utils.CustomTypefaceSpan
 import com.clothex.user.utils.DateUtil
 import com.clothex.user.utils.DateUtil.toLocalTimeZone
+import com.clothex.user.utils.setRotationByLocale
 import org.koin.android.ext.android.inject
 import java.util.*
 
@@ -47,6 +48,7 @@ class OrderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchOrderDetails(orderId)
+        binding.leadingIV.setRotationByLocale()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         viewModel.orderMutableLiveData.observe(viewLifecycleOwner, { result ->
             val context = context ?: return@observe
@@ -57,7 +59,7 @@ class OrderDetailsFragment : Fragment() {
                 binding.placedDateTV.text =
                     String.format(
                         context.getString(R.string.placed_on),
-                        order.placedOn?.toLocalTimeZone()
+                        order.placedOn?.toLocalTimeZone(context)
                     )
                 val backgroundDrawable = binding.statusTV.background as GradientDrawable
                 order.state.let {
@@ -73,7 +75,8 @@ class OrderDetailsFragment : Fragment() {
                 if (order.endTime != null && order.orderTimeStamp != null) {
                     binding.orderValidContainer.visibility = View.VISIBLE
                     binding.directionButton.visibility = View.VISIBLE
-                    val diffTimeStamp = DateUtil.getDifferenceTimeStamp(order.endTime!!) ?: 0
+                    val diffTimeStamp =
+                        DateUtil.getDifferenceTimeStamp(context, order.endTime!!) ?: 0
                     if (diffTimeStamp > 0) {
                         object : CountDownTimer(diffTimeStamp, 1000L) {
                             override fun onTick(millisUntilFinished: Long) {

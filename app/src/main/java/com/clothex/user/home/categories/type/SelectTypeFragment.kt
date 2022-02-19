@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentSelectTypeBinding
 import com.clothex.user.home.categories.style.DepartmentFactory
@@ -21,7 +22,9 @@ class SelectTypeFragment : Fragment() {
     lateinit var binding: FragmentSelectTypeBinding
     private val viewModel: SelectTypeViewModel by inject()
     private val productAdapter = ProductAdapter {
-        SelectTypeFragmentDirections.actionSelectTypeFragmentToProductDetailsFragment(it.id)
+        findNavController().navigate(
+            SelectTypeFragmentDirections.actionSelectTypeFragmentToProductDetailsFragment(it.id)
+        )
     }
 
     override fun onCreateView(
@@ -42,9 +45,15 @@ class SelectTypeFragment : Fragment() {
         viewModel.departmentId = departmentId
         binding.progressBar.isVisible = true
         binding.typesChipGroup.addChip(
-            layoutInflater, *typesArray.map { it.title }.toTypedArray(),
+            layoutInflater, requireContext().getString(R.string.all),
+            layoutRes = R.layout.item_catergory_chip,
+            isChecked = true
+        )
+        binding.typesChipGroup.addChip(
+            layoutInflater, *typesArray.map { it.getTitle(viewModel.isArabic()) }.toTypedArray(),
             layoutRes = R.layout.item_catergory_chip
         )
+
         binding.departmentCard.apply {
             setTitle(context.getString(departmentStyle.title))
             changeBackground(ContextCompat.getColor(context, departmentStyle.backgroundColor))
@@ -56,8 +65,9 @@ class SelectTypeFragment : Fragment() {
             val chip = binding.typesChipGroup.findViewById(checkedId) as Chip?
             if (chip != null) {
                 val selectedTypeName = chip.text.toString()
-                val type = typesArray.find { it.title.equals(selectedTypeName) }
-                binding.noItemsIV.isVisible = false
+                val type =
+                    typesArray.find { it.getTitle(viewModel.isArabic()).equals(selectedTypeName) }
+                binding.notItemsMessage.isVisible = false
                 binding.progressBar.isVisible = true
                 viewModel.typeId = type?.id
             } else {
@@ -68,18 +78,14 @@ class SelectTypeFragment : Fragment() {
         viewModel.productLiveData.observe(viewLifecycleOwner, {
             binding.progressBar.isVisible = false
             productAdapter.reset()
-            binding.noItemsIV.isVisible = it.isEmpty()
-            productAdapter.update(it)
+            binding.notItemsMessage.isVisible = it.isEmpty()
+            productAdapter.append(it)
         })
 
         binding.searchBar.doAfterTextChanged {
-            binding.noItemsIV.isVisible = false
+            binding.notItemsMessage.isVisible = false
             binding.progressBar.isVisible = true
             viewModel.searchKey = it?.toString()
-        }
-
-        binding.notificationIV.setOnClickListener {
-//            findNavController().navigate(CategoriesFragmentDirections.actionNavigationCategoriesToNotificationFragment())
         }
 
         binding.productsRV.adapter = productAdapter

@@ -11,9 +11,17 @@ data class HomeShop(
     @SerializedName("_id")
     val id: String,
     val logo: Media?,
-    val name: String,
-    val name_ar: String,
+    private val name: String,
+    @SerializedName("name_ar")
+    private val nameAr: String?,
     val address: Address?,
     @SerializedName("working_hours")
     val workingHours: List<WorkingHour>?
-) : Parcelable
+) : Parcelable {
+
+    fun getName(isArabic: Boolean): String {
+        return if (isArabic) nameAr ?: name
+        else name
+    }
+
+}

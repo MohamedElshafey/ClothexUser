@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
@@ -38,27 +39,20 @@ class MyItemsFragment : Fragment(), MyItemCallback {
         super.onViewCreated(view, savedInstanceState)
         mViewModel.fetchMyItems()
         binding.progressBar.isVisible = true
-        mViewModel.mutableMyItemsLiveData.observe(viewLifecycleOwner, { myItems ->
-            binding.progressBar.isGone = true
-            val grouped = myItems?.groupBy {
-                it.branch
-            }
-            val groupList = mutableListOf<MyItemGroup>()
-            grouped?.forEach {
-                groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
-            }
-            binding.recyclerView.adapter = MyItemsAdapter(groupList, this)
-
-                if (myItems.isNullOrEmpty()) {
-                    binding.messageContainer.apply {
-                        messageIV.setImageResource(R.drawable.ic_no_items_found)
-                        messageTitleTV.setText(R.string.no_my_items_message)
-                        messageSubTitleTV.setText(R.string.no_my_items_description)
-                    }
+        mViewModel.mutableMyItemsLiveData.distinctUntilChanged()
+            .observe(viewLifecycleOwner, { myItems ->
+                binding.progressBar.isGone = true
+                val grouped = myItems?.groupBy {
+                    it.branch
                 }
-            binding.messageContainer.container.isGone = myItems.isNullOrEmpty().not()
-        })
-
+                val groupList = mutableListOf<MyItemGroup>()
+                grouped?.forEach {
+                    groupList.add(MyItemGroup(it.value.first().shop, it.key, it.value))
+                }
+                binding.recyclerView.adapter =
+                    MyItemsAdapter(groupList, this, mViewModel.isArabic())
+                binding.messageContainer.isVisible = myItems.isNullOrEmpty()
+            })
     }
 
     override fun onItemClicked(myItemGroup: MyItemGroup) {
@@ -69,17 +63,17 @@ class MyItemsFragment : Fragment(), MyItemCallback {
     override fun deleteMyItemGroup(myItemGroup: MyItemGroup) {
         MessageAlertDialog.showAlertDialog(
             requireContext(),
-            "Are you sure?",
-            "you want to delete this group of items? if you delete it you will lose you items in it.",
-            "Cancel",
-            "Delete",
+            getString(R.string.are_you_sure),
+            getString(R.string.delete_my_item_group_message),
+            getString(R.string.cancel),
+            getString(R.string.delete),
             iconRes = R.drawable.ic_dialog_delete,
             negativeOnClickListener = {
                 mViewModel.deleteMyItemGroup(myItemGroup) { response ->
-                    var message = "Error happened, please try again!"
+                    var message = getString(R.string.error_happened_try_again)
                     if (response != null) {
                         if (response.success) {
-                            message = "Deleted successfully!"
+                            message = getString(R.string.deleted_successfully)
                             mViewModel.fetchMyItems()
                         } else {
                             response.message?.let { message = it }

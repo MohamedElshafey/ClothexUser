@@ -5,8 +5,10 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.data.domain.model.home.HomeProduct
+import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemProductGridBinding
 import com.clothex.user.home.product.ProductAdapter.ViewHolder
 import com.clothex.user.utils.setShapeColor
@@ -23,7 +25,7 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
         this.callback = callback
     }
 
-    fun update(list: List<HomeProduct>) {
+    fun append(list: List<HomeProduct>) {
         products.addAll(list)
         notifyItemRangeInserted(this.products.size - list.size, this.products.size)
     }
@@ -51,7 +53,29 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: HomeProduct) {
-            binding.viewModel = ProductItemViewModel(product)
+            val viewModel = ProductItemLanguageViewModel(product)
+            val context = binding.root.context
+            binding.viewModel = viewModel
+            with(context.getString(R.string.egp_price_format_float)) {
+                binding.priceTV.text = String.format(this, viewModel.totalPrice.toFloat())
+                if (viewModel.oldPrice != null)
+                    binding.oldPriceTV.text = String.format(this, viewModel.oldPrice.toFloat())
+                else
+                    binding.oldPriceTV.text = null
+            }
+
+            with(context.getString(R.string.egp)) {
+                val hasDiscount = viewModel.savedAmount != null || viewModel.savedPercentage != null
+                binding.discountTV.isVisible = hasDiscount
+                if (hasDiscount) {
+                    val savedAmountTitle = context.getString(R.string.saved_amount_format)
+                    val discountTitle = savedAmountTitle +
+                            ": ${String.format(this, viewModel.savedAmount)}" +
+                            String.format(" (%d", viewModel.savedPercentage) + "%)"
+                    binding.discountTV.text = discountTitle
+                }
+            }
+
             binding.oldPriceTV.paintFlags =
                 binding.oldPriceTV.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             try {

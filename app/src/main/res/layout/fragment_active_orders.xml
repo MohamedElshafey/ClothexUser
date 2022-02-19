@@ -48,16 +48,18 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <include
+    <com.clothex.user.customview.Message
         android:id="@+id/messageContainer"
-        layout="@layout/message"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:icon="@drawable/ic_no_items_found"
+        android:visibility="gone"
+        app:description="@string/no_orders_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filterContainer" />
+        app:layout_constraintTop_toBottomOf="@id/filterContainer"
+        app:title="@string/no_orders_message" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersRV"

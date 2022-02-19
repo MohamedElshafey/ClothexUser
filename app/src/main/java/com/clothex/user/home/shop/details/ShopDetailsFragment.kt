@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.clothex.user.R
 import com.clothex.user.databinding.FragmentShopDetailsBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
@@ -36,13 +37,13 @@ class ShopDetailsFragment : Fragment() {
             TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
                 when (position) {
                     0 -> {
-                        tab.text = "Items"
+                        tab.text = context?.getString(R.string.items)
                     }
                     1 -> {
-                        tab.text = "Info"
+                        tab.text = context?.getString(R.string.info)
                     }
                     2 -> {
-                        tab.text = "Photos"
+                        tab.text = context?.getString(R.string.photos)
                     }
                 }
             }.attach()

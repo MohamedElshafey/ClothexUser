@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import com.clothex.data.domain.model.order.MyOrder
 import com.clothex.data.domain.model.order.OrderState
@@ -47,7 +48,7 @@ class ActiveOrdersFragment : Fragment() {
             findNavController().navigate(R.id.orderDetailsFragment, bundle)
         }
     }
-    private var ordersAdapter = OrdersAdapter(onClickOrderCallback)
+    private var ordersAdapter = OrdersAdapter(onClickOrderCallback, mViewModel.isArabic())
     private var myOrders: List<MyOrder>? = null
 
     override fun onCreateView(
@@ -66,18 +67,11 @@ class ActiveOrdersFragment : Fragment() {
             showFilterList()
         }
         binding.ordersRV.adapter = ordersAdapter
-        mViewModel.myOrdersLiveData.observe(viewLifecycleOwner, { orders ->
+        mViewModel.myOrdersLiveData.distinctUntilChanged().observe(viewLifecycleOwner, { orders ->
             binding.progressBar.isGone = true
             myOrders = orders
             ordersAdapter.updateData(orders ?: listOf())
-            if (orders.isNullOrEmpty()) {
-                binding.messageContainer.apply {
-                    messageIV.setImageResource(R.drawable.ic_no_items_found)
-                    messageTitleTV.setText(R.string.no_orders_message)
-                    messageSubTitleTV.setText(R.string.no_orders_description)
-                }
-            }
-            binding.messageContainer.container.isGone = orders.isNullOrEmpty().not()
+            binding.messageContainer.isVisible = orders.isNullOrEmpty()
         })
     }
 
@@ -87,7 +81,8 @@ class ActiveOrdersFragment : Fragment() {
     }
 
     private fun showFilterList() {
-        val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
+        val listPopupWindow =
+            ListPopupWindow(requireContext(), null, android.R.attr.listPopupWindowStyle)
         listPopupWindow.anchorView = binding.filterContainer
         val list = OrderState.values()
         listPopupWindow.setAdapter(OrderStateFilterAdapter(requireContext(), list))

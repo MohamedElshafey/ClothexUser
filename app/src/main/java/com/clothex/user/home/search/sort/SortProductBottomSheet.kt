@@ -45,19 +45,19 @@ class SortProductBottomSheet : DefaultBottomSheet() {
         viewModel.sortMutableLiveData.observe(viewLifecycleOwner, { sortValue ->
             val list = listOf(
                 SortItem(
-                    "Best match",
+                    getString(R.string.best_match),
                     R.drawable.ic_best_match,
                     sortValue == SortEnum.BEST_MATCH.value,
                     SortEnum.BEST_MATCH
                 ),
                 SortItem(
-                    "From lowest to highest price",
+                    getString(R.string.asc_price),
                     R.drawable.ic_ascending,
                     sortValue == SortEnum.PRICE_ASC.value,
                     SortEnum.PRICE_ASC
                 ),
                 SortItem(
-                    "From highest to lowest price",
+                    getString(R.string.desc_price),
                     R.drawable.ic_descending,
                     sortValue == SortEnum.PRICE_DESC.value,
                     SortEnum.PRICE_DESC

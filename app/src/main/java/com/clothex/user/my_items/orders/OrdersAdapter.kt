@@ -22,7 +22,7 @@ import com.clothex.user.utils.setImageFromUrl
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class OrdersAdapter(val onClickListener: OrderClickCallback) :
+class OrdersAdapter(val onClickListener: OrderClickCallback, private val isArabic: Boolean) :
     Adapter<OrdersAdapter.ViewHolder>() {
 
     var list: List<MyOrder> = listOf()
@@ -47,17 +47,17 @@ class OrdersAdapter(val onClickListener: OrderClickCallback) :
             val context = binding.root.context
 
             with(order.shop) {
-                binding.shopTitleTV.text = name
+                binding.shopTitleTV.text = getName(isArabic)
                 setImageFromUrl(binding.logoIV, logo?.source)
             }
             with(order.branch) {
-                binding.shopAddressTV.text = address?.name
+                binding.shopAddressTV.text = address?.getName(isArabic)
             }
             binding.orderIdTV.text = String.format(context.getString(R.string.order), order.orderId)
             binding.placedDateTV.text =
                 String.format(
                     context.getString(R.string.placed_on),
-                    order.placedOn?.toLocalTimeZone()
+                    order.placedOn?.toLocalTimeZone(context)
                 )
             val backgroundDrawable = binding.statusTV.background as GradientDrawable
             order.state.let {
@@ -75,7 +75,7 @@ class OrdersAdapter(val onClickListener: OrderClickCallback) :
                 binding.directionButton.setOnClickListener {
                     onClickListener.onGetDirectionClicked(order)
                 }
-                val diffTimeStamp = getDifferenceTimeStamp(order.endTime!!) ?: return
+                val diffTimeStamp = getDifferenceTimeStamp(context, order.endTime!!) ?: return
                 if (diffTimeStamp > 0) {
                     object : CountDownTimer(diffTimeStamp, 1000L) {
                         override fun onTick(millisUntilFinished: Long) {

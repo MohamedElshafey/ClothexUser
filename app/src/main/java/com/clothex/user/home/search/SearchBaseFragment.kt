@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -31,11 +32,14 @@ open class SearchBaseFragment : Fragment() {
     lateinit var binding: FragmentSearchProductBinding
     val viewModel: SearchViewModel by inject()
     private val productAdapter = ProductAdapter {
-        findNavController().navigate(
-            SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
-                it.id
-            )
-        )
+        findNavController().navigate(R.id.productDetailsFragment, bundleOf(
+          "product_id" to it.id
+        ))
+//        findNavController().navigate(
+//            SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
+//                it.id
+//            )
+//        )
     }
     private val shopAdapter = ShopAdapter {
         findNavController().navigate(
@@ -83,13 +87,15 @@ open class SearchBaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val listPopupWindow = ListPopupWindow(requireContext(), null, R.attr.listPopupWindowStyle)
         listPopupWindow.anchorView = binding.searchBar.menu
-        val list = listOf("Items", "Shops")
+        val items = context?.getString(R.string.items)
+        val shops = context?.getString(R.string.shops)
+        val list = listOf(items, shops)
         listPopupWindow.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item, list))
         listPopupWindow.setSelection(if (viewModel.isProducts) 0 else 1)
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
             val selectedItem = list[position]
             binding.searchBar.searchET.text = null
-            if (selectedItem == "Items") {
+            if (selectedItem == items) {
                 showProducts()
                 viewModel.fetch(null)
             } else {
@@ -110,7 +116,7 @@ open class SearchBaseFragment : Fragment() {
 
         viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
             loadingMore = false
-            productAdapter.update(products)
+            productAdapter.append(products)
         })
 
         viewModel.shopLiveData.observe(viewLifecycleOwner, {
