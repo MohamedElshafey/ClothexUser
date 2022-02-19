@@ -123,7 +123,7 @@ class LoginFragment : Fragment() {
                 .logInWithReadPermissions(this, listOf("public_profile"));
         }
 
-        handleGoogleLogin()
+//        handleGoogleLogin()
 
         binding.forgetPasswordTV.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         val signUpMsg = getString(R.string.sign_up_msg)
