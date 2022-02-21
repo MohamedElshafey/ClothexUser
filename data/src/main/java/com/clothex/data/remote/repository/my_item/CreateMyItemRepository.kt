@@ -13,5 +13,7 @@ import kotlinx.coroutines.flow.flow
  */
 class CreateMyItemRepository(private val apiService: MyItemApiService) : ICreateMyItemRepository {
     override suspend fun createMyItem(myItemBody: MyItemBody): Flow<MyItem?> =
-        flow { emit(apiService.createMyItem(myItemBody)) }
+        flow {
+            emit(apiService.createMyItem(myItemBody))
+        }
 }

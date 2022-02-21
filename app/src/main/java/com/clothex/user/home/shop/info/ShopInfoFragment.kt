@@ -44,17 +44,17 @@ class ShopInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.branchLeadingIconIV.setRotationByLocale()
-        binding.branchCountTV.text = "+${shop.branches.size}"
+        binding.branchCountTV.text = "+${shop.branches?.size}"
         binding.branchSuffixTV.text = getString(R.string.more_branches)
-        val selectedBranch = shop.branches[0]
-        val workingHours = selectedBranch.workingHours
+        val selectedBranch = shop.branches?.get(0)
+        val workingHours = selectedBranch?.workingHours
         binding.workingHoursRV.adapter =
             workingHours?.let { WorkingHourAdapter(it, viewModel.isArabic()) }
         val contacts = shop.socialMedias
         binding.contactsRV.adapter = ContactsAdapter(contacts)
         binding.addressTV.text =
             context?.getString(R.string.nearest_branch) + ": ${
-                shop.branches[0].address?.getName(
+                shop.branches?.get(0)?.address?.getName(
                     viewModel.isArabic()
                 )
             }"

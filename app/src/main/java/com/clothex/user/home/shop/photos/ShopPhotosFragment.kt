@@ -40,7 +40,7 @@ class ShopPhotosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mediaList = ArrayList<Media>()
-        shop.branches.forEach { branch ->
+        shop.branches?.forEach { branch ->
             if (branch.insidePhotos != null) {
                 mediaList.addAll(branch.insidePhotos!!)
             }
