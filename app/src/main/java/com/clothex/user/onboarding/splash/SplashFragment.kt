@@ -32,18 +32,17 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.tokenLiveData.observe(viewLifecycleOwner, {
-                viewModel.shouldNavigateToOnBoarding.observe(
-                    viewLifecycleOwner, { shouldOpenOnBoarding ->
-                        if (shouldOpenOnBoarding) {
-                            findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToOnBoardingFragment())
-                        } else {
-                            HomeActivity.start(requireContext())
-                            activity?.finish()
-                        }
-                    })
+            viewModel.tokenLiveData.observe(viewLifecycleOwner) {
+                viewModel.shouldNavigateToOnBoarding.observe(viewLifecycleOwner) { shouldOpenOnBoarding ->
+                    if (shouldOpenOnBoarding) {
+                        findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToOnBoardingFragment())
+                    } else {
+                        HomeActivity.start(requireContext())
+                        activity?.finish()
+                    }
+                }
 
-            })
+            }
         }, delaySeconds)
         ObjectAnimator.ofFloat(binding.backgroundImg, "translationY", -200f).apply {
             duration = delaySeconds

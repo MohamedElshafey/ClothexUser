@@ -123,6 +123,9 @@
         <argument
             android:name="product_id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_imageViewerDialog"
+            app:destination="@id/imageViewerDialog" />
     </fragment>
     <dialog
         android:id="@+id/addToMyListDialog"
@@ -426,5 +429,18 @@
             android:name="offer"
             app:argType="com.clothex.data.domain.model.offer.Offer" />
     </fragment>
+    <dialog
+        android:id="@+id/imageViewerDialog"
+        android:name="com.clothex.user.home.image_viewer.ImageViewerDialog"
+        android:label="ImageViewerDialog"
+        tools:layout="@layout/dialog_image_viewer" >
+        <argument
+            android:name="images"
+            app:argType="com.clothex.data.domain.model.product.Media[]" />
+        <argument
+            android:name="selectedIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </dialog>
 
 </navigation>

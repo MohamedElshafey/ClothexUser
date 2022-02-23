@@ -18,7 +18,8 @@ class ImageAdapter(
     private val mediaList: List<Media>,
     private val imageSize: ImageSize = ImageSize.FULL_SIZE,
     private val scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_INSIDE,
-    private val hasPadding: Boolean = false
+    private val hasPadding: Boolean = false,
+    private val onImageSelectedListener: ImageSelectedListener? = null
 ) : Adapter<ImageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -66,6 +67,9 @@ class ImageAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(media: Media) {
             setImageFromUrl(binding.imageview, media.source)
+            binding.imageview.setOnClickListener {
+                onImageSelectedListener?.onImageSelected(mediaList, adapterPosition)
+            }
         }
     }
 }

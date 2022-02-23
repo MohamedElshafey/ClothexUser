@@ -24,7 +24,6 @@ class AddToMyListDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_TITLE, R.style.Dialog_NoTitle);
-
     }
 
     override fun onStart() {

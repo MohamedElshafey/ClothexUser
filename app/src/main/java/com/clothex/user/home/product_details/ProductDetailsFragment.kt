@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView.ScaleType
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -12,12 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.clothex.data.domain.model.body.MyItemBody
+import com.clothex.data.domain.model.product.Media
 import com.clothex.data.domain.model.product.Product
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
+import com.clothex.user.home.image.ImageSelectedListener
 import com.clothex.user.utils.*
 import com.google.android.material.chip.Chip
 import org.koin.android.ext.android.inject
@@ -26,7 +29,7 @@ import org.koin.android.ext.android.inject
 /**
  * Created by Mohamed Elshafey on 29/11/2021.
  */
-class ProductDetailsFragment : Fragment() {
+class ProductDetailsFragment : Fragment(), ImageSelectedListener {
 
     private val mViewModel: ProductDetailsViewModel by inject()
     lateinit var binding: FragmentProductDetailsBinding
@@ -54,11 +57,11 @@ class ProductDetailsFragment : Fragment() {
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding.mainImagesRV)
 
-        mViewModel.productMutableLiveData.observe(viewLifecycleOwner, {
+        mViewModel.productMutableLiveData.observe(viewLifecycleOwner) {
             binding.contentContainer.shimmerFrame.hideShimmer()
             binding.contentContainer.shimmerFrame.isGone = true
             updateProductData(it)
-        })
+        }
 
         binding.contentContainer.minusIV.isEnabled = false
 
@@ -68,25 +71,26 @@ class ProductDetailsFragment : Fragment() {
         binding.toolbar.setHeightPercentage(15)
         binding.appbar.setHeightPercentage(50)
 
-        mViewModel.mainImagesLiveData.observe(viewLifecycleOwner, {
-            binding.mainImagesRV.adapter = ImageAdapter(it)
+        mViewModel.mainImagesLiveData.observe(viewLifecycleOwner) {
+            binding.mainImagesRV.adapter =
+                ImageAdapter(it, scaleType = ScaleType.CENTER_CROP, onImageSelectedListener = this)
             binding.indicator.attachToRecyclerView(binding.mainImagesRV, pagerSnapHelper)
-        })
+        }
 
-        mViewModel.colorsLiveData.observe(viewLifecycleOwner, {
+        mViewModel.colorsLiveData.observe(viewLifecycleOwner) {
             val list: List<String> = it.map { it.code ?: "" }
             binding.contentContainer.colorRV.adapter = ColorsAdapter(list) { color ->
                 mViewModel.selectColor(color)
             }
-        })
+        }
 
-        mViewModel.sizesLiveData.observe(viewLifecycleOwner, { list ->
+        mViewModel.sizesLiveData.observe(viewLifecycleOwner) { list ->
             binding.contentContainer.sizeChipGroup.removeAllViews()
             binding.contentContainer.sizeChipGroup.addChip(
                 layoutInflater,
                 *list.map { it.title }.toTypedArray()
             )
-        })
+        }
 
         binding.contentContainer.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             val chip = binding.contentContainer.sizeChipGroup.findViewById(checkedId) as Chip?
@@ -163,6 +167,14 @@ class ProductDetailsFragment : Fragment() {
             shopTitleTV.text = product?.shop?.getName(mViewModel.isArabic())
             setImageFromUrl(logoIV, product?.shop?.logo?.source)
         }
+    }
+
+    override fun onImageSelected(mediaList: List<Media>, selectedIndex: Int) {
+        findNavController().navigate(
+            ProductDetailsFragmentDirections.actionProductDetailsFragmentToImageViewerDialog(
+                mediaList.toTypedArray(), selectedIndex = selectedIndex
+            )
+        )
     }
 
 }
