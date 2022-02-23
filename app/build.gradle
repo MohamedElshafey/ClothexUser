@@ -10,6 +10,11 @@ plugins {
 }
 
 android {
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
     signingConfigs {
         release {
             storeFile file('/Users/mohamedelshafey/StudioProjects/clothex-user-keystore')
