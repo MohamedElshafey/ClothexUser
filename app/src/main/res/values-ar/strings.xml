@@ -168,4 +168,6 @@
     <string name="login_using_facebook">تسجيل الدخول مع Facebook</string>
     <string name="signup_using_google">Google تسجيل حساب</string>
     <string name="signup_using_facebook">Facebook تسجيل حساب</string>
+    <string name="offers">العروض</string>
+    <string name="offer">العرض</string>
 </resources>

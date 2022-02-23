@@ -19,6 +19,7 @@ import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.GetMyItemsUseCase
 import com.clothex.data.domain.usecases.notification.GetNotificationsUseCase
 import com.clothex.data.domain.usecases.notification.ReadNotificationsUseCase
+import com.clothex.data.domain.usecases.offer.GetOffersUseCase
 import com.clothex.data.domain.usecases.onboarding.GetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.onboarding.SetVisitOnBoardingUseCase
 import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
@@ -50,6 +51,7 @@ import com.clothex.data.remote.repository.my_item.DeleteMyItemsRepository
 import com.clothex.data.remote.repository.my_item.GetMyItemsRepository
 import com.clothex.data.remote.repository.notification.GetNotificationRepository
 import com.clothex.data.remote.repository.notification.ReadNotificationRepository
+import com.clothex.data.remote.repository.offer.GetOffersRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
@@ -140,6 +142,8 @@ val useCaseModule = module {
     single(named("get_vouchers")) { provideGetVouchersUseCase(get()) }
     single(named("add_voucher")) { provideAddVoucherUseCase(get()) }
     single(named("redeem_voucher")) { provideRedeemVoucherUseCase(get()) }
+
+    single(named("get_offers")) { provideGetOffersUseCase(get()) }
 
     single(named("get_departments")) { provideGetDepartmentsUseCase(get()) }
 
@@ -345,4 +349,8 @@ fun provideGetNotificationsUseCase(repository: GetNotificationRepository): GetNo
 
 fun provideReadNotificationsUseCase(repository: ReadNotificationRepository): ReadNotificationsUseCase {
     return ReadNotificationsUseCase(repository)
+}
+
+fun provideGetOffersUseCase(repository: GetOffersRepository): GetOffersUseCase {
+    return GetOffersUseCase(repository)
 }

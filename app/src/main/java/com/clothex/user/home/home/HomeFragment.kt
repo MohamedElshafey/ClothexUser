@@ -146,6 +146,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToVoucherFragment())
         }
 
+        binding.offerButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToOfferFragment())
+        }
+
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.fetchHome()
         }

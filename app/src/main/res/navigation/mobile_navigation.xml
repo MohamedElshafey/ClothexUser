@@ -26,6 +26,9 @@
             android:id="@+id/action_navigation_home_to_voucherFragment"
             app:destination="@id/voucherFragment" />
         <action
+            android:id="@+id/action_navigation_home_to_offerFragment"
+            app:destination="@id/offerFragment" />
+        <action
             android:id="@+id/action_navigation_home_to_shopDetailsFragment"
             app:destination="@id/shopDetailsFragment" />
         <action
@@ -404,6 +407,24 @@
         <action
             android:id="@+id/action_selectTypeFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerFragment"
+        android:name="com.clothex.user.offer.OfferFragment"
+        android:label="OfferFragment"
+        tools:layout="@layout/fragment_offer">
+        <action
+            android:id="@+id/action_offerFragment_to_offerDetailsFragment"
+            app:destination="@id/offerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerDetailsFragment"
+        android:name="com.clothex.user.offer.details.OfferDetailsFragment"
+        android:label="OfferDetailsFragment"
+        tools:layout="@layout/fragment_voucher_details">
+        <argument
+            android:name="offer"
+            app:argType="com.clothex.data.domain.model.offer.Offer" />
     </fragment>
 
 </navigation>

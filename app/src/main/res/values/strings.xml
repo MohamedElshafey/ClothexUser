@@ -177,6 +177,8 @@
     <string name="login_using_facebook">Continue with Facebook</string>
     <string name="signup_using_google">Sign up with Google</string>
     <string name="signup_using_facebook">Sign up with Facebook</string>
+    <string name="offers">Offers</string>
+    <string name="offer">Offer</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

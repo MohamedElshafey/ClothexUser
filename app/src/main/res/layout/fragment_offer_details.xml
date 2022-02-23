@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.clothex.user.offer.details.OfferDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.clothex.user.customview.DefaultActionBar
+            android:id="@+id/actionBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/offer" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/coverIV"
+                    imageUrl="@{viewModel.cover}"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_voucher_cover"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Product" />
+
+
+                <TextView
+                    android:id="@+id/titleTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24sp"
+                    android:text="@{viewModel.title}"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/coverIV"
+                    tools:text="Get 50% off on new collection" />
+
+                <TextView
+                    android:id="@+id/expireTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/island_aqua"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/titleTV"
+                    tools:text="Expired in 20 Nov, 2021" />
+
+                <TextView
+                    android:id="@+id/termsTitleTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/terms_and_conditions"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/expireTV" />
+
+                <TextView
+                    android:id="@+id/termsDescTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.description}"
+                    android:textAppearance="@style/FontRegular"
+                    android:textColor="@color/dove_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/termsTitleTV"
+                    tools:text="@string/lorem_ipsum" />
+
+                <TextView
+                    android:id="@+id/availableInTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/available_in"
+                    android:textAppearance="@style/FontSemiBold"
+                    android:textColor="@color/cod_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/termsDescTV" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/shopsRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/coverIV"
+                    app:layout_constraintStart_toStartOf="@id/coverIV"
+                    app:layout_constraintTop_toBottomOf="@id/availableInTV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+</layout>

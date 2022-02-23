@@ -17,6 +17,7 @@ import com.clothex.user.home.shop.details.ShopDetailsViewModel
 import com.clothex.user.my_items.items.MyItemsViewModel
 import com.clothex.user.my_items.orders.ActiveOrdersViewModel
 import com.clothex.user.my_items.orders.details.OrderDetailsViewModel
+import com.clothex.user.offer.OfferViewModel
 import com.clothex.user.onboarding.boarding.OnBoardingViewModel
 import com.clothex.user.onboarding.splash.SplashViewModel
 import com.clothex.user.profile.ProfileViewModel
@@ -213,4 +214,10 @@ val viewModelsModule = module {
             setLanguageUseCase = get(named("set_language"))
         )
     }
+
+
+    viewModel {
+        OfferViewModel(getOffersUseCase = get(named("get_offers")))
+    }
+
 }

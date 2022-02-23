@@ -1,4 +1,4 @@
-package com.clothex.data.domain.model.voucher
+package com.clothex.data.domain.model.offer
 
 import android.os.Parcelable
 import com.clothex.data.domain.model.ShopAndBranch
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Voucher(
+data class Offer(
     @SerializedName("_id")
     val id: String,
     val logo: Media,
@@ -20,9 +20,7 @@ data class Voucher(
     private val descriptionAr: String?,
     @SerializedName("expiry_date")
     val expiryDate: String,
-    val shops: List<ShopAndBranch>,
-    val code: String,
-    val redeemed: Boolean = false
+    val shops: List<ShopAndBranch>
 ) : Parcelable {
     fun getTitle(isArabic: Boolean): String {
         return if (isArabic) titleAr ?: title
