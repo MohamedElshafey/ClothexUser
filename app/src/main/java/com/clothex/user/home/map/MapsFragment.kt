@@ -47,9 +47,9 @@ class MapsFragment : Fragment() {
                 for (b in result.values) {
                     allAreGranted = allAreGranted && b
                 }
-
                 if (allAreGranted) {
                     googleMap?.isMyLocationEnabled = true
+                    zoomToCurrentLocation()
                 }
             }
     }
@@ -61,10 +61,6 @@ class MapsFragment : Fragment() {
         if (hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION) && hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
             googleMap.isMyLocationEnabled = true
             zoomToCurrentLocation()
-            googleMap.setOnMapClickListener {
-                marker?.remove()
-                marker = googleMap.addMarker(MarkerOptions().position(it))
-            }
         } else {
             activityResultLauncher.launch(
                 arrayOf(
@@ -72,6 +68,10 @@ class MapsFragment : Fragment() {
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
             )
+        }
+        googleMap.setOnMapClickListener {
+            marker?.remove()
+            marker = googleMap.addMarker(MarkerOptions().position(it))
         }
     }
 
@@ -123,7 +123,7 @@ class MapsFragment : Fragment() {
             zoomToCurrentLocation()
         }
 
-        viewModel.searchResultLiveData.observe(viewLifecycleOwner, {
+        viewModel.searchResultLiveData.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 val address = it[0]
                 val latLng = LatLng(address.latitude, address.longitude)
@@ -137,7 +137,7 @@ class MapsFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-        })
+        }
 
         binding.backIV.setOnClickListener {
             findNavController().navigateUp()

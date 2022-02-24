@@ -153,6 +153,12 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.shareIV.setOnClickListener {
+            mViewModel.product?.id?.let { id ->
+                context?.shareDeepLink(getProductDetailsDeeplink(id))
+            }
+        }
     }
 
     private fun updateProductData(product: Product?) {

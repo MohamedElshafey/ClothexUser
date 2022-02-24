@@ -50,7 +50,7 @@ class OrderDetailsFragment : Fragment() {
         viewModel.fetchOrderDetails(orderId)
         binding.leadingIV.setRotationByLocale()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
-        viewModel.orderMutableLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.orderMutableLiveData.observe(viewLifecycleOwner) { result ->
             val context = context ?: return@observe
             result.getOrNull()?.let { order ->
                 binding.itemsRV.adapter = MinimalItemAdapter(order.myItems, order.bookedItems)
@@ -134,7 +134,7 @@ class OrderDetailsFragment : Fragment() {
             result?.exceptionOrNull()?.let {
 
             }
-        })
+        }
     }
 
 }

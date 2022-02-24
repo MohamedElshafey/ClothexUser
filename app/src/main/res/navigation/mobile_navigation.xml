@@ -126,6 +126,9 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_imageViewerDialog"
             app:destination="@id/imageViewerDialog" />
+        <deepLink
+            android:id="@+id/productDetailsDeeplink"
+            app:uri="clothex://app.user/product/{product_id}" />
     </fragment>
     <dialog
         android:id="@+id/addToMyListDialog"
@@ -433,14 +436,14 @@
         android:id="@+id/imageViewerDialog"
         android:name="com.clothex.user.home.image_viewer.ImageViewerDialog"
         android:label="ImageViewerDialog"
-        tools:layout="@layout/dialog_image_viewer" >
+        tools:layout="@layout/dialog_image_viewer">
         <argument
             android:name="images"
             app:argType="com.clothex.data.domain.model.product.Media[]" />
         <argument
             android:name="selectedIndex"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </dialog>
 
 </navigation>

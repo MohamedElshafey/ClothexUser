@@ -55,11 +55,11 @@ android {
         }
         local {
             buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141:3000\"")
-            buildConfigField("String", "BASE_URL", "\"http:/192.168.100.141:3000/api/user/\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:3000/api/user/\"")
         }
         server {
             buildConfigField("String", "LOCALHOST_IP", "\"clothex.online\"")
-            buildConfigField("String", "BASE_URL", "\"http:/clothex.online/api/user/\"")
+            buildConfigField("String", "BASE_URL", "\"http://clothex.online/api/user/\"")
         }
     }
     compileOptions {
@@ -115,7 +115,7 @@ dependencies {
     implementation "androidx.camera:camera-core:$camerax_version"
     implementation "androidx.camera:camera-camera2:$camerax_version"
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
-    implementation 'androidx.camera:camera-view:1.0.0-alpha32'
+    implementation 'androidx.camera:camera-view:1.1.0-beta01'
 
     //WindowManager
     implementation 'androidx.window:window:1.0.0'
