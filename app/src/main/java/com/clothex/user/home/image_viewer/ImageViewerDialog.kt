@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
+import com.clothex.data.domain.model.product.Media
 import com.clothex.user.R
 import com.clothex.user.databinding.DialogImageViewerBinding
 import com.clothex.user.utils.setRotationByLocale
@@ -14,6 +15,17 @@ import com.clothex.user.utils.setRotationByLocale
 class ImageViewerDialog : DialogFragment() {
 
     lateinit var binding: DialogImageViewerBinding
+
+    companion object {
+        fun newInstance(images: Array<Media>, selectedIndex: Int): ImageViewerDialog {
+            val dialog = ImageViewerDialog()
+            val args = Bundle()
+            args.putParcelableArray("images", images)
+            args.putInt("selectedIndex", selectedIndex)
+            dialog.arguments = args
+            return dialog
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import com.clothex.data.domain.model.product.Media
 import com.clothex.data.domain.model.shop.Shop
 import com.clothex.user.databinding.FragmentShopPhotoBinding
+import com.clothex.user.home.image.ImageSelectedListener
+import com.clothex.user.home.image_viewer.ImageViewerDialog
 
 /**
  * Created by Mohamed Elshafey on 11/12/2021.
@@ -48,7 +50,12 @@ class ShopPhotosFragment : Fragment() {
                 mediaList.addAll(branch.outsidePhotos!!)
             }
         }
-        binding.recyclerView.adapter = ShopPhotosAdapter(mediaList)
+        binding.recyclerView.adapter = ShopPhotosAdapter(mediaList, object : ImageSelectedListener {
+            override fun onImageSelected(mediaList: List<Media>, selectedIndex: Int) {
+                val dialog = ImageViewerDialog.newInstance(mediaList.toTypedArray(), selectedIndex)
+                dialog.show(childFragmentManager, null)
+            }
+        })
     }
 
 }
