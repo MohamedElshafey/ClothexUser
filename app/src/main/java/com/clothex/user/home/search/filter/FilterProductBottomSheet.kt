@@ -104,8 +104,8 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
         with(binding.priceRangeSlider.values) {
             viewModel.selectedPriceStart = get(0).toInt()
             viewModel.selectedPriceEnd = get(1).toInt()
-            binding.rangeFromTV.text = String.format(getString(R.string.egp_price_format_float), get(0))
-            binding.rangeToTV.text = String.format(getString(R.string.egp_price_format_float), get(1))
+            binding.rangeFromTV.text = String.format(getString(R.string.egp), get(0))
+            binding.rangeToTV.text = String.format(getString(R.string.egp), get(1))
         }
     }
 

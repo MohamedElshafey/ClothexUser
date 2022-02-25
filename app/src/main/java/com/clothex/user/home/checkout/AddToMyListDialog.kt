@@ -60,7 +60,7 @@ class AddToMyListDialog : DialogFragment() {
             )
         }
         binding.priceTV.text =
-            String.format(getString(R.string.egp_price_format_float), viewModel.totalPrice)
+            String.format(getString(R.string.egp), viewModel.totalPrice.toInt())
         binding.continueButton.setOnClickListener {
             findNavController().navigateUp()
         }

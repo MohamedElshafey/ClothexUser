@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.AdapterMyItemBinding
-import com.clothex.user.my_items.minimal.MinimalItemAdapter
+import com.clothex.user.my_items.minimal.MinimalItemMyItemAdapter
 import com.clothex.user.utils.setImageFromUrl
 
 /**
@@ -38,7 +38,7 @@ class MyItemsAdapter(
                 binding.addressTV.text = branch.address?.getName(isArabic)
                 setImageFromUrl(binding.logoIV, shop.logo?.source)
             }
-            binding.itemsRV.adapter = MinimalItemAdapter(myItemGroup.myItems.take(2))
+            binding.itemsRV.adapter = MinimalItemMyItemAdapter(myItemGroup.myItems.take(2))
             val myItemsCount = myItemGroup.myItems.size
             if (myItemsCount > 2)
                 binding.itemsCount.text = String.format(

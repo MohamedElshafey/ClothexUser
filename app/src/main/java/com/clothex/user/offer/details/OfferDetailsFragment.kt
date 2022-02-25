@@ -6,17 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.ShopAndBranch
 import com.clothex.data.domain.model.offer.Offer
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentOfferDetailsBinding
 import com.clothex.user.utils.DateUtil.toLocalTimeZone
-import com.clothex.user.voucher.shop_with_branch.VoucherShopAdapter
+import com.clothex.user.voucher.shop_with_branch.ShopAndBranchAdapter
+import com.clothex.user.voucher.shop_with_branch.ShopAndBranchSelectedListener
 
 
 /**
  * Created by Mohamed Elshafey on 21/12/2021.
  */
-class OfferDetailsFragment : Fragment() {
+class OfferDetailsFragment : Fragment(), ShopAndBranchSelectedListener {
     private lateinit var mViewModel: OfferDetailsViewModel
     private var _binding: FragmentOfferDetailsBinding? = null
     private val binding get() = _binding!!
@@ -42,6 +44,14 @@ class OfferDetailsFragment : Fragment() {
         binding.expireTV.text = expireString
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         binding.shopsRecyclerView.adapter =
-            VoucherShopAdapter(mViewModel.offer.shops, mViewModel.isArabic())
+            ShopAndBranchAdapter(mViewModel.offer.shops, mViewModel.isArabic(), this)
+    }
+
+    override fun onItemSelected(shopAndBranch: ShopAndBranch) {
+        findNavController().navigate(
+            OfferDetailsFragmentDirections.actionOfferDetailsFragmentToShopDetailsFragment(
+                shopAndBranch.shop.id
+            )
+        )
     }
 }

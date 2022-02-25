@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.ShopAndBranch
 import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentVoucherDetailsBinding
 import com.clothex.user.utils.DateUtil.toLocalTimeZone
-import com.clothex.user.voucher.shop_with_branch.VoucherShopAdapter
+import com.clothex.user.voucher.shop_with_branch.ShopAndBranchAdapter
+import com.clothex.user.voucher.shop_with_branch.ShopAndBranchSelectedListener
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
 
@@ -21,7 +23,7 @@ import retrofit2.HttpException
 /**
  * Created by Mohamed Elshafey on 21/12/2021.
  */
-class VoucherDetailsFragment : Fragment() {
+class VoucherDetailsFragment : Fragment(), ShopAndBranchSelectedListener {
     private lateinit var mViewModel: VoucherDetailsViewModel
     val redeemViewModel: RedeemVoucherViewModel by inject()
     private var _binding: FragmentVoucherDetailsBinding? = null
@@ -43,12 +45,12 @@ class VoucherDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val expireString = String.format(
             requireContext().getString(R.string.expired_in),
-            voucher.expiryDate.toLocalTimeZone(requireContext() )
+            voucher.expiryDate.toLocalTimeZone(requireContext())
         )
         binding.expireTV.text = expireString
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         binding.shopsRecyclerView.adapter =
-            VoucherShopAdapter(mViewModel.voucher.shops, mViewModel.isArabic())
+            ShopAndBranchAdapter(mViewModel.voucher.shops, mViewModel.isArabic(), this)
         binding.useVoucherButton.setOnClickListener {
             redeemViewModel.redeem(mViewModel.voucher.id) { result ->
                 result.getOrNull()?.let {
@@ -71,5 +73,13 @@ class VoucherDetailsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onItemSelected(shopAndBranch: ShopAndBranch) {
+        findNavController().navigate(
+            VoucherDetailsFragmentDirections.actionVoucherDetailsFragmentToShopDetailsFragment(
+                shopAndBranch.shop.id
+            )
+        )
     }
 }

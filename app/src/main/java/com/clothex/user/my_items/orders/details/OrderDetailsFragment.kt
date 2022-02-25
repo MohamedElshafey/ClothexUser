@@ -76,7 +76,7 @@ class OrderDetailsFragment : Fragment() {
                     binding.orderValidContainer.visibility = View.VISIBLE
                     binding.directionButton.visibility = View.VISIBLE
                     val diffTimeStamp =
-                        DateUtil.getDifferenceTimeStamp(context, order.endTime!!) ?: 0
+                        DateUtil.getDifferenceTimeStamp(order.endTime!!) ?: 0
                     if (diffTimeStamp > 0) {
                         object : CountDownTimer(diffTimeStamp, 1000L) {
                             override fun onTick(millisUntilFinished: Long) {

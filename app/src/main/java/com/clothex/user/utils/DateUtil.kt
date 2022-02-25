@@ -6,7 +6,7 @@ import java.util.*
 
 object DateUtil {
 
-    fun getDifferenceTimeStamp(context: Context, end: String): Long? {
+    fun getDifferenceTimeStamp(end: String): Long? {
         val inputSdf = SimpleDateFormat(inputDateFormat, Locale.ENGLISH)
         inputSdf.timeZone = TimeZone.getTimeZone("UTC")
         val endDate = inputSdf.parse(end)

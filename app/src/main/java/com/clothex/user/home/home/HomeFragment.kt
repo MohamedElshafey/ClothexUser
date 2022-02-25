@@ -44,13 +44,13 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
         viewModel.checkFirstTimeOpen()
         viewModel.getSelectedLocation()
-        viewModel.savedLocationLiveData.observe(viewLifecycleOwner, {
+        viewModel.savedLocationLiveData.observe(viewLifecycleOwner) {
             binding.locationValueTV.text =
                 it?.title ?: context?.getString(R.string.select_location_to_search)
-        })
+        }
         binding.homeGroup.isGone = true
         viewModel.isFirstTimeOpenLiveData.distinctUntilChanged()
-            .observe(viewLifecycleOwner, { isFirstTime ->
+            .observe(viewLifecycleOwner) { isFirstTime ->
                 if (isFirstTime) {
                     findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToLoginFragment())
                 } else {
@@ -63,14 +63,14 @@ class HomeFragment : Fragment() {
                     })
                     viewModel.fetchHome()
                 }
-            })
+            }
 
         viewModel.failureLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), getString(R.string.error) + " $it", Toast.LENGTH_SHORT)
                 .show()
         })
 
-        viewModel.productLiveData.distinctUntilChanged().observe(viewLifecycleOwner, { products ->
+        viewModel.productLiveData.distinctUntilChanged().observe(viewLifecycleOwner) { products ->
             binding.productRV.adapter = ProductAdapter(products) { prod ->
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(prod.id)
@@ -87,15 +87,15 @@ class HomeFragment : Fragment() {
                 binding.homeGroup.isGone = this
                 binding.messageContainer.container.isVisible = this
             }
-        })
+        }
 
-        viewModel.shopLiveData.distinctUntilChanged().observe(viewLifecycleOwner, {
+        viewModel.shopLiveData.distinctUntilChanged().observe(viewLifecycleOwner) {
             binding.shopsRV.adapter = ShopAdapter(it) {
                 findNavController().navigate(
                     HomeFragmentDirections.actionNavigationHomeToShopDetailsFragment(it.id)
                 )
             }
-        })
+        }
 
         val layoutManager = object : LinearLayoutManager(requireContext()) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
@@ -114,11 +114,11 @@ class HomeFragment : Fragment() {
         binding.locationGroup.setAllOnClickListener {
             findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(
                 KEY_DISMISS
-            )?.observe(viewLifecycleOwner, {
+            )?.observe(viewLifecycleOwner) {
                 it?.let {
                     viewModel.getSelectedLocation()
                 }
-            })
+            }
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSelectLocationBottomSheet())
         }
 

@@ -4,25 +4,26 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.user.R
-import com.clothex.user.databinding.AdapterMinimalProductBinding
+import com.clothex.user.databinding.AdapterMinimalProductMyItemBinding
 
 /**
  * Created by Mohamed Elshafey on 20/11/2021.
  */
-class MinimalItemAdapter(
-    private val list: List<MyItem>,
-    private val bookedItems: List<String>? = null
+class MinimalItemMyItemAdapter(
+    private val list: List<MyItem>
 ) :
-    Adapter<MinimalItemAdapter.ViewHolder>() {
+    Adapter<MinimalItemMyItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        AdapterMinimalProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        AdapterMinimalProductMyItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
@@ -30,7 +31,7 @@ class MinimalItemAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    inner class ViewHolder(val binding: AdapterMinimalProductBinding) :
+    inner class ViewHolder(val binding: AdapterMinimalProductMyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(minimalProduct: MyItem) {
             binding.colorItem.colorView.apply {
@@ -45,20 +46,6 @@ class MinimalItemAdapter(
                     binding.root.context.getString(R.string.egp),
                     viewModel.totalPrice.toInt()
                 )
-            if (bookedItems != null) {
-                val isBooked = bookedItems.contains(minimalProduct.id)
-                binding.bookedIconIV.setImageResource(
-                    if (isBooked) R.drawable.ic_product_booked
-                    else R.drawable.ic_product_unbooked
-                )
-                binding.root.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        if (isBooked) R.color.white else R.color.mercury
-                    )
-                )
-            }
-            binding.bookedIconIV.isVisible = bookedItems != null
         }
     }
 }

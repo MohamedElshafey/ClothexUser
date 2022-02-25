@@ -10,106 +10,103 @@
             type="com.clothex.user.home.product.ProductItemLanguageViewModel" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/product_border_shape"
+        android:paddingBottom="8dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/productIV"
+            imageUrl="@{viewModel.mainImageUrl}"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_gradient_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Product" />
+
+        <TextView
+            android:id="@+id/tagTV"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/tag_bg_shape"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="@{viewModel.tag}"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/productIV"
+            tools:text="@string/hot_deal" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/productIV"
-                imageUrl="@{viewModel.mainImageUrl}"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_margin="4dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/splash_gradient_shape"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Product" />
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.title}"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tagTV"
+            tools:text="Solid Button-Front Drop Shoulder Shirt" />
 
-            <TextView
-                android:id="@+id/tagTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/tag_bg_shape"
-                android:paddingStart="8dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="2dp"
-                android:text="@{viewModel.tag}"
-                android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productIV"
-                tools:text="@string/hot_deal" />
+        <TextView
+            android:id="@+id/priceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/titleTV"
+            app:layout_constraintTop_toBottomOf="@id/titleTV"
+            tools:text="EGP 400.00" />
 
-            <TextView
-                android:id="@+id/titleTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@{viewModel.title}"
-                android:textAppearance="@style/FontRegular"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tagTV"
-                tools:text="Solid Button-Front Drop Shoulder Shirt" />
+        <TextView
+            android:id="@+id/oldPriceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/silver"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/priceTV"
+            app:layout_constraintStart_toEndOf="@id/priceTV"
+            app:layout_constraintTop_toTopOf="@id/priceTV"
+            tools:text="EGP 400.00" />
 
-            <TextView
-                android:id="@+id/priceTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/titleTV"
-                app:layout_constraintTop_toBottomOf="@id/titleTV"
-                tools:text="EGP 400.00" />
+        <TextView
+            android:id="@+id/discountTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/discount"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/priceTV"
+            tools:text="You will save : EGP 200 (10%)" />
 
-            <TextView
-                android:id="@+id/oldPriceTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/silver"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/priceTV"
-                app:layout_constraintTop_toTopOf="@id/priceTV"
-                tools:text="EGP 400.00" />
-
-            <TextView
-                android:id="@+id/discountTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/FontRegular"
-                android:textColor="@color/discount"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/priceTV"
-                tools:text="You will save : EGP 200 (10%)" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

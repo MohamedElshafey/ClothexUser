@@ -56,10 +56,10 @@ class ProductAdapter : RecyclerView.Adapter<ViewHolder> {
             val viewModel = ProductItemLanguageViewModel(product)
             val context = binding.root.context
             binding.viewModel = viewModel
-            with(context.getString(R.string.egp_price_format_float)) {
-                binding.priceTV.text = String.format(this, viewModel.totalPrice.toFloat())
+            with(context.getString(R.string.egp)) {
+                binding.priceTV.text = String.format(this, viewModel.totalPrice)
                 if (viewModel.oldPrice != null)
-                    binding.oldPriceTV.text = String.format(this, viewModel.oldPrice.toFloat())
+                    binding.oldPriceTV.text = String.format(this, viewModel.oldPrice)
                 else
                     binding.oldPriceTV.text = null
             }

@@ -75,7 +75,7 @@ class OrdersAdapter(val onClickListener: OrderClickCallback, private val isArabi
                 binding.directionButton.setOnClickListener {
                     onClickListener.onGetDirectionClicked(order)
                 }
-                val diffTimeStamp = getDifferenceTimeStamp(context, order.endTime!!) ?: return
+                val diffTimeStamp = getDifferenceTimeStamp(order.endTime!!) ?: return
                 if (diffTimeStamp > 0) {
                     object : CountDownTimer(diffTimeStamp, 1000L) {
                         override fun onTick(millisUntilFinished: Long) {

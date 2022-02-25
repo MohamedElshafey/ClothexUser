@@ -7,8 +7,12 @@ import com.clothex.data.domain.model.ShopAndBranch
 import com.clothex.user.databinding.AdapterVoucherShopBinding
 import com.clothex.user.utils.setImageFromUrl
 
-class VoucherShopAdapter(private val list: List<ShopAndBranch>, private val isArabic: Boolean) :
-    RecyclerView.Adapter<VoucherShopAdapter.ViewHolder>() {
+class ShopAndBranchAdapter(
+    private val list: List<ShopAndBranch>,
+    private val isArabic: Boolean,
+    private val shopAndBranchSelectedListener: ShopAndBranchSelectedListener
+) :
+    RecyclerView.Adapter<ShopAndBranchAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             AdapterVoucherShopBinding.inflate(
@@ -30,6 +34,9 @@ class VoucherShopAdapter(private val list: List<ShopAndBranch>, private val isAr
                 binding.shopTitleTV.text = shop.getName(isArabic)
                 binding.addressTV.text = branch.address?.getName(isArabic)
                 setImageFromUrl(binding.shopLogoIV, shop.logo?.source)
+                binding.root.setOnClickListener {
+                    shopAndBranchSelectedListener.onItemSelected(this)
+                }
             }
         }
     }

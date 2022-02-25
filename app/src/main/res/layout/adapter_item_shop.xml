@@ -10,12 +10,15 @@
             type="com.clothex.user.home.shop.ShopItemViewModel" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="false"
+        app:strokeColor="@color/mercury"
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -80,33 +83,33 @@
             <!--                app:layout_constraintTop_toTopOf="@id/locationIconIV"-->
             <!--                tools:text="20705 Velda Ramp, Lake Alexys, HI" />-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/workingHoursIV"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:src="@drawable/ic_time_small"-->
-<!--                app:layout_constraintStart_toStartOf="@id/logoIV"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/logoIV" />-->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/workingHoursIV"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:src="@drawable/ic_time_small"-->
+            <!--                app:layout_constraintStart_toStartOf="@id/logoIV"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/logoIV" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/workingHoursTV"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:ellipsize="end"-->
-<!--                android:maxLines="1"-->
-<!--                android:text="@{viewModel.workingHour}"-->
-<!--                android:textAppearance="@style/FontRegular"-->
-<!--                android:textColor="@color/dove_gray"-->
-<!--                android:textSize="12sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/workingHoursIV"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@id/workingHoursIV"-->
-<!--                app:layout_constraintTop_toTopOf="@id/workingHoursIV"-->
-<!--                tools:text="Mon to Sat - 9:00 AM . 11:00 PM" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/workingHoursTV"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="8dp"-->
+            <!--                android:layout_marginEnd="16dp"-->
+            <!--                android:ellipsize="end"-->
+            <!--                android:maxLines="1"-->
+            <!--                android:text="@{viewModel.workingHour}"-->
+            <!--                android:textAppearance="@style/FontRegular"-->
+            <!--                android:textColor="@color/dove_gray"-->
+            <!--                android:textSize="12sp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@+id/workingHoursIV"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/workingHoursIV"-->
+            <!--                app:layout_constraintTop_toTopOf="@id/workingHoursIV"-->
+            <!--                tools:text="Mon to Sat - 9:00 AM . 11:00 PM" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

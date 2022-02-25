@@ -40,7 +40,7 @@ class MyItemsFragment : Fragment(), MyItemCallback {
         mViewModel.fetchMyItems()
         binding.progressBar.isVisible = true
         mViewModel.mutableMyItemsLiveData.distinctUntilChanged()
-            .observe(viewLifecycleOwner, { myItems ->
+            .observe(viewLifecycleOwner) { myItems ->
                 binding.progressBar.isGone = true
                 val grouped = myItems?.groupBy {
                     it.branch
@@ -52,7 +52,7 @@ class MyItemsFragment : Fragment(), MyItemCallback {
                 binding.recyclerView.adapter =
                     MyItemsAdapter(groupList, this, mViewModel.isArabic())
                 binding.messageContainer.isVisible = myItems.isNullOrEmpty()
-            })
+            }
     }
 
     override fun onItemClicked(myItemGroup: MyItemGroup) {

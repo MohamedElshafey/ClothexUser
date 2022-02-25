@@ -364,6 +364,9 @@
         <action
             android:id="@+id/action_voucherDetailsFragment_to_qrBottomSheet"
             app:destination="@id/qrBottomSheet" />
+        <action
+            android:id="@+id/action_voucherDetailsFragment_to_shopDetailsFragment"
+            app:destination="@id/shopDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanQRFragment"
@@ -431,6 +434,9 @@
         <argument
             android:name="offer"
             app:argType="com.clothex.data.domain.model.offer.Offer" />
+        <action
+            android:id="@+id/action_offerDetailsFragment_to_shopDetailsFragment"
+            app:destination="@id/shopDetailsFragment" />
     </fragment>
     <dialog
         android:id="@+id/imageViewerDialog"

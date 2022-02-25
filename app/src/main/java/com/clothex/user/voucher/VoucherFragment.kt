@@ -37,14 +37,14 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
         viewModel.checkIfLoginTemporary()
         viewModel.fetchVouchers()
         binding.progressBar.isVisible = true
-        viewModel.vouchersLiveData.observe(viewLifecycleOwner, { voucherList ->
+        viewModel.vouchersLiveData.observe(viewLifecycleOwner) { voucherList ->
             binding.progressBar.isGone = true
             binding.vouchersRV.adapter = VoucherAdapter(voucherList, this, viewModel.isArabic())
-        })
+        }
         binding.vouchersRV.addDivider()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
         binding.voucherButton.setOnClickListener {
-            viewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner, { isLoginTemporary ->
+            viewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner) { isLoginTemporary ->
                 if (isLoginTemporary.not()) {
                     findNavController().navigate(VoucherFragmentDirections.actionVoucherFragmentToAddNewVoucherBottomSheet())
                 } else {
@@ -52,7 +52,7 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
                         .show()
                     findNavController().navigate(VoucherFragmentDirections.actionVoucherFragmentToLoginFragment())
                 }
-            })
+            }
 
         }
     }
