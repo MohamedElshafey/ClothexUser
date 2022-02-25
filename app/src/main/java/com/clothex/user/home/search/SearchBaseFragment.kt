@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.widget.ListPopupWindow
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -32,9 +33,11 @@ open class SearchBaseFragment : Fragment() {
     lateinit var binding: FragmentSearchProductBinding
     val viewModel: SearchViewModel by inject()
     private val productAdapter = ProductAdapter {
-        findNavController().navigate(R.id.productDetailsFragment, bundleOf(
-          "product_id" to it.id
-        ))
+        findNavController().navigate(
+            R.id.productDetailsFragment, bundleOf(
+                "product_id" to it.id
+            )
+        )
 //        findNavController().navigate(
 //            SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
 //                it.id
@@ -114,15 +117,21 @@ open class SearchBaseFragment : Fragment() {
             binding.searchBar.menu.text = list[1]
         }
 
-        viewModel.productLiveData.observe(viewLifecycleOwner, { products ->
-            loadingMore = false
-            productAdapter.append(products)
-        })
+        viewModel.loadingLiveData.observe(viewLifecycleOwner) { isLoading ->
+            binding.shimmerFrame.root.isVisible = isLoading
+        }
 
-        viewModel.shopLiveData.observe(viewLifecycleOwner, {
+        viewModel.productLiveData.observe(viewLifecycleOwner) { products ->
             loadingMore = false
+            binding.shimmerFrame.root.isGone = true
+            productAdapter.append(products)
+        }
+
+        viewModel.shopLiveData.observe(viewLifecycleOwner) {
+            loadingMore = false
+            binding.shimmerFrame.root.isGone = true
             shopAdapter.update(it)
-        })
+        }
 
         binding.searchBar.menu.setOnClickListener {
             listPopupWindow.show()

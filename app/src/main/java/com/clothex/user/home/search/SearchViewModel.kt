@@ -32,6 +32,7 @@ class SearchViewModel(
 
     val productLiveData = MutableLiveData<List<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
+    val loadingLiveData = MutableLiveData(false)
 
     var productPage: Int = 0
     var shopPage: Int = 0
@@ -41,6 +42,7 @@ class SearchViewModel(
         shopPage = 0
         productLiveData.value = listOf()
         shopLiveData.value = listOf()
+        loadingLiveData.postValue(true)
     }
 
     var shopId: String? = null
@@ -84,6 +86,7 @@ class SearchViewModel(
                     )
                 ).collect {
                     productPage++
+                    loadingLiveData.postValue(false)
                     productLiveData.postValue(it)
                 }
             }
@@ -95,6 +98,7 @@ class SearchViewModel(
             withContext(Dispatchers.IO) {
                 shopPageUseCase.invoke(ShopBody(page = shopPage, search = search))
                     .collect {
+                        loadingLiveData.postValue(false)
                         shopPage++
                         shopLiveData.postValue(it)
                     }

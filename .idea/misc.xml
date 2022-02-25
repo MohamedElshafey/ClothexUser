@@ -193,6 +193,8 @@
         <entry key="app/src/main/res/layout/select_branch_bottom_sheet.xml" value="0.3770833333333333" />
         <entry key="app/src/main/res/layout/select_language_bottom_sheet.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/select_location_bottom_sheet.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/shimmer_product.xml" value="0.3770833333333333" />
+        <entry key="app/src/main/res/layout/shimmer_product_item.xml" value="0.3770833333333333" />
         <entry key="app/src/main/res/layout/sort_product_bottom_sheet.xml" value="0.1893162393162393" />
         <entry key="app/src/main/res/layout/title_bar.xml" value="0.31518987341772153" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />

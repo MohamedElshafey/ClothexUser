@@ -154,10 +154,19 @@ class HomeFragment : Fragment() {
             viewModel.fetchHome()
         }
 
-        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
-            binding.progressBar.isVisible = it
+        viewModel.loadingLiveData.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                if (viewModel.productLiveData.value.isNullOrEmpty()) {
+                    binding.shimmerFrame.root.isVisible = isLoading
+                } else {
+                    binding.progressBar.isVisible = isLoading
+                }
+            } else {
+                binding.shimmerFrame.root.isVisible = isLoading
+                binding.progressBar.isVisible = isLoading
+            }
             binding.swipeRefresh.isRefreshing = false
-        })
+        }
 
     }
 
