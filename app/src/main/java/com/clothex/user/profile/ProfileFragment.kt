@@ -46,10 +46,17 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToSelectLanguageBottomSheet())
         }
         binding.logoutGroup.setAllOnClickListener {
-            viewModel.logout()
-            requireActivity().finish()
-            context?.let { context -> HomeActivity.start(context) }
+            logoutAndLogin()
         }
+        binding.loginGroup.setAllOnClickListener {
+            logoutAndLogin()
+        }
+    }
+
+    private fun logoutAndLogin() {
+        viewModel.logout()
+        requireActivity().finish()
+        context?.let { context -> HomeActivity.start(context) }
     }
 
     override fun onDestroyView() {

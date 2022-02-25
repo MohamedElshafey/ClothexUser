@@ -13,12 +13,16 @@ class ProfileViewModel(
     private val logoutUseCase: LogoutUseCase
 ) : ViewModel() {
 
+    val initialUserName = ObservableField<String>()
     val userName = ObservableField<String>()
     val userEmail = ObservableField<String>()
+    val isLoggedInUser = ObservableField(false)
 
     fun fetchUser() {
         viewModelScope.launch {
             getUserUseCase(Unit).collect {
+                isLoggedInUser.set(it != null)
+                initialUserName.set(it?.username?.first()?.toString() ?: "?")
                 userName.set(it?.username)
                 userEmail.set(it?.email)
             }

@@ -26,6 +26,7 @@ import com.clothex.user.my_items.orders.ActiveOrdersFragment
 import com.clothex.user.profile.ProfileFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+
 class HomeActivity : BaseLanguageActivity() {
 
     companion object {
@@ -44,6 +45,8 @@ class HomeActivity : BaseLanguageActivity() {
             setupWithNavController(findNavController(R.id.nav_host_fragment_activity_main))
         }
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentLifecycleCallback, true)
+        val badge = binding.navView.getOrCreateBadge(R.id.navigation_profile)
+        badge.isVisible = false
     }
 
     override fun onDestroy() {

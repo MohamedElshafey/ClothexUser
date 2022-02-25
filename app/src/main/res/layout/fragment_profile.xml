@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.clothex.user.profile.ProfileViewModel" />
@@ -25,12 +27,26 @@
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginTop="24dp"
+                android:background="@color/butter_milk"
                 android:scaleType="centerCrop"
-                android:src="@drawable/profile_pic_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@{viewModel.initialUserName}"
+                android:textSize="30sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/profilePicIV"
+                app:layout_constraintEnd_toEndOf="@id/profilePicIV"
+                app:layout_constraintStart_toStartOf="@id/profilePicIV"
+                app:layout_constraintTop_toTopOf="@id/profilePicIV"
+                tools:text="M" />
 
             <ImageView
                 android:id="@+id/cameraIconIV"
@@ -319,7 +335,40 @@
                 android:id="@+id/logoutGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoggedInUser ? View.VISIBLE : View.GONE}"
                 app:constraint_referenced_ids="logoutTitleTV,logoutIconIV" />
+
+            <!-- Login -->
+            <ImageView
+                android:id="@+id/loginIconIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"
+                app:layout_constraintBottom_toBottomOf="@id/loginTitleTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/loginTitleTV" />
+
+            <TextView
+                android:id="@+id/loginTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/login"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/cod_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/loginIconIV"
+                app:layout_constraintTop_toBottomOf="@id/logoutTitleTV" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/loginGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoggedInUser ? View.GONE : View.VISIBLE}"
+                app:constraint_referenced_ids="loginIconIV,loginTitleTV" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
