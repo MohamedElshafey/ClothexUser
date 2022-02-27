@@ -35,6 +35,15 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val departmentEnum: DepartmentEnum =
+            CategoriesFragmentArgs.fromBundle(requireArguments()).department
+        when (departmentEnum) {
+            DepartmentEnum.MEN, DepartmentEnum.WOMEN, DepartmentEnum.KIDS -> {
+                openSelectType(departmentEnum)
+            }
+        }
+        arguments?.clear()
         viewModel.fetchDepartments()
 
         binding.searchBar.apply {
@@ -45,7 +54,7 @@ class CategoriesFragment : Fragment() {
             menu.setOnClickListener { openSearchFragment() }
         }
 
-        viewModel.departmentListLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.departmentListLiveData.observe(viewLifecycleOwner) { result ->
             result.getOrNull()?.let { list ->
                 val hasMen = list.find { it.title.equals(menDepartment, true) } != null
                 val hasWomen = list.find { it.title.equals(womenDepartment, true) } != null
@@ -58,7 +67,7 @@ class CategoriesFragment : Fragment() {
             result.exceptionOrNull()?.let {
 
             }
-        })
+        }
 
         binding.menCard.setOnClickListener {
             openSelectType(DepartmentEnum.MEN)

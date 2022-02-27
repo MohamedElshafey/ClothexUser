@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentHomeBinding
+import com.clothex.user.home.categories.style.DepartmentEnum
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
 import com.clothex.user.utils.KEY_DISMISS
@@ -148,6 +149,22 @@ class HomeFragment : Fragment() {
 
         binding.offerButton.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToOfferFragment())
+        }
+
+        binding.womenCard.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToNavigationCategories(
+                    DepartmentEnum.WOMEN
+                )
+            )
+        }
+
+        binding.menCard.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToNavigationCategories(
+                    DepartmentEnum.MEN
+                )
+            )
         }
 
         binding.swipeRefresh.setOnRefreshListener {

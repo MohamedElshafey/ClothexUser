@@ -53,7 +53,7 @@ class AddTextVoucherFragment : Fragment() {
         }
 
 
-        viewModel.responseLiveData.observe(viewLifecycleOwner, {
+        viewModel.responseLiveData.observe(viewLifecycleOwner) {
             it.getOrNull()?.let {
                 findNavController().navigate(AddTextVoucherFragmentDirections.actionAddTextVoucherBottomSheetToVoucherMessageFragment())
                 if (it.message.isNullOrEmpty().not())
@@ -63,7 +63,7 @@ class AddTextVoucherFragment : Fragment() {
                 Toast.makeText(requireContext(), (it as HttpException).message(), Toast.LENGTH_LONG)
                     .show()
             }
-        })
+        }
 
     }
 

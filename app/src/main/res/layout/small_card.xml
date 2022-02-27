@@ -48,7 +48,10 @@
             android:maxLines="1"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/cod_gray"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            app:autoSizeMaxTextSize="20sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform"
             tools:text="@string/men" />
 
     </LinearLayout>
