@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -47,18 +46,22 @@ class MinimalItemAdapter(
                 )
             if (bookedItems != null) {
                 val isBooked = bookedItems.contains(minimalProduct.id)
-                binding.bookedIconIV.setImageResource(
-                    if (isBooked) R.drawable.ic_product_booked
-                    else R.drawable.ic_product_unbooked
-                )
-                binding.root.setBackgroundColor(
-                    ContextCompat.getColor(
-                        binding.root.context,
-                        if (isBooked) R.color.white else R.color.mercury
-                    )
-                )
+                binding.itemStatusTV.isVisible = isBooked.not()
+                if (isBooked.not())
+                    binding.grayOut(0.25f)
+            } else {
+                binding.itemStatusTV.isVisible = true
+                binding.grayOut(0.25f)
             }
-            binding.bookedIconIV.isVisible = bookedItems != null
         }
+    }
+
+    fun AdapterMinimalProductBinding.grayOut(percentage: Float) {
+        logoIV.alpha = percentage
+        titleTV.alpha = percentage
+        colorItem.root.alpha = percentage
+        sizeChip.alpha = percentage
+        priceTV.alpha = percentage
+        quantityTV.alpha = percentage
     }
 }

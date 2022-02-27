@@ -19,17 +19,6 @@
         android:paddingEnd="16dp"
         android:paddingBottom="10dp">
 
-        <ImageView
-            android:id="@+id/bookedIconIV"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_product_booked"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/logoIV"
             imageUrl="@{viewModel.imageUrl}"
@@ -38,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookedIconIV"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Product.MyItem"
             tools:src="@drawable/onboarding_image_1" />
@@ -92,6 +81,7 @@
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@id/titleTV"
             app:layout_constraintTop_toBottomOf="@id/titleTV"
+            tools:ignore="SmallSp"
             tools:text="EGP 379.00" />
 
         <TextView
@@ -110,7 +100,25 @@
             app:layout_constraintBottom_toBottomOf="@id/priceTV"
             app:layout_constraintStart_toEndOf="@id/priceTV"
             app:layout_constraintTop_toTopOf="@id/priceTV"
+            tools:ignore="SmallSp"
             tools:text="3" />
+
+        <TextView
+            android:id="@+id/itemStatusTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/item_not_available"
+            android:textAppearance="@style/FontRegular"
+            android:textColor="@color/tag_deal"
+            android:textSize="12sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/quantityTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/quantityTV"
+            app:layout_constraintTop_toTopOf="@id/quantityTV" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

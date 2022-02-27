@@ -182,6 +182,7 @@
     <string name="select_branch">Select branch</string>
     <string name="your">your</string>
     <string name="voucher_redeemed">Redeemed!, enjoy it ;)</string>
+    <string name="item_not_available">Item not available!</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
