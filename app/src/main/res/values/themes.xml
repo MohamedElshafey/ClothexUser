@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-<!--        <item name="android:layoutDirection">ltr</item>-->
+        <!--        <item name="android:layoutDirection">ltr</item>-->
     </style>
 
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
@@ -145,10 +145,16 @@
         <attr name="title" />
     </declare-styleable>
 
-    <declare-styleable name="DepartmentCustomView">
+    <declare-styleable name="ClothexCard">
         <attr name="title" />
+        <attr name="headerText" format="string" />
+        <attr name="hasStroke" format="boolean" />
         <attr name="icon" format="reference" />
         <attr name="cardBackground" format="reference" />
+        <attr name="cardSize" format="enum">
+            <enum name="small" value="0" />
+            <enum name="normal" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="BaseMessage">

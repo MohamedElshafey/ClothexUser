@@ -75,12 +75,12 @@ class SelectTypeFragment : Fragment() {
             }
         }
 
-        viewModel.productLiveData.observe(viewLifecycleOwner, {
+        viewModel.productLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = false
             productAdapter.reset()
             binding.notItemsMessage.isVisible = it.isEmpty()
             productAdapter.append(it)
-        })
+        }
 
         binding.searchBar.doAfterTextChanged {
             binding.notItemsMessage.isVisible = false

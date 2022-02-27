@@ -92,7 +92,7 @@ class BookFragment : Fragment() {
         calculatePrices(myItemGroup.myItems)
         binding.bookButton.setOnClickListener {
             val myItemsIds = myItemGroup.myItems.map { it.id }
-            mViewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner, { isLoginTemporary ->
+            mViewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner) { isLoginTemporary ->
                 if (isLoginTemporary.not()) {
                     mViewModel.createMyOrder(
                         OrderBody(
@@ -117,7 +117,7 @@ class BookFragment : Fragment() {
                 } else {
                     findNavController().navigate(BookFragmentDirections.actionBookFragmentToLoginFragment())
                 }
-            })
+            }
         }
 
         binding.shopGroup.setAllOnClickListener {
@@ -139,7 +139,7 @@ class BookFragment : Fragment() {
         val totalPrice = items.map { it.product.price * it.quantity }.sum()
         getString(R.string.egp).let {
             binding.subtotalTV.text = String.format(it, totalPrice)
-            binding.discountTV.text = String.format(it, 0f)
+            binding.discountTV.text = String.format(it, 0)
             binding.totalTV.text = String.format(it, totalPrice)
         }
     }

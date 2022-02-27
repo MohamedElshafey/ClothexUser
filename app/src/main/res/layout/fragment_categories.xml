@@ -47,7 +47,7 @@
             app:layout_constraintStart_toStartOf="@id/searchBar"
             app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
-        <com.clothex.user.customview.DepartmentCard
+        <com.clothex.user.customview.card.ClothexCard
             android:id="@+id/menCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,13 +56,15 @@
             android:layout_marginEnd="24dp"
             android:visibility="gone"
             app:cardBackground="@color/nevada_sky"
+            app:cardSize="normal"
+            app:headerText="@string/for_title"
             app:icon="@drawable/ic_category_men"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/categoriesTitle"
             app:title="@string/men" />
 
-        <com.clothex.user.customview.DepartmentCard
+        <com.clothex.user.customview.card.ClothexCard
             android:id="@+id/womenCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,13 +73,15 @@
             android:layout_marginEnd="24dp"
             android:visibility="gone"
             app:cardBackground="@color/beauty_bush"
+            app:cardSize="normal"
+            app:headerText="@string/for_title"
             app:icon="@drawable/ic_category_women"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/menCard"
             app:title="@string/women" />
 
-        <com.clothex.user.customview.DepartmentCard
+        <com.clothex.user.customview.card.ClothexCard
             android:id="@+id/kidsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,6 +90,8 @@
             android:layout_marginEnd="24dp"
             android:visibility="gone"
             app:cardBackground="@color/butter_milk"
+            app:cardSize="normal"
+            app:headerText="@string/for_title"
             app:icon="@drawable/ic_category_kids"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

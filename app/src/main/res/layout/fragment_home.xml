@@ -112,45 +112,70 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/locationValueTV" />
 
-                <TextView
-                    android:id="@+id/voucherButton"
-                    style="@style/RemarkableButtonTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="54dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginBottom="36dp"
-                    android:drawablePadding="8dp"
-                    android:gravity="center"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/vouchers"
-                    android:textAppearance="@style/FontSemiBold"
-                    android:textSize="16sp"
-                    app:drawableStartCompat="@drawable/ic_scan"
+                <com.clothex.user.customview.card.ClothexCard
+                    android:id="@+id/menCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackground="@color/nevada_sky"
+                    app:cardSize="small"
+                    app:headerText="@string/for_title"
+                    app:icon="@drawable/ic_category_men_small"
+                    app:layout_constraintEnd_toStartOf="@id/centerGuideline"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/searchBar" />
+                    app:layout_constraintTop_toBottomOf="@id/searchBar"
+                    app:title="@string/men" />
 
-
-                <TextView
-                    android:id="@+id/offerButton"
-                    style="@style/RemarkableButtonTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="54dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginBottom="36dp"
-                    android:drawablePadding="8dp"
-                    android:gravity="center"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/offers"
-                    android:textAppearance="@style/FontSemiBold"
-                    android:textSize="16sp"
+                <com.clothex.user.customview.card.ClothexCard
+                    android:id="@+id/womenCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:cardBackground="@color/beauty_bush"
+                    app:cardSize="small"
+                    app:headerText="@string/for_title"
+                    app:icon="@drawable/ic_category_women_small"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/searchBar" />
+                    app:layout_constraintStart_toEndOf="@id/centerGuideline"
+                    app:layout_constraintTop_toBottomOf="@id/searchBar"
+                    app:title="@string/women" />
+
+                <com.clothex.user.customview.card.ClothexCard
+                    android:id="@+id/voucherButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardSize="small"
+                    app:hasStroke="true"
+                    app:headerText="@string/your"
+                    app:icon="@drawable/ic_vouchers"
+                    app:layout_constraintEnd_toStartOf="@id/centerGuideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/menCard"
+                    app:title="@string/vouchers" />
+
+
+                <com.clothex.user.customview.card.ClothexCard
+                    android:id="@+id/offerButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:cardSize="small"
+                    app:hasStroke="true"
+                    app:headerText="@string/your"
+                    app:icon="@drawable/ic_offers"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/centerGuideline"
+                    app:layout_constraintTop_toBottomOf="@id/menCard"
+                    app:title="@string/offers" />
 
                 <TextView
                     android:id="@+id/arrivalsTitleTV"
@@ -286,6 +311,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/voucherButton" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/centerGuideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

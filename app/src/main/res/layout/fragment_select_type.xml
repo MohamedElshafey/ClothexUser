@@ -71,13 +71,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/logoIV" />
 
-                    <com.clothex.user.customview.DepartmentCard
+                    <com.clothex.user.customview.card.ClothexCard
                         android:id="@+id/departmentCard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="24dp"
+                        app:headerText="@string/for_title"
+                        app:cardSize="normal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/searchBar" />

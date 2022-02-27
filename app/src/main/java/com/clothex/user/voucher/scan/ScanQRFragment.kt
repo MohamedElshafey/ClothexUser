@@ -152,7 +152,7 @@ class ScanQRFragment : Fragment() {
             if (viewModel.isSendVoucher.not())
                 viewModel.addVoucher(it)
         })
-        viewModel.responseLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.responseLiveData.observe(viewLifecycleOwner) { result ->
             result.getOrNull()?.let {
                 findNavController().navigate(ScanQRFragmentDirections.actionScanQRFragmentToVoucherMessageFragment())
                 if (it.message.isNullOrEmpty().not())
@@ -162,7 +162,7 @@ class ScanQRFragment : Fragment() {
                 Toast.makeText(requireContext(), (it as HttpException).message(), Toast.LENGTH_LONG)
                     .show()
             }
-        })
+        }
         cameraProvider.unbindAll()
         try {
             camera = cameraProvider.bindToLifecycle(

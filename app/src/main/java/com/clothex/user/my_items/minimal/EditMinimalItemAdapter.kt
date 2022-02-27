@@ -46,7 +46,7 @@ class EditMinimalItemAdapter(
             binding.priceTV.text =
                 String.format(
                     binding.root.context.getString(R.string.egp),
-                    viewModel.totalPrice
+                    viewModel.totalPrice.toInt()
                 )
         }
     }
