@@ -1,8 +1,8 @@
 package com.clothex.user.voucher
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.voucher.Voucher
@@ -36,19 +36,25 @@ class VoucherAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(voucher: Voucher) {
             binding.leadingIV.setRotationByLocale()
-            voucher.apply {
+            with(voucher) {
                 binding.titleTV.text = getTitle(isArabic)
                 val context = binding.root.context
-                val subTitle = String.format(
-                    context.getString(R.string.expired_in),
-                    voucher.expiryDate.toLocalTimeZone(context)
-                )
-                binding.subtitleTV.text = subTitle
+                if (redeemed) {
+                    binding.subtitleTV.setText(R.string.voucher_redeemed)
+                    binding.subtitleTV.setTextColor(
+                        ContextCompat.getColor(context, R.color.tag_deal)
+                    )
+                } else {
+                    val subTitle = String.format(
+                        context.getString(R.string.expired_in),
+                        expiryDate.toLocalTimeZone(context)
+                    )
+                    binding.subtitleTV.text = subTitle
+                    binding.subtitleTV.setTextColor(
+                        ContextCompat.getColor(context, R.color.island_aqua)
+                    )
+                }
                 setImageFromUrl(binding.logoIV, logo.source)
-                binding.container.setBackgroundColor(
-                    if (voucher.redeemed) Color.parseColor("#30000000")
-                    else Color.WHITE
-                )
             }
             binding.root.setOnClickListener {
                 if (voucher.redeemed.not())

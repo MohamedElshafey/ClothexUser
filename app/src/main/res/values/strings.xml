@@ -181,6 +181,7 @@
     <string name="offer">Offer</string>
     <string name="select_branch">Select branch</string>
     <string name="your">your</string>
+    <string name="voucher_redeemed">Redeemed!, enjoy it ;)</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>
