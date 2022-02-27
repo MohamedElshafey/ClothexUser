@@ -54,14 +54,6 @@ class CategoriesFragment : Fragment() {
                 binding.womenCard.isVisible = hasWomen
                 binding.kidsCard.isVisible = hasKids
                 departmentsList = list
-                val departmentEnum: DepartmentEnum =
-                    CategoriesFragmentArgs.fromBundle(requireArguments()).department
-                when (departmentEnum) {
-                    DepartmentEnum.MEN, DepartmentEnum.WOMEN, DepartmentEnum.KIDS -> {
-                        openSelectType(departmentEnum)
-                    }
-                }
-                arguments?.clear()
             }
             result.exceptionOrNull()?.let {
 

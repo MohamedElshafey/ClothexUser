@@ -51,7 +51,8 @@ val viewModelsModule = module {
             homeUseCase = get(named("get_home")),
             updateFCMTokenUseCase = get(named("update_fcm_token")),
             getIsFirstTimeOpenUseCase = get(named("get_is_first_time")),
-            getSavedLocationUseCase = get(named("get_location"))
+            getSavedLocationUseCase = get(named("get_location")),
+            getDepartmentsUseCase = get(named("get_departments"))
         )
     }
 

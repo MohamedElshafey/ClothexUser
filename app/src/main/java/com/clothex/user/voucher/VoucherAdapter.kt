@@ -44,6 +44,7 @@ class VoucherAdapter(
                     binding.subtitleTV.setTextColor(
                         ContextCompat.getColor(context, R.color.tag_deal)
                     )
+                    binding.grayOut(0.25f)
                 } else {
                     val subTitle = String.format(
                         context.getString(R.string.expired_in),
@@ -61,6 +62,12 @@ class VoucherAdapter(
                     onItemSelected.invoke(voucher)
             }
         }
+    }
+
+    fun AdapterItemVoucherBinding.grayOut(percentage: Float) {
+        logoIV.alpha = percentage
+        titleTV.alpha = percentage
+        leadingIV.alpha = percentage
     }
 
 }

@@ -15,6 +15,7 @@ class ItemsContainerFragment : Fragment() {
     private lateinit var itemsContainerViewModel: ItemsContainerViewModel
     private var _binding: FragmentItemsContainerBinding? = null
     private val binding get() = _binding!!
+    private var lastOpenIndex = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +25,11 @@ class ItemsContainerFragment : Fragment() {
         itemsContainerViewModel =
             ViewModelProvider(this)[ItemsContainerViewModel::class.java]
         _binding = FragmentItemsContainerBinding.inflate(inflater, container, false)
+        val openOrders = ItemsContainerFragmentArgs.fromBundle(requireArguments()).openOrders
+        binding.viewPager.post {
+            binding.viewPager.currentItem =
+                if (lastOpenIndex > -1) lastOpenIndex else if (openOrders) 1 else 0
+        }
         return binding.root
     }
 
@@ -39,14 +45,11 @@ class ItemsContainerFragment : Fragment() {
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+                lastOpenIndex = position
                 if (position == 0) myItemsSelected()
                 else activeOrdersSelected()
             }
         })
-        val openOrders = ItemsContainerFragmentArgs.fromBundle(requireArguments()).openOrders
-        binding.viewPager.post {
-            binding.viewPager.currentItem = if (openOrders) 1 else 0
-        }
         arguments?.clear()
     }
 

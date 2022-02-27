@@ -5,9 +5,11 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.clothex.data.domain.model.department.Department
 import com.clothex.data.domain.model.home.HomeProduct
 import com.clothex.data.domain.model.home.HomeShop
 import com.clothex.data.domain.usecases.database.GetSavedLocationUseCase
+import com.clothex.data.domain.usecases.department.GetDepartmentsUseCase
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.sign.UpdateFCMTokenUseCase
@@ -21,7 +23,8 @@ class HomeViewModel(
     private val homeUseCase: GetHomeUseCase,
     private val updateFCMTokenUseCase: UpdateFCMTokenUseCase,
     private val getIsFirstTimeOpenUseCase: GetIsFirstTimeOpenUseCase,
-    private val getSavedLocationUseCase: GetSavedLocationUseCase
+    private val getSavedLocationUseCase: GetSavedLocationUseCase,
+    private val getDepartmentsUseCase: GetDepartmentsUseCase
 ) : ViewModel() {
 
     val notificationCount = ObservableField<String>()
@@ -31,6 +34,7 @@ class HomeViewModel(
     val failureLiveData = MutableLiveData<String>()
     val savedLocationLiveData = MutableLiveData<SavedLocation?>()
     var isFirstTimeOpenLiveData = MutableLiveData<Boolean>()
+    val departmentListLiveData = MutableLiveData<Result<List<Department>>>()
 
     fun checkFirstTimeOpen() {
         isFirstTimeOpenLiveData = MutableLiveData<Boolean>()
@@ -47,6 +51,9 @@ class HomeViewModel(
         loadingLiveData.postValue(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+                getDepartmentsUseCase.invoke(Unit).collect {
+                    departmentListLiveData.postValue(it)
+                }
                 homeUseCase.invoke(Unit).collect { homeResult ->
                     homeResult.getOrNull()?.let {
                         productLiveData.postValue(it.products)

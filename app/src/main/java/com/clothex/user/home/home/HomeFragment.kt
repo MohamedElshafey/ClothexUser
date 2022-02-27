@@ -152,19 +152,21 @@ class HomeFragment : Fragment() {
         }
 
         binding.womenCard.setOnClickListener {
-            findNavController().navigate(
+            /*findNavController().navigate(
                 HomeFragmentDirections.actionNavigationHomeToNavigationCategories(
                     DepartmentEnum.WOMEN
                 )
-            )
+            )*/
+            openSelectType(DepartmentEnum.WOMEN)
         }
 
         binding.menCard.setOnClickListener {
-            findNavController().navigate(
+            /*findNavController().navigate(
                 HomeFragmentDirections.actionNavigationHomeToNavigationCategories(
                     DepartmentEnum.MEN
                 )
-            )
+            )*/
+            openSelectType(DepartmentEnum.MEN)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -185,6 +187,21 @@ class HomeFragment : Fragment() {
             binding.swipeRefresh.isRefreshing = false
         }
 
+    }
+
+    private fun openSelectType(departmentEnum: DepartmentEnum) {
+        val departmentsList = viewModel.departmentListLiveData.value?.getOrNull()
+        val selectedDepartment =
+            departmentsList?.find { it.title.equals(departmentEnum.value, true) }
+        val departmentId = selectedDepartment?.id
+        val types = selectedDepartment?.types
+        findNavController().navigate(
+            HomeFragmentDirections.actionNavigationHomeToSelectTypeFragment(
+                departmentId ?: "",
+                departmentEnum,
+                types?.toTypedArray() ?: arrayOf()
+            )
+        )
     }
 
     private fun openSearchFragment() {

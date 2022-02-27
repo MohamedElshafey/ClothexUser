@@ -18,7 +18,6 @@ import com.clothex.user.R
 import com.clothex.user.base.BaseLanguageActivity
 import com.clothex.user.databinding.ActivityHomeBinding
 import com.clothex.user.home.categories.CategoriesFragment
-import com.clothex.user.home.categories.type.SelectTypeFragment
 import com.clothex.user.home.home.HomeFragment
 import com.clothex.user.my_items.ItemsContainerFragment
 import com.clothex.user.my_items.items.MyItemsFragment
@@ -62,10 +61,12 @@ class HomeActivity : BaseLanguageActivity() {
             savedInstanceState: Bundle?
         ) {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState)
+            if (f is CategoriesFragment)
+                binding.navView.selectedItemId = R.id.navigation_categories
             val transition: Transition = Slide(Gravity.BOTTOM)
             when (f) {
                 is HomeFragment, is ItemsContainerFragment, is MyItemsFragment, is ActiveOrdersFragment,
-                is CategoriesFragment, is SelectTypeFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
+                is CategoriesFragment, is ProfileFragment, is BottomSheetDialogFragment -> {
                     if (binding.navView.visibility == GONE) {
                         TransitionManager.beginDelayedTransition(
                             binding.root,
