@@ -72,6 +72,13 @@
             app:layout_constraintEnd_toStartOf="@id/colorItem"
             app:layout_constraintTop_toTopOf="@id/colorItem" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/priceBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="titleTV,sizeChip" />
+
         <TextView
             android:id="@+id/priceTV"
             android:layout_width="wrap_content"
@@ -80,7 +87,7 @@
             android:textAppearance="@style/FontSemiBold"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@id/titleTV"
-            app:layout_constraintTop_toBottomOf="@id/titleTV"
+            app:layout_constraintTop_toBottomOf="@id/priceBarrier"
             tools:ignore="SmallSp"
             tools:text="EGP 379.00" />
 
@@ -109,6 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@string/item_not_available"
             android:textAppearance="@style/FontRegular"
             android:textColor="@color/tag_deal"
