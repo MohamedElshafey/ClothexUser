@@ -1,8 +1,9 @@
 package com.clothex.data.domain.usecases.product
 
+import androidx.paging.PagingData
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.home.HomeProduct
-import com.clothex.data.domain.repository.search.IGetProductPageRepository
+import com.clothex.data.domain.repository.search.IGetProductPagingRepository
 import com.clothex.data.domain.usecases.BaseUseCase
 import kotlinx.coroutines.flow.Flow
 
@@ -10,11 +11,11 @@ import kotlinx.coroutines.flow.Flow
  * Created by Mohamed Elshafey on 11/17/2020.
  */
 
-typealias GetProductPageBaseUseCase = BaseUseCase<ProductBody, Flow<List<HomeProduct>?>>
+typealias GetProductPagingBaseUseCase = BaseUseCase<ProductBody, Flow<PagingData<HomeProduct>>>
 
-class GetProductPageUseCase(private val repository: IGetProductPageRepository) :
-    GetProductPageBaseUseCase {
-    override suspend fun invoke(params: ProductBody): Flow<List<HomeProduct>?> =
+class GetProductPagingUseCase(private val repository: IGetProductPagingRepository) :
+    GetProductPagingBaseUseCase {
+    override suspend fun invoke(params: ProductBody): Flow<PagingData<HomeProduct>> =
         repository.getProducts(
             page = params.page,
             sort = params.sort,
@@ -25,6 +26,7 @@ class GetProductPageUseCase(private val repository: IGetProductPageRepository) :
             color = params.color,
             department = params.department,
             type = params.type,
-            search = params.search
+            search = params.search,
+            coroutineScope = params.coroutineScope
         )
 }

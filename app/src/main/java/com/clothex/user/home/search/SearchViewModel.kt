@@ -3,6 +3,7 @@ package com.clothex.user.home.search
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.body.ShopBody
 import com.clothex.data.domain.model.home.HomeProduct
@@ -11,7 +12,7 @@ import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceEndFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceStartFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetSizeFilterUseCase
-import com.clothex.data.domain.usecases.product.GetProductPageUseCase
+import com.clothex.data.domain.usecases.product.GetProductPagingUseCase
 import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import kotlinx.coroutines.Dispatchers
@@ -21,16 +22,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SearchViewModel(
-    private val productPageUseCase: GetProductPageUseCase,
     private val shopPageUseCase: GetShopPageUseCase,
     private val getSortUseCase: GetSortUseCase,
     private val getSizeFilterUseCase: GetSizeFilterUseCase,
     private val getColorFilterUseCase: GetColorFilterUseCase,
     private val getPriceStartFilterUseCase: GetPriceStartFilterUseCase,
-    private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase
+    private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase,
+    private val getProductPagingUseCase: GetProductPagingUseCase
 ) : ViewModel() {
 
-    val productLiveData = MutableLiveData<List<HomeProduct>>()
+    val productLiveData = MutableLiveData<PagingData<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
     val loadingLiveData = MutableLiveData(false)
 
@@ -40,7 +41,7 @@ class SearchViewModel(
     fun reset() {
         productPage = 0
         shopPage = 0
-        productLiveData.value = listOf()
+        productLiveData.value = PagingData.empty()
         shopLiveData.value = listOf()
         loadingLiveData.postValue(true)
     }
@@ -73,7 +74,7 @@ class SearchViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 fetchLocalData()
-                productPageUseCase.invoke(
+                getProductPagingUseCase.invoke(
                     ProductBody(
                         page = productPage,
                         sort = sort,
@@ -82,7 +83,8 @@ class SearchViewModel(
                         size = size,
                         shopId = shopId,
                         color = color,
-                        search = search
+                        search = search,
+                        coroutineScope = viewModelScope
                     )
                 ).collect {
                     productPage++

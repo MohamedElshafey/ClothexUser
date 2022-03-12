@@ -60,5 +60,7 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     api "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
 
-
+    //Paging
+    def paging_version = "3.1.0"
+    api "androidx.paging:paging-runtime-ktx:$paging_version"
 }

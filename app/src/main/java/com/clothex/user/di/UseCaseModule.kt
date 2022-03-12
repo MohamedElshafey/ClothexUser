@@ -26,7 +26,7 @@ import com.clothex.data.domain.usecases.order.CreateMyOrdersUseCase
 import com.clothex.data.domain.usecases.order.GetMyOrdersUseCase
 import com.clothex.data.domain.usecases.order.GetOrderDetailsUseCase
 import com.clothex.data.domain.usecases.product.GetProductDetailsUseCase
-import com.clothex.data.domain.usecases.product.GetProductPageUseCase
+import com.clothex.data.domain.usecases.product.GetProductPagingUseCase
 import com.clothex.data.domain.usecases.shop.GetShopDetailsUseCase
 import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
 import com.clothex.data.domain.usecases.sign.*
@@ -55,7 +55,7 @@ import com.clothex.data.remote.repository.offer.GetOffersRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
-import com.clothex.data.remote.repository.search.GetProductPageRepository
+import com.clothex.data.remote.repository.search.GetProductPagingRepository
 import com.clothex.data.remote.repository.search.GetShopPageRepository
 import com.clothex.data.remote.repository.sign.LoginRepository
 import com.clothex.data.remote.repository.sign.SignUpRepository
@@ -73,7 +73,7 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
     single(named("get_home")) { provideGetHomeUseCase(get()) }
-    single(named("get_product_page")) { provideGetProductPageUseCase(get()) }
+    single(named("get_product_paging")) { provideGetProductPagingUseCase(get()) }
     single(named("get_product_details")) { provideGetProductDetailsUseCase(get()) }
     single(named("clear_session")) { provideClearSessionUseCase(get()) }
     single(named("logout")) { provideLogoutUseCase(get()) }
@@ -155,8 +155,8 @@ fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
     return GetHomeUseCase(repository)
 }
 
-fun provideGetProductPageUseCase(repository: GetProductPageRepository): GetProductPageUseCase {
-    return GetProductPageUseCase(repository)
+fun provideGetProductPagingUseCase(repository: GetProductPagingRepository): GetProductPagingUseCase {
+    return GetProductPagingUseCase(repository)
 }
 
 fun provideGetProductDetailsUseCase(repository: GetProductDetailsRepository): GetProductDetailsUseCase {

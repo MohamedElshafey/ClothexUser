@@ -1,12 +1,14 @@
 package com.clothex.data.domain.repository.search
 
+import androidx.paging.PagingData
 import com.clothex.data.domain.model.home.HomeProduct
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Mohamed Elshafey on 10/10/2020.
  */
-interface IGetProductPageRepository {
+interface IGetProductPagingRepository {
     suspend fun getProducts(
         page: Int,
         sort: String?,
@@ -17,6 +19,7 @@ interface IGetProductPageRepository {
         color: String?,
         type: String?,
         department: String?,
-        search: String?
-    ): Flow<List<HomeProduct>?>
+        search: String?,
+        coroutineScope: CoroutineScope
+    ): Flow<PagingData<HomeProduct>>
 }

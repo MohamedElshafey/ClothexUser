@@ -1,7 +1,7 @@
 package com.clothex.data.remote.api
 
-import com.clothex.data.domain.model.home.HomeProduct
 import com.clothex.data.domain.model.product.Product
+import com.clothex.data.domain.model.product_page.ProductPage
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,8 +12,8 @@ interface ProductApiService {
     @GET("product-details?")
     suspend fun getProductDetails(@Query("product_id") productId: String): Product
 
-    @GET("product/pages")
-    suspend fun getProductPage(
+    @GET("product/paging")
+    suspend fun getProductPaging(
         @Query("page") page: Int,
         @Query("sort") sort: String?,
         @Query("priceStart") priceStart: Int?,
@@ -24,6 +24,6 @@ interface ProductApiService {
         @Query("type") type: String?,
         @Query("department") department: String?,
         @Query("search") search: String?
-    ): List<HomeProduct>
+    ): ProductPage
 
 }

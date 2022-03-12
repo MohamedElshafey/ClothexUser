@@ -14,7 +14,7 @@ import com.clothex.data.remote.repository.offer.GetOffersRepository
 import com.clothex.data.remote.repository.order.CreateMyOrderRepository
 import com.clothex.data.remote.repository.order.GetMyOrdersRepository
 import com.clothex.data.remote.repository.order.GetOrderDetailsRepository
-import com.clothex.data.remote.repository.search.GetProductPageRepository
+import com.clothex.data.remote.repository.search.GetProductPagingRepository
 import com.clothex.data.remote.repository.search.GetShopPageRepository
 import com.clothex.data.remote.repository.sign.LoginRepository
 import com.clothex.data.remote.repository.sign.SignUpRepository
@@ -32,7 +32,6 @@ import org.koin.dsl.module
 val remoteDataSourceModule = module {
     single { GetHomeRepository(apiService = get()) }
     single { GetProductDetailsRepository(apiService = get()) }
-    single { GetProductPageRepository(apiService = get()) }
     single { GetShopDetailsRepository(apiService = get()) }
     single { GetMyItemsRepository(apiService = get()) }
     single { CreateMyItemRepository(apiService = get()) }
@@ -41,6 +40,7 @@ val remoteDataSourceModule = module {
     single { CreateMyOrderRepository(apiService = get()) }
     single { GetMyOrdersRepository(apiService = get()) }
     single { GetShopPageRepository(apiService = get()) }
+    single { GetProductPagingRepository(apiService = get()) }
     single { SignUpTemporaryRepository(apiService = get()) }
     single { SignUpRepository(apiService = get()) }
     single { LoginRepository(apiService = get()) }

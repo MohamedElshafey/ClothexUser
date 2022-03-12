@@ -13,16 +13,18 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentSearchProductBinding
-import com.clothex.user.home.product.ProductAdapter
+import com.clothex.user.home.product.ProductPagingAdapter
 import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
 import com.clothex.user.home.shop.ShopAdapter
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 /**
@@ -32,18 +34,15 @@ open class SearchBaseFragment : Fragment() {
 
     lateinit var binding: FragmentSearchProductBinding
     val viewModel: SearchViewModel by inject()
-    private val productAdapter = ProductAdapter {
+
+    private val productPagingAdapter = ProductPagingAdapter {
         findNavController().navigate(
             R.id.productDetailsFragment, bundleOf(
                 "product_id" to it.id
             )
         )
-//        findNavController().navigate(
-//            SearchBaseFragmentDirections.actionSearchProductFragmentToProductDetailsFragment(
-//                it.id
-//            )
-//        )
     }
+
     private val shopAdapter = ShopAdapter {
         findNavController().navigate(
             SearchBaseFragmentDirections.actionSearchProductFragmentToShopDetailsFragment(
@@ -60,20 +59,26 @@ open class SearchBaseFragment : Fragment() {
             viewModel.isProducts = SearchBaseFragmentArgs.fromBundle(it).product
         }
         viewModel.reset()
-        productAdapter.reset()
+        resetProductPagingAdapter()
         shopAdapter.reset()
         viewModel.fetch(null)
         setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
-            productAdapter.reset()
+            resetProductPagingAdapter()
             shopAdapter.reset()
             viewModel.reset()
             viewModel.fetch(null)
         }
         setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, _ ->
-            productAdapter.reset()
+            resetProductPagingAdapter()
             shopAdapter.reset()
             viewModel.reset()
             viewModel.fetch(null)
+        }
+    }
+
+    private fun resetProductPagingAdapter() {
+        lifecycleScope.launch {
+            productPagingAdapter.reset()
         }
     }
 
@@ -124,7 +129,9 @@ open class SearchBaseFragment : Fragment() {
         viewModel.productLiveData.observe(viewLifecycleOwner) { products ->
             loadingMore = false
             binding.shimmerFrame.root.isGone = true
-            productAdapter.append(products)
+            lifecycleScope.launch {
+                productPagingAdapter.submitData(products)
+            }
         }
 
         viewModel.shopLiveData.observe(viewLifecycleOwner) {
@@ -138,7 +145,7 @@ open class SearchBaseFragment : Fragment() {
         }
 
         binding.searchBar.searchET.doAfterTextChanged {
-            productAdapter.reset()
+            resetProductPagingAdapter()
             shopAdapter.reset()
             viewModel.reset()
             viewModel.fetch(it.toString())
@@ -181,7 +188,7 @@ open class SearchBaseFragment : Fragment() {
         binding.filterContainer.isGone = false
         binding.sortContainer.isGone = false
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
-        binding.recyclerView.adapter = productAdapter
+        binding.recyclerView.adapter = productPagingAdapter
     }
 
     private fun showShops() {
