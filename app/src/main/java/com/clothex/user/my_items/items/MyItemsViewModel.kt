@@ -29,9 +29,9 @@ class MyItemsViewModel(
     fun deleteMyItemGroup(myItemGroup: MyItemGroup, callback: (SimpleResponse?) -> Unit) {
         viewModelScope.launch {
             val idArray = myItemGroup.myItems.map { it.id }
-            deleteMyItemsUseCase.invoke(idArray).collect {
-                callback.invoke(it)
-            }
+//            deleteMyItemsUseCase.invoke(idArray).collect {
+//                callback.invoke(it)
+//            }
         }
     }
 

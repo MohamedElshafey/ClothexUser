@@ -327,7 +327,7 @@
     </fragment>
     <fragment
         android:id="@+id/scanVoucherFragment"
-        android:name="com.clothex.user.voucher.scan.ScanVoucherFragment"
+        android:name="com.clothex.user.voucher.scan.ScanQRFragment"
         android:label="ScanVoucherFragment"
         tools:layout="@layout/fragment_scan_voucher" />
     <fragment

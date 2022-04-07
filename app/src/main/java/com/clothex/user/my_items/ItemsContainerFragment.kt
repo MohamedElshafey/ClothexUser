@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.clothex.user.R
+import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentItemsContainerBinding
+import com.clothex.user.my_items.items.MyItemCallback
 
 
-class ItemsContainerFragment : Fragment() {
+class ItemsContainerFragment : Fragment(), MyItemCallback {
     private lateinit var itemsContainerViewModel: ItemsContainerViewModel
     private var _binding: FragmentItemsContainerBinding? = null
     private val binding get() = _binding!!
@@ -66,5 +70,14 @@ class ItemsContainerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClicked(myItemGroup: MyItemGroup) {
+        val bundle = bundleOf("myItem" to myItemGroup)
+        findNavController().navigate(R.id.bookFragment, bundle)
+    }
+
+    override fun deleteMyItemGroup(myItemGroup: MyItemGroup) {
+
     }
 }

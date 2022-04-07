@@ -12,11 +12,11 @@ data class HomeProduct(
     val mainImage: Media?,
     val price: Int,
     @SerializedName("sale_end_date")
-    val saleEndDate: String,
+    val saleEndDate: String?,
     @SerializedName("sale_price")
     val salePrice: Int?,
     @SerializedName("sale_start_date")
-    val saleStartDate: String,
+    val saleStartDate: String?,
     private val title: String,
     @SerializedName("title_ar")
     private val titleAr: String?,

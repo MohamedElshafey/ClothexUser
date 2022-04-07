@@ -19,7 +19,6 @@ class CodeVoucherViewModel(
 
     var isSendVoucher = false
 
-
     fun addVoucher(code: String) {
         isSendVoucher = true
         viewModelScope.launch {

@@ -6,7 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Type(
-    @SerializedName("_id")
     val id: String,
     val sub_type: List<SubType>,
     private val title: String,

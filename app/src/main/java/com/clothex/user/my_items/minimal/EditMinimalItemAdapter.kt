@@ -24,7 +24,7 @@ class EditMinimalItemAdapter(
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[holder.adapterPosition])
+        holder.bind(list[holder.absoluteAdapterPosition])
 
     override fun getItemCount(): Int = list.size
 

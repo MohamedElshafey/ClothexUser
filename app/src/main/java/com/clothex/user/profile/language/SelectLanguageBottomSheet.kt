@@ -38,13 +38,13 @@ class SelectLanguageBottomSheet : DefaultBottomSheet() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.languageLiveData.observe(viewLifecycleOwner, { lang ->
+        viewModel.languageLiveData.observe(viewLifecycleOwner) { lang ->
             if (lang.equals(Language.ENGLISH.value)) {
                 selectEnglishLanguage()
             } else {
                 selectArabicLanguage()
             }
-        })
+        }
 
         binding.arabicContainer.setOnClickListener {
             selectArabicLanguage()

@@ -42,6 +42,7 @@
         android:textAppearance="@style/FontRegular"
         android:textColor="@color/cod_gray"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/messageTitleTV" />

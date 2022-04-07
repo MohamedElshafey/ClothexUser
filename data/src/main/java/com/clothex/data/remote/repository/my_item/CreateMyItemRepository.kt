@@ -1,6 +1,5 @@
 package com.clothex.data.remote.repository.my_item
 
-import com.clothex.data.domain.model.SimpleResponse
 import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.data.domain.repository.my_item.ICreateMyItemRepository

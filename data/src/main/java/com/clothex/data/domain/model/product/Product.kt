@@ -25,7 +25,6 @@ data class Product(
     val sku: String?,
     val shop: ProductShop?
 ) : Parcelable {
-
     fun getTitle(isArabic: Boolean): String {
         return if (isArabic) titleAr ?: title
         else title

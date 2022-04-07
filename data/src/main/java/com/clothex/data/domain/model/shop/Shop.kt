@@ -20,7 +20,7 @@ data class Shop(
     val socialMedias: List<SocialMedia>,
     val branches: List<Branch>?,
     @SerializedName("has_book")
-    val hasBook: Boolean
+    val hasBook: Boolean,
 ) : Parcelable {
     fun getName(isArabic: Boolean): String {
         return if (isArabic) nameAr ?: name

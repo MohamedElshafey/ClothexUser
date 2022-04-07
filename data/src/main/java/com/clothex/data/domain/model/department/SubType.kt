@@ -9,5 +9,7 @@ data class SubType(
     @SerializedName("_id")
     val id: String,
     val tags: List<Tag>,
-    val title: String
+    val title: String,
+    @SerializedName("title_ar")
+    val titleAr: String
 ) : Parcelable
