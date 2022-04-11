@@ -50,12 +50,12 @@ android {
 
     productFlavors {
         emulator {
-            buildConfigField("String", "LOCALHOST_IP", "\"10.0.2.2:3000\"")
-            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:3000/api/user/\"")
+            buildConfigField("String", "LOCALHOST_IP", "\"10.0.2.2:80\"")
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:80/api/user/\"")
         }
         local {
-            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141:3000\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:3000/api/user/\"")
+            buildConfigField("String", "LOCALHOST_IP", "\"192.168.100.141:80\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.100.141:80/api/user/\"")
         }
         server {
             buildConfigField("String", "LOCALHOST_IP", "\"clothex.online\"")
