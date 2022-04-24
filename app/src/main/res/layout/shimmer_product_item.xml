@@ -14,7 +14,6 @@
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_margin="4dp"
-
         android:backgroundTint="@color/gray4"
         android:scaleType="centerCrop"
         android:src="@drawable/splash_gradient_shape"

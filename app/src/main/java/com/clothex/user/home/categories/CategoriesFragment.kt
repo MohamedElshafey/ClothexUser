@@ -35,6 +35,8 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.shimmerFrame.startShimmer()
+        binding.shimmerFrame.isVisible = true
         viewModel.fetchDepartments()
 
         binding.searchBar.apply {
@@ -47,6 +49,7 @@ class CategoriesFragment : Fragment() {
 
         viewModel.departmentListLiveData.observe(viewLifecycleOwner) { result ->
             result.getOrNull()?.let { list ->
+                binding.shimmerFrame.isVisible = false
                 val hasMen = list.find { it.title.equals(menDepartment, true) } != null
                 val hasWomen = list.find { it.title.equals(womenDepartment, true) } != null
                 val hasKids = list.find { it.title.equals(kidsDepartment, true) } != null
@@ -56,7 +59,7 @@ class CategoriesFragment : Fragment() {
                 departmentsList = list
             }
             result.exceptionOrNull()?.let {
-
+                binding.shimmerFrame.isVisible = false
             }
         }
 
