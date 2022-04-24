@@ -40,7 +40,7 @@ class ClothexCard @JvmOverloads constructor(
         iconIV = findViewById(R.id.iconIV)
         root = findViewById(R.id.container)
         with(styledAttribute) {
-            setHeader(getString(R.styleable.ClothexCard_headerText))
+//            setHeader(getString(R.styleable.ClothexCard_headerText))
             getString(R.styleable.ClothexCard_title)?.let { title -> setTitle(title) }
             getDrawable(R.styleable.ClothexCard_icon)?.let { icon -> setIcon(icon) }
             changeBackground(getColor(R.styleable.ClothexCard_cardBackground, Color.WHITE))

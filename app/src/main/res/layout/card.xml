@@ -27,7 +27,8 @@
             android:text="@string/for_title"
             android:textAppearance="@style/FontSemiBold"
             android:textColor="@color/cod_gray"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/titleTV"
