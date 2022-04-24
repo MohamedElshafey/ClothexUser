@@ -42,7 +42,7 @@ class VoucherAdapter(
                 if (redeemed) {
                     binding.subtitleTV.setText(R.string.voucher_redeemed)
                     binding.subtitleTV.setTextColor(
-                        ContextCompat.getColor(context, R.color.tag_deal)
+                        ContextCompat.getColor(context, R.color.redeemed_yellow)
                     )
                     binding.grayOut(0.25f)
                 } else {
