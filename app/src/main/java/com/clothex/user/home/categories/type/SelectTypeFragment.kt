@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -16,6 +17,8 @@ import com.clothex.user.R
 import com.clothex.user.databinding.FragmentSelectTypeBinding
 import com.clothex.user.home.categories.style.DepartmentFactory
 import com.clothex.user.home.product.ProductPagingAdapter
+import com.clothex.user.home.search.filter.FilterProductBottomSheet
+import com.clothex.user.home.search.sort.SortProductBottomSheet
 import com.clothex.user.utils.addChip
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
@@ -29,6 +32,26 @@ class SelectTypeFragment : Fragment() {
         findNavController().navigate(
             SelectTypeFragmentDirections.actionSelectTypeFragmentToProductDetailsFragment(it.id)
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
+            resetProductPagingAdapter()
+            viewModel.reset()
+            viewModel.fetchProductPage()
+        }
+        setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, _ ->
+            resetProductPagingAdapter()
+            viewModel.reset()
+            viewModel.fetchProductPage()
+        }
+    }
+
+    private fun resetProductPagingAdapter() {
+        lifecycleScope.launch {
+            productAdapter.reset()
+        }
     }
 
     override fun onCreateView(
@@ -99,7 +122,15 @@ class SelectTypeFragment : Fragment() {
         }
 
         binding.productsRV.adapter = productAdapter
+        binding.sortContainer.setOnClickListener {
+            findNavController().navigate(R.id.sortProductBottomSheet)
+//            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToSortProductBottomSheet())
+        }
 
+        binding.filterContainer.setOnClickListener {
+//            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
+            findNavController().navigate(R.id.filterProductBottomSheet)
+        }
     }
 
     private fun openSearchFragment() {

@@ -54,36 +54,36 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setPriceRangeText()
-        binding.priceRangeSlider.addOnChangeListener { _, _, fromUser ->
+        binding.priceRangeSlider.addOnChangeListener { _, _, _ ->
             setPriceRangeText()
         }
-        viewModel.priceStartMutableLiveData.observe(viewLifecycleOwner, { price ->
+        viewModel.priceStartMutableLiveData.observe(viewLifecycleOwner) { price ->
             if (price != null && price > 0) {
                 binding.priceRangeSlider.setValues(
                     price.toFloat(),
                     binding.priceRangeSlider.values[1]
                 )
             }
-        })
-        viewModel.priceEndMutableLiveData.observe(viewLifecycleOwner, { price ->
+        }
+        viewModel.priceEndMutableLiveData.observe(viewLifecycleOwner) { price ->
             if (price != null && price > 0) {
                 binding.priceRangeSlider.setValues(
                     binding.priceRangeSlider.values[0],
                     price.toFloat()
                 )
             }
-        })
+        }
 
         binding.categoryChipGroup.addChip(layoutInflater, *typeList.toTypedArray())
         binding.sizeChipGroup.addChip(layoutInflater, *sizeList.toTypedArray())
 
-        viewModel.sizeMutableLiveData.observe(viewLifecycleOwner, {
+        viewModel.sizeMutableLiveData.observe(viewLifecycleOwner) {
             val chip: Chip? = binding.sizeChipGroup.findViewWithTag(it)
             chip?.isChecked = true
-        })
+        }
 
         binding.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            viewModel.selectedSize = group.findViewById<Chip>(checkedId).text.toString()
+            viewModel.selectedSize = group.findViewById<Chip>(checkedId)?.text?.toString() ?: ""
         }
 
         binding.colorRV.adapter = ColorsAdapter(colorList) {

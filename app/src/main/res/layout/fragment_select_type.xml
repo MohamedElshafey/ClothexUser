@@ -71,18 +71,77 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/logoIV" />
 
+                    <LinearLayout
+                        android:id="@+id/filterContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/filter_bg_shape"
+                        android:orientation="horizontal"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/searchBar">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_filter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingStart="4dp"
+                            android:text="@string/filter"
+                            android:textAppearance="@style/FontRegular"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sortContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/filter_bg_shape"
+                        android:orientation="horizontal"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
+                        app:layout_constraintStart_toEndOf="@id/filterContainer"
+                        app:layout_constraintTop_toTopOf="@id/filterContainer">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_sort" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingStart="4dp"
+                            android:text="@string/sort"
+                            android:textAppearance="@style/FontRegular"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
                     <com.clothex.user.customview.card.ClothexCard
                         android:id="@+id/departmentCard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
-                        app:headerText="@string/for_title"
                         app:cardSize="normal"
+                        app:headerText="@string/for_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/searchBar" />
+                        app:layout_constraintTop_toBottomOf="@id/sortContainer" />
 
                     <HorizontalScrollView
                         android:id="@+id/typesScrollView"

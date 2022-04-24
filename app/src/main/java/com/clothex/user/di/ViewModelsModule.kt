@@ -199,7 +199,14 @@ val viewModelsModule = module {
     }
 
     viewModel {
-        SelectTypeViewModel(productPagingUseCase = get(named("get_product_paging")))
+        SelectTypeViewModel(
+            productPagingUseCase = get(named("get_product_paging")),
+            getSortUseCase = get(named("get_sort")),
+            getSizeFilterUseCase = get(named("get_size_filter")),
+            getColorFilterUseCase = get(named("get_color_filter")),
+            getPriceStartFilterUseCase = get(named("get_price_start_filter")),
+            getPriceEndFilterUseCase = get(named("get_price_end_filter"))
+        )
     }
 
     viewModel {

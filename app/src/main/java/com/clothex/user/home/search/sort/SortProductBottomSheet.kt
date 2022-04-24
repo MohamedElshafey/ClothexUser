@@ -42,7 +42,7 @@ class SortProductBottomSheet : DefaultBottomSheet() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.sortMutableLiveData.observe(viewLifecycleOwner, { sortValue ->
+        viewModel.sortMutableLiveData.observe(viewLifecycleOwner) { sortValue ->
             val list = listOf(
                 SortItem(
                     getString(R.string.best_match),
@@ -69,7 +69,7 @@ class SortProductBottomSheet : DefaultBottomSheet() {
                     dismiss()
                 }
             }
-        })
+        }
     }
 
 }

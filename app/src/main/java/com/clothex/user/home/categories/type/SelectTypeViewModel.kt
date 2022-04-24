@@ -5,14 +5,27 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.home.HomeProduct
+import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
+import com.clothex.data.domain.usecases.filter.GetPriceEndFilterUseCase
+import com.clothex.data.domain.usecases.filter.GetPriceStartFilterUseCase
+import com.clothex.data.domain.usecases.filter.GetSizeFilterUseCase
 import com.clothex.data.domain.usecases.product.GetProductPagingUseCase
+import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SelectTypeViewModel(private val productPagingUseCase: GetProductPagingUseCase) :
+class SelectTypeViewModel(
+    private val getSortUseCase: GetSortUseCase,
+    private val getSizeFilterUseCase: GetSizeFilterUseCase,
+    private val getColorFilterUseCase: GetColorFilterUseCase,
+    private val getPriceStartFilterUseCase: GetPriceStartFilterUseCase,
+    private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase,
+    private val productPagingUseCase: GetProductPagingUseCase
+) :
     BaseLanguageViewModel() {
 
     var productPage: Int = 0
@@ -36,20 +49,40 @@ class SelectTypeViewModel(private val productPagingUseCase: GetProductPagingUseC
             fetchProductPage()
         }
 
+    private var sort: String? = null
+    private var size: String? = null
+    private var color: String? = null
+    private var priceStart: Int? = null
+    private var priceEnd: Int? = null
+
+    private suspend fun fetchLocalData() {
+        sort = getSortUseCase(Unit).first()
+        size = getSizeFilterUseCase(Unit).first()
+        color = getColorFilterUseCase(Unit).first()
+        priceStart = getPriceStartFilterUseCase(Unit).first()
+        priceEnd = getPriceEndFilterUseCase(Unit).first()
+    }
+
 
     fun reset() {
         productPage = 0
     }
 
-    private fun fetchProductPage() {
+    fun fetchProductPage() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+                fetchLocalData()
                 productPagingUseCase.invoke(
                     ProductBody(
                         page = 0,
                         department = departmentId,
                         type = typeId,
                         search = searchKey,
+                        sort = sort,
+                        size = size,
+                        priceStart = priceStart,
+                        priceEnd = priceEnd,
+                        color = color,
                         coroutineScope = viewModelScope
                     )
                 ).collect {
