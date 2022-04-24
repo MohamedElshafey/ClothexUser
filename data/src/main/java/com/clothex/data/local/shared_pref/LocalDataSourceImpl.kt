@@ -26,8 +26,8 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
     }
 
     override fun getLanguage(): String {
-        val english = Language.ENGLISH.value
-        return sharedPreferences.getString(LANGUAGE, english) ?: english
+        val arabic = Language.ARABIC.value
+        return sharedPreferences.getString(LANGUAGE, arabic) ?: arabic
     }
 
     override suspend fun setUser(user: User?) {
