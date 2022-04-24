@@ -18,7 +18,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.window.*
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentScanQrBinding
 import com.clothex.user.dialog.MessageAlertDialog
@@ -55,8 +54,8 @@ class ScanQRFragment : Fragment() {
         override fun onDisplayRemoved(displayId: Int) = Unit
         override fun onDisplayChanged(displayId: Int) = view?.let { view ->
             if (displayId == this@ScanQRFragment.displayId) {
-                imageCapture!!.targetRotation = view.display.rotation
-                imageAnalyzer!!.targetRotation = view.display.rotation
+                imageCapture?.targetRotation = view.display.rotation
+                imageAnalyzer?.targetRotation = view.display.rotation
             }
         } ?: Unit
     }
