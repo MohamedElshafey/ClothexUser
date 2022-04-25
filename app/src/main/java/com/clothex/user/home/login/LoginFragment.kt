@@ -212,7 +212,7 @@ class LoginFragment : Fragment() {
                     handleLoginResponse(it)
                 }
             } catch (e: ApiException) {
-
+                Log.d(TAG, "onActivityResult:$e ")
             }
         }
     }

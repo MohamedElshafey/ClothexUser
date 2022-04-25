@@ -169,7 +169,7 @@
     <string name="asc_price">From lowest to highest price</string>
     <string name="desc_price">From highest to lowest price</string>
     <string name="expired_in">Expired in %s</string>
-    <string name="your_web_client_id" translatable="false">444086010307-okovao43rirn600d50s1o7b2ll88r6ip.apps.googleusercontent.com</string>
+    <string name="your_web_client_id" translatable="false">444086010307-9b0d8npjh5ce0rt0k9ig8vosuvt0qp09.apps.googleusercontent.com</string>
     <string name="facebook_app_id" translatable="false">1389728718153128</string>
     <string name="fb_login_protocol_scheme" translatable="false">clothex</string>
     <string name="facebook_client_token" translatable="false">749c2ff5099984cd0cc9b44d2c25e34c</string>

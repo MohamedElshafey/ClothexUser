@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentOnboardingBinding
+import com.clothex.user.home.HomeActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
@@ -53,7 +53,9 @@ class OnBoardingFragment : Fragment() {
         viewModel.changeVisitOnBoardingState()
         binding.viewPager.adapter = OnBoardingAdapter(onBoardingItemList) { position ->
             if (position == onBoardingItemList.size - 1) {
-                findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToUserPreferencesFragment())
+//                findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToUserPreferencesFragment())
+                HomeActivity.start(requireContext())
+                activity?.finish()
             } else {
                 binding.viewPager.setCurrentItem(position + 1, true)
             }

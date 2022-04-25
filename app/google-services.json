@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:444086010307:android:678b82d2149aa61283fd76",
+        "android_client_info": {
+          "package_name": "com.clothex.shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444086010307-9b0d8npjh5ce0rt0k9ig8vosuvt0qp09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeW1vny0gf6ieaSV_iG8-w297lOLJCAcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444086010307-9b0d8npjh5ce0rt0k9ig8vosuvt0qp09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:444086010307:android:81d8bbe2ca3d2a5583fd76",
         "android_client_info": {
           "package_name": "com.clothex.user"
@@ -14,7 +43,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "444086010307-828vvgiljhvoe4i6365q0d7hfpfla0sb.apps.googleusercontent.com",
+          "client_id": "444086010307-6j8m84tl2jaupf8ka04tmljpnaod5ue2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.clothex.user",
@@ -22,20 +51,20 @@
           }
         },
         {
-          "client_id": "444086010307-0fc49mjs5j4dpmc2hl4spo40uco8nafo.apps.googleusercontent.com",
+          "client_id": "444086010307-9b0d8npjh5ce0rt0k9ig8vosuvt0qp09.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD9I0PwumyfJ3VtW3VAcOQ3Vm8P5KQD1C8"
+          "current_key": "AIzaSyDeW1vny0gf6ieaSV_iG8-w297lOLJCAcE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "444086010307-0fc49mjs5j4dpmc2hl4spo40uco8nafo.apps.googleusercontent.com",
+              "client_id": "444086010307-9b0d8npjh5ce0rt0k9ig8vosuvt0qp09.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
