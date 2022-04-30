@@ -1,7 +1,5 @@
 package com.clothex.user.home.login
 
-import android.content.Intent
-import android.content.IntentSender
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -14,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -182,30 +182,10 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun handleGoogleLogin() {
-        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(requireActivity()) { result ->
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
             try {
-                startIntentSenderForResult(
-                    result.pendingIntent.intentSender, 1001,
-                    null, 0, 0, 0, null
-                )
-            } catch (e: IntentSender.SendIntentException) {
-                Log.e(TAG, "Couldn't start One Tap UI: ${e.localizedMessage}")
-            }
-        }
-            .addOnFailureListener(requireActivity()) { e ->
-                // No saved credentials found. Launch the One Tap sign-up flow, or
-                // do nothing and continue presenting the signed-out UI.
-                Log.d(TAG, e.localizedMessage)
-            }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1001) {
-            try {
-                val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                val credential = oneTapClient.getSignInCredentialFromIntent(it.data)
                 val idToken = credential.googleIdToken
                 val email = credential.id
                 loginViewModel.login(LoginBody(email = email, googleToken = idToken)) {
@@ -214,6 +194,13 @@ class LoginFragment : Fragment() {
             } catch (e: ApiException) {
                 Log.d(TAG, "onActivityResult:$e ")
             }
+        }
+
+    private fun handleGoogleLogin() {
+        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener { result ->
+            launcher.launch(IntentSenderRequest.Builder(result.pendingIntent.intentSender).build())
+        }.addOnFailureListener { e ->
+            Log.d(TAG, e.localizedMessage)
         }
     }
 
