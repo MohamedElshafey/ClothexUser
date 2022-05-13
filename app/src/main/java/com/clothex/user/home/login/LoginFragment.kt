@@ -45,11 +45,10 @@ class LoginFragment : Fragment() {
 
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
-    lateinit var callbackManager: CallbackManager
+    private val callbackManager: CallbackManager = CallbackManager.Factory.create();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginViewModel.setFirstTimeOpen()
-        callbackManager = CallbackManager.Factory.create();
         oneTapClient = Identity.getSignInClient(requireActivity())
         signInRequest = BeginSignInRequest.builder()
             .setPasswordRequestOptions(
@@ -120,7 +119,7 @@ class LoginFragment : Fragment() {
 
         binding.facebookSignInButton.setOnClickListener {
             LoginManager.getInstance()
-                .logInWithReadPermissions(this, listOf("public_profile"));
+                .logInWithReadPermissions(this, callbackManager, listOf("public_profile", "email"));
         }
 
 //        handleGoogleLogin()

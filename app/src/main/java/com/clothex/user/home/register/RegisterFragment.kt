@@ -1,7 +1,5 @@
 package com.clothex.user.home.register
 
-import android.content.Intent
-import android.content.IntentSender
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -16,6 +14,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -52,8 +52,7 @@ class RegisterFragment : Fragment() {
         if (EMAIL_ADDRESS.matcher(binding.emailTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.emailTextInputLayout.error = getString(R.string.invalid_email)
-            binding.emailTextInputLayout.isErrorEnabled = true
+            showEmailError()
         } else {
             binding.emailTextInputLayout.isErrorEnabled = false
         }
@@ -65,8 +64,7 @@ class RegisterFragment : Fragment() {
                 .matcher(binding.phoneNumberTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.phoneNumberTextInputLayout.error = getString(R.string.invalid_phone_number)
-            binding.phoneNumberTextInputLayout.isErrorEnabled = true
+            showPhoneError()
         } else {
             binding.phoneNumberTextInputLayout.isErrorEnabled = false
         }
@@ -78,8 +76,7 @@ class RegisterFragment : Fragment() {
                 .matcher(binding.passwordTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.passwordTextInputLayout.error = getString(R.string.invalide_password)
-            binding.passwordTextInputLayout.isErrorEnabled = true
+            showPasswordError()
         } else {
             binding.passwordTextInputLayout.isErrorEnabled = false
         }
@@ -87,12 +84,11 @@ class RegisterFragment : Fragment() {
 
     private val usernameHelper = Handler(Looper.getMainLooper())
     private val usernameRunnable = Runnable {
-        if (Pattern.compile("^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}\$")
+        if (Pattern.compile("^(?!\\s*\$).+")
                 .matcher(binding.nameTextInputLayout.editText?.text.toString())
                 .matches().not()
         ) {
-            binding.nameTextInputLayout.error = getString(R.string.invalid_username)
-            binding.nameTextInputLayout.isErrorEnabled = true
+            showNameError()
         } else {
             binding.nameTextInputLayout.isErrorEnabled = false
         }
@@ -100,11 +96,10 @@ class RegisterFragment : Fragment() {
 
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
-    lateinit var callbackManager: CallbackManager
+    private val callbackManager: CallbackManager = CallbackManager.Factory.create();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callbackManager = CallbackManager.Factory.create();
         oneTapClient = Identity.getSignInClient(requireActivity())
         signInRequest = BeginSignInRequest.builder()
             .setPasswordRequestOptions(
@@ -184,7 +179,7 @@ class RegisterFragment : Fragment() {
         binding.signInTV.setOnClickListener {
             findNavController().navigateUp()
         }
-        binding.bottomButton.setOnClickListener {
+        binding.signupButton.setOnClickListener {
             val email = binding.emailTextInputLayout.editText?.text?.toString()
             val username = binding.nameTextInputLayout.editText?.text?.toString()
             val phoneNumber = binding.phoneNumberTextInputLayout.editText?.text?.toString()
@@ -198,9 +193,22 @@ class RegisterFragment : Fragment() {
                     phone_number = phoneNumber!!,
                     username = username!!
                 )
-                viewModel.signup(signupBody) {
-                    handleSignupResponse(it)
+                viewModel.signup(signupBody) { result ->
+                    if (result.isSuccess) {
+                        handleSignupResponse(result)
+                    } else {
+                        Toast.makeText(
+                            context,
+                            context?.getString(R.string.error_happened_message_title),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
+            } else {
+                showNameError()
+                showPhoneError()
+                showEmailError()
+                showPasswordError()
             }
         }
         binding.googleSignUpButton.setOnClickListener {
@@ -247,6 +255,26 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun showNameError() {
+        binding.nameTextInputLayout.error = getString(R.string.invalid_username)
+        binding.nameTextInputLayout.isErrorEnabled = true
+    }
+
+    private fun showPhoneError() {
+        binding.phoneNumberTextInputLayout.error = getString(R.string.invalid_phone_number)
+        binding.phoneNumberTextInputLayout.isErrorEnabled = true
+    }
+
+    private fun showEmailError() {
+        binding.emailTextInputLayout.error = getString(R.string.invalid_email)
+        binding.emailTextInputLayout.isErrorEnabled = true
+    }
+
+    private fun showPasswordError() {
+        binding.passwordTextInputLayout.error = getString(R.string.invalide_password)
+        binding.passwordTextInputLayout.isErrorEnabled = true
+    }
+
     private fun handleSignupResponse(result: Result<SimpleResponse>) {
         result.getOrNull()?.let { simpleResponse ->
             if (simpleResponse.success) {
@@ -274,26 +302,10 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun handleGoogleLogin() {
-        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(requireActivity()) { result ->
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
             try {
-                startIntentSenderForResult(
-                    result.pendingIntent.intentSender, 1001,
-                    null, 0, 0, 0, null
-                )
-            } catch (e: IntentSender.SendIntentException) {
-            }
-        }.addOnFailureListener(requireActivity()) { e ->
-
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1001) {
-            try {
-                val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                val credential = oneTapClient.getSignInCredentialFromIntent(it.data)
                 val idToken = credential.googleIdToken
                 val email = credential.id
                 val signupBody = SignupBody(
@@ -305,7 +317,15 @@ class RegisterFragment : Fragment() {
                     handleSignupResponse(it)
                 }
             } catch (e: ApiException) {
+                Log.d(TAG, ":$e ")
             }
+        }
+
+    private fun handleGoogleLogin() {
+        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener { result ->
+            launcher.launch(IntentSenderRequest.Builder(result.pendingIntent.intentSender).build())
+        }.addOnFailureListener { e ->
+            e.localizedMessage?.let { Log.d(TAG, it) }
         }
     }
 
