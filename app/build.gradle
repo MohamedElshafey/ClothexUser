@@ -17,7 +17,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('/Users/mohamedelshafey/StudioProjects/clothex-user-keystore')
+            storeFile file('../clothex-user-keystore')
             storePassword 'hIeg&2!NG'
             keyPassword 'hIeg&2!NG'
             keyAlias 'user-alias'
