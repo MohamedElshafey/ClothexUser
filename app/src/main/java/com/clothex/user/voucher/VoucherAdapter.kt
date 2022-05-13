@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemVoucherBinding
-import com.clothex.user.utils.DateUtil.toLocalTimeZone
+import com.clothex.user.utils.DateUtil.toLocalDateOnly
 import com.clothex.user.utils.setImageFromUrl
 import com.clothex.user.utils.setRotationByLocale
 
@@ -48,7 +48,7 @@ class VoucherAdapter(
                 } else {
                     val subTitle = String.format(
                         context.getString(R.string.expired_in),
-                        expiryDate.toLocalTimeZone(context)
+                        expiryDate.toLocalDateOnly(context)
                     )
                     binding.subtitleTV.text = subTitle
                     binding.subtitleTV.setTextColor(

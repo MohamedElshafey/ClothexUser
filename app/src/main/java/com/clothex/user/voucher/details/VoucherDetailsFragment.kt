@@ -13,7 +13,7 @@ import com.clothex.data.domain.model.ShopAndBranch
 import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentVoucherDetailsBinding
-import com.clothex.user.utils.DateUtil.toLocalTimeZone
+import com.clothex.user.utils.DateUtil.toLocalDateOnly
 import com.clothex.user.voucher.shop_with_branch.ShopAndBranchAdapter
 import com.clothex.user.voucher.shop_with_branch.ShopAndBranchSelectedListener
 import org.koin.android.ext.android.inject
@@ -45,7 +45,7 @@ class VoucherDetailsFragment : Fragment(), ShopAndBranchSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         val expireString = String.format(
             requireContext().getString(R.string.expired_in),
-            voucher.expiryDate.toLocalTimeZone(requireContext())
+            voucher.expiryDate.toLocalDateOnly(requireContext())
         )
         binding.expireTV.text = expireString
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }

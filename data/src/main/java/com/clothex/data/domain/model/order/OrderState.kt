@@ -24,6 +24,6 @@ enum class OrderState(
     @SerializedName("rejected")
     REJECTED(3, R.string.rejected, Color.parseColor("#970000"), Color.parseColor("#ffdfdf")),
 
-    @SerializedName("done")
-    DONE(4, R.string.done, Color.parseColor("#646464"), Color.parseColor("#e9e9e9"))
+//    @SerializedName("done")
+//    DONE(4, R.string.done, Color.parseColor("#646464"), Color.parseColor("#e9e9e9"))
 }

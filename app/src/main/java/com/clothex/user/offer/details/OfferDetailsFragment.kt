@@ -10,7 +10,7 @@ import com.clothex.data.domain.model.ShopAndBranch
 import com.clothex.data.domain.model.offer.Offer
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentOfferDetailsBinding
-import com.clothex.user.utils.DateUtil.toLocalTimeZone
+import com.clothex.user.utils.DateUtil.toLocalDateOnly
 import com.clothex.user.voucher.shop_with_branch.ShopAndBranchAdapter
 import com.clothex.user.voucher.shop_with_branch.ShopAndBranchSelectedListener
 
@@ -39,7 +39,7 @@ class OfferDetailsFragment : Fragment(), ShopAndBranchSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         val expireString = String.format(
             requireContext().getString(R.string.expired_in),
-            offer.expiryDate.toLocalTimeZone(requireContext())
+            offer.expiryDate.toLocalDateOnly(requireContext())
         )
         binding.expireTV.text = expireString
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }

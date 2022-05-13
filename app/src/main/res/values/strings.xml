@@ -30,7 +30,6 @@
     <string name="select_current_location_title">Show shops around current location</string>
     <string name="choose_location_on_map_title">Show shops in specific location</string>
     <string name="choose_location_on_map_value">Choose location on the map</string>
-    <string name="show_shops_here">Show shops here</string>
     <string name="choose_color">Choose color</string>
     <string name="choose_size">Choose size</string>
     <string name="available_in">Available in</string>
@@ -69,7 +68,7 @@
     <string name="best_match">Best match</string>
     <string name="choose_category">Choose category</string>
     <string name="price_range">Price range</string>
-    <string name="apply_filter">Apply filter</string>
+    <string name="do_search">Search</string>
     <string name="my_preferences">My preferences</string>
     <string name="edit_my_pref_sub_title">Here is what you prefer</string>
     <string name="edit_location_sub_title">You can edit saved places</string>

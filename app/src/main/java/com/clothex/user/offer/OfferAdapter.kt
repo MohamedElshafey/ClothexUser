@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.clothex.data.domain.model.offer.Offer
 import com.clothex.user.R
 import com.clothex.user.databinding.AdapterItemVoucherBinding
-import com.clothex.user.utils.DateUtil.toLocalTimeZone
+import com.clothex.user.utils.DateUtil.toLocalDateOnly
 import com.clothex.user.utils.setImageFromUrl
 import com.clothex.user.utils.setRotationByLocale
 
@@ -40,7 +40,7 @@ class OfferAdapter(
                 val context = binding.root.context
                 val subTitle = String.format(
                     context.getString(R.string.expired_in),
-                    offer.expiryDate.toLocalTimeZone(context)
+                    offer.expiryDate.toLocalDateOnly(context)
                 )
                 binding.subtitleTV.text = subTitle
                 setImageFromUrl(binding.logoIV, logo.source)

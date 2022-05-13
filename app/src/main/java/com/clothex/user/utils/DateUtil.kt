@@ -28,4 +28,18 @@ object DateUtil {
             return this
         }
     }
+
+    fun String.toLocalDateOnly(context: Context): String {
+        val locale = context.getCurrentLocale()
+        val inputSdf = SimpleDateFormat(inputDateFormat, Locale.ENGLISH)
+        inputSdf.timeZone = TimeZone.getTimeZone("UTC")
+        try {
+            val date = inputSdf.parse(this) ?: return this
+            val df = SimpleDateFormat(outputDateOnlyFormat, locale)
+            df.timeZone = TimeZone.getDefault()
+            return df.format(date)
+        } catch (e: Exception) {
+            return this
+        }
+    }
 }

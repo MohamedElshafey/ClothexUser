@@ -29,7 +29,6 @@
     <string name="select_current_location_title">عرض المتاح حول الموقع الحالي</string>
     <string name="choose_location_on_map_title">"عرض المتاح حول موقع محدد "</string>
     <string name="choose_location_on_map_value">اختر موقع علي الخريطه</string>
-    <string name="show_shops_here">عرض المحلات هنا</string>
     <string name="choose_color">"اختر لون "</string>
     <string name="choose_size">اختر مقاس</string>
     <string name="available_in">متاح في</string>
@@ -68,7 +67,7 @@
     <string name="best_match">افضل مطابقه</string>
     <string name="choose_category">اختر القسم</string>
     <string name="price_range">السعر</string>
-    <string name="apply_filter">تطبيق التصفيه</string>
+    <string name="do_search">بحث</string>
     <string name="my_preferences">تفضيلاتي</string>
     <string name="edit_my_pref_sub_title">هذا ما تفضله</string>
     <string name="edit_location_sub_title">يمكنك تعديل الأماكن المحفوظة</string>

@@ -174,22 +174,12 @@ class MapsFragment : Fragment() {
             activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager? ?: return
         val location = getLastLocation(locationManager)
         if (location != null) {
-            googleMap?.animateCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(
-                        location.latitude,
-                        location.longitude
-                    ), 13f
-                )
-            )
-            val cameraPosition = CameraPosition.Builder()
-                .target(
-                    LatLng(
-                        location.latitude,
-                        location.longitude
-                    )
-                ).zoom(17f).build()
+            val latLng = LatLng(location.latitude, location.longitude)
+            googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13f))
+            val cameraPosition = CameraPosition.Builder().target(latLng).zoom(17f).build()
             googleMap?.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            marker?.remove()
+            marker = googleMap?.addMarker(MarkerOptions().position(latLng))
         }
     }
 }

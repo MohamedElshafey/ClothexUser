@@ -118,7 +118,7 @@
         android:background="@drawable/button_bg_shape"
         android:backgroundTint="@color/infinite_night"
         android:gravity="center"
-        android:text="@string/show_shops_here"
+        android:text="@string/add_new_location"
         android:textAppearance="@style/FontSemiBold"
         android:textColor="@color/white"
         android:textSize="16sp"
