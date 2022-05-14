@@ -2,6 +2,7 @@ package com.clothex.user.home.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.model.sign.Login
 import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.data.domain.usecases.local.SetIsFirstTimeOpenUseCase
@@ -41,7 +42,7 @@ class LoginViewModel(
         }
     }
 
-    fun login(loginBody: LoginBody, callback: (Result<Login>) -> Unit) {
+    fun login(loginBody: LoginBody, callback: (Result<BaseResponseModel<Login>>) -> Unit) {
         viewModelScope.launch {
             loginUseCase.invoke(loginBody).collect {
                 callback.invoke(it)

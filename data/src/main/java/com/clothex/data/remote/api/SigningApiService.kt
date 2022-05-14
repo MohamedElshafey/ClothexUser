@@ -1,5 +1,6 @@
 package com.clothex.data.remote.api
 
+import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.model.SimpleResponse
 import com.clothex.data.domain.model.sign.Login
 import com.clothex.data.domain.model.sign.LoginBody
@@ -11,7 +12,7 @@ import retrofit2.http.*
  */
 interface SigningApiService {
     @POST("login")
-    suspend fun login(@Body body: LoginBody): Login
+    suspend fun login(@Body body: LoginBody): BaseResponseModel<Login>
 
     @POST("signup")
     suspend fun signup(@Body body: SignupBody): SimpleResponse

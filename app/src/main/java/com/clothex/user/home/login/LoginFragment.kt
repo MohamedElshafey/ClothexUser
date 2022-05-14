@@ -1,6 +1,5 @@
 package com.clothex.user.home.login
 
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Bundle
@@ -14,13 +13,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.model.sign.Login
 import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentLoginBinding
+import com.clothex.user.dialog.MessageAlertDialog
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -129,7 +131,7 @@ class LoginFragment : Fragment() {
         val spannableStringBuilder = SpannableStringBuilder(signUpMsg)
         val startIndex = signUpMsg.indexOf(".")
         spannableStringBuilder.setSpan(
-            ForegroundColorSpan(Color.parseColor("#666666")),
+            ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.infinite_night)),
             startIndex + 1,
             signUpMsg.length,
             Spannable.SPAN_INCLUSIVE_INCLUSIVE
@@ -156,7 +158,7 @@ class LoginFragment : Fragment() {
         binding.skipButton.setOnClickListener {
             findNavController().navigateUp()
         }
-        binding.bottomButton.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             val email = binding.emailTextInputLayout.editText?.text?.toString()
             val password = binding.passwordTextInputLayout.editText?.text?.toString()
             if (email.isNullOrEmpty() || password.isNullOrEmpty()) return@setOnClickListener
@@ -167,9 +169,27 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun handleLoginResponse(result: Result<Login>) {
-        result.getOrNull()?.let {
-            findNavController().navigateUp()
+    private fun handleLoginResponse(result: Result<BaseResponseModel<Login>>) {
+        result.getOrNull()?.let { response ->
+            response.data?.let {
+                findNavController().navigateUp()
+            }
+            response.status?.let { status ->
+                if (status == 402) {
+                    context?.let { context ->
+                        MessageAlertDialog.showAlertDialog(
+                            context,
+                            title = context.getString(R.string.sign_up_first_title),
+                            description = context.getString(R.string.sign_up_first_description),
+                            positiveButtonText = context.getString(R.string.sign_up),
+                            negativeButtonText = context.getString(R.string.cancel),
+                            positiveOnClickListener = {
+                                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+                            }
+                        )
+                    }
+                }
+            }
         }
         result.exceptionOrNull()?.let { throwable ->
             val message = if (throwable is HttpException) {

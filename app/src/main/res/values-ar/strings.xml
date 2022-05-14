@@ -41,10 +41,12 @@
     <string name="forget_password_question">هل نسيت الرقم السري؟</string>
     <string name="forget_password">نسيت الرقم السري</string>
     <string name="sign_up_msg">لا يوجد لدي حساب. تسجيل حساب</string>
+    <string name="sign_up_first_title">لا يوجد لديك حساب</string>
+    <string name="sign_up_first_description">يرجي تسجيل حساب اولا</string>
     <string name="login">تسجيل الدخول</string>
     <string name="name">الاسم</string>
     <string name="email">البريد الالكتروني</string>
-    <string name="sign_up">افتح حساب</string>
+    <string name="sign_up">تسجيل حساب</string>
     <string name="sign_in_msg">هل لديك حساب. تسجيل الدخول!</string>
     <string name="view_orders_by">عرض الطلبات حسب</string>
     <string name="filter">تصفيه</string>
@@ -173,4 +175,5 @@
     <string name="your">@null</string>
     <string name="voucher_redeemed">تم استخدام الخصم بنجاح</string>
     <string name="item_not_available">هذا المنتج غير  متاح!</string>
+    <string name="continue_as_guest">الدخول كزائر</string>
 </resources>

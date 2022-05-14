@@ -125,6 +125,7 @@ val viewModelsModule = module {
     viewModel {
         RegisterViewModel(
             signUpUseCase = get(named("signup")),
+            loginUseCase = get(named("login")),
             getTokenUseCase = get(named("get_token")),
             setTokenUseCase = get(named("set_token")),
             signUpTemporaryUseCase = get(named("signup_temporary"))

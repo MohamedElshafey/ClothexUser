@@ -42,6 +42,8 @@
     <string name="forget_password_question">Forget password?</string>
     <string name="forget_password">Forget password</string>
     <string name="sign_up_msg">I don\'t have account. Sign up!</string>
+    <string name="sign_up_first_title">You don\'t have account</string>
+    <string name="sign_up_first_description">sign up first to continue</string>
     <string name="login">Login</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -182,6 +184,7 @@
     <string name="your">your</string>
     <string name="voucher_redeemed">Redeemed!, enjoy it ;)</string>
     <string name="item_not_available">Item not available!</string>
+    <string name="continue_as_guest">Continue as a guest</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

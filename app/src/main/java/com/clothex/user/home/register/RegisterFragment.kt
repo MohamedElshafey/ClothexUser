@@ -20,10 +20,15 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.model.SimpleResponse
+import com.clothex.data.domain.model.sign.Login
+import com.clothex.data.domain.model.sign.LoginBody
 import com.clothex.data.domain.model.sign.SignupBody
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentRegisterBinding
+import com.clothex.user.dialog.MessageAlertDialog
+import com.clothex.user.home.login.LoginFragmentDirections
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -195,7 +200,7 @@ class RegisterFragment : Fragment() {
                 )
                 viewModel.signup(signupBody) { result ->
                     if (result.isSuccess) {
-                        handleSignupResponse(result)
+                        handleSignupResponse(LoginBody(email = email, password = password), result)
                     } else {
                         Toast.makeText(
                             context,
@@ -240,7 +245,9 @@ class RegisterFragment : Fragment() {
                                     facebookToken = accessToken.token
                                 )
                             ) {
-                                handleSignupResponse(it)
+                                handleSignupResponse(
+                                    LoginBody(email = email, facebookToken = accessToken.token), it
+                                )
                             }
                     }
                     val parameters = Bundle()
@@ -275,15 +282,12 @@ class RegisterFragment : Fragment() {
         binding.passwordTextInputLayout.isErrorEnabled = true
     }
 
-    private fun handleSignupResponse(result: Result<SimpleResponse>) {
+    private fun handleSignupResponse(loginBody: LoginBody, result: Result<SimpleResponse>) {
         result.getOrNull()?.let { simpleResponse ->
             if (simpleResponse.success) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.signed_up_successfully),
-                    Toast.LENGTH_LONG
-                ).show()
-                findNavController().navigateUp()
+                viewModel.login(loginBody) {
+                    handleLoginResponse(it)
+                }
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -314,7 +318,7 @@ class RegisterFragment : Fragment() {
                     username = credential.displayName ?: ""
                 )
                 viewModel.signup(signupBody) {
-                    handleSignupResponse(it)
+                    handleSignupResponse(LoginBody(email = email, googleToken = idToken), it)
                 }
             } catch (e: ApiException) {
                 Log.d(TAG, ":$e ")
@@ -326,6 +330,38 @@ class RegisterFragment : Fragment() {
             launcher.launch(IntentSenderRequest.Builder(result.pendingIntent.intentSender).build())
         }.addOnFailureListener { e ->
             e.localizedMessage?.let { Log.d(TAG, it) }
+        }
+    }
+
+    private fun handleLoginResponse(result: Result<BaseResponseModel<Login>>) {
+        result.getOrNull()?.let { response ->
+            response.data?.let {
+                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToNavigationHome())
+            }
+            response.status?.let { status ->
+                if (status == 402) {
+                    context?.let { context ->
+                        MessageAlertDialog.showAlertDialog(
+                            context,
+                            title = context.getString(R.string.sign_up_first_title),
+                            description = context.getString(R.string.sign_up_first_description),
+                            positiveButtonText = context.getString(R.string.sign_up),
+                            negativeButtonText = context.getString(R.string.cancel),
+                            positiveOnClickListener = {
+                                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+                            }
+                        )
+                    }
+                }
+            }
+        }
+        result.exceptionOrNull()?.let { throwable ->
+            val message = if (throwable is HttpException) {
+                throwable.message()
+            } else {
+                throwable.message
+            }
+            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         }
     }
 
