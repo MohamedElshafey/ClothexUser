@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Type(
     val id: String,
-    val sub_type: List<SubType>,
+    val sub_type: List<SubType>?,
     private val title: String,
     @SerializedName("title_ar")
     private val titleAr: String?
