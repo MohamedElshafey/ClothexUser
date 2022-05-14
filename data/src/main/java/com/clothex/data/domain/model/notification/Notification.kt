@@ -11,5 +11,11 @@ data class Notification(
     val description: String?,
     val logo: Media?,
     var read: Boolean,
-    val title: String
-)
+    val title: String,
+    val title_ar: String?
+) {
+    fun getTitle(isArabic: Boolean): String {
+        return if (isArabic) title_ar ?: title
+        else title
+    }
+}

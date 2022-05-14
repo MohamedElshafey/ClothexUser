@@ -38,12 +38,12 @@ class NotificationFragment : Fragment(), NotificationCallback {
         super.onViewCreated(view, savedInstanceState)
         binding.progressBar.isGone = false
         notificationViewModel.fetchNotifications()
-        notificationViewModel.notificationLiveData.observe(viewLifecycleOwner, { result ->
+        notificationViewModel.notificationLiveData.observe(viewLifecycleOwner) { result ->
             result.getOrNull()?.let { list ->
                 adapter.setData(list)
             }
             binding.progressBar.isGone = true
-        })
+        }
         binding.notificationRV.addDivider()
         binding.notificationRV.adapter = adapter
         binding.actionBar.setOnClickListener {
