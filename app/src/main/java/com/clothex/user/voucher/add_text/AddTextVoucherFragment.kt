@@ -38,7 +38,7 @@ class AddTextVoucherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.titleTV.setOnClickListener {
+        binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
         }
         binding.voucherButton.setOnClickListener {

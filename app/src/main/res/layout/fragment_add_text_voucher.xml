@@ -5,21 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/titleTV"
+    <com.clothex.user.customview.DefaultActionBar
+        android:id="@+id/actionBar"
         android:layout_width="0dp"
         android:layout_height="?actionBarSize"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:text="@string/add_new_voucher"
-        android:textAppearance="@style/FontSemiBold"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        app:drawableStartCompat="@drawable/ic_back_arrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/add_new_voucher" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/codeInputLayout"
@@ -33,7 +26,7 @@
         app:layout_constraintBottom_toTopOf="@+id/voucherButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTV">
+        app:layout_constraintTop_toBottomOf="@id/actionBar">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
