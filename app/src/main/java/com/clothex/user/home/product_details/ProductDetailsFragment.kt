@@ -83,7 +83,7 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
 
         mViewModel.colorsLiveData.observe(viewLifecycleOwner) {
             val list: List<String> = it.map { it.code ?: "" }
-            binding.contentContainer.colorRV.adapter = ColorsAdapter(list) { color ->
+            binding.contentContainer.colorRV.adapter = ColorsAdapter(list, true) { color ->
                 mViewModel.selectColor(color)
             }
         }
@@ -94,12 +94,17 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
                 layoutInflater,
                 *list.map { it.title }.toTypedArray()
             )
+            binding.contentContainer.sizeChipGroup.check(
+                binding.contentContainer.sizeChipGroup.findViewWithTag<Chip>(
+                    list.first().title
+                ).id
+            )
         }
 
-        binding.contentContainer.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.contentContainer.sizeChipGroup.setOnCheckedChangeListener { _, checkedId ->
             val chip = binding.contentContainer.sizeChipGroup.findViewById(checkedId) as Chip?
             val selectedSize =
-                mViewModel.sizesLiveData.value?.first { it.title.equals(chip?.text.toString()) }
+                mViewModel.sizesLiveData.value?.first { it.title == chip?.text.toString() }
             selectedSize?.let { mViewModel.selectSize(it) }
         }
 
@@ -108,6 +113,8 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
                 BranchAdapter(it, mViewModel.isArabic()) { branch ->
                     mViewModel.selectBranch(branch)
                 }
+            if (it.isNotEmpty())
+                mViewModel.selectBranch(it.first())
         }
 
         binding.contentContainer.plusIV.setOnClickListener {

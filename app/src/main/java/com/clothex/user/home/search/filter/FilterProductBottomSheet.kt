@@ -86,7 +86,7 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
             viewModel.selectedSize = group.findViewById<Chip>(checkedId)?.text?.toString() ?: ""
         }
 
-        binding.colorRV.adapter = ColorsAdapter(colorList) {
+        binding.colorRV.adapter = ColorsAdapter(colorList, false) {
             viewModel.selectedColor = it
         }
 

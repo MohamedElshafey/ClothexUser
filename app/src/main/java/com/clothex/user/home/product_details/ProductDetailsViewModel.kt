@@ -68,6 +68,8 @@ class ProductDetailsViewModel(
     var selectedColor: Color? = null
 
     fun selectColor(colorCode: String) {
+        branchesLiveData.value = listOf()
+        branchesVisibility.set(false)
         val item = productMutableLiveData.value
         selectedColor = item?.colors?.first { it.code.equals(colorCode) }
         val sizes = selectedColor?.sizes
@@ -78,16 +80,12 @@ class ProductDetailsViewModel(
             sizesLiveData.value = listOf()
             sizeVisibility.set(false)
         }
-        branchesLiveData.value = listOf()
-        branchesVisibility.set(false)
         val images = selectedColor?.images
         if (images == null) {
             setDefaultImages()
         } else {
             images.let { mainImagesLiveData.value = it }
         }
-        selectedSize = null
-        selectedBranch = null
     }
 
     var selectedSize: Size? = null
@@ -101,7 +99,6 @@ class ProductDetailsViewModel(
             branchesLiveData.value = listOf()
             branchesVisibility.set(false)
         }
-        selectedBranch = null
     }
 
     var selectedBranch: Branch? = null

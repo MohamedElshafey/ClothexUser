@@ -13,6 +13,7 @@ import java.util.*
 
 class ColorsAdapter(
     private val colors: List<String>,
+    private val selectFirstColor: Boolean,
     private val selectColorCallback: (String) -> Unit
 ) :
     RecyclerView.Adapter<ColorsAdapter.ViewHolder>() {
@@ -33,15 +34,21 @@ class ColorsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val background = holder.binding.colorView.background as GradientDrawable
-        background.setColor(Color.parseColor(colors[holder.adapterPosition]))
+        background.setColor(Color.parseColor(colors[holder.absoluteAdapterPosition]))
         holder.binding.colorView.background = background
         holder.binding.root.setOnClickListener {
-            selectedViews.forEach { it.setBackgroundResource(R.drawable.color_bg_shape_unselected) }
-            selectedViews.remove(holder.binding.root)
-            selectedViews.add(holder.binding.root)
-            holder.binding.root.setBackgroundResource(R.drawable.color_bg_shape_selected)
-            selectColorCallback.invoke(colors[holder.adapterPosition])
+            selectColor(holder)
         }
+        if (selectFirstColor && selectedViews.isEmpty())
+            selectColor(holder)
+    }
+
+    private fun selectColor(holder: ViewHolder) {
+        selectedViews.forEach { it.setBackgroundResource(R.drawable.color_bg_shape_unselected) }
+        selectedViews.remove(holder.binding.root)
+        selectedViews.add(holder.binding.root)
+        holder.binding.root.setBackgroundResource(R.drawable.color_bg_shape_selected)
+        selectColorCallback.invoke(colors[holder.absoluteAdapterPosition])
     }
 
     override fun getItemCount(): Int = colors.size

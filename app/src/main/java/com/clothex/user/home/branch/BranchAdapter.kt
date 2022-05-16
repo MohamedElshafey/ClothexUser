@@ -20,7 +20,7 @@ class BranchAdapter(
     private val onClick: (Branch) -> Unit
 ) :
     RecyclerView.Adapter<BranchAdapter.ViewHolder>() {
-    private var selectedItemPosition = -1
+    private var selectedItemPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemSavedLocationBinding.inflate(
