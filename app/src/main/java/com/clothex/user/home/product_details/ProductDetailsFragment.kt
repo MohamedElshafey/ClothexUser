@@ -73,7 +73,11 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
 
         mViewModel.mainImagesLiveData.observe(viewLifecycleOwner) {
             binding.mainImagesRV.adapter =
-                ImageAdapter(it, scaleType = ScaleType.CENTER_CROP, onImageSelectedListener = this)
+                ImageAdapter(
+                    it,
+                    scaleType = ScaleType.CENTER_INSIDE,
+                    onImageSelectedListener = this
+                )
             binding.indicator.attachToRecyclerView(binding.mainImagesRV, pagerSnapHelper)
         }
 
