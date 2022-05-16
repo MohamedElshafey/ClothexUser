@@ -99,6 +99,7 @@
             app:layout_constraintEnd_toEndOf="@id/titleTV"
             app:layout_constraintStart_toStartOf="@id/titleTV"
             app:layout_constraintTop_toBottomOf="@id/chooseSizeTitleTV"
+            app:selectionRequired="true"
             app:singleSelection="true" />
 
         <androidx.constraintlayout.widget.Group
