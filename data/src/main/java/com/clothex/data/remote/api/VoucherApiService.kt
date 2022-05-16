@@ -1,6 +1,6 @@
 package com.clothex.data.remote.api
 
-import com.clothex.data.domain.model.SimpleResponse
+import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.model.qr.RequestRedeem
 import com.clothex.data.domain.model.voucher.Voucher
 import retrofit2.http.GET
@@ -15,7 +15,7 @@ interface VoucherApiService {
     suspend fun getVouchers(): List<Voucher>
 
     @POST("add_voucher")
-    suspend fun addVoucher(@Query("code") code: String): SimpleResponse
+    suspend fun addVoucher(@Query("code") code: String): BaseResponseModel<Boolean>
 
     @POST("request_redeem_voucher")
     suspend fun requestRedeemVoucher(@Query("voucher_id") voucherId: String): RequestRedeem

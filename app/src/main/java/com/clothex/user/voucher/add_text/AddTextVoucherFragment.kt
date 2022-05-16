@@ -44,7 +44,11 @@ class AddTextVoucherFragment : Fragment() {
         binding.voucherButton.setOnClickListener {
             val code = binding.codeInputLayout.editText?.text?.toString()
             if (code.isNullOrEmpty()) {
-                Toast.makeText(requireContext(), getString(R.string.fill_voucher_code_message), Toast.LENGTH_LONG)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.fill_voucher_code_message),
+                    Toast.LENGTH_LONG
+                )
                     .show()
             } else {
                 if (viewModel.isSendVoucher.not())
@@ -55,7 +59,9 @@ class AddTextVoucherFragment : Fragment() {
 
         viewModel.responseLiveData.observe(viewLifecycleOwner) {
             it.getOrNull()?.let {
-                findNavController().navigate(AddTextVoucherFragmentDirections.actionAddTextVoucherBottomSheetToVoucherMessageFragment())
+                if (it.data == true) {
+                    findNavController().navigate(AddTextVoucherFragmentDirections.actionAddTextVoucherBottomSheetToVoucherMessageFragment())
+                }
                 if (it.message.isNullOrEmpty().not())
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
             }
