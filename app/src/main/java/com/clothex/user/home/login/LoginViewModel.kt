@@ -26,8 +26,8 @@ class LoginViewModel(
         viewModelScope.launch {
             getTokenUseCase(Unit).collect { token ->
                 if (token.isNullOrEmpty()) {
-                    signUpTemporaryUseCase(Unit).collect { login ->
-                        login?.let {
+                    signUpTemporaryUseCase(Unit).collect { result ->
+                        result.getOrNull()?.let { login ->
                             setTokenUseCase(Token(login.token, true))
                         }
                     }

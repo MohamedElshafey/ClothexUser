@@ -30,9 +30,11 @@ class ItemsContainerFragment : Fragment(), MyItemCallback {
             ViewModelProvider(this)[ItemsContainerViewModel::class.java]
         _binding = FragmentItemsContainerBinding.inflate(inflater, container, false)
         val openOrders = ItemsContainerFragmentArgs.fromBundle(requireArguments()).openOrders
-        binding.viewPager.post {
-            binding.viewPager.currentItem =
-                if (lastOpenIndex > -1) lastOpenIndex else if (openOrders) 1 else 0
+        binding.viewPager.apply {
+            offscreenPageLimit = 2
+            post {
+                currentItem = if (lastOpenIndex > -1) lastOpenIndex else if (openOrders) 1 else 0
+            }
         }
         return binding.root
     }

@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +24,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import org.koin.android.ext.android.inject
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), (String) -> Unit {
 
     private val viewModel: HomeViewModel by inject()
     private var _binding: FragmentHomeBinding? = null
@@ -62,14 +61,9 @@ class HomeFragment : Fragment() {
                         val token = task.result
                         viewModel.updateFCMToken(token)
                     })
-                    viewModel.fetchHome()
+                    viewModel.fetchHome(this)
                 }
             }
-
-        viewModel.failureLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), getString(R.string.error) + " $it", Toast.LENGTH_SHORT)
-                .show()
-        })
 
         viewModel.productLiveData.distinctUntilChanged().observe(viewLifecycleOwner) { products ->
             binding.productRV.adapter = ProductAdapter(products) { prod ->
@@ -170,7 +164,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.fetchHome()
+            viewModel.fetchHome(this)
         }
 
         viewModel.loadingLiveData.observe(viewLifecycleOwner) { isLoading ->
@@ -213,5 +207,15 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun invoke(throwable: String) {
+        activity?.runOnUiThread {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.network_error_message),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }

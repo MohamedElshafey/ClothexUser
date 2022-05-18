@@ -12,24 +12,24 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SplashViewModel(
-    getTokenUseCase: GetTokenUseCase,
-    setTokenUseCase: SetTokenUseCase,
-    signUpTemporaryUseCase: SignUpTemporaryUseCase,
-    getVisitOnBoardingUseCase: GetVisitOnBoardingUseCase
+    private val getTokenUseCase: GetTokenUseCase,
+    private val setTokenUseCase: SetTokenUseCase,
+    private val signUpTemporaryUseCase: SignUpTemporaryUseCase,
+    private val getVisitOnBoardingUseCase: GetVisitOnBoardingUseCase
 ) : ViewModel() {
 
     val tokenLiveData = MutableLiveData<String>()
     val shouldNavigateToOnBoarding = MutableLiveData<Boolean>()
 
-    init {
+    fun check() {
         viewModelScope.launch {
             getVisitOnBoardingUseCase.invoke(Unit).collect {
                 shouldNavigateToOnBoarding.postValue(it.not())
             }
             getTokenUseCase(Unit).collect { token ->
                 if (token.isNullOrEmpty()) {
-                    signUpTemporaryUseCase(Unit).collect { login ->
-                        login?.let {
+                    signUpTemporaryUseCase(Unit).collect { result ->
+                        result.getOrNull()?.let { login ->
                             setTokenUseCase(Token(login.token, true))
                             tokenLiveData.postValue(token)
                         }
@@ -40,6 +40,5 @@ class SplashViewModel(
             }
         }
     }
-
 
 }

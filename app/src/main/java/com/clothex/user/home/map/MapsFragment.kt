@@ -89,31 +89,47 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
         binding.bottomButton.setOnClickListener {
-            marker?.position?.let { latLng ->
-                var title = "Undefined"
-                var subTitle = "Undefined"
-                try {
-                    val address =
-                        Geocoder(context).getFromLocation(latLng.latitude, latLng.longitude, 1)
-                            .first()
-                    title = address.thoroughfare ?: address.subAdminArea
-                    subTitle = address.subAdminArea + " " + address.adminArea
-                } catch (e: Exception) {
-                }
-                viewModel.saveLocation(
-                    SavedLocation(
-                        title,
-                        subTitle,
-                        false,
-                        latLng.latitude,
-                        latLng.longitude
-                    )
-                ) { saved ->
-                    activity?.runOnUiThread {
-                        if (saved)
-                            findNavController().navigateUp()
-                        else
-                            showEditLocationAlert()
+            val position = marker?.position
+            if (position == null) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.no_location_selected_to_save),
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            } else {
+                position.let { latLng ->
+                    val title: String
+                    val subTitle: String
+                    try {
+                        val address =
+                            Geocoder(context).getFromLocation(latLng.latitude, latLng.longitude, 1)
+                                .first()
+                        title = address.thoroughfare ?: address.subAdminArea
+                        subTitle = address.subAdminArea + " " + address.adminArea
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            context,
+                            getString(R.string.network_error_message),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return@setOnClickListener
+                    }
+                    viewModel.saveLocation(
+                        SavedLocation(
+                            title,
+                            subTitle,
+                            false,
+                            latLng.latitude,
+                            latLng.longitude
+                        )
+                    ) { saved ->
+                        activity?.runOnUiThread {
+                            if (saved)
+                                findNavController().navigateUp()
+                            else
+                                showEditLocationAlert()
+                        }
                     }
                 }
             }

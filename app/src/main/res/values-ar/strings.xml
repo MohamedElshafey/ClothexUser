@@ -135,6 +135,7 @@
     <string name="fill_voucher_code_message">من فضلك املأ الكود أولا!</string>
     <string name="error">خطأ!</string>
     <string name="error_happened_message_title">لا يمكن استكمال طلبك ، يرجى المحاولة مرة أخرى!</string>
+    <string name="network_error_message">لا يمكن الاتصال بالانترنت ، يرجى المحاولة مرة أخرى.</string>
     <!--    <string name="egp_price_format_float">%.02f جنيه</string>-->
     <string name="egp">%d جنيه</string>
     <string name="cant_open_app_message">تطبيق %s غير موجود</string>
@@ -176,4 +177,5 @@
     <string name="voucher_redeemed">تم استخدام الخصم بنجاح</string>
     <string name="item_not_available">هذا المنتج غير  متاح!</string>
     <string name="continue_as_guest">الدخول كزائر</string>
+    <string name="no_location_selected_to_save">يرجي تحديد مكان اولا</string>
 </resources>

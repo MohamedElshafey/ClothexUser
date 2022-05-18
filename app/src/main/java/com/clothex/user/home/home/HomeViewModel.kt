@@ -15,7 +15,9 @@ import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.sign.UpdateFCMTokenUseCase
 import com.clothex.data.local.room.entity.SavedLocation
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -31,7 +33,9 @@ class HomeViewModel(
     val notificationVisible = ObservableField(false)
     val productLiveData = MutableLiveData<List<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
-    val failureLiveData = MutableLiveData<String>()
+    val failureLiveData: Flow<String> = flow {
+
+    }
     val savedLocationLiveData = MutableLiveData<SavedLocation?>()
     var isFirstTimeOpenLiveData = MutableLiveData<Boolean>()
     val departmentListLiveData = MutableLiveData<Result<List<Department>>>()
@@ -47,7 +51,7 @@ class HomeViewModel(
 
     val loadingLiveData = MutableLiveData<Boolean>()
 
-    fun fetchHome() {
+    fun fetchHome(callback: (String) -> Unit) {
         loadingLiveData.postValue(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -64,7 +68,7 @@ class HomeViewModel(
                         }
                     }
                     homeResult.exceptionOrNull()?.let {
-                        failureLiveData.postValue(it.message)
+                        callback.invoke(it.message ?: "")
                     }
                     loadingLiveData.postValue(false)
                 }

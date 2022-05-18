@@ -9,6 +9,7 @@ import com.clothex.data.domain.usecases.token.SetTokenUseCase
 import com.clothex.data.domain.usecases.token.Token
 import com.clothex.data.domain.usecases.user.SetUserUseCase
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
@@ -25,16 +26,14 @@ class LoginUseCase(
 ) :
     LoginBaseUseCase {
     override suspend fun invoke(params: LoginBody): Flow<Result<BaseResponseModel<Login>>> = flow {
-        try {
-            repository.login(params).collect {
-                it.data?.let { login ->
-                    setTokenUseCase.invoke(Token(login.token, false))
-                    setUserUseCase.invoke(login.user)
-                }
-                emit(Result.success(it))
+        repository.login(params).collect {
+            it.data?.let { login ->
+                setTokenUseCase.invoke(Token(login.token, false))
+                setUserUseCase.invoke(login.user)
             }
-        } catch (e: Exception) {
-            emit(Result.failure(e))
+            emit(Result.success(it))
         }
+    }.catch {
+        emit(Result.failure(Throwable("")))
     }
 }

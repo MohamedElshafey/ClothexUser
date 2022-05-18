@@ -29,29 +29,38 @@ class SplashFragment : Fragment() {
         return binding.root
     }
 
+    private val handler = Handler(Looper.getMainLooper())
+    private val runnable = Runnable {
+        viewModel.tokenLiveData.observe(viewLifecycleOwner) {
+            viewModel.shouldNavigateToOnBoarding.observe(viewLifecycleOwner) { shouldOpenOnBoarding ->
+                if (shouldOpenOnBoarding) {
+                    findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToOnBoardingFragment())
+                } else {
+                    HomeActivity.start(requireContext())
+                    activity?.finish()
+                }
+            }
+
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.tokenLiveData.observe(viewLifecycleOwner) {
-                viewModel.shouldNavigateToOnBoarding.observe(viewLifecycleOwner) { shouldOpenOnBoarding ->
-                    if (shouldOpenOnBoarding) {
-                        findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToOnBoardingFragment())
-                    } else {
-                        HomeActivity.start(requireContext())
-                        activity?.finish()
-                    }
-                }
-
-            }
-        }, delaySeconds)
+        Handler(Looper.getMainLooper()).postDelayed(runnable, delaySeconds)
         ObjectAnimator.ofFloat(binding.backgroundImg, "translationY", -200f).apply {
             duration = delaySeconds
             start()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.check()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        handler.removeCallbacks(runnable)
         _binding = null
     }
 }

@@ -50,7 +50,7 @@ class ShopInfoFragment : Fragment(), SelectBranchCallback {
         binding.branchLeadingIconIV.setRotationByLocale()
         binding.branchCountTV.text = "+${shop.branches?.size}"
         binding.branchSuffixTV.text = getString(R.string.more_branches)
-        if (selectedBranch == null)
+        if (selectedBranch == null && shop.branches?.isNotEmpty() == true)
             selectedBranch = shop.branches?.get(0)
         updateBranchData(selectedBranch)
         val contacts = shop.socialMedias

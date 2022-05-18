@@ -32,7 +32,8 @@ class ShopDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel.shopMutableLiveData.observe(viewLifecycleOwner, { shop ->
+        binding.viewPager2.offscreenPageLimit = 3
+        mViewModel.shopMutableLiveData.observe(viewLifecycleOwner) { shop ->
             binding.viewPager2.adapter = ShopDetailsPager(childFragmentManager, lifecycle, shop)
             TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
                 when (position) {
@@ -47,7 +48,7 @@ class ShopDetailsFragment : Fragment() {
                     }
                 }
             }.attach()
-        })
+        }
         binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
