@@ -19,7 +19,11 @@ class ItemsContainerFragment : Fragment(), MyItemCallback {
     private lateinit var itemsContainerViewModel: ItemsContainerViewModel
     private var _binding: FragmentItemsContainerBinding? = null
     private val binding get() = _binding!!
-    private var lastOpenIndex = -1
+
+
+    companion object {
+        var lastOpenIndex = -1
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +37,7 @@ class ItemsContainerFragment : Fragment(), MyItemCallback {
         binding.viewPager.apply {
             offscreenPageLimit = 2
             post {
-                currentItem = if (lastOpenIndex > -1) lastOpenIndex else if (openOrders) 1 else 0
+                currentItem = if (openOrders) 1 else if (lastOpenIndex > -1) lastOpenIndex else 0
             }
         }
         return binding.root

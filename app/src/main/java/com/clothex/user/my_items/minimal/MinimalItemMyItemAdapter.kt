@@ -14,7 +14,8 @@ import com.clothex.user.databinding.AdapterMinimalProductMyItemBinding
  * Created by Mohamed Elshafey on 20/11/2021.
  */
 class MinimalItemMyItemAdapter(
-    private val list: List<MyItem>
+    private val list: List<MyItem>,
+    private val callback: (MyItem) -> Unit,
 ) :
     Adapter<MinimalItemMyItemAdapter.ViewHolder>() {
 
@@ -27,13 +28,16 @@ class MinimalItemMyItemAdapter(
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[holder.adapterPosition])
+        holder.bind(list[holder.absoluteAdapterPosition])
 
     override fun getItemCount(): Int = list.size
 
     inner class ViewHolder(val binding: AdapterMinimalProductMyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(minimalProduct: MyItem) {
+            binding.root.setOnClickListener {
+                callback.invoke(minimalProduct)
+            }
             binding.colorItem.colorView.apply {
                 val backgroundDrawable = background as GradientDrawable
                 backgroundDrawable.setColor(Color.parseColor(minimalProduct.colorCode))

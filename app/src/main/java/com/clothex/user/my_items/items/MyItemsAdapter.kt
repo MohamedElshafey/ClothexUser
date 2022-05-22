@@ -26,7 +26,7 @@ class MyItemsAdapter(
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[holder.adapterPosition])
+        holder.bind(list[holder.absoluteAdapterPosition])
 
     override fun getItemCount(): Int = list.size
 
@@ -38,7 +38,9 @@ class MyItemsAdapter(
                 binding.addressTV.text = branch.address?.getName(isArabic)
                 setImageFromUrl(binding.logoIV, shop.logo?.source)
             }
-            binding.itemsRV.adapter = MinimalItemMyItemAdapter(myItemGroup.myItems.take(2))
+            binding.itemsRV.adapter = MinimalItemMyItemAdapter(myItemGroup.myItems.take(2)) {
+                callback.onItemClicked(myItemGroup)
+            }
             val myItemsCount = myItemGroup.myItems.size
             if (myItemsCount > 2)
                 binding.itemsCount.text = String.format(
