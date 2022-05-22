@@ -103,6 +103,7 @@
     <string name="address">العنوان</string>
     <string name="working_hours">ساعات العمل</string>
     <string name="contacts">جهات الاتصال</string>
+    <string name="contacts_for_shop">جهات الاتصال ب %s</string>
     <string name="edit_voucher_subtitle">يمكنك إضافة ورؤية جميع القسائم</string>
     <string name="edit_vouchers_title">القسائم</string>
     <string name="cancel">إلغاء</string>

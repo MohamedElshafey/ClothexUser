@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -49,6 +50,7 @@ class BookFragment : Fragment() {
         myItemGroup = BookFragmentArgs.fromBundle(requireArguments()).myItem
         binding.leadingIV.setRotationByLocale()
         binding.bookButton.isInvisible = myItemGroup.shop.hasBook.not()
+        binding.contactsTitle.isGone = myItemGroup.shop.hasBook
         binding.contactsRV.isInvisible = myItemGroup.shop.hasBook
         binding.contactsRV.adapter = ContactsAdapter(myItemGroup.shop.socialMedias)
         with(myItemGroup) {
@@ -128,6 +130,11 @@ class BookFragment : Fragment() {
             )
         }
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
+        binding.contactsTitle.text =
+            String.format(
+                getString(R.string.contacts_for_shop),
+                myItemGroup.shop.getName(mViewModel.isArabic())
+            )
     }
 
     override fun onResume() {

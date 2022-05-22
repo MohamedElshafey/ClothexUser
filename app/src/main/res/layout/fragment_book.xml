@@ -121,7 +121,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
         android:background="#f1f4fd"
-        app:layout_constraintBottom_toTopOf="@+id/bookButton"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBarrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/subtotalTitleTV" />
@@ -167,7 +167,6 @@
         app:layout_constraintBottom_toTopOf="@id/totalTitleTV"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <TextView
         android:id="@+id/discountTV"
         android:layout_width="wrap_content"
@@ -210,23 +209,46 @@
         app:layout_constraintTop_toTopOf="@+id/totalTitleTV"
         tools:text="EGP 379.00" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/bottomBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="bookButton,contactsTitle,contactsRV" />
+
     <TextView
         android:id="@+id/bookButton"
         style="@style/RemarkableButtonTheme"
         android:layout_width="0dp"
         android:layout_height="54dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="@string/book_now"
         android:textAppearance="@style/FontSemiBold"
         android:textSize="16sp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalTitleTV" />
+
+    <TextView
+        android:id="@+id/contactsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textAppearance="@style/FontSemiBold"
+        android:textColor="@color/cod_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/contactsRV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalTitleTV"
+        tools:text="Contacts" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contactsRV"
