@@ -153,9 +153,12 @@ class ScanQRFragment : Fragment() {
         })
         viewModel.responseLiveData.observe(viewLifecycleOwner) { result ->
             result.getOrNull()?.let {
-                findNavController().navigate(ScanQRFragmentDirections.actionScanQRFragmentToVoucherMessageFragment())
-                if (it.message.isNullOrEmpty().not())
+                if (it.data == true)
+                    findNavController().navigate(ScanQRFragmentDirections.actionScanQRFragmentToVoucherMessageFragment())
+                if (it.message.isNullOrEmpty().not()) {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    findNavController().navigateUp()
+                }
             }
             result.exceptionOrNull()?.let {
                 Toast.makeText(requireContext(), (it as HttpException).message(), Toast.LENGTH_LONG)
