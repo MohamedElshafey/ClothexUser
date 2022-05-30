@@ -134,6 +134,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(RegisterFragment::class.java.simpleName)
         val signInMsg = getString(R.string.sign_in_msg)
         val spannableStringBuilder = SpannableStringBuilder(signInMsg)
         val startIndex = signInMsg.indexOf(".")

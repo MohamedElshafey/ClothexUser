@@ -3,7 +3,6 @@ package com.clothex.user.home.home
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.department.Department
 import com.clothex.data.domain.model.home.HomeProduct
@@ -14,6 +13,7 @@ import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.sign.UpdateFCMTokenUseCase
 import com.clothex.data.local.room.entity.SavedLocation
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -27,7 +27,7 @@ class HomeViewModel(
     private val getIsFirstTimeOpenUseCase: GetIsFirstTimeOpenUseCase,
     private val getSavedLocationUseCase: GetSavedLocationUseCase,
     private val getDepartmentsUseCase: GetDepartmentsUseCase
-) : ViewModel() {
+) : BaseLanguageViewModel() {
 
     val notificationCount = ObservableField<String>()
     val notificationVisible = ObservableField(false)

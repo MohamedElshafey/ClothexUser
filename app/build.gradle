@@ -139,7 +139,7 @@ dependencies {
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:29.0.4')
+    implementation platform('com.google.firebase:firebase-bom:30.0.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 

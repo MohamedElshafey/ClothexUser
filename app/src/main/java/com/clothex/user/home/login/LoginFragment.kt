@@ -39,7 +39,6 @@ import retrofit2.HttpException
 
 class LoginFragment : Fragment() {
 
-
     private val TAG: String = "LoginFragment"
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -50,6 +49,7 @@ class LoginFragment : Fragment() {
     private val callbackManager: CallbackManager = CallbackManager.Factory.create();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loginViewModel.logScreen(LoginFragment::class.java.simpleName)
         loginViewModel.setFirstTimeOpen()
         oneTapClient = Identity.getSignInClient(requireActivity())
         signInRequest = BeginSignInRequest.builder()

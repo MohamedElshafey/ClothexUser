@@ -45,6 +45,7 @@ class ItemsContainerFragment : Fragment(), MyItemCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        itemsContainerViewModel.logScreen(ItemsContainerFragment::class.java.simpleName)
         binding.myItemsTab.setOnClickListener {
             binding.viewPager.currentItem = 0
         }

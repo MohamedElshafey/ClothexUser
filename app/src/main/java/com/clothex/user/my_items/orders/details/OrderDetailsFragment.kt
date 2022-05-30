@@ -47,6 +47,7 @@ class OrderDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(OrderDetailsFragment::class.java.simpleName)
         viewModel.fetchOrderDetails(orderId)
         binding.leadingIV.setRotationByLocale()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }

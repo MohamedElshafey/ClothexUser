@@ -43,6 +43,7 @@ class VoucherDetailsFragment : Fragment(), ShopAndBranchSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.logScreen(VoucherDetailsFragment::class.java.simpleName)
         val expireString = String.format(
             requireContext().getString(R.string.expired_in),
             voucher.expiryDate.toLocalDateOnly(requireContext())

@@ -29,6 +29,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(ProfileFragment::class.java.simpleName)
         viewModel.fetchUser()
         binding.prefGroup.setAllOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditPreferencesFragment())

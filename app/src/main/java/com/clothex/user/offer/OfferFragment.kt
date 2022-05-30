@@ -32,6 +32,7 @@ class OfferFragment : Fragment(), (Offer) -> Unit {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(OfferFragment::class.java.simpleName)
         viewModel.fetchOffers()
         binding.progressBar.isVisible = true
         viewModel.vouchersLiveData.observe(viewLifecycleOwner) { voucherList ->

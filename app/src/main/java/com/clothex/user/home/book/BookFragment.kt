@@ -17,6 +17,7 @@ import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.dialog.MessageAlertDialog
+import com.clothex.user.home.home.HomeFragment
 import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
 import com.clothex.user.utils.setAllOnClickListener
@@ -47,6 +48,7 @@ class BookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.logScreen(BookFragment::class.java.simpleName)
         myItemGroup = BookFragmentArgs.fromBundle(requireArguments()).myItem
         binding.leadingIV.setRotationByLocale()
         binding.bookButton.isInvisible = myItemGroup.shop.hasBook.not()

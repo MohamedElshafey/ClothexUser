@@ -76,6 +76,7 @@ class ScanQRFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(ScanQRFragment::class.java.simpleName)
         cameraExecutor = Executors.newSingleThreadExecutor()
         displayManager.registerDisplayListener(displayListener, null)
         windowManager = activity?.windowManager!!

@@ -37,6 +37,7 @@ class MyItemsFragment : Fragment(), MyItemCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.logScreen(MyItemsFragment::class.java.simpleName)
         mViewModel.fetchMyItems()
         binding.progressBar.isVisible = true
         mViewModel.mutableMyItemsLiveData.distinctUntilChanged()

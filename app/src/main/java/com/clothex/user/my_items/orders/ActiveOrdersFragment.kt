@@ -62,17 +62,18 @@ class ActiveOrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.logScreen(ActiveOrdersFragment::class.java.simpleName)
         binding.progressBar.isVisible = true
         binding.filterContainer.setOnClickListener {
             showFilterList()
         }
         binding.ordersRV.adapter = ordersAdapter
-        mViewModel.myOrdersLiveData.distinctUntilChanged().observe(viewLifecycleOwner, { orders ->
+        mViewModel.myOrdersLiveData.distinctUntilChanged().observe(viewLifecycleOwner) { orders ->
             binding.progressBar.isGone = true
             myOrders = orders
             ordersAdapter.updateData(orders ?: listOf())
             binding.messageContainer.isVisible = orders.isNullOrEmpty()
-        })
+        }
     }
 
     override fun onResume() {

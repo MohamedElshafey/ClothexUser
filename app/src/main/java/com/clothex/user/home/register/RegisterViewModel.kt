@@ -1,6 +1,5 @@
 package com.clothex.user.home.register
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.model.SimpleResponse
@@ -13,6 +12,7 @@ import com.clothex.data.domain.usecases.sign.SignUpUseCase
 import com.clothex.data.domain.usecases.token.GetTokenUseCase
 import com.clothex.data.domain.usecases.token.SetTokenUseCase
 import com.clothex.data.domain.usecases.token.Token
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -22,7 +22,7 @@ class RegisterViewModel(
     private val getTokenUseCase: GetTokenUseCase,
     private val setTokenUseCase: SetTokenUseCase,
     private val signUpTemporaryUseCase: SignUpTemporaryUseCase,
-) : ViewModel() {
+) : BaseLanguageViewModel() {
 
     fun getTokenIfNeeded() {
         viewModelScope.launch {

@@ -13,6 +13,7 @@ import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.local.LogoutUseCase
 import com.clothex.data.domain.usecases.local.SetIsFirstTimeOpenUseCase
+import com.clothex.data.domain.usecases.logging.LogScreenUseCase
 import com.clothex.data.domain.usecases.my_item.CreateMyItemsUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemUseCase
 import com.clothex.data.domain.usecases.my_item.DeleteMyItemsUseCase
@@ -41,6 +42,7 @@ import com.clothex.data.domain.usecases.voucher.GetVouchersUseCase
 import com.clothex.data.domain.usecases.voucher.RedeemVoucherUseCase
 import com.clothex.data.local.room.dao.SavedLocationDao
 import com.clothex.data.local.shared_pref.LocalDataSourceImpl
+import com.clothex.data.log.repository.LogScreenRepository
 import com.clothex.data.remote.repository.GetHomeRepository
 import com.clothex.data.remote.repository.GetProductDetailsRepository
 import com.clothex.data.remote.repository.GetShopDetailsRepository
@@ -149,6 +151,8 @@ val useCaseModule = module {
 
     single(named("get_notifications")) { provideGetNotificationsUseCase(get()) }
     single(named("read_notifications")) { provideReadNotificationsUseCase(get()) }
+
+    single(named("log_screen")) { provideLogScreenUseCase(get()) }
 }
 
 fun provideGetHomeUseCase(repository: GetHomeRepository): GetHomeUseCase {
@@ -353,4 +357,8 @@ fun provideReadNotificationsUseCase(repository: ReadNotificationRepository): Rea
 
 fun provideGetOffersUseCase(repository: GetOffersRepository): GetOffersUseCase {
     return GetOffersUseCase(repository)
+}
+
+fun provideLogScreenUseCase(repository: LogScreenRepository): LogScreenUseCase {
+    return LogScreenUseCase(repository)
 }

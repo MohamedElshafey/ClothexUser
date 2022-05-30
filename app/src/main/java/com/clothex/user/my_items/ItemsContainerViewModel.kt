@@ -1,7 +1,7 @@
 package com.clothex.user.my_items
 
-import androidx.lifecycle.ViewModel
+import com.clothex.user.base.BaseLanguageViewModel
 
-class ItemsContainerViewModel : ViewModel() {
+class ItemsContainerViewModel : BaseLanguageViewModel() {
 
 }

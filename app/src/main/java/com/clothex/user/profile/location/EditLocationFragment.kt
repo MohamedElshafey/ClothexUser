@@ -39,6 +39,7 @@ class EditLocationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(EditLocationFragment::class.java.simpleName)
         binding.leadingIV.setRotationByLocale()
         viewModel.fetchLocations()
         binding.actionBar.setOnClickListener {

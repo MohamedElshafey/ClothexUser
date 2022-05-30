@@ -38,6 +38,7 @@ class AddTextVoucherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(AddTextVoucherFragment::class.java.simpleName)
         binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
         }

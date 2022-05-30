@@ -46,6 +46,7 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel.logScreen(ProductDetailsFragment::class.java.simpleName)
         binding.backIV.setRotationByLocale()
 
         binding.contentContainer.shimmerFrame.startShimmer()

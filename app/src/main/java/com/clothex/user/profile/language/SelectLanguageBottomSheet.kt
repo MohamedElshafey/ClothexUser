@@ -37,7 +37,7 @@ class SelectLanguageBottomSheet : DefaultBottomSheet() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.logScreen(SelectLanguageBottomSheet::class.java.simpleName)
         viewModel.languageLiveData.observe(viewLifecycleOwner) { lang ->
             if (lang.equals(Language.ENGLISH.value)) {
                 selectEnglishLanguage()

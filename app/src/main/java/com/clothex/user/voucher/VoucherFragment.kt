@@ -34,6 +34,7 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(VoucherFragment::class.java.simpleName)
         viewModel.checkIfLoginTemporary()
         viewModel.fetchVouchers()
         binding.progressBar.isVisible = true

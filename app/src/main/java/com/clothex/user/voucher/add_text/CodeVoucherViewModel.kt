@@ -1,10 +1,10 @@
 package com.clothex.user.voucher.add_text
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.BaseResponseModel
 import com.clothex.data.domain.usecases.voucher.AddVoucherUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
  */
 class CodeVoucherViewModel(
     private val addVoucherUseCase: AddVoucherUseCase
-) : ViewModel() {
+) : BaseLanguageViewModel() {
 
     val responseLiveData = MutableLiveData<Result<BaseResponseModel<Boolean>>>()
 

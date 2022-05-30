@@ -4,7 +4,10 @@ import android.app.Application
 import com.clothex.data.domain.usecases.local.ClearSessionUseCase
 import com.clothex.user.di.*
 import com.facebook.FacebookSdk
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -39,6 +42,7 @@ class AppClass : Application() {
                 sharedPrefModule,
                 networkModule,
                 remoteDataSourceModule,
+                logDataSourceModule,
                 useCaseModule,
                 viewModelsModule,
                 databaseModule

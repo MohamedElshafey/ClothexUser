@@ -1,11 +1,11 @@
 package com.clothex.user.profile.language
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.Language
 import com.clothex.data.domain.usecases.language.GetLanguageUseCase
 import com.clothex.data.domain.usecases.language.SetLanguageUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -14,11 +14,11 @@ import kotlinx.coroutines.launch
 class SelectLanguageViewModel(
     private val getLanguageUseCase: GetLanguageUseCase,
     private val setLanguageUseCase: SetLanguageUseCase
-) : ViewModel() {
+) : BaseLanguageViewModel() {
 
     val languageLiveData = MutableLiveData<String>()
 
-    private fun getLanguage() {
+    private fun getCurrentLanguage() {
         viewModelScope.launch {
             languageLiveData.postValue(getLanguageUseCase.invoke(Unit))
         }
@@ -31,7 +31,7 @@ class SelectLanguageViewModel(
     }
 
     init {
-        getLanguage()
+        getCurrentLanguage()
     }
 
 }

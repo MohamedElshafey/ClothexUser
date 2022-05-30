@@ -41,6 +41,7 @@ class HomeFragment : Fragment(), (String) -> Unit {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(HomeFragment::class.java.simpleName)
         binding.viewModel = viewModel
         viewModel.checkFirstTimeOpen()
         viewModel.getSelectedLocation()

@@ -1,7 +1,6 @@
 package com.clothex.user.home.search
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.clothex.data.domain.model.body.ProductBody
@@ -15,6 +14,7 @@ import com.clothex.data.domain.usecases.filter.GetSizeFilterUseCase
 import com.clothex.data.domain.usecases.product.GetProductPagingUseCase
 import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
+import com.clothex.user.base.BaseLanguageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
@@ -29,7 +29,7 @@ class SearchViewModel(
     private val getPriceStartFilterUseCase: GetPriceStartFilterUseCase,
     private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase,
     private val getProductPagingUseCase: GetProductPagingUseCase
-) : ViewModel() {
+) : BaseLanguageViewModel() {
 
     val productLiveData = MutableLiveData<PagingData<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()

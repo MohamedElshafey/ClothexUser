@@ -36,6 +36,7 @@ class NotificationFragment : Fragment(), NotificationCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        notificationViewModel.logScreen(NotificationFragment::class.java.simpleName)
         binding.progressBar.isGone = false
         notificationViewModel.fetchNotifications()
         notificationViewModel.notificationLiveData.observe(viewLifecycleOwner) { result ->

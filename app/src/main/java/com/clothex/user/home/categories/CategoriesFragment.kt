@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.data.domain.model.department.Department
 import com.clothex.user.databinding.FragmentCategoriesBinding
+import com.clothex.user.home.book.BookFragment
 import com.clothex.user.home.categories.style.DepartmentEnum
 import com.clothex.user.utils.kidsDepartment
 import com.clothex.user.utils.menDepartment
@@ -35,6 +36,7 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.logScreen(CategoriesFragment::class.java.simpleName)
         binding.shimmerFrame.startShimmer()
         binding.shimmerFrame.isVisible = true
         viewModel.fetchDepartments()
