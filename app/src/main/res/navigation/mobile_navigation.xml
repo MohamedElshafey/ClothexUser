@@ -464,5 +464,14 @@
             android:defaultValue="0"
             app:argType="integer" />
     </dialog>
+    <fragment
+        android:id="@+id/shopOfferFragment"
+        android:name="com.clothex.user.home.shop.offer.ShopOfferFragment"
+        android:label="ShopOfferFragment"
+        tools:layout="@layout/fragment_shop_offer">
+        <action
+            android:id="@+id/action_shopOfferFragment_to_offerDetailsFragment"
+            app:destination="@id/offerDetailsFragment" />
+    </fragment>
 
 </navigation>

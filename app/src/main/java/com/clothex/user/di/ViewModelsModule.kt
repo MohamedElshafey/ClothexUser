@@ -14,6 +14,7 @@ import com.clothex.user.home.search.SearchViewModel
 import com.clothex.user.home.search.filter.FilterProductViewModel
 import com.clothex.user.home.search.sort.SortProductViewModel
 import com.clothex.user.home.shop.details.ShopDetailsViewModel
+import com.clothex.user.home.shop.offer.ShopOfferViewModel
 import com.clothex.user.my_items.items.MyItemsViewModel
 import com.clothex.user.my_items.orders.ActiveOrdersViewModel
 import com.clothex.user.my_items.orders.details.OrderDetailsViewModel
@@ -224,9 +225,12 @@ val viewModelsModule = module {
         )
     }
 
-
     viewModel {
         OfferViewModel(getOffersUseCase = get(named("get_offers")))
+    }
+
+    viewModel {
+        ShopOfferViewModel(getShopOffersUseCase = get(named("get_shop_offers")))
     }
 
 }

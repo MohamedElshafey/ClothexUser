@@ -44,6 +44,9 @@ class ShopDetailsFragment : Fragment() {
                         tab.text = context?.getString(R.string.info)
                     }
                     2 -> {
+                        tab.text = context?.getString(R.string.offers)
+                    }
+                    3 -> {
                         tab.text = context?.getString(R.string.photos)
                     }
                 }

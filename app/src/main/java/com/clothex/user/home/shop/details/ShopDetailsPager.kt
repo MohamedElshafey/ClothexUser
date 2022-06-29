@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.clothex.data.domain.model.shop.Shop
 import com.clothex.user.home.shop.info.ShopInfoFragment
 import com.clothex.user.home.shop.items.SearchProductsFragment
+import com.clothex.user.home.shop.offer.ShopOfferFragment
 import com.clothex.user.home.shop.photos.ShopPhotosFragment
 
 /**
@@ -19,12 +20,13 @@ class ShopDetailsPager(
 ) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 4
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> SearchProductsFragment.newInstance(shop.id)
             1 -> ShopInfoFragment.newInstance(shop)
+            2 -> ShopOfferFragment.newInstance(shop.id)
             else -> ShopPhotosFragment.newInstance(shop)
         }
     }
