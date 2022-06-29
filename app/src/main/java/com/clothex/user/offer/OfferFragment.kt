@@ -37,6 +37,8 @@ class OfferFragment : Fragment(), (Offer) -> Unit {
         binding.progressBar.isVisible = true
         viewModel.vouchersLiveData.observe(viewLifecycleOwner) { voucherList ->
             binding.progressBar.isGone = true
+            binding.noOffersMessage.isVisible = voucherList.isNullOrEmpty()
+            binding.offersRV.isVisible = voucherList.isNullOrEmpty().not()
             binding.offersRV.adapter = OfferAdapter(voucherList, this, viewModel.isArabic())
         }
         binding.offersRV.addDivider()

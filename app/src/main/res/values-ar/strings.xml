@@ -179,4 +179,5 @@
     <string name="item_not_available">هذا المنتج غير  متاح!</string>
     <string name="continue_as_guest">الدخول كزائر</string>
     <string name="no_location_selected_to_save">يرجي تحديد مكان اولا</string>
+    <string name="no_offers_found_message">لا يوجد عروض</string>
 </resources>

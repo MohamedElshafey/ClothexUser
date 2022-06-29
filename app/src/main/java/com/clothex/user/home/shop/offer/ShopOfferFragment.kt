@@ -48,11 +48,14 @@ class ShopOfferFragment : Fragment() {
         binding.progressBar.isVisible = true
         viewModel.offersLiveData.observe(viewLifecycleOwner) { voucherList ->
             binding.progressBar.isGone = true
+            binding.noOffersMessage.isVisible = voucherList.isNullOrEmpty()
+            binding.offersRV.isVisible = voucherList.isNullOrEmpty().not()
             binding.offersRV.adapter = OfferAdapter(voucherList, { offer ->
                 findNavController().navigate(R.id.offerDetailsFragment, bundleOf("offer" to offer))
             }, viewModel.isArabic())
         }
         binding.offersRV.addDivider()
+
     }
 
 }

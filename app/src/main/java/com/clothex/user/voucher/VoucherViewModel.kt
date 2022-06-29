@@ -27,8 +27,10 @@ class VoucherViewModel(
 
     fun fetchVouchers() {
         viewModelScope.launch {
-            getVouchersUseCase.invoke(Unit).collect {
-                vouchersLiveData.postValue(it)
+            getVouchersUseCase.invoke(Unit).collect { result ->
+                result.getOrNull()?.let {
+                    vouchersLiveData.postValue(it)
+                }
             }
         }
     }
