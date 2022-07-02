@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
@@ -52,7 +53,9 @@ class OrderDetailsFragment : Fragment() {
         viewModel.fetchOrderDetails(orderId)
         binding.leadingIV.setRotationByLocale()
         binding.actionBar.setOnClickListener { findNavController().navigateUp() }
+        binding.progressBar.isVisible = true
         viewModel.orderMutableLiveData.observe(viewLifecycleOwner) { result ->
+            binding.progressBar.isVisible = false
             val context = context ?: return@observe
             result.getOrNull()?.let { order ->
                 viewModel.logEvent(MainLogEvents.OpenOrder(order.id))
@@ -133,6 +136,7 @@ class OrderDetailsFragment : Fragment() {
                         }
                     }
                 }
+                binding.scrollView.isVisible = true
             }
             result?.exceptionOrNull()?.let {
 
