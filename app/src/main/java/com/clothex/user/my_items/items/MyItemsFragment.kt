@@ -15,6 +15,7 @@ import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentMyItemsBinding
 import com.clothex.user.dialog.MessageAlertDialog
+import com.clothex.user.log.MainLogEvents
 import org.koin.android.ext.android.inject
 
 /**
@@ -70,6 +71,7 @@ class MyItemsFragment : Fragment(), MyItemCallback {
             getString(R.string.delete),
             iconRes = R.drawable.ic_dialog_delete,
             negativeOnClickListener = {
+                mViewModel.logEvent(MainLogEvents.DeleteMyItems(myItemGroup.myItems.toString()))
                 mViewModel.deleteMyItemGroup(myItemGroup) { response ->
                     var message = getString(R.string.error_happened_try_again)
                     if (response != null) {

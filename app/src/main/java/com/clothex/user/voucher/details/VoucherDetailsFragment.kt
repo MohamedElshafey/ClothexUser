@@ -13,6 +13,7 @@ import com.clothex.data.domain.model.ShopAndBranch
 import com.clothex.data.domain.model.voucher.Voucher
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentVoucherDetailsBinding
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.utils.DateUtil.toLocalDateOnly
 import com.clothex.user.voucher.shop_with_branch.ShopAndBranchAdapter
 import com.clothex.user.voucher.shop_with_branch.ShopAndBranchSelectedListener
@@ -36,6 +37,7 @@ class VoucherDetailsFragment : Fragment(), ShopAndBranchSelectedListener {
     ): View {
         voucher = VoucherDetailsFragmentArgs.fromBundle(requireArguments()).voucher
         mViewModel = VoucherDetailsViewModel(voucher)
+        mViewModel.logEvent(MainLogEvents.OpenVoucher(voucher.id))
         _binding = FragmentVoucherDetailsBinding.inflate(inflater, container, false)
         binding.viewModel = mViewModel
         return binding.root

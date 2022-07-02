@@ -19,6 +19,7 @@ import com.clothex.user.home.categories.style.DepartmentFactory
 import com.clothex.user.home.product.ProductPagingAdapter
 import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.utils.addChip
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
@@ -92,10 +93,10 @@ class SelectTypeFragment : Fragment() {
             val chip = binding.typesChipGroup.findViewById(checkedId) as Chip?
             if (chip != null) {
                 val selectedTypeName = chip.text.toString()
-                val type =
-                    typesArray.find { it.getTitle(viewModel.isArabic()).equals(selectedTypeName) }
+                val type = typesArray.find { it.getTitle(viewModel.isArabic()) == selectedTypeName }
                 binding.notItemsMessage.isVisible = false
                 binding.progressBar.isVisible = true
+                viewModel.logEvent(MainLogEvents.SelectType(type?.id, selectedTypeName))
                 viewModel.typeId = type?.id
             } else {
                 viewModel.typeId = null

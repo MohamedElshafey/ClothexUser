@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentScanQrBinding
 import com.clothex.user.dialog.MessageAlertDialog
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.utils.hasPermission
 import com.clothex.user.voucher.add_text.CodeVoucherViewModel
 import org.koin.android.ext.android.inject
@@ -77,6 +78,7 @@ class ScanQRFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.logScreen(ScanQRFragment::class.java.simpleName)
+        viewModel.logEvent(MainLogEvents.AddQRVoucher)
         cameraExecutor = Executors.newSingleThreadExecutor()
         displayManager.registerDisplayListener(displayListener, null)
         windowManager = activity?.windowManager!!
@@ -149,8 +151,10 @@ class ScanQRFragment : Fragment() {
             .build()
         imageAnalyzer!!.setAnalyzer(cameraExecutor, QRImageAnalyzer {
             binding.txtBarcodeValue.text = it
-            if (viewModel.isSendVoucher.not())
+            if (viewModel.isSendVoucher.not()) {
+                viewModel.logEvent(MainLogEvents.AddVoucher(it))
                 viewModel.addVoucher(it)
+            }
         })
         viewModel.responseLiveData.observe(viewLifecycleOwner) { result ->
             result.getOrNull()?.let {

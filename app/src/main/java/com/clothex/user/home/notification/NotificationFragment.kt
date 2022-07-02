@@ -12,6 +12,7 @@ import com.clothex.data.domain.model.notification.Notification
 import com.clothex.user.databinding.FragmentNotificationsBinding
 import com.clothex.user.home.notification.adapter.NotificationAdapter
 import com.clothex.user.home.notification.adapter.NotificationCallback
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.utils.addDivider
 import org.koin.android.ext.android.inject
 
@@ -58,6 +59,7 @@ class NotificationFragment : Fragment(), NotificationCallback {
     }
 
     override fun onItemClicked(notification: Notification) {
+        notificationViewModel.logEvent(MainLogEvents.SelectNotification(notification.id))
         try {
             findNavController().navigate(Uri.parse(notification.action))
         } catch (e: IllegalArgumentException) {

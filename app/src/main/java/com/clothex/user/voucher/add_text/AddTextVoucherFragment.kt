@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentAddTextVoucherBinding
+import com.clothex.user.log.MainLogEvents
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
 
@@ -39,6 +40,7 @@ class AddTextVoucherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.logScreen(AddTextVoucherFragment::class.java.simpleName)
+        viewModel.logEvent(MainLogEvents.AddTextVoucher)
         binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -52,8 +54,10 @@ class AddTextVoucherFragment : Fragment() {
                 )
                     .show()
             } else {
-                if (viewModel.isSendVoucher.not())
+                if (viewModel.isSendVoucher.not()) {
+                    viewModel.logEvent(MainLogEvents.AddVoucher(code))
                     viewModel.addVoucher(code = code)
+                }
             }
         }
 

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentShopDetailsBinding
+import com.clothex.user.log.MainLogEvents
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.android.ext.android.inject
 
@@ -34,6 +35,11 @@ class ShopDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewPager2.offscreenPageLimit = 3
         mViewModel.shopMutableLiveData.observe(viewLifecycleOwner) { shop ->
+            shop?.let {
+                mViewModel.logEvent(
+                    MainLogEvents.OpenShop(shop.id, shop.getName(mViewModel.isArabic()))
+                )
+            }
             if (binding.viewPager2.adapter == null) {
                 binding.viewPager2.adapter = ShopDetailsPager(childFragmentManager, lifecycle, shop)
                 TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->

@@ -3,6 +3,8 @@ package com.clothex.user.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.model.Language
+import com.clothex.data.domain.model.log.EventBase
+import com.clothex.data.domain.usecases.logging.LogEventUseCase
 import com.clothex.data.domain.usecases.logging.LogScreenUseCase
 import com.clothex.data.local.shared_pref.LocalDataSourceImpl
 import kotlinx.coroutines.launch
@@ -14,6 +16,7 @@ abstract class BaseLanguageViewModel : ViewModel(), KoinComponent {
 
     private val localDataStoreImpl: LocalDataSourceImpl by inject()
     private val logScreenUseCase: LogScreenUseCase by inject(named("log_screen"))
+    private val logEventUseCase: LogEventUseCase by inject(named("log_event"))
 
     fun isArabic(): Boolean = getLanguage() == Language.ARABIC.value
 
@@ -22,6 +25,12 @@ abstract class BaseLanguageViewModel : ViewModel(), KoinComponent {
     fun logScreen(screen: String) {
         viewModelScope.launch {
             logScreenUseCase.invoke(screen)
+        }
+    }
+
+    fun logEvent(eventBase: EventBase) {
+        viewModelScope.launch {
+            logEventUseCase.invoke(eventBase)
         }
     }
 

@@ -17,7 +17,6 @@ import com.clothex.user.R
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.dialog.MessageAlertDialog
-import com.clothex.user.home.home.HomeFragment
 import com.clothex.user.home.shop.contact.ContactsAdapter
 import com.clothex.user.my_items.minimal.EditMinimalItemAdapter
 import com.clothex.user.utils.setAllOnClickListener

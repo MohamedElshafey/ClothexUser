@@ -21,6 +21,7 @@ import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
 import com.clothex.user.home.image.ImageAdapter
 import com.clothex.user.home.image.ImageSelectedListener
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.utils.*
 import com.google.android.material.chip.Chip
 import org.koin.android.ext.android.inject
@@ -58,10 +59,15 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
         val pagerSnapHelper = PagerSnapHelper()
         pagerSnapHelper.attachToRecyclerView(binding.mainImagesRV)
 
-        mViewModel.productMutableLiveData.observe(viewLifecycleOwner) {
+        mViewModel.productMutableLiveData.observe(viewLifecycleOwner) { product ->
             binding.contentContainer.shimmerFrame.hideShimmer()
             binding.contentContainer.shimmerFrame.isGone = true
-            updateProductData(it)
+            product?.let {
+                mViewModel.logEvent(
+                    MainLogEvents.OpenProduct(product.id, product.getTitle(mViewModel.isArabic()))
+                )
+            }
+            updateProductData(product)
         }
 
         binding.contentContainer.minusIV.isEnabled = false
@@ -149,6 +155,7 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
                     quantity = quantity,
                     size_name = selectedSizeName
                 )
+                mViewModel.logEvent(MainLogEvents.AddToMyItems(productId, shopId))
                 mViewModel.addToMyItem(myItemBody) { myItem ->
                     findNavController().navigate(
                         ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(

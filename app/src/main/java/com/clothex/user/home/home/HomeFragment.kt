@@ -17,6 +17,7 @@ import com.clothex.user.databinding.FragmentHomeBinding
 import com.clothex.user.home.categories.style.DepartmentEnum
 import com.clothex.user.home.product.ProductAdapter
 import com.clothex.user.home.shop.ShopAdapter
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.utils.KEY_DISMISS
 import com.clothex.user.utils.setAllOnClickListener
 import com.google.android.gms.tasks.OnCompleteListener
@@ -185,6 +186,7 @@ class HomeFragment : Fragment(), (String) -> Unit {
     }
 
     private fun openSelectType(departmentEnum: DepartmentEnum) {
+        viewModel.logEvent(MainLogEvents.SelectDepartment(departmentEnum))
         val departmentsList = viewModel.departmentListLiveData.value?.getOrNull()
         val selectedDepartment =
             departmentsList?.find { it.title.equals(departmentEnum.value, true) }

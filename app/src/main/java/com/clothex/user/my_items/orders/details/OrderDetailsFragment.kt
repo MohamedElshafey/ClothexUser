@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentOrderDetailsBinding
+import com.clothex.user.log.MainLogEvents
 import com.clothex.user.my_items.minimal.MinimalItemAdapter
 import com.clothex.user.utils.CustomTypefaceSpan
 import com.clothex.user.utils.DateUtil
@@ -54,6 +55,7 @@ class OrderDetailsFragment : Fragment() {
         viewModel.orderMutableLiveData.observe(viewLifecycleOwner) { result ->
             val context = context ?: return@observe
             result.getOrNull()?.let { order ->
+                viewModel.logEvent(MainLogEvents.OpenOrder(order.id))
                 binding.itemsRV.adapter = MinimalItemAdapter(order.myItems, order.bookedItems)
                 binding.orderIdTV.text =
                     String.format(context.getString(R.string.order), order.orderId)
