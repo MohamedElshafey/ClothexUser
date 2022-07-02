@@ -7,8 +7,8 @@ import com.clothex.data.local.shared_pref.ILocalDataSource
  * Created by Mohamed Elshafey on 11/17/2020.
  */
 
-typealias SetSizeFilterBaseUseCase = BaseUseCase<String, Unit>
+typealias SetSizeFilterBaseUseCase = BaseUseCase<String?, Unit>
 
 class SetSizeFilterUseCase(private val repository: ILocalDataSource) : SetSizeFilterBaseUseCase {
-    override suspend fun invoke(params: String) = repository.setSize(params)
+    override suspend fun invoke(params: String?) = repository.setSize(params)
 }

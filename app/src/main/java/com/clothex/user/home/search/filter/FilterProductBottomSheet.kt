@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
 import com.clothex.user.R
 import com.clothex.user.customview.DefaultBottomSheet
@@ -82,8 +83,12 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
             chip?.isChecked = true
         }
 
+        viewModel.filterAppliedMutableLiveData.observe(viewLifecycleOwner) { isApplied ->
+            binding.resetTV.isVisible = isApplied
+        }
+
         binding.sizeChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            viewModel.selectedSize = group.findViewById<Chip>(checkedId)?.text?.toString() ?: ""
+            viewModel.selectedSize = group.findViewById<Chip>(checkedId)?.text?.toString()
         }
 
         binding.colorRV.adapter = ColorsAdapter(colorList, false) {
@@ -91,10 +96,16 @@ class FilterProductBottomSheet : DefaultBottomSheet() {
         }
 
         binding.applyFilterButton.setOnClickListener {
-            viewModel.selectedColor?.let { color -> viewModel.setColorFilter(color) }
-            viewModel.selectedSize?.let { size -> viewModel.setSizeFilter(size) }
-            viewModel.selectedPriceStart?.let { price -> viewModel.setPriceStartFilter(price) }
-            viewModel.selectedPriceEnd?.let { price -> viewModel.setPriceEndFilter(price) }
+            viewModel.setColorFilter(viewModel.selectedColor)
+            viewModel.setSizeFilter(viewModel.selectedSize)
+            viewModel.setPriceStartFilter(viewModel.selectedPriceStart)
+            viewModel.setPriceEndFilter(viewModel.selectedPriceEnd)
+            setFragmentResult(REQUEST_KEY, bundleOf())
+            dismiss()
+        }
+
+        binding.resetTV.setOnClickListener {
+            viewModel.resetFilter()
             setFragmentResult(REQUEST_KEY, bundleOf())
             dismiss()
         }

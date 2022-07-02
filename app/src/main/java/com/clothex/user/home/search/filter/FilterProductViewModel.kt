@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clothex.data.domain.usecases.filter.*
+import com.clothex.data.domain.usecases.local.ClearFilterUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -15,7 +16,8 @@ class FilterProductViewModel(
     private val getPriceStartFilterUseCase: GetPriceStartFilterUseCase,
     private val setPriceStartFilterUseCase: SetPriceStartFilterUseCase,
     private val setPriceEndFilterUseCase: SetPriceEndFilterUseCase,
-    private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase
+    private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase,
+    private val clearFilterUseCase: ClearFilterUseCase
 ) : ViewModel() {
 
     val sizeMutableLiveData = MutableLiveData<String?>()
@@ -28,55 +30,88 @@ class FilterProductViewModel(
     var selectedPriceStart: Int? = null
     var selectedPriceEnd: Int? = null
 
+    var filterAppliedMutableLiveData = MutableLiveData(false)
+
     init {
         getSizeFilter()
         getColorFilter()
         getPriceStartFilter()
         getPriceEndFilter()
+        fetchFilterData()
     }
 
-    fun setSizeFilter(size: String) = viewModelScope.launch {
+    fun setSizeFilter(size: String?) = viewModelScope.launch {
         setSizeFilterUseCase(size)
         getSizeFilter()
     }
 
     fun getSizeFilter() = viewModelScope.launch {
         getSizeFilterUseCase(Unit).collect {
-            sizeMutableLiveData.postValue(it)
+            sizeMutableLiveData.value = it
+            selectedSize = it
+            fetchFilterData()
         }
     }
 
-    fun setColorFilter(color: String) = viewModelScope.launch {
+    fun setColorFilter(color: String?) = viewModelScope.launch {
         setColorFilterUseCase(color)
         getColorFilter()
     }
 
     fun getColorFilter() = viewModelScope.launch {
         getColorFilterUseCase(Unit).collect {
-            colorMutableLiveData.postValue(it)
+            colorMutableLiveData.value = it
+            selectedColor = it
+            fetchFilterData()
         }
     }
 
-    fun setPriceStartFilter(price: Int) = viewModelScope.launch {
+    fun setPriceStartFilter(price: Int?) = viewModelScope.launch {
         setPriceStartFilterUseCase(price)
         getPriceStartFilter()
     }
 
     fun getPriceStartFilter() = viewModelScope.launch {
         getPriceStartFilterUseCase(Unit).collect {
-            priceStartMutableLiveData.postValue(it)
+            priceStartMutableLiveData.value = it
+            selectedPriceStart = it
+            fetchFilterData()
         }
     }
 
-    fun setPriceEndFilter(price: Int) = viewModelScope.launch {
+    fun setPriceEndFilter(price: Int?) = viewModelScope.launch {
         setPriceEndFilterUseCase(price)
         getPriceEndFilter()
     }
 
     fun getPriceEndFilter() = viewModelScope.launch {
         getPriceEndFilterUseCase(Unit).collect {
-            priceEndMutableLiveData.postValue(it)
+            priceEndMutableLiveData.value = it
+            selectedPriceEnd = it
+            fetchFilterData()
         }
+    }
+
+    private fun fetchFilterData() {
+        val size = sizeMutableLiveData.value
+        val color = colorMutableLiveData.value
+        val priceStart = priceStartMutableLiveData.value
+        val priceEnd = priceEndMutableLiveData.value
+        filterAppliedMutableLiveData.value = color.isNullOrBlank().not() ||
+                size.isNullOrBlank().not() ||
+                (priceStart != null && priceStart != 0) ||
+                (priceEnd != null && priceEnd != 5000)
+    }
+
+    fun resetFilter() {
+        selectedColor = null
+        selectedSize = null
+        selectedPriceStart = null
+        selectedPriceEnd = null
+        viewModelScope.launch {
+            clearFilterUseCase(Unit)
+        }
+        filterAppliedMutableLiveData.value = false
     }
 
 }

@@ -24,10 +24,10 @@ interface ILocalDataSource {
 
     suspend fun getSortEnum(): Flow<String?>
 
-    suspend fun setSize(string: String)
+    suspend fun setSize(string: String?)
     suspend fun getSize(): Flow<String?>
 
-    suspend fun setColor(string: String)
+    suspend fun setColor(string: String?)
     suspend fun getColor(): Flow<String?>
 
     suspend fun setPriceStart(price: Int?)
@@ -45,7 +45,7 @@ interface ILocalDataSource {
     suspend fun setIsFirstTime(isFirstTime: Boolean)
     suspend fun getIsFirstTime(): Flow<Boolean>
 
-    suspend fun clearSessionPref()
+    suspend fun clearFilterPref()
 
     suspend fun logout()
 

@@ -53,7 +53,7 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         emit(sharedPreferences.getString(SORT_ENUM_KEY, null))
     }
 
-    override suspend fun setSize(string: String) = withContext(Dispatchers.IO) {
+    override suspend fun setSize(string: String?) = withContext(Dispatchers.IO) {
         sharedPreferences.edit().putString(SIZE_KEY, string).apply()
     }
 
@@ -61,7 +61,7 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         emit(sharedPreferences.getString(SIZE_KEY, null))
     }
 
-    override suspend fun setColor(string: String) = withContext(Dispatchers.IO) {
+    override suspend fun setColor(string: String?) = withContext(Dispatchers.IO) {
         sharedPreferences.edit().putString(COLOR_KEY, string).apply()
     }
 
@@ -111,7 +111,7 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         emit(sharedPreferences.getBoolean(IS_FIRST_TIME, true))
     }
 
-    override suspend fun clearSessionPref() {
+    override suspend fun clearFilterPref() {
         sharedPreferences.edit().remove(SORT_ENUM_KEY).apply()
         sharedPreferences.edit().remove(PRICE_START_KEY).apply()
         sharedPreferences.edit().remove(PRICE_END_KEY).apply()
@@ -120,7 +120,7 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
     }
 
     override suspend fun logout() {
-        clearSessionPref()
+        clearFilterPref()
         sharedPreferences.edit().remove(IS_FIRST_TIME).apply()
         sharedPreferences.edit().remove(IS_LOGIN_TEMPORARY).apply()
         sharedPreferences.edit().remove(TOKEN_KEY).apply()

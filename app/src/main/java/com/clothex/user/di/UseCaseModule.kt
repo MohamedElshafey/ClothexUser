@@ -9,7 +9,7 @@ import com.clothex.data.domain.usecases.filter.*
 import com.clothex.data.domain.usecases.home.GetHomeUseCase
 import com.clothex.data.domain.usecases.language.GetLanguageUseCase
 import com.clothex.data.domain.usecases.language.SetLanguageUseCase
-import com.clothex.data.domain.usecases.local.ClearSessionUseCase
+import com.clothex.data.domain.usecases.local.ClearFilterUseCase
 import com.clothex.data.domain.usecases.local.GetIsFirstTimeOpenUseCase
 import com.clothex.data.domain.usecases.local.LogoutUseCase
 import com.clothex.data.domain.usecases.local.SetIsFirstTimeOpenUseCase
@@ -81,7 +81,7 @@ val useCaseModule = module {
     single(named("get_home")) { provideGetHomeUseCase(get()) }
     single(named("get_product_paging")) { provideGetProductPagingUseCase(get()) }
     single(named("get_product_details")) { provideGetProductDetailsUseCase(get()) }
-    single(named("clear_session")) { provideClearSessionUseCase(get()) }
+    single(named("clear_filter")) { provideClearSessionUseCase(get()) }
     single(named("logout")) { provideLogoutUseCase(get()) }
 
     single(named("get_shop_details")) { provideGetShopDetailsUseCase(get()) }
@@ -181,8 +181,8 @@ fun provideSetSortUseCase(dataSource: LocalDataSourceImpl): SetSortUseCase {
     return SetSortUseCase(dataSource)
 }
 
-fun provideClearSessionUseCase(dataSource: LocalDataSourceImpl): ClearSessionUseCase {
-    return ClearSessionUseCase(dataSource)
+fun provideClearSessionUseCase(dataSource: LocalDataSourceImpl): ClearFilterUseCase {
+    return ClearFilterUseCase(dataSource)
 }
 
 fun provideLogoutUseCase(dataSource: LocalDataSourceImpl): LogoutUseCase {

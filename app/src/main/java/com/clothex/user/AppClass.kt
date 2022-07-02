@@ -1,7 +1,7 @@
 package com.clothex.user
 
 import android.app.Application
-import com.clothex.data.domain.usecases.local.ClearSessionUseCase
+import com.clothex.data.domain.usecases.local.ClearFilterUseCase
 import com.clothex.user.di.*
 import com.facebook.FacebookSdk
 import kotlinx.coroutines.CoroutineScope
@@ -20,14 +20,14 @@ import org.koin.core.qualifier.named
  */
 class AppClass : Application() {
 
-    private val clearSessionUseCase: ClearSessionUseCase by inject(named("clear_session"))
+    private val clearFilterUseCase: ClearFilterUseCase by inject(named("clear_filter"))
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onCreate() {
         super.onCreate()
         setUpKoin()
         applicationScope.launch {
-            clearSessionUseCase.invoke(Unit)
+            clearFilterUseCase.invoke(Unit)
         }
         FacebookSdk.sdkInitialize(applicationContext);
 //        AppEventsLogger.activateApp(this);

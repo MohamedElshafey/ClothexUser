@@ -12,56 +12,87 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/titleTV"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingBottom="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
                 android:text="@string/filter"
                 android:textAppearance="@style/FontSemiBold"
                 android:textColor="@color/cod_gray"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/resetTV"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/reset"
+                android:textAppearance="@style/FontRegular"
+                android:textColor="@color/dove_gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/titleTV"
+                app:layout_constraintEnd_toEndOf="@+id/titleTV"
+                app:layout_constraintTop_toTopOf="@+id/titleTV" />
 
             <TextView
                 android:id="@+id/categoryTitleTV"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/choose_category"
                 android:textAppearance="@style/FontMedium"
                 android:textColor="@color/dove_gray"
                 android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTV" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/categoryChipGroup"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryTitleTV"
                 app:singleSelection="true" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/priceRangeTV"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/price_range"
                 android:textAppearance="@style/FontMedium"
                 android:textColor="@color/dove_gray"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryTitleTV" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/priceRangeContainer"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/priceRangeTV">
 
                 <TextView
                     android:id="@+id/rangeFromTV"
@@ -88,51 +119,70 @@
 
             <com.google.android.material.slider.RangeSlider
                 android:id="@+id/priceRangeSlider"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:stepSize="200.0"
                 android:valueFrom="0.0"
                 android:valueTo="5000.0"
                 app:labelBehavior="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/priceRangeContainer"
                 app:values="@array/price_range_slider_values" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/chooseSizeTitleTV"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/choose_size"
                 android:textAppearance="@style/FontMedium"
                 android:textColor="@color/dove_gray"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/priceRangeSlider" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/sizeChipGroup"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chooseSizeTitleTV"
                 app:singleSelection="true" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/chooseColorTitleTV"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/choose_color"
                 android:textAppearance="@style/FontMedium"
                 android:textColor="@color/dove_gray"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sizeChipGroup" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/colorRV"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chooseColorTitleTV" />
 
             <TextView
                 android:id="@+id/applyFilterButton"
                 style="@style/RemarkableButtonTheme"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="32dp"
@@ -141,8 +191,11 @@
                 android:gravity="center"
                 android:text="@string/do_search"
                 android:textAppearance="@style/FontSemiBold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/colorRV" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </com.clothex.user.customview.BottomSheetContainer>

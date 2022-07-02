@@ -7,8 +7,8 @@ import com.clothex.data.local.shared_pref.ILocalDataSource
  * Created by Mohamed Elshafey on 11/17/2020.
  */
 
-typealias SetColorFilterBaseUseCase = BaseUseCase<String, Unit>
+typealias SetColorFilterBaseUseCase = BaseUseCase<String?, Unit>
 
 class SetColorFilterUseCase(private val repository: ILocalDataSource) : SetColorFilterBaseUseCase {
-    override suspend fun invoke(params: String) = repository.setColor(params)
+    override suspend fun invoke(params: String?) = repository.setColor(params)
 }

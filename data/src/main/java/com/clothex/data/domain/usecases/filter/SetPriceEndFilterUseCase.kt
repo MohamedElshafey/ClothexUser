@@ -7,9 +7,9 @@ import com.clothex.data.local.shared_pref.ILocalDataSource
  * Created by Mohamed Elshafey on 11/17/2020.
  */
 
-typealias SetPriceEndFilterBaseUseCase = BaseUseCase<Int, Unit>
+typealias SetPriceEndFilterBaseUseCase = BaseUseCase<Int?, Unit>
 
 class SetPriceEndFilterUseCase(private val repository: ILocalDataSource) :
     SetPriceEndFilterBaseUseCase {
-    override suspend fun invoke(params: Int) = repository.setPriceEnd(params)
+    override suspend fun invoke(params: Int?) = repository.setPriceEnd(params)
 }
