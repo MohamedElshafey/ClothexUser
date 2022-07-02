@@ -27,9 +27,8 @@ object ProductComparator : DiffUtil.ItemCallback<HomeProduct>() {
     }
 }
 
-class ProductPagingAdapter(
-    private val callback: (HomeProduct) -> Unit
-) : PagingDataAdapter<HomeProduct, ViewHolder>(ProductComparator) {
+class ProductPagingAdapter(private val callback: (HomeProduct) -> Unit) :
+    PagingDataAdapter<HomeProduct, ViewHolder>(ProductComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         AdapterItemProductGridBinding.inflate(

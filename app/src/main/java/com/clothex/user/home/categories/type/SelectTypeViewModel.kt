@@ -69,6 +69,7 @@ class SelectTypeViewModel(
     }
 
     fun fetchProductPage() {
+        productPage = 0
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 fetchLocalData()

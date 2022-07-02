@@ -12,7 +12,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentSelectTypeBinding
 import com.clothex.user.home.categories.style.DepartmentFactory
@@ -38,13 +37,13 @@ class SelectTypeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
-            resetProductPagingAdapter()
-            viewModel.reset()
+//            resetProductPagingAdapter()
+//            viewModel.reset()
             viewModel.fetchProductPage()
         }
         setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, _ ->
-            resetProductPagingAdapter()
-            viewModel.reset()
+//            resetProductPagingAdapter()
+//            viewModel.reset()
             viewModel.fetchProductPage()
         }
     }
@@ -108,12 +107,12 @@ class SelectTypeFragment : Fragment() {
                 loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && productAdapter.itemCount < 1
         }
 
-        viewModel.productLiveData.observe(viewLifecycleOwner) {
+        viewModel.productLiveData.observe(viewLifecycleOwner) { pagingData ->
             binding.progressBar.isVisible = false
-            lifecycleScope.launch {
-                productAdapter.submitData(PagingData.empty())
-                productAdapter.submitData(it)
-            }
+            binding.productsRV.scrollToPosition(0)
+            binding.productsRV.adapter = null
+            productAdapter.submitData(lifecycle, pagingData)
+            binding.productsRV.adapter = productAdapter
         }
 
         binding.searchBar.doAfterTextChanged {

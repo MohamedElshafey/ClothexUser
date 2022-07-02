@@ -51,8 +51,6 @@ open class SearchBaseFragment : Fragment() {
         )
     }
 
-    private var loadingMore = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -127,15 +125,11 @@ open class SearchBaseFragment : Fragment() {
         }
 
         viewModel.productLiveData.observe(viewLifecycleOwner) { products ->
-            loadingMore = false
             binding.shimmerFrame.root.isGone = true
-            lifecycleScope.launch {
-                productPagingAdapter.submitData(products)
-            }
+            productPagingAdapter.submitData(lifecycle, products)
         }
 
         viewModel.shopLiveData.observe(viewLifecycleOwner) {
-            loadingMore = false
             binding.shimmerFrame.root.isGone = true
             shopAdapter.update(it)
         }
@@ -150,23 +144,6 @@ open class SearchBaseFragment : Fragment() {
             viewModel.reset()
             viewModel.fetch(it.toString())
         }
-
-        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val layoutManager = recyclerView.layoutManager
-                if (layoutManager is StaggeredGridLayoutManager) {
-                    val totalItemCount = layoutManager.itemCount;
-                    val lastPositions = IntArray(layoutManager.spanCount)
-                    layoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
-                    val lastVisibleItem = lastPositions[0].coerceAtLeast(lastPositions[1])
-                    if (!loadingMore && totalItemCount >= 20 && totalItemCount - 1 <= (lastVisibleItem)) {
-                        loadingMore = true
-                        viewModel.fetch(null)
-                    }
-                }
-            }
-        })
 
         binding.sortContainer.setOnClickListener {
             findNavController().navigate(R.id.sortProductBottomSheet)

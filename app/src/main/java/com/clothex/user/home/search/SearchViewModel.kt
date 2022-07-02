@@ -3,6 +3,7 @@ package com.clothex.user.home.search
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.body.ShopBody
 import com.clothex.data.domain.model.home.HomeProduct
@@ -74,20 +75,18 @@ class SearchViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 fetchLocalData()
-                getProductPagingUseCase.invoke(
-                    ProductBody(
-                        page = productPage,
-                        sort = sort,
-                        priceStart = priceStart,
-                        priceEnd = priceEnd,
-                        size = size,
-                        shopId = shopId,
-                        color = color,
-                        search = search,
-                        coroutineScope = viewModelScope
-                    )
-                ).collect {
-                    productPage++
+                val body = ProductBody(
+                    page = productPage,
+                    sort = sort,
+                    priceStart = priceStart,
+                    priceEnd = priceEnd,
+                    size = size,
+                    shopId = shopId,
+                    color = color,
+                    search = search,
+                    coroutineScope = viewModelScope
+                )
+                getProductPagingUseCase.invoke(body).cachedIn(viewModelScope).collect {
                     loadingLiveData.postValue(false)
                     productLiveData.postValue(it)
                 }

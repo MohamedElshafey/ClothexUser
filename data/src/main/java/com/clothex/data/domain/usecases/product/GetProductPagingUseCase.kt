@@ -1,5 +1,7 @@
 package com.clothex.data.domain.usecases.product
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.home.HomeProduct
@@ -15,7 +17,7 @@ typealias GetProductPagingBaseUseCase = BaseUseCase<ProductBody, Flow<PagingData
 
 class GetProductPagingUseCase(private val repository: IGetProductPagingRepository) :
     GetProductPagingBaseUseCase {
-    override suspend fun invoke(params: ProductBody): Flow<PagingData<HomeProduct>> =
+    override suspend fun invoke(params: ProductBody): Flow<PagingData<HomeProduct>> {
         repository.getProducts(
             page = params.page,
             sort = params.sort,
@@ -26,7 +28,9 @@ class GetProductPagingUseCase(private val repository: IGetProductPagingRepositor
             color = params.color,
             department = params.department,
             type = params.type,
-            search = params.search,
-            coroutineScope = params.coroutineScope
+            search = params.search
         )
+        return Pager(PagingConfig(pageSize = 20)) { repository }.flow
+    }
+
 }
