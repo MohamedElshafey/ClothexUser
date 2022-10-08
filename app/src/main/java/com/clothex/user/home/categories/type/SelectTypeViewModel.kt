@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.clothex.data.domain.model.body.ProductBody
+import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.data.domain.model.home.HomeProduct
 import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceEndFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceStartFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetSizeFilterUseCase
+import com.clothex.data.domain.usecases.local.ClearFilterUseCase
 import com.clothex.data.domain.usecases.product.GetProductPagingUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
 import com.clothex.user.base.BaseLanguageViewModel
@@ -25,7 +27,8 @@ class SelectTypeViewModel(
     private val getColorFilterUseCase: GetColorFilterUseCase,
     private val getPriceStartFilterUseCase: GetPriceStartFilterUseCase,
     private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase,
-    private val productPagingUseCase: GetProductPagingUseCase
+    private val productPagingUseCase: GetProductPagingUseCase,
+    private val clearFilterUseCase: ClearFilterUseCase
 ) :
     BaseLanguageViewModel() {
 
@@ -56,12 +59,24 @@ class SelectTypeViewModel(
     private var priceStart: Int? = null
     private var priceEnd: Int? = null
 
+    val isFilterApplied = MutableLiveData(false)
+    val isSortApplied = MutableLiveData(false)
+
     private suspend fun fetchLocalData() {
         sort = getSortUseCase(Unit).first()
+        isSortApplied.postValue(sort != null && sort != SortEnum.BEST_MATCH.value)
+
         size = getSizeFilterUseCase(Unit).first()
         color = getColorFilterUseCase(Unit).first()
         priceStart = getPriceStartFilterUseCase(Unit).first()
         priceEnd = getPriceEndFilterUseCase(Unit).first()
+
+        isFilterApplied.postValue(
+            size.isNullOrEmpty().not() ||
+                    color.isNullOrEmpty().not() ||
+                    priceStart != null ||
+                    priceEnd != null
+        )
     }
 
 
@@ -92,6 +107,12 @@ class SelectTypeViewModel(
                     productLiveData.postValue(it)
                 }
             }
+        }
+    }
+
+    fun clearFilter() {
+        viewModelScope.launch {
+            clearFilterUseCase(Unit)
         }
     }
 }

@@ -209,7 +209,8 @@ val viewModelsModule = module {
             getSizeFilterUseCase = get(named("get_size_filter")),
             getColorFilterUseCase = get(named("get_color_filter")),
             getPriceStartFilterUseCase = get(named("get_price_start_filter")),
-            getPriceEndFilterUseCase = get(named("get_price_end_filter"))
+            getPriceEndFilterUseCase = get(named("get_price_end_filter")),
+            clearFilterUseCase = get(named("clear_filter"))
         )
     }
 

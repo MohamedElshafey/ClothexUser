@@ -114,6 +114,18 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
+                    <View
+                        android:id="@+id/filterIndicator"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/indicator_selected_dot"
+                        android:backgroundTint="@color/island_aqua"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@id/filterContainer"
+                        app:layout_constraintTop_toTopOf="@id/filterContainer" />
+
                     <LinearLayout
                         android:id="@+id/sortContainer"
                         android:layout_width="wrap_content"
@@ -142,6 +154,18 @@
                             android:textColor="@color/black"
                             android:textSize="14sp" />
                     </LinearLayout>
+
+                    <View
+                        android:id="@+id/sortIndicator"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/indicator_selected_dot"
+                        android:backgroundTint="@color/island_aqua"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@id/sortContainer"
+                        app:layout_constraintTop_toTopOf="@id/sortContainer" />
 
                     <com.clothex.user.customview.card.ClothexCard
                         android:id="@+id/departmentCard"

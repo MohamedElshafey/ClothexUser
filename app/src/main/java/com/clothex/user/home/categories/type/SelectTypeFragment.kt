@@ -36,6 +36,7 @@ class SelectTypeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.clearFilter()
         setFragmentResultListener(FilterProductBottomSheet.REQUEST_KEY) { _, _ ->
 //            resetProductPagingAdapter()
 //            viewModel.reset()
@@ -134,6 +135,12 @@ class SelectTypeFragment : Fragment() {
         binding.filterContainer.setOnClickListener {
 //            findNavController().navigate(SearchBaseFragmentDirections.actionSearchProductFragmentToFilterProductBottomSheet())
             findNavController().navigate(R.id.filterProductBottomSheet)
+        }
+        viewModel.isFilterApplied.observe(viewLifecycleOwner) {
+            binding.filterIndicator.isVisible = it
+        }
+        viewModel.isSortApplied.observe(viewLifecycleOwner) {
+            binding.sortIndicator.isVisible = it
         }
     }
 
