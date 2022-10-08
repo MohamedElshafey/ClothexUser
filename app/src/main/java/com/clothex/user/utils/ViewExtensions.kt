@@ -11,6 +11,8 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.ViewCompat
+import androidx.paging.LoadState
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.clothex.user.R
 import com.clothex.user.customview.DividerItemDecorator
@@ -73,4 +75,27 @@ fun View.setHeightPercentage(percentage: Int) {
 fun ImageView.setRotationByLocale() {
     val isArabic = context.getCurrentLocale()?.language.equals("ar")
     rotation = if (isArabic) 180f else 0f
+}
+
+interface PagingLoadCallback {
+    fun loading()
+    fun success()
+    fun empty()
+}
+
+fun <T : Any, VH : RecyclerView.ViewHolder> PagingDataAdapter<T, VH>.addLoadCallback(
+    pagingLoadCallback: PagingLoadCallback
+) {
+    addLoadStateListener { loadState ->
+        if (loadState.refresh is LoadState.Loading) {
+            pagingLoadCallback.loading()
+        } else if (loadState.append is LoadState.NotLoading) {
+            pagingLoadCallback.success()
+        }
+        if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached) {
+            if (itemCount < 1) {
+                pagingLoadCallback.empty()
+            }
+        }
+    }
 }

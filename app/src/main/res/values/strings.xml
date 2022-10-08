@@ -190,6 +190,7 @@
     <string name="no_location_selected_to_save">Select location first to save</string>
     <string name="no_offers_found_message">No offers found</string>
     <string name="reset">Reset</string>
+    <string name="no_results_title">No results found</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

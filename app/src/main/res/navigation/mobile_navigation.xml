@@ -438,6 +438,9 @@
         <action
             android:id="@+id/action_offerFragment_to_offerDetailsFragment"
             app:destination="@id/offerDetailsFragment" />
+        <deepLink
+            android:id="@+id/offerDeeplink"
+            app:uri="clothex://app.user/offer" />
     </fragment>
     <fragment
         android:id="@+id/offerDetailsFragment"

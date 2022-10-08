@@ -28,7 +28,6 @@ fun setImageFromUrl(imageView: ImageView, url: String?) {
         Glide.with(imageView.context)
             .load(newUrl)
             .placeholder(R.drawable.loading_gradient)
-            .error(R.drawable.onboarding_image_1)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(imageView)
 }

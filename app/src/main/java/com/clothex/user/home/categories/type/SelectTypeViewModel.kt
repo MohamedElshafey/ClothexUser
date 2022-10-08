@@ -3,6 +3,7 @@ package com.clothex.user.home.categories.type
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.home.HomeProduct
 import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
@@ -86,7 +87,7 @@ class SelectTypeViewModel(
                         color = color,
                         coroutineScope = viewModelScope
                     )
-                ).collect {
+                ).cachedIn(viewModelScope).collect {
                     productPage++
                     productLiveData.postValue(it)
                 }

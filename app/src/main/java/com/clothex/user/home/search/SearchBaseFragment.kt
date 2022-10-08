@@ -24,6 +24,8 @@ import com.clothex.user.home.product.ProductPagingAdapter
 import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
 import com.clothex.user.home.shop.ShopAdapter
+import com.clothex.user.utils.PagingLoadCallback
+import com.clothex.user.utils.addLoadCallback
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -56,6 +58,7 @@ open class SearchBaseFragment : Fragment() {
         arguments?.let {
             viewModel.isProducts = SearchBaseFragmentArgs.fromBundle(it).product
         }
+        viewModel.clearFilter()
         viewModel.reset()
         resetProductPagingAdapter()
         shopAdapter.reset()
@@ -72,6 +75,22 @@ open class SearchBaseFragment : Fragment() {
             viewModel.reset()
             viewModel.fetch(null)
         }
+        productPagingAdapter.addLoadCallback(object : PagingLoadCallback {
+            override fun loading() {
+                if (viewModel.isProducts)
+                    binding.noResultsMessage.isVisible = false
+            }
+
+            override fun success() {
+                if (viewModel.isProducts)
+                    binding.noResultsMessage.isVisible = false
+            }
+
+            override fun empty() {
+                if (viewModel.isProducts)
+                    binding.noResultsMessage.isVisible = true
+            }
+        })
     }
 
     private fun resetProductPagingAdapter() {
@@ -157,6 +176,18 @@ open class SearchBaseFragment : Fragment() {
 
         binding.actionBar.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        viewModel.isEmptyLiveData.observe(viewLifecycleOwner) {
+            binding.noResultsMessage.isVisible = it
+        }
+
+        viewModel.isFilterApplied.observe(viewLifecycleOwner) {
+            binding.filterIndicator.isVisible = it
+        }
+
+        viewModel.isSortApplied.observe(viewLifecycleOwner) {
+            binding.sortIndicator.isVisible = it
         }
     }
 

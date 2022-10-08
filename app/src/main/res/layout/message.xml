@@ -31,7 +31,7 @@
         android:gravity="center"
         android:textAppearance="@style/FontSemiBold"
         android:textColor="@color/cod_gray"
-        android:textSize="28sp"
+        android:textSize="21sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

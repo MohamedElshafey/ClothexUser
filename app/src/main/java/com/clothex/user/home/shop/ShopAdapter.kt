@@ -36,7 +36,7 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.ViewHolder> {
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(shops[holder.adapterPosition])
+        holder.bind(shops[holder.absoluteAdapterPosition])
 
     override fun getItemCount(): Int = shops.size
 

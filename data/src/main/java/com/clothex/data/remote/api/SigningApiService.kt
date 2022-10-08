@@ -10,7 +10,7 @@ import retrofit2.http.*
 /**
  * Created by Mohamed Elshafey on 10/10/2020.
  */
-interface SigningApiService {
+interface   SigningApiService {
     @POST("login")
     suspend fun login(@Body body: LoginBody): BaseResponseModel<Login>
 

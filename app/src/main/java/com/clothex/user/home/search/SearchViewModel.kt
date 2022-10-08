@@ -6,12 +6,14 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.clothex.data.domain.model.body.ProductBody
 import com.clothex.data.domain.model.body.ShopBody
+import com.clothex.data.domain.model.body.SortEnum
 import com.clothex.data.domain.model.home.HomeProduct
 import com.clothex.data.domain.model.home.HomeShop
 import com.clothex.data.domain.usecases.filter.GetColorFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceEndFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetPriceStartFilterUseCase
 import com.clothex.data.domain.usecases.filter.GetSizeFilterUseCase
+import com.clothex.data.domain.usecases.local.ClearFilterUseCase
 import com.clothex.data.domain.usecases.product.GetProductPagingUseCase
 import com.clothex.data.domain.usecases.shop.GetShopPageUseCase
 import com.clothex.data.domain.usecases.sort.GetSortUseCase
@@ -29,15 +31,25 @@ class SearchViewModel(
     private val getColorFilterUseCase: GetColorFilterUseCase,
     private val getPriceStartFilterUseCase: GetPriceStartFilterUseCase,
     private val getPriceEndFilterUseCase: GetPriceEndFilterUseCase,
-    private val getProductPagingUseCase: GetProductPagingUseCase
+    private val getProductPagingUseCase: GetProductPagingUseCase,
+    private val clearFilterUseCase: ClearFilterUseCase
 ) : BaseLanguageViewModel() {
 
     val productLiveData = MutableLiveData<PagingData<HomeProduct>>()
     val shopLiveData = MutableLiveData<List<HomeShop>>()
     val loadingLiveData = MutableLiveData(false)
+    val isEmptyLiveData = MutableLiveData(false)
+    val isFilterApplied = MutableLiveData(false)
+    val isSortApplied = MutableLiveData(false)
 
     var productPage: Int = 0
     var shopPage: Int = 0
+
+    fun clearFilter() {
+        viewModelScope.launch {
+            clearFilterUseCase(Unit)
+        }
+    }
 
     fun reset() {
         productPage = 0
@@ -45,6 +57,7 @@ class SearchViewModel(
         productLiveData.value = PagingData.empty()
         shopLiveData.value = listOf()
         loadingLiveData.postValue(true)
+        isEmptyLiveData.postValue(false)
     }
 
     var shopId: String? = null
@@ -54,12 +67,22 @@ class SearchViewModel(
     var priceStart: Int? = null
     var priceEnd: Int? = null
 
+
     private suspend fun fetchLocalData() {
         sort = getSortUseCase(Unit).first()
+        isSortApplied.postValue(sort != null && sort != SortEnum.BEST_MATCH.value)
+
         size = getSizeFilterUseCase(Unit).first()
         color = getColorFilterUseCase(Unit).first()
         priceStart = getPriceStartFilterUseCase(Unit).first()
         priceEnd = getPriceEndFilterUseCase(Unit).first()
+
+        isFilterApplied.postValue(
+            size.isNullOrEmpty().not() ||
+                    color.isNullOrEmpty().not() ||
+                    priceStart != null ||
+                    priceEnd != null
+        )
     }
 
     var isProducts = true
@@ -102,6 +125,7 @@ class SearchViewModel(
                         loadingLiveData.postValue(false)
                         shopPage++
                         shopLiveData.postValue(it)
+                        isEmptyLiveData.postValue(it.isNullOrEmpty())
                     }
             }
         }
