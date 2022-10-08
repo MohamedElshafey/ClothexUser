@@ -40,6 +40,7 @@ class VoucherFragment : Fragment(), (Voucher) -> Unit {
         binding.progressBar.isVisible = true
         viewModel.vouchersLiveData.observe(viewLifecycleOwner) { voucherList ->
             binding.progressBar.isGone = true
+            binding.emptyVouchersMessage.isVisible = voucherList.isNullOrEmpty()
             binding.vouchersRV.adapter = VoucherAdapter(voucherList, this, viewModel.isArabic())
         }
         binding.vouchersRV.addDivider()

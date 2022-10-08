@@ -191,6 +191,7 @@
     <string name="no_offers_found_message">No offers found</string>
     <string name="reset">Reset</string>
     <string name="no_results_title">No results found</string>
+    <string name="add_voucher_desc">Here you can find the vouchers you added by scanning the QR or adding the Code</string>
     <string-array name="searchSpinner">
         <item>items</item>
         <item>shops</item>

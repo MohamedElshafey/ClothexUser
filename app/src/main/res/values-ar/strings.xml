@@ -182,4 +182,5 @@
     <string name="no_offers_found_message">لا يوجد عروض</string>
     <string name="reset">مسح الكل</string>
     <string name="no_results_title">لا يوجد نتائج بحث</string>
+    <string name="add_voucher_desc">هنا يمكنك العثور على القسائم التي أضفتها عن طريق مسح QR أو إضافة الرمز</string>
 </resources>
