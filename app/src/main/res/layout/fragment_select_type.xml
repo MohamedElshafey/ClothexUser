@@ -65,11 +65,24 @@
                         android:hint="@string/search"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
-                        android:maxLines="1"
+                        android:lines="1"
                         android:padding="16dp"
+                        android:paddingEnd="36dp"
+                        android:textDirection="locale"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/logoIV" />
+
+                    <ImageView
+                        android:id="@+id/clearSearchImageView"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_close"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/searchBar"
+                        app:layout_constraintEnd_toEndOf="@id/searchBar"
+                        app:layout_constraintTop_toTopOf="@id/searchBar" />
 
                     <LinearLayout
                         android:id="@+id/filterContainer"

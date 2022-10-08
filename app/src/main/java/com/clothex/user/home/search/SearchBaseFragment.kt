@@ -156,12 +156,15 @@ open class SearchBaseFragment : Fragment() {
         binding.searchBar.menu.setOnClickListener {
             listPopupWindow.show()
         }
-
+        binding.clearSearchImageView.setOnClickListener {
+            binding.searchBar.searchET.text = null
+        }
         binding.searchBar.searchET.doAfterTextChanged {
             resetProductPagingAdapter()
             shopAdapter.reset()
             viewModel.reset()
             viewModel.fetch(it.toString())
+            binding.clearSearchImageView.isVisible = it.isNullOrEmpty().not()
         }
 
         binding.sortContainer.setOnClickListener {

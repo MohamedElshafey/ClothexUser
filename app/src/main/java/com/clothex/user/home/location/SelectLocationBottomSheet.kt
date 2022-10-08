@@ -24,6 +24,8 @@ class SelectLocationBottomSheet : DefaultBottomSheet() {
     private val savedLocationCallback = object : SavedLocationCallback {
         override fun onItemSelected(savedLocation: SavedLocation) {
             viewModel.saveLocation(savedLocation)
+            findNavController().previousBackStackEntry?.savedStateHandle?.set(KEY_DISMISS, true)
+            dismiss()
         }
 
         override fun onItemUnSelected(savedLocation: SavedLocation) {
@@ -47,10 +49,10 @@ class SelectLocationBottomSheet : DefaultBottomSheet() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchLocations()
-        viewModel.locationListLiveData.observe(viewLifecycleOwner, {
+        viewModel.locationListLiveData.observe(viewLifecycleOwner) {
             if (it.isNotEmpty())
                 binding.savedLocationRV.adapter = SavedLocationAdapter(it, savedLocationCallback)
-        })
+        }
 
         /*val locationManager =
             activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager?

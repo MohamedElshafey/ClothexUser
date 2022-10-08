@@ -56,6 +56,7 @@
         android:gravity="center"
         android:iconifiedByDefault="false"
         android:searchIcon="@drawable/ic_search"
+        android:textDirection="locale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/backIV"
         app:layout_constraintTop_toTopOf="parent" />

@@ -16,7 +16,8 @@
         android:id="@+id/design_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/titleTV"

@@ -65,6 +65,9 @@ class SelectTypeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.clearSearchImageView.setOnClickListener {
+            binding.searchBar.text = null
+        }
         val departmentEnum = SelectTypeFragmentArgs.fromBundle(requireArguments()).departmentEnum
         val typesArray = SelectTypeFragmentArgs.fromBundle(requireArguments()).typeList
         val departmentId = SelectTypeFragmentArgs.fromBundle(requireArguments()).departmentId
@@ -119,6 +122,7 @@ class SelectTypeFragment : Fragment() {
             binding.notItemsMessage.isVisible = false
             binding.progressBar.isVisible = true
             viewModel.searchKey = it?.toString()
+            binding.clearSearchImageView.isVisible = it.isNullOrEmpty().not()
         }
 
         binding.productsRV.adapter = productAdapter

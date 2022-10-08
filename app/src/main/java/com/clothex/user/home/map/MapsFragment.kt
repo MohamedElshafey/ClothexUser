@@ -21,6 +21,7 @@ import com.clothex.user.databinding.FragmentMapsBinding
 import com.clothex.user.dialog.MessageAlertDialog.showAlertDialog
 import com.clothex.user.utils.getLastLocation
 import com.clothex.user.utils.hasPermission
+import com.clothex.user.utils.setRotationByLocale
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -156,6 +157,7 @@ class MapsFragment : Fragment() {
             }
         }
 
+        binding.backIV.setRotationByLocale()
         binding.backIV.setOnClickListener {
             findNavController().navigateUp()
         }

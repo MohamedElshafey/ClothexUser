@@ -34,7 +34,7 @@ class SavedLocationAdapter(
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[holder.layoutPosition]) { layoutPosition ->
+        holder.bind(list[holder.absoluteAdapterPosition]) { layoutPosition ->
             if (selectedItemPosition != -1) {
                 list[selectedItemPosition].selected = false
                 onSavedLocationCallback.onItemSelected(list[selectedItemPosition])
@@ -71,7 +71,7 @@ class SavedLocationAdapter(
             }
             binding.titleTV.text = savedLocation.title
             binding.subTitleTV.text = savedLocation.subTitle
-            binding.root.setOnClickListener { onClick.invoke(layoutPosition) }
+            binding.root.setOnClickListener { onClick.invoke(absoluteAdapterPosition) }
         }
     }
 
