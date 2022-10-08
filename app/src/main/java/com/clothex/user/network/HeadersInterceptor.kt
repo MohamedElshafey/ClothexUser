@@ -21,7 +21,7 @@ class HeadersInterceptor(
         val shouldAddAuthHeaders = request.header("isAuthorizable") != "false"
         requestBuilder.removeHeader("isAuthorizable")
         if (shouldAddAuthHeaders) {
-            val savedLocation = savedLocationDao.get(true)
+            val savedLocation = savedLocationDao.getSavedLocation(true)
             if (savedLocation != null) {
                 requestBuilder
                     .addHeader("latitude", savedLocation.latitude.toString())

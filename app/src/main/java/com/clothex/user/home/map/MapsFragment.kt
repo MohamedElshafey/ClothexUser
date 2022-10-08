@@ -121,7 +121,7 @@ class MapsFragment : Fragment() {
                         SavedLocation(
                             title,
                             subTitle,
-                            false,
+                            true,
                             latLng.latitude,
                             latLng.longitude
                         )

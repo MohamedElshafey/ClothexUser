@@ -4,6 +4,7 @@ import com.clothex.data.domain.usecases.BaseUseCase
 import com.clothex.data.local.room.dao.SavedLocationDao
 import com.clothex.data.local.room.entity.SavedLocation
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
 /**
@@ -15,6 +16,8 @@ typealias GetSavedLocationBaseUseCase = BaseUseCase<Boolean, Flow<SavedLocation?
 class GetSavedLocationUseCase(private val repository: SavedLocationDao) :
     GetSavedLocationBaseUseCase {
     override suspend fun invoke(params: Boolean): Flow<SavedLocation?> = flow {
-        emit(repository.get(params))
+        repository.get(params).collect {
+            emit(it)
+        }
     }
 }

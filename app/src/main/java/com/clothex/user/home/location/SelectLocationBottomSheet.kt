@@ -38,11 +38,8 @@ class SelectLocationBottomSheet : DefaultBottomSheet() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = SelectLocationBottomSheetBinding.inflate(
-            LayoutInflater.from(context),
-            container,
-            false
-        )
+        binding =
+            SelectLocationBottomSheetBinding.inflate(LayoutInflater.from(context), container, false)
         return binding.root
     }
 

@@ -12,7 +12,7 @@ import java.net.UnknownHostException
 
 class HeaderInterceptor(private val savedLocationDao: SavedLocationDao) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val savedLocation = savedLocationDao.get(true)
+        val savedLocation = savedLocationDao.getSavedLocation(true)
         val newReqBuilder = chain.request().newBuilder()
         if (savedLocation != null) {
             newReqBuilder

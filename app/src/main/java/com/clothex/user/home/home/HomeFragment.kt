@@ -42,10 +42,10 @@ class HomeFragment : Fragment(), (String) -> Unit {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getSelectedLocation()
         viewModel.logScreen(HomeFragment::class.java.simpleName)
         binding.viewModel = viewModel
         viewModel.checkFirstTimeOpen()
-        viewModel.getSelectedLocation()
         viewModel.savedLocationLiveData.observe(viewLifecycleOwner) {
             binding.locationValueTV.text =
                 it?.title ?: context?.getString(R.string.select_location_to_search)

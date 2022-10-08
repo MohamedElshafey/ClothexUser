@@ -13,6 +13,11 @@ typealias SaveLocationBaseUseCase = BaseUseCase<SavedLocation, Boolean>
 class SaveLocationsUseCase(private val repository: SavedLocationDao) : SaveLocationBaseUseCase {
     override suspend fun invoke(params: SavedLocation): Boolean {
         val list = repository.getAll()
+        if (params.selected) {
+            val prevSelectedLocation = list.find { it.selected }
+            prevSelectedLocation?.selected = false
+            prevSelectedLocation?.let { repository.insertAll(it) }
+        }
         if (list.size < 4 || list.find { it.uid == params.uid } != null) {
             repository.insertAll(params)
             return true
