@@ -1,5 +1,6 @@
 package com.clothex.user.home.login
 
+import android.app.Activity
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Bundle
@@ -11,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -29,9 +29,9 @@ import com.facebook.FacebookException
 import com.facebook.GraphRequest
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import org.koin.android.ext.android.inject
 import retrofit2.HttpException
@@ -43,29 +43,10 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val loginViewModel: LoginViewModel by inject()
-
-    private lateinit var oneTapClient: SignInClient
-    private lateinit var signInRequest: BeginSignInRequest
     private val callbackManager: CallbackManager = CallbackManager.Factory.create();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginViewModel.logScreen(LoginFragment::class.java.simpleName)
-        loginViewModel.setFirstTimeOpen()
-        oneTapClient = Identity.getSignInClient(requireActivity())
-        signInRequest = BeginSignInRequest.builder()
-            .setPasswordRequestOptions(
-                BeginSignInRequest.PasswordRequestOptions.builder()
-                    .setSupported(true)
-                    .build()
-            )
-            .setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                    .setSupported(true)
-                    .setServerClientId(getString(R.string.your_web_client_id))
-                    .setFilterByAuthorizedAccounts(false)
-                    .build()
-            )
-            .build()
         loginViewModel.getTokenIfNeeded()
     }
 
@@ -82,7 +63,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.googleSignInButton.setOnClickListener {
-            oneTapClient.signOut()
             handleGoogleLogin()
         }
 
@@ -124,8 +104,6 @@ class LoginFragment : Fragment() {
                 .logInWithReadPermissions(this, callbackManager, listOf("public_profile", "email"));
         }
 
-//        handleGoogleLogin()
-
         binding.forgetPasswordTV.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         val signUpMsg = getString(R.string.sign_up_msg)
         val spannableStringBuilder = SpannableStringBuilder(signUpMsg)
@@ -156,6 +134,7 @@ class LoginFragment : Fragment() {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
         }
         binding.skipButton.setOnClickListener {
+            loginViewModel.setFirstTimeOpen()
             findNavController().navigateUp()
         }
         binding.loginButton.setOnClickListener {
@@ -172,6 +151,7 @@ class LoginFragment : Fragment() {
     private fun handleLoginResponse(result: Result<BaseResponseModel<Login>>) {
         result.getOrNull()?.let { response ->
             response.data?.let {
+                loginViewModel.setFirstTimeOpen()
                 findNavController().navigateUp()
             }
             response.status?.let { status ->
@@ -201,26 +181,37 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
-            try {
-                val credential = oneTapClient.getSignInCredentialFromIntent(it.data)
-                val idToken = credential.googleIdToken
-                val email = credential.id
-                loginViewModel.login(LoginBody(email = email, googleToken = idToken)) {
-                    handleLoginResponse(it)
+    private val googleLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+                try {
+                    val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
+                    val email = account.email
+                    val token = account.idToken
+                    loginViewModel.login(LoginBody(email = email ?: "", googleToken = token)) {
+                        handleLoginResponse(it)
+                    }
+                } catch (e: ApiException) {
+                    Toast.makeText(
+                        context,
+                        R.string.error_happened_message_title,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            } catch (e: ApiException) {
-                Log.d(TAG, "onActivityResult:$e ")
             }
         }
 
     private fun handleGoogleLogin() {
-        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener { result ->
-            launcher.launch(IntentSenderRequest.Builder(result.pendingIntent.intentSender).build())
-        }.addOnFailureListener { e ->
-            Log.d(TAG, e.localizedMessage)
-        }
+        val googleOptions =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.your_web_client_id))
+                .requestEmail()
+                .build()
+        val googleClient = GoogleSignIn.getClient(requireContext(), googleOptions)
+        val intent = googleClient.signInIntent
+        googleClient.signOut()
+        googleLauncher.launch(intent)
     }
 
     override fun onDestroyView() {
