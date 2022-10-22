@@ -67,11 +67,9 @@ class SearchViewModel(
     var priceStart: Int? = null
     var priceEnd: Int? = null
 
-
     private suspend fun fetchLocalData() {
         sort = getSortUseCase(Unit).first()
         isSortApplied.postValue(sort != null && sort != SortEnum.BEST_MATCH.value)
-
         size = getSizeFilterUseCase(Unit).first()
         color = getColorFilterUseCase(Unit).first()
         priceStart = getPriceStartFilterUseCase(Unit).first()

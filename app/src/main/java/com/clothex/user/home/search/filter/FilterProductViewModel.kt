@@ -20,6 +20,9 @@ class FilterProductViewModel(
     private val clearFilterUseCase: ClearFilterUseCase
 ) : ViewModel() {
 
+    private val priceDefaultValueFrom = 0
+    private val priceDefaultValueTo = 5000
+
     val sizeMutableLiveData = MutableLiveData<String?>()
     val colorMutableLiveData = MutableLiveData<String?>()
     val priceStartMutableLiveData = MutableLiveData<Int?>()
@@ -41,7 +44,7 @@ class FilterProductViewModel(
     }
 
     fun setSizeFilter(size: String?) = viewModelScope.launch {
-        setSizeFilterUseCase(size)
+        setSizeFilterUseCase.invoke(size)
         getSizeFilter()
     }
 
@@ -67,7 +70,11 @@ class FilterProductViewModel(
     }
 
     fun setPriceStartFilter(price: Int?) = viewModelScope.launch {
-        setPriceStartFilterUseCase(price)
+        if (price != priceDefaultValueFrom) {
+            setPriceStartFilterUseCase(price)
+        } else {
+            setPriceStartFilterUseCase(null)
+        }
         getPriceStartFilter()
     }
 
@@ -80,7 +87,11 @@ class FilterProductViewModel(
     }
 
     fun setPriceEndFilter(price: Int?) = viewModelScope.launch {
-        setPriceEndFilterUseCase(price)
+        if (price != priceDefaultValueTo) {
+            setPriceEndFilterUseCase(price)
+        } else {
+            setPriceEndFilterUseCase(null)
+        }
         getPriceEndFilter()
     }
 
@@ -99,8 +110,8 @@ class FilterProductViewModel(
         val priceEnd = priceEndMutableLiveData.value
         filterAppliedMutableLiveData.value = color.isNullOrBlank().not() ||
                 size.isNullOrBlank().not() ||
-                (priceStart != null && priceStart != 0) ||
-                (priceEnd != null && priceEnd != 5000)
+                (priceStart != null && priceStart != priceDefaultValueFrom) ||
+                (priceEnd != null && priceEnd != priceDefaultValueTo)
     }
 
     fun resetFilter() {

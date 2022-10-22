@@ -67,13 +67,13 @@ open class SearchBaseFragment : Fragment() {
             resetProductPagingAdapter()
             shopAdapter.reset()
             viewModel.reset()
-            viewModel.fetch(null)
+            viewModel.fetch(binding.searchBar.searchET.text.toString())
         }
         setFragmentResultListener(SortProductBottomSheet.REQUEST_KEY) { _, _ ->
             resetProductPagingAdapter()
             shopAdapter.reset()
             viewModel.reset()
-            viewModel.fetch(null)
+            viewModel.fetch(binding.searchBar.searchET.text.toString())
         }
         productPagingAdapter.addLoadCallback(object : PagingLoadCallback {
             override fun loading() {

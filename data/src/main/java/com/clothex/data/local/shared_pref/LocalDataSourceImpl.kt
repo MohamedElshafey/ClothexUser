@@ -53,8 +53,14 @@ class LocalDataSourceImpl(private val sharedPreferences: SharedPreferences) : IL
         emit(sharedPreferences.getString(SORT_ENUM_KEY, null))
     }
 
-    override suspend fun setSize(string: String?) = withContext(Dispatchers.IO) {
-        sharedPreferences.edit().putString(SIZE_KEY, string).apply()
+    override suspend fun setSize(string: String?) {
+        withContext(Dispatchers.IO) {
+            if (string == null) {
+                sharedPreferences.edit().remove(SIZE_KEY).commit()
+            } else {
+                sharedPreferences.edit().putString(SIZE_KEY, string).commit()
+            }
+        }
     }
 
     override suspend fun getSize(): Flow<String?> = flow {
