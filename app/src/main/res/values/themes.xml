@@ -140,6 +140,11 @@
         <item name="android:backgroundDimAmount">0.9</item>
     </style>
 
+    <style name="WhiteProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTintMode">src_atop</item>
+        <item name="android:indeterminateTint">@color/white</item>
+    </style>
+
     <attr name="title" format="string" />
 
     <declare-styleable name="DefaultActionBar">

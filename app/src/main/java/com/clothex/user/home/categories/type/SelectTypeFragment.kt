@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import com.clothex.user.R
 import com.clothex.user.databinding.FragmentSelectTypeBinding
 import com.clothex.user.home.categories.style.DepartmentFactory
@@ -19,7 +18,9 @@ import com.clothex.user.home.product.ProductPagingAdapter
 import com.clothex.user.home.search.filter.FilterProductBottomSheet
 import com.clothex.user.home.search.sort.SortProductBottomSheet
 import com.clothex.user.log.MainLogEvents
+import com.clothex.user.utils.PagingLoadCallback
 import com.clothex.user.utils.addChip
+import com.clothex.user.utils.addLoadCallback
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -106,10 +107,20 @@ class SelectTypeFragment : Fragment() {
             }
         }
 
-        productAdapter.addLoadStateListener { loadState ->
-            binding.notItemsMessage.isVisible =
-                loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && productAdapter.itemCount < 1
-        }
+        productAdapter.addLoadCallback(object : PagingLoadCallback {
+            override fun loading() {
+                binding.notItemsMessage.isVisible = false
+                binding.progressBar.isVisible = true
+            }
+
+            override fun success() {
+                binding.progressBar.isVisible = false
+            }
+
+            override fun empty() {
+                binding.notItemsMessage.isVisible = true
+            }
+        })
 
         viewModel.productLiveData.observe(viewLifecycleOwner) { pagingData ->
             binding.progressBar.isVisible = false

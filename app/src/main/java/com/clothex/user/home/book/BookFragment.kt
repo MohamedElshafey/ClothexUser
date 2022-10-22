@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.clothex.data.domain.model.body.OrderBody
 import com.clothex.data.domain.model.my_item.MyItem
 import com.clothex.user.R
+import com.clothex.user.customview.LoadingDialog
 import com.clothex.user.data.my_items.MyItemGroup
 import com.clothex.user.databinding.FragmentBookBinding
 import com.clothex.user.dialog.MessageAlertDialog
@@ -33,6 +34,9 @@ class BookFragment : Fragment() {
     lateinit var binding: FragmentBookBinding
     lateinit var myItemGroup: MyItemGroup
     private val mViewModel: BookViewModel by inject()
+    private val loadingDialog by lazy {
+        LoadingDialog(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -97,6 +101,7 @@ class BookFragment : Fragment() {
             val myItemsIds = myItemGroup.myItems.map { it.id }
             mViewModel.isLoginTemporaryLiveData.observe(viewLifecycleOwner) { isLoginTemporary ->
                 if (isLoginTemporary.not()) {
+                    loadingDialog.show()
                     mViewModel.createMyOrder(
                         OrderBody(
                             myItemsIds,
@@ -104,6 +109,7 @@ class BookFragment : Fragment() {
                             myItemGroup.shop.id
                         )
                     ) { simpleResponse ->
+                        loadingDialog.dismiss()
                         if (simpleResponse?.success == true) {
                             findNavController().navigate(BookFragmentDirections.actionBookFragmentToRequestBookFragment())
                         } else MessageAlertDialog.showAlertDialog(

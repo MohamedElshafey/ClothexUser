@@ -16,6 +16,7 @@ import com.clothex.data.domain.model.body.MyItemBody
 import com.clothex.data.domain.model.product.Media
 import com.clothex.data.domain.model.product.Product
 import com.clothex.user.R
+import com.clothex.user.customview.LoadingDialog
 import com.clothex.user.databinding.FragmentProductDetailsBinding
 import com.clothex.user.home.branch.BranchAdapter
 import com.clothex.user.home.color.ColorsAdapter
@@ -34,6 +35,9 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
 
     private val mViewModel: ProductDetailsViewModel by inject()
     lateinit var binding: FragmentProductDetailsBinding
+    private val loadingDialog: LoadingDialog by lazy {
+        LoadingDialog(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -156,7 +160,9 @@ class ProductDetailsFragment : Fragment(), ImageSelectedListener {
                     size_name = selectedSizeName
                 )
                 mViewModel.logEvent(MainLogEvents.AddToMyItems(productId, shopId))
+                loadingDialog.show()
                 mViewModel.addToMyItem(myItemBody) { myItem ->
+                    loadingDialog.dismiss()
                     findNavController().navigate(
                         ProductDetailsFragmentDirections.actionProductDetailsFragmentToAddToMyListDialog(
                             myItem
