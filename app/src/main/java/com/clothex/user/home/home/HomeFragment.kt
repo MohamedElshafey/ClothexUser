@@ -37,6 +37,7 @@ class HomeFragment : Fragment(), (String) -> Unit {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -44,7 +45,6 @@ class HomeFragment : Fragment(), (String) -> Unit {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getSelectedLocation()
         viewModel.logScreen(HomeFragment::class.java.simpleName)
-        binding.viewModel = viewModel
         viewModel.checkFirstTimeOpen()
         viewModel.savedLocationLiveData.observe(viewLifecycleOwner) {
             binding.locationValueTV.text =
@@ -172,17 +172,17 @@ class HomeFragment : Fragment(), (String) -> Unit {
         viewModel.loadingLiveData.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
                 if (viewModel.productLiveData.value.isNullOrEmpty()) {
-                    binding.shimmerFrame.root.isVisible = isLoading
+                    binding.shimmerFrame.root.isVisible = true
                 } else {
-                    binding.progressBar.isVisible = isLoading
+                    binding.progressBar.isVisible = true
                 }
             } else {
-                binding.shimmerFrame.root.isVisible = isLoading
-                binding.progressBar.isVisible = isLoading
+                binding.shimmerFrame.root.isVisible = false
+                binding.progressBar.isVisible = false
             }
+            binding.homeGroup.isVisible = isLoading.not()
             binding.swipeRefresh.isRefreshing = false
         }
-
     }
 
     private fun openSelectType(departmentEnum: DepartmentEnum) {

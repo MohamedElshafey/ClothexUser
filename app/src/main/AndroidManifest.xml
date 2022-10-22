@@ -24,8 +24,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -41,7 +45,9 @@
 
         <activity
             android:name=".onboarding.OnBoardingActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -51,7 +57,9 @@
             android:name=".home.HomeActivity"
             android:clearTaskOnLaunch="true"
             android:exported="true"
-            android:windowSoftInputMode="stateVisible|adjustPan">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
